@@ -1,0 +1,99 @@
+ERROR - 2026-03-12 14:55:47 --> mysqli_sql_exception: Unknown column 'servidores.id' in 'on clause' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `emprest...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `emprest...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `emprest...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `emprest...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Emprestimo.php(20): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-12 14:55:47 --> Unknown column 'servidores.id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `emprestimos`.*, `servidores`.`nome`
+FROM `emprestimos`
+JOIN `servidores` ON `servidores`.`id` = `emprestimos`.`servidor_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `emprestimos`.*, `servidores`.`nome`
+FROM `emprestimos`
+JOIN `servidores` ON `servidores`.`id` = `emprestimos`.`servidor_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `emprestimos`.*, `servidores`.`nome`
+FROM `emprestimos`
+JOIN `servidores` ON `servidores`.`id` = `emprestimos`.`servidor_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `emprestimos`.*, `servidores`.`nome`
+FROM `emprestimos`
+JOIN `servidores` ON `servidores`.`id` = `emprestimos`.`servidor_id`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Emprestimo.php(20): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 14:56:22 --> Invalid file: "emprestimos.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('emprestimos.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimos', [], true)
+ 3 APPPATH\Controllers\Emprestimo.php(25): view('emprestimos', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 15:06:47 --> Undefined variable $servidores
+in APPPATH\Views\emprestimo.php on line 25.
+ 1 APPPATH\Views\emprestimo.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $servidores', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php', 25)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimo', [], true)
+ 5 APPPATH\Controllers\Emprestimo.php(25): view('emprestimo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 15:10:11 --> Undefined variable $servidores
+in APPPATH\Views\emprestimo.php on line 25.
+ 1 APPPATH\Views\emprestimo.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $servidores', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php', 25)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimo', [], true)
+ 5 APPPATH\Controllers\Emprestimo.php(25): view('emprestimo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 15:35:16 --> Undefined variable $itens
+in APPPATH\Views\emprestimo.php on line 43.
+ 1 APPPATH\Views\emprestimo.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $itens', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php', 43)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimo', [], true)
+ 5 APPPATH\Controllers\Emprestimo.php(26): view('emprestimo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 15:35:33 --> Undefined variable $itens
+in APPPATH\Views\emprestimo.php on line 43.
+ 1 APPPATH\Views\emprestimo.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $itens', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php', 43)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimo', [], true)
+ 5 APPPATH\Controllers\Emprestimo.php(27): view('emprestimo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-12 15:36:04 --> Undefined variable $kits
+in APPPATH\Views\emprestimo.php on line 61.
+ 1 APPPATH\Views\emprestimo.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $kits', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php', 61)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\emprestimo.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('emprestimo', [], true)
+ 5 APPPATH\Controllers\Emprestimo.php(27): view('emprestimo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimo->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimo))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

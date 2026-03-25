@@ -1,0 +1,811 @@
+CRITICAL - 2026-01-09 12:24:24 --> syntax error, unexpected end of file
+in APPPATH\Views\templates\sidebar.php on line 42.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 4 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:30:15 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:30:23 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:30:58 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:31:11 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:32:21 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:33:07 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:34:41 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:36:20 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:36:47 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 12:36:51 --> Undefined variable $login
+in APPPATH\Views\templates\sidebar.php on line 17.
+ 1 APPPATH\Views\templates\sidebar.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $login', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php', 17)
+ 2 APPPATH\Views\templates\header.php(25): include_once('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\sidebar.php')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\templates\\header.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('templates/header', [], true)
+ 6 APPPATH\Controllers\Produtos.php(19): view('templates/header')
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Produtos->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produtos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:55:03 --> Undefined variable $produtos
+in APPPATH\Views\produtos\listar.php on line 206.
+ 1 APPPATH\Views\produtos\listar.php(206): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\listar.php', 206)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\listar.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/listar', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/listar')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:55:45 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:56:27 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:56:41 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:56:56 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:57:18 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:57:19 --> Undefined variable $produtos
+in APPPATH\Views\produtos\agenda.php on line 211.
+ 1 APPPATH\Views\produtos\agenda.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\produtos\\agenda.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('produtos/agenda', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('produtos/agenda')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:59:17 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 17:59:41 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:00:53 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:01:55 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:02:48 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:03:07 --> Undefined variable $data
+in APPPATH\Controllers\Agenda.php on line 15.
+ 1 APPPATH\Controllers\Agenda.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Agenda.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:03:26 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(15): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:04:43 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:04:44 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:42 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:43 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:43 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:44 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:44 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:44 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:44 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:46 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:05:58 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:06:18 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:07:25 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:07:32 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:08:05 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:43 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:45 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:45 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:45 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:45 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:46 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:09:56 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:10:14 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:10:48 --> Invalid file: "agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:07 --> Invalid file: "agenda/produtos/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/produtos/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/produtos/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/produtos/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:08 --> Invalid file: "agenda/produtos/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/produtos/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/produtos/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/produtos/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:08 --> Invalid file: "agenda/produtos/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/produtos/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/produtos/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/produtos/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:08 --> Invalid file: "agenda/produtos/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/produtos/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/produtos/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/produtos/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:09 --> Invalid file: "agenda/produtos/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('agenda/produtos/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agenda/produtos/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('agenda/produtos/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:12:50 --> Invalid file: "Agenda/genda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/genda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/genda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/genda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:13:08 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:24 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:53 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:54 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:55 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:55 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:55 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:55 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:56 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:56 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:57 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:58 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:58 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:58 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:14:58 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:15:21 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:15:21 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:16:27 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-09 18:54:02 --> Invalid file: "Agenda/agenda.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Agenda/agenda.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('Agenda/agenda', [], true)
+ 3 APPPATH\Controllers\Agenda.php(14): view('Agenda/agenda')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

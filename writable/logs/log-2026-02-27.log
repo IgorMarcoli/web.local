@@ -1,0 +1,11 @@
+CRITICAL - 2026-02-27 12:03:52 --> Undefined array key "Horas"
+in APPPATH\Views\bancogab.php on line 202.
+ 1 APPPATH\Views\bancogab.php(202): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Horas"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\bancogab.php', 202)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\bancogab.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('bancogab', [], true)
+ 5 APPPATH\Controllers\Bancogab.php(21): view('bancogab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->Bancogab()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

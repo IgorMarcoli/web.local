@@ -1,0 +1,270 @@
+CRITICAL - 2026-01-14 11:39:48 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 212.
+ 1 APPPATH\Views\agendas.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:39:49 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 212.
+ 1 APPPATH\Views\agendas.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:40:35 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 212.
+ 1 APPPATH\Views\agendas.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:40:36 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 212.
+ 1 APPPATH\Views\agendas.php(212): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 212)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:42:22 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 207.
+ 1 APPPATH\Views\agendas.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 207)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:54:57 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 220.
+ 1 APPPATH\Views\agendas.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 220)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:55:02 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 220.
+ 1 APPPATH\Views\agendas.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 220)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:55:47 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 220.
+ 1 APPPATH\Views\agendas.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 220)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:55:47 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 220.
+ 1 APPPATH\Views\agendas.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 220)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(14): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 11:58:55 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:35 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:36 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:36 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:56 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:57 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:57 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:57 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:57 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:57 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:58 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:58 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:58 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:58 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:58 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:59 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:00:59 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:01:17 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 220.
+ 1 APPPATH\Views\agendas.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 220)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:02:17 --> syntax error, unexpected token "endforeach", expecting end of file
+in APPPATH\Views\agendas.php on line 235.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 3 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:02:37 --> Undefined variable $prod
+in APPPATH\Views\agendas.php on line 222.
+ 1 APPPATH\Views\agendas.php(222): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prod', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 222)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:03:05 --> syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+in APPPATH\Views\agendas.php on line 223.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 3 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:32:56 --> syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+in APPPATH\Views\agendas.php on line 210.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 3 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 12:36:09 --> syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+in APPPATH\Views\agendas.php on line 208.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 3 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-14 13:05:32 --> Undefined variable $agenda
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agenda', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(15): view('agendas')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

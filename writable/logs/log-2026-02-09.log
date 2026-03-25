@@ -1,0 +1,185 @@
+CRITICAL - 2026-02-09 13:03:10 --> Undefined variable $porSupervisor
+in APPPATH\Views\dashboard.php on line 360.
+ 1 APPPATH\Views\dashboard.php(360): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $porSupervisor', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboard.php', 360)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(74): view('dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-09 13:20:59 --> mysqli_sql_exception: Unknown column 'escolas.SupervisorId' in 'on clause' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-02-09 13:20:59 --> Unknown column 'escolas.SupervisorId' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-09 13:32:29 --> Undefined variable $porSupervisor
+in APPPATH\Views\dashboard.php on line 360.
+ 1 APPPATH\Views\dashboard.php(360): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $porSupervisor', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboard.php', 360)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Dashboard.php(74): view('dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-09 13:44:43 --> mysqli_sql_exception: Unknown column 'escolas.SupervisorId' in 'on clause' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-02-09 13:44:43 --> Unknown column 'escolas.SupervisorId' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-09 13:44:49 --> mysqli_sql_exception: Unknown column 'escolas.SupervisorId' in 'on clause' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-02-09 13:44:49 --> Unknown column 'escolas.SupervisorId' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `escolas`.`SetorId`, `escolas`.`Nome` as `escola`, `supervisores`.`nome` as `supervisor`, COUNT(visitas_gab.VisitaId) as total
+FROM `escolas`
+LEFT JOIN `supervisores` ON `supervisores`.`SupervisorId` = `escolas`.`SupervisorId`
+LEFT JOIN `visitas_gab` ON `visitas_gab`.`EscolaId` = `escolas`.`EscolaId`
+GROUP BY `escolas`.`EscolaId`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Dashboardgab.php(44): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-09 15:00:39 --> Undefined variable $porSupervisorEscolas
+in APPPATH\Views\dashboardgab.php on line 366.
+ 1 APPPATH\Views\dashboardgab.php(366): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $porSupervisorEscolas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboardgab.php', 366)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\dashboardgab.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('dashboardgab', [], true)
+ 5 APPPATH\Controllers\Dashboardgab.php(69): view('dashboardgab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-09 15:45:19 --> Undefined variable $supervisores
+in APPPATH\Views\termogab.php on line 91.
+ 1 APPPATH\Views\termogab.php(91): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $supervisores', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\termogab.php', 91)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\termogab.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('termogab', [], true)
+ 5 APPPATH\Controllers\Termogab.php(20): view('termogab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Termogab->termogab()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Termogab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-09 15:49:47 --> Class "App\Models\SetoresModelgab" not found
+in APPPATH\Controllers\Termogab.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Termogab->termogab()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Termogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-09 15:49:49 --> Class "App\Models\SetoresModelgab" not found
+in APPPATH\Controllers\Termogab.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Termogab->termogab()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Termogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

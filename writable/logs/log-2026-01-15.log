@@ -1,0 +1,1569 @@
+CRITICAL - 2026-01-15 11:54:36 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 11:55:48 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:06:25 --> Undefined variable $agendas_model
+in APPPATH\Controllers\Agenda.php on line 15.
+ 1 APPPATH\Controllers\Agenda.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas_model', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Agenda.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:08:15 --> Undefined variable $agendas_model
+in APPPATH\Controllers\Agenda.php on line 15.
+ 1 APPPATH\Controllers\Agenda.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas_model', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Agenda.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:08:19 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:09:40 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:09:42 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:16:02 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Agenda->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:16:03 --> Class "App\Models\AgendaModel" not found
+in APPPATH\Controllers\Agenda.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\Agenda->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:20:15 --> Undefined variable $agenda
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agenda', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:22:13 --> Undefined array key "AgendaId"
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:24:02 --> Undefined variable $agenda
+in APPPATH\Views\agendas.php on line 133.
+ 1 APPPATH\Views\agendas.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agenda', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 133)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:24:04 --> Undefined variable $agenda
+in APPPATH\Views\agendas.php on line 133.
+ 1 APPPATH\Views\agendas.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agenda', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 133)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:24:16 --> Undefined array key "AgendaId"
+in APPPATH\Views\agendas.php on line 133.
+ 1 APPPATH\Views\agendas.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 133)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:24:49 --> Undefined array key "AgendaId"
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:32:44 --> Undefined array key "AgendaId"
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:33:22 --> Undefined array key "AgendaId"
+in APPPATH\Views\agendas.php on line 120.
+ 1 APPPATH\Views\agendas.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:37:26 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 206.
+ 1 APPPATH\Views\agendas.php(206): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 206)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:37:27 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 206.
+ 1 APPPATH\Views\agendas.php(206): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 206)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:45:29 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 217.
+ 1 APPPATH\Views\agendas.php(217): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 217)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 12:47:30 --> syntax error, unexpected token ")"
+in APPPATH\Views\agendas.php on line 217.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 3 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 14:29:55 --> Undefined variable $produtos
+in APPPATH\Views\agendas.php on line 211.
+ 1 APPPATH\Views\agendas.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $produtos', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 14:56:16 --> mysqli_sql_exception: Unknown column 'Nomelocal' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ag...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ag...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ag...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ag...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-01-15 14:56:16 --> Unknown column 'Nomelocal' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (:Nomelocal:, :Data:, :Tipo:, :Descricao:, :Solicitadopor:, :Atendidopor:, :Status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Agenda.php(31): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 14:56:54 --> mysqli_sql_exception: Unknown column 'Nomelocal' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ag...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ag...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ag...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ag...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-01-15 14:56:54 --> Unknown column 'Nomelocal' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (:Nomelocal:, :Data:, :Tipo:, :Descricao:, :Solicitadopor:, :Atendidopor:, :Status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Agenda.php(31): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 14:59:22 --> mysqli_sql_exception: Unknown column 'Descricao' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ag...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ag...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ag...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ag...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-01-15 14:59:22 --> Unknown column 'Descricao' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (:Nomelocal:, :Data:, :Tipo:, :Descricao:, :Solicitadopor:, :Atendidopor:, :Status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Agenda.php(31): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 15:00:11 --> mysqli_sql_exception: Unknown column 'Descricao' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ag...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ag...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ag...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ag...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-01-15 15:00:11 --> Unknown column 'Descricao' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (\'Zumira\', \'25012025\', \'visita técnica\', \'O Marcio quer\', \'Marcio\', \'Evaristo\', \'Aberto\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `agendas` (`Nomelocal`, `Data`, `Tipo`, `Descricao`, `Solicitadopor`, `Atendidopor`, `Status`) VALUES (:Nomelocal:, :Data:, :Tipo:, :Descricao:, :Solicitadopor:, :Atendidopor:, :Status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Agenda.php(31): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->cadastrar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:06:32 --> Undefined array key "Nome"
+in APPPATH\Views\agendas.php on line 224.
+ 1 APPPATH\Views\agendas.php(224): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Nome"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 224)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:06:36 --> Undefined array key "Nome"
+in APPPATH\Views\agendas.php on line 224.
+ 1 APPPATH\Views\agendas.php(224): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Nome"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 224)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:07:10 --> Undefined array key "Status"
+in APPPATH\Views\agendas.php on line 230.
+ 1 APPPATH\Views\agendas.php(230): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Status"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 230)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:08:55 --> Undefined array key "Status"
+in APPPATH\Views\agendas.php on line 230.
+ 1 APPPATH\Views\agendas.php(230): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Status"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 230)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:09:48 --> Undefined array key "Status"
+in APPPATH\Views\agendas.php on line 230.
+ 1 APPPATH\Views\agendas.php(230): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Status"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 230)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:11:25 --> Undefined array key "Nome"
+in APPPATH\Views\agendas.php on line 232.
+ 1 APPPATH\Views\agendas.php(232): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Nome"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 232)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 15:11:46 --> Undefined array key "Status"
+in APPPATH\Views\agendas.php on line 232.
+ 1 APPPATH\Views\agendas.php(232): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Status"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 232)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(20): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 15:15:47 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`Solicitadopor` CHAR(40) NOT NULL,
+	`Atendidopor` CHAR(40) NOT NUL...' at line 6 in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `a...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `a...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `a...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `a...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-13-125356_Agenda.php(59): CodeIgniter\Database\Forge->createTable('agendas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Agenda->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 15:16:59 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`Tipo` CHAR(40) NOT NULL,
+	`Descricao` TEXTE NOT NULL,
+	`Solicitad...' at line 4 in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `a...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `a...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `a...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `a...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-13-125356_Agenda.php(59): CodeIgniter\Database\Forge->createTable('agendas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Agenda->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 15:17:28 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`Solicitadopor` CHAR(40) NOT NULL,
+	`Atendidopor` CHAR(40) NOT NUL...' at line 6 in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `a...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `a...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `a...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `a...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-13-125356_Agenda.php(59): CodeIgniter\Database\Forge->createTable('agendas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Agenda->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-01-15 16:58:15 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 17:00:03 --> mysqli_sql_exception: Table 'agendas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `a...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `a...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `a...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `a...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(51): CodeIgniter\Database\Forge->createTable('agendas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-01-15 17:01:06 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:07 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:07 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:08 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:09 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:01:09 --> Class "App\Controllers\VisitaModel" not found
+in APPPATH\Controllers\Visita.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:11:59 --> Class "App\Controllers\VisitasModel" not found
+in APPPATH\Controllers\Visita.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:12:00 --> Class "App\Controllers\VisitasModel" not found
+in APPPATH\Controllers\Visita.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:13:49 --> Undefined variable $agendas
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 17:15:07 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:16:18 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:17:56 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:18:33 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:21:00 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(49): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:21:50 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(32): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:24:34 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:30:51 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(50): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:33:37 --> mysqli_sql_exception: Incorrect table definition; there can be only one auto column and it must be defined as a key in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-164529_Visitas.php(39): CodeIgniter\Database\Forge->createTable('vistas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:36:00 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(39): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:36:49 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(40): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:38:41 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(61): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-01-15 17:38:50 --> Undefined variable $agendas
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:39:08 --> Undefined variable $agendas
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 17:41:21 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `V...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `V...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `V...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `V...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(61): CodeIgniter\Database\Forge->createTable('Visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:42:28 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `V...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `V...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `V...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `V...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(61): CodeIgniter\Database\Forge->createTable('Visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:42:37 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `V...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `V...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `V...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `V...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(52): CodeIgniter\Database\Forge->createTable('Visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 17:42:51 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(52): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-01-15 17:44:32 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:51:33 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:52:04 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:52:08 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:52:12 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:54:31 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:55:29 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:55:31 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:57:11 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 17:59:43 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:00:41 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:00:41 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:05:40 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:05:51 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:06:01 --> Invalid file: "visita/visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:06:24 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:07:39 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:08:38 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:08:39 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:08:39 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-01-15 18:10:56 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(52): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 18:12:19 --> mysqli_sql_exception: Table 'produtos' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(49): CodeIgniter\Database\Forge->createTable('produtos')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 18:13:14 --> mysqli_sql_exception: Table 'produtos' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(49): CodeIgniter\Database\Forge->createTable('produtos')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 18:19:50 --> Error connecting to the database: mysqli_sql_exception: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'sistema_web', 3306, '', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(1409): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(1428): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(168): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(1409): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(1428): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(168): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#10 {main}
+ERROR - 2026-01-15 18:20:21 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(34): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 18:21:34 --> mysqli_sql_exception: Table 'visitas' already exists in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `v...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `v...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `v...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `v...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-173437_Visitas.php(34): CodeIgniter\Database\Forge->createTable('visitas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Visitas->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2026-01-15 18:29:24 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`Tipo` VAR NOT NULL,
+	`Solicitadopor` VAR NOT NULL,
+	CONSTRAINT `p...' at line 4 in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `t...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `t...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `t...')
+#3 C:\xampp\htdocs\web.local\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `t...')
+#4 C:\xampp\htdocs\web.local\app\Database\Migrations\2026-01-15-182250_Tecnica.php(38): CodeIgniter\Database\Forge->createTable('tecnicas')
+#5 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(877): App\Database\Migrations\Tecnica->up()
+#6 C:\xampp\htdocs\web.local\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\web.local\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\web.local\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\web.local\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\web.local\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-01-15 18:33:48 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:33:51 --> Invalid file: "visita/visitas.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita/visitas.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita/visitas', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita/visitas', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:34:25 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:36:10 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:37:29 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:37:30 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:37:40 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:38:28 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:38:31 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:38:31 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:38:31 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:38:38 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:39:06 --> Invalid file: "visita.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('visita.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visita', [], true)
+ 3 APPPATH\Controllers\Visita.php(20): view('visita', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:39:48 --> Undefined variable $agendas
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:42:33 --> Undefined variable $visita
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $visita', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:49:36 --> Undefined array key "Solicitadopor"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Solicitadopor"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:49:39 --> Undefined array key "Solicitadopor"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Solicitadopor"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:51:23 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:51:50 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:51:51 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:53:28 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:53:29 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:53:29 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:53:30 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:53:50 --> Undefined array key "Solicitadopor"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Solicitadopor"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:54:02 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 207.
+ 1 APPPATH\Views\visitas.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 207)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:54:30 --> Undefined array key "Solicitadopor"
+in APPPATH\Views\visitas.php on line 207.
+ 1 APPPATH\Views\visitas.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Solicitadopor"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 207)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 18:59:17 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:00:39 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 199.
+ 1 APPPATH\Views\visitas.php(199): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 199)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:02:38 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 198.
+ 1 APPPATH\Views\visitas.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 198)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:08:49 --> Undefined variable $agendas
+in APPPATH\Views\visitas.php on line 208.
+ 1 APPPATH\Views\visitas.php(208): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $agendas', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 208)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:16:56 --> Undefined array key "AgendaId"
+in APPPATH\Views\visitas.php on line 202.
+ 1 APPPATH\Views\visitas.php(202): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "AgendaId"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 202)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:17:31 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:18:47 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:19:24 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:19:25 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:19:25 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:19:30 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:20:24 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:20:25 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:20:25 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:20:29 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:20:37 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:21:08 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 203.
+ 1 APPPATH\Views\visitas.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 203)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:21:31 --> Undefined array key "Solicitadopor"
+in APPPATH\Views\visitas.php on line 207.
+ 1 APPPATH\Views\visitas.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Solicitadopor"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 207)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-01-15 19:21:44 --> Undefined array key "Local"
+in APPPATH\Views\visitas.php on line 211.
+ 1 APPPATH\Views\visitas.php(211): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "Local"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php', 211)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\visitas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('visitas', [], true)
+ 5 APPPATH\Controllers\Visita.php(20): view('visitas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Visita->Visita()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Visita))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
