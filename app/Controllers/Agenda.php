@@ -22,7 +22,7 @@ class Agenda extends BaseController
                         ->findAll();
     }
 
-     $escola_model = new EscolasModel();
+    $escola_model = new EscolasModel();
     $escolas = $escola_model->findAll();
 
     $data = [

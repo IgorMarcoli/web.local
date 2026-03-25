@@ -3,7 +3,7 @@
 <div class="modal fade" id="modal-novo-produto">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="/Bancogab/cadastrar" method="post">
+            <form action="/Bancogab/cadastrar" method="post" onsubmit="return validarPessoaSelecionada()">
                 <div class="modal-header">
                     <h4 class="modal-title">Novo Banco de Horas</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,16 +15,17 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group position-relative">
-                                <label for="nomeServidor">Servidor</label>
-                                <input type="text" id="nomeServidor" class="form-control" placeholder="Digite o nome do servidor">
+                                <label for="nomePessoa">Servidor / Supervisor</label>
+                                <input type="text" id="nomePessoa" class="form-control" placeholder="Digite o nome" autocomplete="off">
                                 <input type="hidden" name="servidor_id" id="servidor_id">
-                                <div id="sugestoes" class="list-group position-absolute w-100" style="z-index: 1050;"></div>
+                                <input type="hidden" name="supervisor_id" id="supervisor_id">
+                                <div id="sugestoes" class="list-group position-absolute w-100" style="z-index:1050;"></div>
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="setorServidor">Setor</label>
+                                <label for="setorServidor">Tipo</label>
                                 <input type="text" class="form-control" id="setorServidor" readonly>
                             </div>
                         </div>
@@ -39,7 +40,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="">Horas</label>
-                                <input type="text" class="form-control" name="Horas" required>
+                                <input type="text" class="form-control" name="Horas" placeholder="Ex: 02:30" required>
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,6 @@
     </div>
 </div>
 
-<!-- EDITAR -->
 <div class="modal fade" id="modal-editar-produto">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -79,7 +79,7 @@
 
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="">Setor</label>
+                                <label for="">Tipo</label>
                                 <input type="text" class="form-control" id="modal-editar-produto-Setor" readonly>
                             </div>
                         </div>
@@ -110,6 +110,7 @@
 
                         <input type="hidden" id="modal-editar-produto-BancoId" name="BancoId">
                         <input type="hidden" id="modal-editar-produto-servidor_id" name="servidor_id">
+                        <input type="hidden" id="modal-editar-produto-supervisor_id" name="supervisor_id">
                     </div>
                 </div>
 
@@ -166,39 +167,19 @@
             </div>
 
             <?php if (isset($_GET['alert']) && $_GET['alert'] == "successCreate") : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Banco de horas cadastrado com sucesso!
-                        </div>
-                    </div>
-                </div>
+                <div class="alert alert-success">Banco de horas cadastrado com sucesso!</div>
             <?php endif; ?>
 
             <?php if (isset($_GET['alert']) && $_GET['alert'] == "successDelete") : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Banco de horas excluído com sucesso!
-                        </div>
-                    </div>
-                </div>
+                <div class="alert alert-success">Banco de horas excluído com sucesso!</div>
             <?php endif; ?>
 
             <?php if (isset($_GET['alert']) && $_GET['alert'] == "successEdit") : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Banco de horas editado com sucesso!
-                        </div>
-                    </div>
-                </div>
+                <div class="alert alert-success">Banco de horas editado com sucesso!</div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['alert']) && $_GET['alert'] == "errorPessoa") : ?>
+                <div class="alert alert-danger">Selecione um servidor ou supervisor da lista.</div>
             <?php endif; ?>
 
             <div class="row">
@@ -210,7 +191,7 @@
                                     <tr>
                                         <th>CÓD.</th>
                                         <th>NOME</th>
-                                        <th>SETOR</th>
+                                        <th>TIPO</th>
                                         <th>DATA</th>
                                         <th>HORAS</th>
                                         <th>STATUS</th>
@@ -218,11 +199,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if (empty($bancogabs)) : ?>
+                                        <tr>
+                                            <td colspan="7" class="text-center">Nenhum registro encontrado.</td>
+                                        </tr>
+                                    <?php endif; ?>
+
                                     <?php foreach ($bancogabs as $agend) : ?>
                                         <tr>
                                             <td><?= $agend['BancoId'] ?></td>
-                                            <td><?= ($agend['nome'] ?? '') . ' ' . ($agend['ultimoNome'] ?? '') ?></td>
-                                            <td><?= $agend['lotacao'] ?></td>
+                                            <td><?= $agend['nome_exibicao'] ?? '' ?></td>
+                                            <td><?= $agend['lotacao'] ?? 'Não informado' ?></td>
                                             <td><?= $agend['Data'] ?></td>
                                             <td><?= $agend['Horas'] ?></td>
                                             <td>
@@ -241,17 +228,20 @@
                                                     class="btn btn-warning"
                                                     onclick="prepararDados(
                                                         '<?= $agend['BancoId'] ?>',
-                                                        '<?= ($agend['nome'] ?? '') . ' ' . ($agend['ultimoNome'] ?? '') ?>',
-                                                        '<?= $agend['secao'] ?? '' ?>',
+                                                        '<?= $agend['nome_exibicao'] ?? '' ?>',
+                                                        '<?= $agend['lotacao'] ?? '' ?>',
                                                         '<?= $agend['Data'] ?>',
                                                         '<?= $agend['Horas'] ?>',
                                                         '<?= $agend['Status'] ?>',
-                                                        '<?= $agend['servidor_id'] ?? '' ?>'
+                                                        '<?= $agend['servidor_id'] ?? '' ?>',
+                                                        '<?= $agend['supervisor_id'] ?? '' ?>'
                                                     )">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
 
-                                                <a href="/Bancogab/excluir/<?= $agend['BancoId'] ?>" class="btn btn-danger">
+                                                <a href="/Bancogab/excluir/<?= $agend['BancoId'] ?>"
+                                                   class="btn btn-danger"
+                                                   onclick="return confirm('Deseja realmente excluir este registro?')">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -269,16 +259,29 @@
 </div>
 
 <script>
-    function prepararDados(BancoId, Nome, Setor, Data, Horas, Status, servidor_id) {
+    function prepararDados(BancoId, Nome, Setor, Data, Horas, Status, servidor_id, supervisor_id) {
         document.getElementById('modal-editar-produto-BancoId').value = BancoId;
         document.getElementById('modal-editar-produto-Nome').value = Nome;
         document.getElementById('modal-editar-produto-Setor').value = Setor;
         document.getElementById('modal-editar-produto-Data').value = Data;
         document.getElementById('modal-editar-produto-Horas').value = Horas;
         document.getElementById('modal-editar-produto-Status').value = Status;
-        document.getElementById('modal-editar-produto-servidor_id').value = servidor_id;
+        document.getElementById('modal-editar-produto-servidor_id').value = servidor_id ?? '';
+        document.getElementById('modal-editar-produto-supervisor_id').value = supervisor_id ?? '';
 
         $('#modal-editar-produto').modal('show');
+    }
+
+    function validarPessoaSelecionada() {
+        let servidorId = document.getElementById('servidor_id').value;
+        let supervisorId = document.getElementById('supervisor_id').value;
+
+        if (!servidorId && !supervisorId) {
+            alert('Selecione um servidor ou supervisor da lista.');
+            return false;
+        }
+
+        return true;
     }
 
     document.getElementById("pesquisarBanco").addEventListener("keyup", function() {
@@ -287,12 +290,7 @@
 
         linhas.forEach(function(linha) {
             let nome = linha.children[1].textContent.toLowerCase();
-
-            if (nome.includes(filtro)) {
-                linha.style.display = "";
-            } else {
-                linha.style.display = "none";
-            }
+            linha.style.display = nome.includes(filtro) ? "" : "none";
         });
     });
 
@@ -310,7 +308,7 @@
         });
     }
 
-    document.getElementById('nomeServidor').addEventListener('keyup', function() {
+    document.getElementById('nomePessoa').addEventListener('keyup', function () {
         let termo = this.value;
         let lista = document.getElementById('sugestoes');
 
@@ -319,22 +317,35 @@
             return;
         }
 
-        fetch('/bancogab/buscarServidores?term=' + encodeURIComponent(termo))
+        fetch('/bancogab/buscarPessoas?term=' + encodeURIComponent(termo))
             .then(res => res.json())
             .then(data => {
                 lista.innerHTML = '';
 
-                data.forEach(serv => {
+                data.forEach(pessoa => {
                     let item = document.createElement('a');
-                    item.classList.add('list-group-item', 'list-group-item-action');
                     item.href = 'javascript:void(0)';
+                    item.classList.add('list-group-item', 'list-group-item-action');
 
-                    item.textContent = serv.nome + ' ' + serv.ultimoNome;
+                    if (pessoa.tipo === 'servidor') {
+                        item.textContent = `${pessoa.nome} ${pessoa.ultimoNome ?? ''} - Servidor`;
+                    } else {
+                        item.textContent = `${pessoa.nome} - Supervisor`;
+                    }
 
-                    item.onclick = function() {
-                        document.getElementById('nomeServidor').value = serv.nome + ' ' + serv.ultimoNome;
-                        document.getElementById('servidor_id').value = serv.servidorID;
-                        document.getElementById('setorServidor').value = serv.secao ?? '';
+                    item.onclick = function () {
+                        document.getElementById('nomePessoa').value = item.textContent;
+
+                        if (pessoa.tipo === 'servidor') {
+                            document.getElementById('servidor_id').value = pessoa.id;
+                            document.getElementById('supervisor_id').value = '';
+                            document.getElementById('setorServidor').value = pessoa.lotacao ?? 'Servidor';
+                        } else {
+                            document.getElementById('supervisor_id').value = pessoa.id;
+                            document.getElementById('servidor_id').value = '';
+                            document.getElementById('setorServidor').value = pessoa.lotacao ?? 'Supervisor';
+                        }
+
                         lista.innerHTML = '';
                     };
 
@@ -345,12 +356,10 @@
 
     document.addEventListener('click', function(e) {
         let sugestoes = document.getElementById('sugestoes');
-        let nomeServidor = document.getElementById('nomeServidor');
+        let nomePessoa = document.getElementById('nomePessoa');
 
-        if (!sugestoes.contains(e.target) && e.target !== nomeServidor) {
+        if (!sugestoes.contains(e.target) && e.target !== nomePessoa) {
             sugestoes.innerHTML = '';
         }
     });
 </script>
-
-</html>

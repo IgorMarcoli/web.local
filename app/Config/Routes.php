@@ -18,7 +18,7 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->post('agenda/agenda/alterarStatus', 'Agenda::alterarStatus');
 $routes->post('bancogab/bancogab/alterarStatusBanco', 'Bancogab::alterarStatusBanco');
-$routes->get('/bancogab/buscarServidores', 'Bancogab::buscarServidores');
+$routes->get('/bancogab/buscarPessoas', 'Bancogab::buscarPessoas');
 $routes->get('agenda/json', 'Agenda::json');
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.

@@ -16,6 +16,7 @@ class BancogabModel extends Model
     protected $allowedFields    = [
         'BancoId',
         'servidor_id',
+        'supervisor_id',
         'Data',
         'Horas',
         'Status'
