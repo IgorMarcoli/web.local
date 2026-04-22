@@ -223,11 +223,11 @@
                                               <td><?= $agend['Atendidopor'] ?></td>
                                               <td><select class="form-control form-control-sm"
                                             onchange="alterarStatus(this.value, <?= $agend['AgendaId'] ?>)">
-                                        <option value="concluido" <?= $agend['status'] == 'concluido' ? 'selected' : '' ?>>
-                                            concluido
-                                        </option>
                                            <option value="pendente" <?= $agend['status'] == 'pendente' ? 'selected' : '' ?>>
                                             pendente
+                                        </option>
+                                        <option value="concluido" <?= $agend['status'] == 'concluido' ? 'selected' : '' ?>>
+                                            concluido
                                         </option>
                                         <option value="NA" <?= $agend['status'] == 'NA' ? 'selected' : '' ?>>
                                             Não Concluido
