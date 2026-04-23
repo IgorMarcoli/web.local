@@ -22,6 +22,7 @@ class AgendaModel extends Model
         'Solicitadopor',
         'Atendidopor',
         'status',
+        'tecnico_id'
     ];
 
     // Dates

@@ -31,7 +31,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?= $totalChamados ?></h3>
+                <h3><?= 0 ?></h3>
 
                 <p>Equipamentos cadastrados</p>
               </div>

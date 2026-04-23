@@ -3,30 +3,37 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ProdutoModel;
 use App\Models\VisitasModel;
-use App\Models\EscolasModel;
 use App\Models\AgendaModel;
+use App\Models\FieldsModel;
 
 class Dashboard extends BaseController
 {
      public function index()
     {
-        $chamados = new ProdutoModel();
         $visitas = new VisitasModel();
         $agenda = new AgendaModel();
+        $field = new FieldsModel();
 
 
 
+          /*grafico tecnico 
+        $porTecnico = $visitas
+        ->select('t.nome, COUNT(*) as total')
+        ->join('tecnicos_fields t', 't.tecnico_id = agendas.tecnico_id')
+        ->groupBy('t.nome')
+        ->get()
+        ->getResultArray();
+        */
         // CHAMADOS
-        $totalChamados = $chamados->countAll();
+        $totalChamados = $agenda->countAll();
 
         // separados por status
-        $abertos = $chamados->where('status', 'Aberto')->countAllResults();
-        $resolvidos = $chamados->where('status', 'Resolvido')->countAllResults();
-        $naoResolvidos = $chamados->where('status', 'Nao resolvido')->countAllResults();
+        $abertos = $agenda->where('status', 'pendente')->countAllResults();
+        $resolvidos = $agenda->where('status', 'concluido')->countAllResults();
+        $naoResolvidos = $agenda->where('status', 'NA')->countAllResults();
 
-        $statusChamados = $chamados
+        $statusChamados = $agenda
         ->select('status, COUNT(*) as total')
         ->groupBy('status')
         ->findAll();
