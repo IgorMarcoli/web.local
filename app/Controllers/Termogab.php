@@ -63,7 +63,6 @@ public function termogab()
         'Tipo'         => $this->request->getPost('Tipo'),
         'Observacoes'  => $this->request->getPost('Observacoes')
     ]);
-
     return redirect()->back()->with('alert', 'successCreate');
 }
 

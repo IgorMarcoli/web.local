@@ -101,7 +101,7 @@ class Agenda extends BaseController
                 $cor = '#ffc107'; // amarelo
                 break;
 
-            case 'NA':
+            case 'Em atendimento':
                 $cor = '#dc3545'; // vermelho
                 break;
 

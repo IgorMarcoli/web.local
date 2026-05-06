@@ -154,7 +154,8 @@
                             <a href="/agenda/agenda" class="btn btn-infor">Todos</a>
                             <a href="/agenda/agenda?status=concluido" class="btn btn-success">Concluido</a>
                             <a href="/agenda/agenda?status=pendente" class="btn btn-warning">pendente</a>
-                            <a href="/agenda/agenda?status=NA" class="btn btn-danger">Não concluida</a>
+                            <a href="/agenda/agenda?status=atendimento" class="btn btn-primary">Em Atendimento</a>
+                            <a href="/agenda/agenda?status=suspenso" class="btn btn-secondary">Suspenso</a>
                           </div>
                       </div>
                   </div>
@@ -229,8 +230,11 @@
                                         <option value="concluido" <?= $agend['status'] == 'concluido' ? 'selected' : '' ?>>
                                             concluido
                                         </option>
-                                        <option value="NA" <?= $agend['status'] == 'NA' ? 'selected' : '' ?>>
-                                            Não Concluido
+                                        <option value="Em atendimento" <?= $agend['status'] == 'Em atendimento' ? 'selected' : '' ?>>
+                                            Em atendimento
+                                        </option>
+                                        <option value="Suspenso" <?= $agend['status'] == 'Suspenso' ? 'selected' : '' ?>>
+                                            Suspenso
                                         </option>
                                         </select>
                                         </td>

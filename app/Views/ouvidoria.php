@@ -3,7 +3,7 @@
     <div class="modal fade" id="modal-novo-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/cadastrar" method="post">
+              <form action="/Ouvidoriagab/cadastrar" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Nova Ouvidoria</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,43 +15,55 @@
                           <div class="col-6">
                               <div class="form-group">
                                   <label for="">Tipo de manufestação</label>
-                                  <input type="text" class="form-control" name="Tipodemanufestacao">
+                                 <select name="tipo_manifestacao" class="form-control" required>
+            <option value="">Selecione</option>
+            <option value="reclamacao">Reclamação</option>
+            <option value="denuncia">Denúncia</option>
+            <option value="solicitacao">Solicitação</option>
+            <option value="outros">Outros</option>
+        </select>
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
-                                  <label for="">Setor / Escola</label>
-                                  <input type="text" class="form-control" name="Setorescola">
+                                 <select name="escola_id" required>
+    <option value="">Selecione</option>
+    <?php foreach ($escolas as $escola): ?>
+        <option value="<?= $escola['EscolaId'] ?>">
+            <?= $escola['Nome'] ?>
+        </option>
+    <?php endforeach; ?>
+</select>
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Data do recebimento</label>
-                                  <input type="text" class="form-control" name="Datarecebimento">
+                                  <input type="date" class="form-control" name="data_recebimento">
                               </div>
                           </div>
                           <div class="col-6">
                               <div class="form-group">
                                   <label for="">Responsável</label>
-                                  <input type="text" class="form-control" name="Responsavel">
+                                  <input type="text" class="form-control" name="responsavel">
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Data do envio</label>
-                                  <input type="text" class="form-control" name="Datadoenvio">
+                                  <input type="date" class="form-control" name="data_envio">
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Prazo</label>
-                                  <input type="text" class="form-control" name="Prazo">
+                                  <input type="text" class="form-control" name="prazo">
                               </div>
                           </div>
                            <div class="col-3">
                               <div class="form-group">
                                   <label for="">Data da volutiva</label>
-                                  <input type="text" class="form-control" name="Datadevolutiva">
+                                  <input type="date" class="form-control" name="data_devolutiva">
                               </div>
                           </div>
                           
@@ -69,7 +81,7 @@
   <div class="modal fade" id="modal-editar-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/editar" method="post">
+              <form action="/Ouvidoriagab/editar" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Ouvidoria</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -81,7 +93,7 @@
                           <div class="col-6">
                               <div class="form-group">
                                   <label for="">Tipo de manufestação</label>
-                                  <input type="text" class="form-control" id="modal-editar-produto-Tipodemanufestacao" name="Tipodemanufestacao">
+                                  <input type="text" class="form-control" id="modal-editar-produto-Tipodemanifestacao" name="Tipodemanifestacao">
                               </div>
                           </div>
                           <div class="col-3">
@@ -218,20 +230,20 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <?php foreach ($ouvidoriagabs as $agend) : ?>
+                                      <?php foreach ($ouvidoria as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['OuvidoriaId'] ?></td>
-                                              <td><?= $agend['Tipodemanufestacao'] ?></td>
-                                              <td><?= $agend['Setorescola'] ?></td>
-                                              <td><?= $agend['Datarecebimento'] ?></td>
-                                              <td><?= $agend['Responsavel'] ?></td>
-                                              <td><?= $agend['Datadoenvio'] ?></td>
-                                              <td><?= $agend['Prazo'] ?></td>
-                                              <td><?= $agend['Datadevolutiva'] ?></td>
+                                              <td><?= $agend['ouvidoria_id'] ?></td>
+                                              <td><?= $agend['tipo_manifestacao'] ?></td>
+                                              <td><?= $agend['Nome'] ?></td>
+                                              <td><?= $agend['data_recebimento'] ?></td>
+                                              <td><?= $agend['responsavel'] ?></td>
+                                              <td><?= $agend['data_envio'] ?></td>
+                                              <td><?= $agend['prazo'] ?></td>
+                                              <td><?= $agend['data_devolutiva'] ?></td>
                                              
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['OuvidoriaId'] ?>', '<?= $agend['Tipodemanufestacao'] ?>', '<?= $agend['Setorescola'] ?>', '<?= $agend['Datarecebimento'] ?>', '<?= $agend['Responsavel'] ?>', '<?= $agend['Datadoenvio'] ?>', '<?= $agend['Prazo'] ?>', '<?= $agend['Datadevolutiva'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Ouvidoriagab/excluir/<?= $agend['OuvidoriaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['ouvidoria_id'] ?>', '<?= $agend['tipo_manifestacao'] ?>', '<?= $agend['escola_id'] ?>', '<?= $agend['data_recebimento'] ?>', '<?= $agend['responsavel'] ?>', '<?= $agend['data_envio'] ?>', '<?= $agend['prazo'] ?>', '<?= $agend['data_devolutiva'] ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/Ouvidoriagab/excluir/<?= $agend['ouvidoria_id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>
@@ -248,15 +260,15 @@
   <!-- /.content-wrapper -->
 
   <script>
-      function prepararDados(OuvidoriaId, Nome, Data, Tipo, Descricao, Atendidopor) {
-          document.getElementById('modal-editar-produto-OuvidoriaId').value = OuvidoriaId;
-          document.getElementById('modal-editar-produto-Tipodemanufestacao').value = Tipodemanufestacao;
-          document.getElementById('modal-editar-produto-Setorescola').value = Setorescola;
-          document.getElementById('modal-editar-produto-Datarecebimento').value = Datarecebimento;
-          document.getElementById('modal-editar-produto-Responsavel').value = Responsavel;
-          document.getElementById('modal-editar-produto-Datadoenvio').value = Datadoenvio;
-          document.getElementById('modal-editar-produto-Prazo').value = Prazo;
-          document.getElementById('modal-editar-produto-Datadevolutiva').value = Datadevolutiva;
+      function prepararDados(ouvidoria_id , tipo_manifestacao, escola_id , data_recebimento, responsavel, data_envio,prazo,data_devolutiva) {
+          document.getElementById('modal-editar-produto-OuvidoriaId').value = ouvidoria_id;
+          document.getElementById('modal-editar-produto-Tipodemanifestacao').value = tipo_manifestacao;
+          document.getElementById('modal-editar-produto-Setorescola').value = escola_id;
+          document.getElementById('modal-editar-produto-Datarecebimento').value = data_recebimento;
+          document.getElementById('modal-editar-produto-Responsavel').value = responsavel;
+          document.getElementById('modal-editar-produto-Datadoenvio').value = data_envio;
+          document.getElementById('modal-editar-produto-Prazo').value = prazo;
+          document.getElementById('modal-editar-produto-Datadevolutiva').value = data_devolutiva;
          
 
           $('#modal-editar-produto').modal('show');

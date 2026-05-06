@@ -34,7 +34,7 @@ class Visita extends BaseController
     {
         $dados = $this->request
                         ->getVar();
-
+        
         $visita_model = new VisitasModel();
 
         $visita_model->insert($dados);
