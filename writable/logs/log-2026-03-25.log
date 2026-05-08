@@ -1,0 +1,239 @@
+CRITICAL - 2026-03-25 16:25:12 --> Undefined array key "lotacao"
+in APPPATH\Views\bancogab.php on line 226.
+ 1 APPPATH\Views\bancogab.php(226): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "lotacao"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\bancogab.php', 226)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\bancogab.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('bancogab', [], true)
+ 5 APPPATH\Controllers\Bancogab.php(36): view('bancogab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->Bancogab()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:38:30 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:38:32 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:38:34 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:20 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:20 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:20 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:20 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:21 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:21 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:21 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:25 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:25 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:34 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:34 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:34 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:34 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:35 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:35 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:40:35 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:33 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:40 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:41 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:41 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:41 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:41 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:41 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:42 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:42 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:42 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:42 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:41:42 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:01 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:02 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:02 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:25 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:25 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:26 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 16:42:29 --> Class "App\Models\SupervisoresModel" not found
+in APPPATH\Controllers\Bancogab.php on line 133.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Bancogab->buscarPessoas()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Bancogab))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

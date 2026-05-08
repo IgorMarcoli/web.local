@@ -154,10 +154,15 @@
                             <a href="/agenda/agenda" class="btn btn-infor">Todos</a>
                             <a href="/agenda/agenda?status=concluido" class="btn btn-success">Concluido</a>
                             <a href="/agenda/agenda?status=pendente" class="btn btn-warning">pendente</a>
-                            <a href="/agenda/agenda?status=atendimento" class="btn btn-primary">Em Atendimento</a>
+                            <a href="/agenda/agenda?status=Em atendimento" class="btn btn-primary">Em Atendimento</a>
                             <a href="/agenda/agenda?status=suspenso" class="btn btn-secondary">Suspenso</a>
                           </div>
+                          
                       </div>
+                      <button type="button" class="btn btn-success" onclick="exportarExcel()">
+                
+                                  <i class="fas fa-file-excel"></i> Exportar Dados
+                              </button>
                   </div>
               </div>
               <?php if (isset($_GET['alert']) && $_GET['alert'] == "successCreate") : ?>
@@ -230,7 +235,7 @@
                                         <option value="concluido" <?= $agend['status'] == 'concluido' ? 'selected' : '' ?>>
                                             concluido
                                         </option>
-                                        <option value="Em atendimento" <?= $agend['status'] == 'Em atendimento' ? 'selected' : '' ?>>
+                                        <option value="Em Atendimento" <?= $agend['status'] == 'Em Atendimento' ? 'selected' : '' ?>>
                                             Em atendimento
                                         </option>
                                         <option value="Suspenso" <?= $agend['status'] == 'Suspenso' ? 'selected' : '' ?>>
@@ -257,6 +262,7 @@
   </div>
   <!-- /.content-wrapper -->
 
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js></script>
   <script>
      function prepararDados(AgendaId, Nomelocal, Data, Tipo, Descricao, Solicitadopor, Atendidopor, status) {
 
@@ -288,8 +294,44 @@
       });
                                         
       }
+
+     function exportarExcel() {
+    // Pega a tabela da página
+    const tabela = document.querySelector('.table');
+
+    // Converte a tabela HTML para uma planilha
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.table_to_sheet(tabela);
+
+    // Remove a coluna "AÇÕES" (última coluna) — opcional
+    // Se quiser manter, basta apagar as linhas abaixo
+    const range = XLSX.utils.decode_range(ws['!ref']);
+    for (let row = range.s.r; row <= range.e.r; row++) {
+        const cellAddress = XLSX.utils.encode_cell({ r: row, c: range.e.c });
+        delete ws[cellAddress];
+    }
+    range.e.c -= 1;
+    ws['!ref'] = XLSX.utils.encode_range(range);
+
+    // Define a largura das colunas
+    ws['!cols'] = [
+        { wch: 6 },  // CÓD
+        { wch: 20 }, // NOME/LOCAL
+        { wch: 12 }, // DATA
+        { wch: 15 }, // TIPO
+        { wch: 30 }, // DESCRIÇÃO
+        { wch: 18 }, // SOLICITADO POR
+        { wch: 18 }, // ATENDIDO POR
+        { wch: 14 }, // STATUS
+    ];
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Agendamentos');
+
+    // Gera o nome do arquivo com a data atual
+    const hoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+    XLSX.writeFile(wb, `agendamentos_${hoje}.xlsx`);
+}
   </script>
 
-  
 
 </html>

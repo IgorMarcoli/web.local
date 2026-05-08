@@ -47,8 +47,8 @@
               <!-- /.card-footer-->
             </div>
             <!-- /.card -->
-             <a href='login/login'><button type="button" class="btn btn-primary btn-lg">SEINTEC /SETEC</button></a>
-             <a href='/dashboardgab/dashboardgab'><button type="button" class="btn btn-primary btn-lg">ACESSORIA TÉCNICA</button></a>
+             <a href='/dashboard'><button type="button" class="btn btn-primary btn-lg">SEINTEC /SETEC</button></a>
+             <a href='/dashboardgab'><button type="button" class="btn btn-primary btn-lg">ACESSORIA TÉCNICA</button></a>
               
              
               
