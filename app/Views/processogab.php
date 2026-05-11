@@ -16,25 +16,30 @@
                           <div class="col-6">
                               <div class="form-group">
                                   <label for="">Nº do processo</label>
-                                  <input type="text" class="form-control" name="Nprocesso">
+                                  <input type="text" class="form-control" name="numeroProcesso">
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Servidor</label>
-                                  <input type="text" class="form-control" name="Servidor">
+                                  <input type="text" class="form-control" name="servidorProcesso">
                               </div>
                           </div>
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Comissão</label>
-                                  <input type="text" class="form-control" name="Comissao">
+                                  <input type="text" class="form-control" name="comissaoProcesso">
                               </div>
                           </div>
                            <div class="col-3">
                               <div class="form-group">
                                   <label for="">Andamento</label>
-                                  <input type="text" class="form-control" name="Andamento">
+                                  <select name="andamento_processo" class="form-control" required>
+            <option value="">Selecione</option>
+                 <?php foreach ($andamentos as $andamento): ?>
+        <option value="<?= $andamento ?>"><?= $andamento ?></option>
+    <?php endforeach; ?>
+        </select>
                               </div>
                           </div>
                           
@@ -182,15 +187,15 @@
                                   <tbody>
                                       <?php foreach ($processos as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['ProcessoId'] ?></td>
-                                              <td><?= $agend['Nprocesso'] ?></td>
-                                              <td><?= $agend['Servidor'] ?></td>
-                                              <td><?= $agend['Comissao'] ?></td>
-                                              <td><?= $agend['Andamento'] ?></td>
+                                              <td><?= $agend['idProcesso'] ?></td>
+                                              <td><?= $agend['numeroProcesso'] ?></td>
+                                              <td><?= $agend['servidorProcesso'] ?></td>
+                                              <td><?= $agend['comissaoProcesso'] ?></td>
+                                              <td><?= $agend['andamentoProcesso'] ?></td>
                                                                                            
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['ProcessoId'] ?>', '<?= $agend['Nprocesso'] ?>', '<?= $agend['Servidor'] ?>', '<?= $agend['Comissao'] ?>', '<?= $agend['Andamento'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Processo/excluir/<?= $agend['ProcessoId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['idProcesso'] ?>', '<?= $agend['numeroProcesso'] ?>', '<?= $agend['servidorProcesso'] ?>', '<?= $agend['comissaoProcesso'] ?>', '<?= $agend['andamentoProcesso'] ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/Processo/excluir/<?= $agend['idProcesso'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

@@ -10,13 +10,27 @@ class Processo extends BaseController
 {
     public function Processo()
     {
-        $agendas_model = new ProcessoModel();
+        $processo_model = new ProcessoModel();
 
-        $agendas = $agendas_model
+        $processo = $processo_model
                             ->findAll();
 
-        $data['processos'] = $agendas;
-
+        $data['processos'] = $processo;
+        $data['andamentos'] = [
+             'PROTOCOLO',
+             'AUTUACAO',
+             'ANALISE',
+             'INSTRUCAO',
+             'PARECER',
+             'DECISAO',
+             'NOTIFICACAO',
+             'RECURSO',
+             'JULGAMENTO_RECURSO',
+             'AGUARDANDO_DOCUMENTOS',
+             'DEFERIDO',
+             'INDEFERIDO',
+             'ARQUIVAMENTO'
+        ];
         echo View('templates/headergabinete');
         echo View('processogab', $data);
         echo View('templates/footer');

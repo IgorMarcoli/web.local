@@ -163,6 +163,10 @@
                             <a href="/bancogab/bancogab?Status=Disponivel" class="btn btn-warning">Disponivel</a>
                         </div>
                     </div>
+                     <button type="button" class="btn btn-success" onclick="exportarExcel()">
+                
+                                  <i class="fas fa-file-excel"></i> Exportar Dados
+                              </button>
                 </div>
             </div>
 
@@ -257,7 +261,7 @@
         </div>
     </div>
 </div>
-
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js></script>
 <script>
     function prepararDados(BancoId, Nome, Setor, Data, Horas, Status, servidor_id, supervisor_id) {
         document.getElementById('modal-editar-produto-BancoId').value = BancoId;
@@ -362,4 +366,36 @@
             sugestoes.innerHTML = '';
         }
     });
+
+     function exportarExcel() {
+    const tabela = document.querySelector('.table');
+
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.table_to_sheet(tabela);
+
+    const range = XLSX.utils.decode_range(ws['!ref']);
+    for (let row = range.s.r; row <= range.e.r; row++) {
+        const cellAddress = XLSX.utils.encode_cell({ r: row, c: range.e.c });
+        delete ws[cellAddress];
+    }
+    range.e.c -= 1;
+    ws['!ref'] = XLSX.utils.encode_range(range);
+
+    // Define a largura das colunas
+    ws['!cols'] = [
+        { wch: 6 },  // CÓD
+        { wch: 20 }, // NOME
+        { wch: 12 }, // TIPO
+        { wch: 15 }, // DATA
+        { wch: 30 }, // HORAS
+        { wch: 18 }, // STATUS
+    ];
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Horas');
+
+    // Gera o nome do arquivo com a data atual
+    const hoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+    XLSX.writeFile(wb, `Horas_${hoje}.xlsx`);
+}
 </script>

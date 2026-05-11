@@ -7,18 +7,18 @@ use CodeIgniter\Model;
 class ProcessoModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'processos';
-    protected $primaryKey       = 'ProcessoId';
+    protected $table            = 'processo_adm';
+    protected $primaryKey       = 'idProcesso';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ProcessoId',
-        'Nprocesso',
-        'Servidor',
-        'Comissao',
-        'Andamento',
+        'idProcesso',
+        'numeroProcesso',
+        'servidorProcesso',
+        'comissaoProcesso',
+        'andamentoProcesso'
                 
     ];
 
