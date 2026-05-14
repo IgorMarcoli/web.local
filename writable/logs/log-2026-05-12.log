@@ -1,0 +1,22 @@
+CRITICAL - 2026-05-12 13:54:03 --> Undefined array key "numero_Processo"
+in APPPATH\Views\ouvidoria.php on line 237.
+ 1 APPPATH\Views\ouvidoria.php(237): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "numero_Processo"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\ouvidoria.php', 237)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\ouvidoria.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('ouvidoria', [], true)
+ 5 APPPATH\Controllers\Ouvidoriagab.php(24): view('ouvidoria', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Ouvidoriagab->Ouvidoriagab()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Ouvidoriagab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-05-12 13:54:37 --> Undefined array key "data_envio"
+in APPPATH\Views\ouvidoria.php on line 241.
+ 1 APPPATH\Views\ouvidoria.php(241): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "data_envio"', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\ouvidoria.php', 241)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\ouvidoria.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('ouvidoria', [], true)
+ 5 APPPATH\Controllers\Ouvidoriagab.php(24): view('ouvidoria', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Ouvidoriagab->Ouvidoriagab()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Ouvidoriagab))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

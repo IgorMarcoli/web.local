@@ -19,9 +19,9 @@ class OuvidoriaModel extends Model
         'escola_id',
         'data_recebimento',
         'responsavel',
-        'data_envio',
         'prazo',
-        'data_devolutiva'
+        'data_devolutiva',
+        'numero_Ouvidoria'
     ];
     public function getComEscola()
 {

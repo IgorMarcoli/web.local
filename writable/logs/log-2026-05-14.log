@@ -1,0 +1,21 @@
+CRITICAL - 2026-05-14 12:22:41 --> Undefined array key "escola_id"
+in APPPATH\Controllers\Ouvidoriagab.php on line 50.
+ 1 APPPATH\Controllers\Ouvidoriagab.php(50): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "escola_id"', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Ouvidoriagab.php', 50)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Ouvidoriagab->editar()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Ouvidoriagab))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-05-14 12:37:02 --> Undefined array key "ouvidoria_id"
+in APPPATH\Controllers\Ouvidoriagab.php on line 51.
+ 1 APPPATH\Controllers\Ouvidoriagab.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "ouvidoria_id"', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Ouvidoriagab.php', 51)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Ouvidoriagab->editar()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Ouvidoriagab))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-05-14 12:37:23 --> Undefined array key "ouvidoria_id"
+in APPPATH\Controllers\Ouvidoriagab.php on line 51.
+ 1 APPPATH\Controllers\Ouvidoriagab.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "ouvidoria_id"', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Ouvidoriagab.php', 51)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Ouvidoriagab->editar()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Ouvidoriagab))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
