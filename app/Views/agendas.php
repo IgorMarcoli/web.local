@@ -148,6 +148,9 @@
                               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-novo-produto">
                                   <i class="fas fa-plus-circle"></i> Novo Agendamento
                               </button>
+
+                               <label class="ml-3">Pesquisar</label>
+                            <input type="text" placeholder="Escola" id="pesquisarAgenda">
                           </div>
 
                           <div>
@@ -331,6 +334,16 @@
     const hoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
     XLSX.writeFile(wb, `agendamentos_${hoje}.xlsx`);
 }
+
+  document.getElementById("pesquisarAgenda").addEventListener("keyup", function() {
+        let filtro = this.value.toLowerCase();
+        let linhas = document.querySelectorAll("table tbody tr");
+
+        linhas.forEach(function(linha) {
+            let nome = linha.children[1].textContent.toLowerCase();
+            linha.style.display = nome.includes(filtro) ? "" : "none";
+        });
+    });
   </script>
 
 

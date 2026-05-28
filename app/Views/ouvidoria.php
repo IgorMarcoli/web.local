@@ -283,11 +283,10 @@
           document.getElementById('modal-editar-produto-Prazo').value = prazo;
           document.getElementById('modal-editar-produto-NumeroProcesso').value = numero_Processo;
          
-
-          $('#modal-editar-produto').modal('show');
+        
+         $('#modal-editar-produto').modal('show');
       }
   </script>
 
-  
 
 </html>

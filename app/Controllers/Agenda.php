@@ -44,7 +44,7 @@ class Agenda extends BaseController
 
         $agendas_model->insert($dados);
 
-        return redirect()->to('/agenda/agenda?alert=successCreate');
+        return redirect()->back()->with('alert', 'successCreate');
     }
 
     public function excluir($AgendaId)
@@ -55,7 +55,7 @@ class Agenda extends BaseController
                 ->where('AgendaId', $AgendaId)
                 ->delete();
 
-        return redirect()->to('/agenda/agenda?alert=successDelete');
+        return redirect()->back()->with('alert', 'successCreate');
     }
 
     public function editar()
