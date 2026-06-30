@@ -152,14 +152,53 @@
                                <label class="ml-3">Pesquisar</label>
                             <input type="text" placeholder="Escola" id="pesquisarxAgenda">
                           </div>
+<div class="d-flex flex-wrap align-items-center mt-2">
 
-                          <div>
-                            <a href="/agenda/agenda" class="btn btn-infor">Todos</a>
-                            <a href="/agenda/agenda?status=concluido" class="btn btn-success">Concluido</a>
-                            <a href="/agenda/agenda?status=pendente" class="btn btn-warning">pendente</a>
-                            <a href="/agenda/agenda?status=Em atendimento" class="btn btn-primary">Em Atendimento</a>
-                            <a href="/agenda/agenda?status=suspenso" class="btn btn-secondary">Suspenso</a>
-                          </div>
+    <!-- Filtro de mês/ano -->
+    <form id="form-filtro-mes" method="get" action="/agenda/agenda" class="form-inline mr-3">
+        <label class="mr-2 mb-0">Mês:</label>
+        <select name="mes" id="filtro-mes" class="form-control form-control-sm mr-2">
+            <?php
+            $meses = [
+                1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril',
+                5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto',
+                9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro'
+            ];
+            foreach ($meses as $num => $nome) :
+            ?>
+                <option value="<?= $num ?>" <?= ($mesAtual == $num) ? 'selected' : '' ?>>
+                    <?= $nome ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <select name="ano" id="filtro-ano" class="form-control form-control-sm mr-2">
+            <?php for ($a = date('Y'); $a >= date('Y') - 3; $a--) : ?>
+                <option value="<?= $a ?>" <?= ($anoAtual == $a) ? 'selected' : '' ?>>
+                    <?= $a ?>
+                </option>
+            <?php endfor; ?>
+        </select>
+
+        <!-- preserva o status atual ao trocar o mês/ano -->
+        <input type="hidden" name="status" id="filtro-status-hidden" value="<?= esc($statusAtual ?? '') ?>">
+
+        <button type="submit" class="btn btn-sm btn-outline-primary">Filtrar</button>
+        
+    </form>
+<a href="/agenda/agenda?periodo=todos<?= $statusAtual ? '&status='.urlencode($statusAtual) : '' ?>"
+   class="btn btn-sm btn-outline-dark mr-2 <?= ($periodoAtual === 'todos') ? 'active' : '' ?>">
+    Ver todos os períodos
+</a>
+    <!-- Filtros de status -->
+    <div id="filtros-status">
+        <a href="/agenda/agenda" data-status="" class="btn btn-infor btn-sm filtro-status-link <?= empty($statusAtual) ? 'active' : '' ?>">Todos</a>
+        <a href="/agenda/agenda?status=concluido" data-status="concluido" class="btn btn-success btn-sm filtro-status-link <?= $statusAtual == 'concluido' ? 'active' : '' ?>">Concluido</a>
+        <a href="/agenda/agenda?status=pendente" data-status="pendente" class="btn btn-warning btn-sm filtro-status-link <?= $statusAtual == 'pendente' ? 'active' : '' ?>">Pendente</a>
+        <a href="/agenda/agenda?status=Em atendimento" data-status="Em atendimento" class="btn btn-primary btn-sm filtro-status-link <?= $statusAtual == 'Em atendimento' ? 'active' : '' ?>">Em Atendimento</a>
+        <a href="/agenda/agenda?status=suspenso" data-status="suspenso" class="btn btn-secondary btn-sm filtro-status-link <?= $statusAtual == 'suspenso' ? 'active' : '' ?>">Suspenso</a>
+    </div>
+</div>
                           
                       </div>
                       <button type="button" class="btn btn-success" onclick="exportarExcel()">
@@ -344,6 +383,22 @@
             linha.style.display = nome.includes(filtro) ? "" : "none";
         });
     });
+
+    // monta a URL combinando mes, ano e status
+document.querySelectorAll('.filtro-status-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const status = this.getAttribute('data-status');
+        const mes = document.getElementById('filtro-mes').value;
+        const ano = document.getElementById('filtro-ano').value;
+
+        let url = '/agenda/agenda?mes=' + mes + '&ano=' + ano;
+        if (status) {
+            url += '&status=' + encodeURIComponent(status);
+        }
+        window.location.href = url;
+    });
+});
   </script>
 
 

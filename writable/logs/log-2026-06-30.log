@@ -190,3 +190,14 @@ AND YEAR(data_agenda) = :YEAR(data_agenda):', [...], false)
  9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 INFO - 2026-06-30 13:45:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-06-30 16:04:47 --> Undefined variable $mesAtual
+in APPPATH\Views\agendas.php on line 169.
+ 1 APPPATH\Views\agendas.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $mesAtual', 'C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php', 169)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\web.local\\app\\Views\\agendas.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('agendas', [], true)
+ 5 APPPATH\Controllers\Agenda.php(34): view('agendas', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->Agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
