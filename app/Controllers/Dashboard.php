@@ -15,7 +15,8 @@ class Dashboard extends BaseController
         $agenda = new AgendaModel();
         $field = new FieldsModel();
 
-
+        $mesAtual = date('m');
+        $anoAtual = date('Y');
 
           /*grafico tecnico 
         $porTecnico = $visitas
@@ -26,8 +27,10 @@ class Dashboard extends BaseController
         ->getResultArray();
         */
         // CHAMADOS
-        $totalChamados = $agenda->countAll();
-
+         $totalChamados = $agenda
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
+        ->countAllResults();
         // separados por status
         $abertos = $agenda->where('status', 'pendente')->countAllResults();
         $resolvidos = $agenda->where('status', 'concluido')->countAllResults();
