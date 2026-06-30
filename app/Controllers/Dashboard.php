@@ -32,14 +32,37 @@ class Dashboard extends BaseController
         ->where('YEAR(Data)', $anoAtual)
         ->countAllResults();
         // separados por status
-        $abertos = $agenda->where('status', 'pendente')->countAllResults();
-        $resolvidos = $agenda->where('status', 'concluido')->countAllResults();
-        $naoResolvidos = $agenda->where('status', 'NA')->countAllResults();
+        $totalChamados = $agenda
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
+        ->countAllResults();
 
-        $statusChamados = $agenda
+    // separados por status, também filtrando pelo mês
+    $abertos = $agenda
+        ->where('status', 'pendente')
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
+        ->countAllResults();
+
+    $resolvidos = $agenda
+        ->where('status', 'concluido')
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
+        ->countAllResults();
+
+    $naoResolvidos = $agenda
+        ->where('status', 'NA')
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
+        ->countAllResults();
+
+    $statusChamados = $agenda
         ->select('status, COUNT(*) as total')
+        ->where('MONTH(Data)', $mesAtual)
+        ->where('YEAR(Data)', $anoAtual)
         ->groupBy('status')
         ->findAll();
+
 
         // percentual resolvido
         $percentResolvido = $totalChamados > 0

@@ -148,9 +148,9 @@
                               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-novo-produto">
                                   <i class="fas fa-plus-circle"></i> Novo Agendamento
                               </button>
-
+                                    
                                <label class="ml-3">Pesquisar</label>
-                            <input type="text" placeholder="Escola" id="pesquisarAgenda">
+                            <input type="text" placeholder="Escola" id="pesquisarxAgenda">
                           </div>
 
                           <div>
