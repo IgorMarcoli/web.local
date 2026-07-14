@@ -3,7 +3,7 @@
     <div class="modal fade" id="modal-novo-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/cadastrar" method="post">
+              <form action="<?= base_url('agendagab/cadastrar') ?>" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -21,7 +21,7 @@
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Data</label>
-                                  <input type="text" class="form-control" name="Data">
+                                  <input type="date" class="form-control" name="Data">
                               </div>
                           </div>
                           <div class="col-3">
@@ -63,7 +63,7 @@
   <div class="modal fade" id="modal-editar-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/editar" method="post">
+              <form action="<?= base_url('agendagab/editar') ?>" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -81,7 +81,7 @@
                           <div class="col-3">
                               <div class="form-group">
                                   <label for="">Data</label>
-                                  <input type="text" class="form-control" id="modal-editar-produto-Data" name="Data">
+                                  <input type="date" class="form-control" id="modal-editar-produto-Data" name="Data">
                               </div>
                           </div>
                           <div class="col-3">
@@ -217,7 +217,7 @@
                                              
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['AgendaId'] ?>', '<?= $agend['Nomelocal'] ?>', '<?= $agend['Data'] ?>', '<?= $agend['Tipo'] ?>', '<?= $agend['Descricao'] ?>', '<?= $agend['Solicitadopor'] ?>', '<?= $agend['Atendidopor'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Agenda/excluir/<?= $agend['AgendaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <a href="<?= base_url('agendagab/excluir/'.$agend['AgendaId']) ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este agendamento?');"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>
@@ -234,7 +234,7 @@
   <!-- /.content-wrapper -->
 
   <script>
-      function prepararDados(AgendaId, Nome, Data, Tipo, Descricao, Atendidopor) {
+      function prepararDados(AgendaId, Nomelocal, Data, Tipo, Descricao, Solicitadopor, Atendidopor) {
           document.getElementById('modal-editar-produto-AgendaId').value = AgendaId;
           document.getElementById('modal-editar-produto-Nomelocal').value = Nomelocal;
           document.getElementById('modal-editar-produto-Data').value = Data;

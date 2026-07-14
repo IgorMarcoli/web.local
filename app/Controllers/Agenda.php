@@ -12,14 +12,14 @@ class Agenda extends BaseController
     {
         $agendas_model = new AgendaModel();
 
-        $status = $this->request->getGet('status');
+        $status  = $this->request->getGet('status');
         $periodo = $this->request->getGet('periodo');
-        $mes    = $this->request->getGet('mes') ?? date('m');
-        $ano    = $this->request->getGet('ano') ?? date('Y');
+        $mes     = $this->request->getGet('mes') ?? date('m');
+        $ano     = $this->request->getGet('ano') ?? date('Y');
 
     $query = $agendas_model;
     
-        if ($periodo !== 'todos') {
+        if ($periodo !== null && $periodo !== 'todos') {
         $query = $query
             ->where('MONTH(Data)', $mes)
             ->where('YEAR(Data)', $ano);
@@ -39,7 +39,7 @@ class Agenda extends BaseController
         'mesAtual'    => $mes,
         'anoAtual'    => $ano,
         'statusAtual' => $status,
-        'periodoAtual' => $periodo
+        'periodoAtual'=> $periodo
     ];
 
     echo View('templates/header');

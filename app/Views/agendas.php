@@ -150,7 +150,7 @@
                               </button>
                                     
                                <label class="ml-3">Pesquisar</label>
-                            <input type="text" placeholder="Escola" id="pesquisarxAgenda">
+                            <input type="text" placeholder="Escola" id="pesquisarAgenda">
                           </div>
 <div class="d-flex flex-wrap align-items-center mt-2">
 
@@ -184,7 +184,7 @@
         <input type="hidden" name="status" id="filtro-status-hidden" value="<?= esc($statusAtual ?? '') ?>">
 
         <button type="submit" class="btn btn-sm btn-outline-primary">Filtrar</button>
-        
+        <a href="<?= base_url('agenda/agenda') ?>" class="btn btn-sm btn-outline-secondary ml-2">Limpar filtros</a>
     </form>
 <a href="/agenda/agenda?periodo=todos<?= $statusAtual ? '&status='.urlencode($statusAtual) : '' ?>"
    class="btn btn-sm btn-outline-dark mr-2 <?= ($periodoAtual === 'todos') ? 'active' : '' ?>">

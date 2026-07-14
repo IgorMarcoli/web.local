@@ -7,6 +7,11 @@ use App\Models\JuridicoModel;
 
 class Juridico extends BaseController
 {
+    public function index()
+    {
+        return $this->Juridico();
+    }
+
     public function Juridico()
     {
         $agendas_model = new JuridicoModel();
