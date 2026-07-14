@@ -13,26 +13,39 @@ class Agenda extends BaseController
         $agendas_model = new AgendaModel();
 
         $status = $this->request->getGet('status');
-           if ($status) {
-        $agendas = $agendas_model
-                        ->where('status', $status)
-                        ->findAll();
-    } else {
-        $agendas = $agendas_model
-                        ->findAll();
+        $periodo = $this->request->getGet('periodo');
+        $mes    = $this->request->getGet('mes') ?? date('m');
+        $ano    = $this->request->getGet('ano') ?? date('Y');
+
+    $query = $agendas_model;
+    
+        if ($periodo !== 'todos') {
+        $query = $query
+            ->where('MONTH(Data)', $mes)
+            ->where('YEAR(Data)', $ano);
     }
+              if ($status) {
+        $query->where('status', $status);
+    }
+
+    $agendas = $query->orderBy('Data', 'DESC')->findAll();
 
     $escola_model = new EscolasModel();
     $escolas = $escola_model->findAll();
 
     $data = [
-        'agendas' => $agendas,
-        'escolas' => $escolas
+        'agendas'     => $agendas,
+        'escolas'     => $escolas,
+        'mesAtual'    => $mes,
+        'anoAtual'    => $ano,
+        'statusAtual' => $status,
+        'periodoAtual' => $periodo
     ];
 
-        echo View('templates/header');
-        echo View('agendas', $data);
-        echo View('templates/footer');
+    echo View('templates/header');
+    echo View('agendas', $data);
+    echo View('templates/footer');
+
     }
 
     public function cadastrar()
