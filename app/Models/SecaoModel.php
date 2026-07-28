@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ServidoresModel extends Model
+class SecaoModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'secao';

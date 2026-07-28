@@ -32,7 +32,7 @@ class Agendagab extends BaseController
 
         $agendas_model->insert($dados);
 
-        return redirect()->to('/agendagab/agendagab?alert=successCreate');
+        return redirect()->back()->with('alert', 'successCreate');
     }
 
     public function excluir($AgendaId)
@@ -43,7 +43,7 @@ class Agendagab extends BaseController
                 ->where('AgendaId', $AgendaId)
                 ->delete();
 
-        return redirect()->to('/agendagab/agendagab?alert=successDelete');
+        return redirect()->back()->with('alert', 'successDelete');
     }
 
     public function editar()
@@ -58,7 +58,7 @@ class Agendagab extends BaseController
                 ->set($dados)
                 ->update();
 
-        return redirect()->to('/agendagab/agendagab?alert=successEdit');
+        return redirect()->back()->with('alert', 'successEdit');
     }
 }
 

@@ -8,7 +8,7 @@ use App\Models\AgendaModel;
 
 class Agenda extends BaseController
 {
-    public function Agenda()
+    public function agenda()
     {
         $agendas_model = new AgendaModel();
 
@@ -83,7 +83,7 @@ class Agenda extends BaseController
                 ->set($dados)
                 ->update();
 
-        return redirect()->to('/agenda/agenda?alert=successEdit');
+        return redirect()->back()->with('alert', 'successEdit');
     }
 
     public function alterarStatus(){

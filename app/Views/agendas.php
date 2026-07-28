@@ -3,7 +3,7 @@
     <div class="modal fade" id="modal-novo-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/cadastrar" method="post">
+              <form action="/agenda/cadastrar" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,7 +61,7 @@
   <div class="modal fade" id="modal-editar-produto">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form action="/Agenda/editar" method="post">
+              <form action="/agenda/editar" method="post">
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -184,7 +184,7 @@
         <input type="hidden" name="status" id="filtro-status-hidden" value="<?= esc($statusAtual ?? '') ?>">
 
         <button type="submit" class="btn btn-sm btn-outline-primary">Filtrar</button>
-        <a href="<?= base_url('agenda/agenda') ?>" class="btn btn-sm btn-outline-secondary ml-2">Limpar filtros</a>
+        <a href="/agenda/agenda" class="btn btn-sm btn-outline-secondary ml-2">Limpar filtros</a>
     </form>
 <a href="/agenda/agenda?periodo=todos<?= $statusAtual ? '&status='.urlencode($statusAtual) : '' ?>"
    class="btn btn-sm btn-outline-dark mr-2 <?= ($periodoAtual === 'todos') ? 'active' : '' ?>">
@@ -288,7 +288,7 @@
     
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['AgendaId'] ?>', '<?= $agend['Nomelocal'] ?>', '<?= $agend['Data'] ?>', '<?= $agend['Tipo'] ?>', '<?= $agend['Descricao'] ?>', '<?= $agend['Solicitadopor'] ?>', '<?= $agend['Atendidopor'] ?>', '<?= $agend['status'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Agenda/excluir/<?= $agend['AgendaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <a href="/agenda/excluir/<?= $agend['AgendaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>
