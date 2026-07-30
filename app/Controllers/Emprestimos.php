@@ -186,7 +186,7 @@ class Emprestimos extends BaseController
 
         $emprestimoModel->insert($dados);
 
-        return redirect()->to('/emprestimos?alert=successCreate');
+        return redirect()->back()->with('alert', 'successCreate');
     }
 
     public function editar()
@@ -214,14 +214,14 @@ class Emprestimos extends BaseController
         $dataDevolucao = $this->request->getPost('data_devolucao');
 
         if (empty($idEmprestimo) || empty($dataDevolucao)) {
-            return redirect()->to('/emprestimos');
+            return redirect()->back();
         }
 
         $emprestimoModel = new EmprestimosModel();
         $emprestimoAtual = $emprestimoModel->find($idEmprestimo);
 
         if (empty($emprestimoAtual)) {
-            return redirect()->to('/emprestimos');
+            return redirect()->back();
         }
 
         $dataDevolucaoNormalizada = $this->normalizeDataDevolucao($dataDevolucao);
@@ -233,7 +233,7 @@ class Emprestimos extends BaseController
             'status_equipamento' => $novoStatus,
         ]);
 
-        return redirect()->to('/emprestimos');
+        return redirect()->back();
     }
 
     private function applySetorSelection(array &$dados)
