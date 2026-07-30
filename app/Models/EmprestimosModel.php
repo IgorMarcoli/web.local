@@ -8,18 +8,24 @@ class EmprestimosModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'emprestimos';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $primaryKey       = 'id_emprestimo';
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id',
-        'servidor_ID',
-        'item_id',
-        'kit_id',
+        'id_emprestimo',
+        'numero_mochila',
+        'secao',
+        'servico',
+        'nome_recebedor',
+        'email_recebedor',
+        'nome_responsavel',
+        'status_equipamento',
+        'numero_chamado',
         'data_emprestimo',
-        'data_devolucao'
+        'data_devolucao',
+        'obs'
     ];
 
     // Dates

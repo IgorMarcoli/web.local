@@ -65,19 +65,11 @@
                         </p>
                     </a>
                 </li>
-                  <li class="nav-item">
-                    <a href="/index.php/emprestimo " class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Emprestimo
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-item">
-                    <a href="/index.php/emprestimoequi" class="nav-link">
+                    <a href="/emprestimos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Empréstimo de Equipamentos
+                            Empréstimos
                         </p>
                     </a>
                 </li>

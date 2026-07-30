@@ -33,6 +33,12 @@ $routes->get('agenda/json', 'Agenda::json');
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
 $routes->setAutoRoute(true);
+$routes->get('emprestimos', 'Emprestimos::index');
+$routes->get('emprestimo', 'Emprestimos::index');
+$routes->get('emprestimoequi', 'Emprestimos::index');
+$routes->post('emprestimos/salvar', 'Emprestimos::salvar');
+$routes->post('emprestimos/editar', 'Emprestimos::editar');
+$routes->post('emprestimos/salvarDataDevolucao', 'Emprestimos::salvarDataDevolucao');
 
 /*
  * --------------------------------------------------------------------
