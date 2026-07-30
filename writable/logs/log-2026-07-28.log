@@ -1,0 +1,36 @@
+CRITICAL - 2026-07-28 16:17:37 --> Undefined array key "nome"
+in APPPATH\Controllers\Emprestimoequi.php on line 87.
+ 1 APPPATH\Controllers\Emprestimoequi.php(87): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nome"', 'C:\\xampp\\htdocs\\web.local\\app\\Controllers\\Emprestimoequi.php', 87)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimoequi->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimoequi))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-07-28 16:39:17 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`sistema_web`.`emprestimo_equips`, CONSTRAINT `fk_emprestimo_equips_secao` FOREIGN KEY (`secao`) REFERENCES `secao` (`secaoID`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Emprestimoequi.php(185): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Emprestimoequi->salvar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimoequi))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-07-28 16:39:17 --> Cannot add or update a child row: a foreign key constraint fails (`sistema_web`.`emprestimo_equips`, CONSTRAINT `fk_emprestimo_equips_secao` FOREIGN KEY (`secao`) REFERENCES `secao` (`secaoID`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emprestimo_equips` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `status_equipamento`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `id_emprestimo`) VALUES (\'1\', \'Robson Nascimento\', \'teste@servidor.educacao.sp.gov.br\', \'Sandro Jesus\', \'emprestado\', NULL, \'\', \'2026-07-28 16:39:17\', \'0000-00-00 00:00:00\', 0, 1001)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emprestimo_equips` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `status_equipamento`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `id_emprestimo`) VALUES (\'1\', \'Robson Nascimento\', \'teste@servidor.educacao.sp.gov.br\', \'Sandro Jesus\', \'emprestado\', NULL, \'\', \'2026-07-28 16:39:17\', \'0000-00-00 00:00:00\', 0, 1001)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emprestimo_equips` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `status_equipamento`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `id_emprestimo`) VALUES (\'1\', \'Robson Nascimento\', \'teste@servidor.educacao.sp.gov.br\', \'Sandro Jesus\', \'emprestado\', NULL, \'\', \'2026-07-28 16:39:17\', \'0000-00-00 00:00:00\', 0, 1001)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emprestimo_equips` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `status_equipamento`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `id_emprestimo`) VALUES (:numero_mochila:, :nome_recebedor:, :email_recebedor:, :nome_responsavel:, :status_equipamento:, :numero_chamado:, :obs:, :data_emprestimo:, :data_devolucao:, :secao:, :id_emprestimo:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Emprestimoequi.php(185): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimoequi->salvar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimoequi))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
