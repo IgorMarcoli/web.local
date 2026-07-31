@@ -36,6 +36,8 @@ $routes->setAutoRoute(true);
 $routes->get('emprestimos', 'Emprestimos::index');
 $routes->get('emprestimo', 'Emprestimos::index');
 $routes->get('emprestimoequi', 'Emprestimos::index');
+$routes->get('inventario/excluir/(:num)', 'Inventario::excluir/$1');
+$routes->post('inventario/excluir/(:num)', 'Inventario::excluir/$1');
 $routes->post('emprestimos/salvar', 'Emprestimos::salvar');
 $routes->post('emprestimos/editar', 'Emprestimos::editar');
 $routes->post('emprestimos/salvarDataDevolucao', 'Emprestimos::salvarDataDevolucao');

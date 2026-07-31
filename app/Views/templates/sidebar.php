@@ -58,6 +58,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/inventario" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Inventário
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="manuais#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>

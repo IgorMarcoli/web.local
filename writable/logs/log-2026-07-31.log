@@ -1,0 +1,361 @@
+INFO - 2026-07-31 09:02:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:12:46 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:12:47 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_mouse` FOREIGN KEY (`id_mouse`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:12:47 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_carregador` FOREIGN KEY (`id_carregador`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:12:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:12:55 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:12:55 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_mouse` FOREIGN KEY (`id_mouse`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:12:55 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_carregador` FOREIGN KEY (`id_carregador`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(277): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:12:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:15:28 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:15:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:15:31 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:15:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:16:32 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:16:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:18:08 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:18:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:18:11 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:18:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:20:19 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(283): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:20:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:28:23 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(286): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:28:23 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(290): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:28:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:28:28 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(286): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:28:28 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(290): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:28:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 09:57:17 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(286): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 09:57:17 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(290): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 09:57:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 15:02:45 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(286): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\temp_debug_delete.php(31): App\Models\InventarioModel->deleteKitItems(1)
+#6 {main}
+ERROR - 2026-07-31 15:02:45 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(290): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\temp_debug_delete.php(31): App\Models\InventarioModel->deleteKitItems(1)
+#6 {main}
+ERROR - 2026-07-31 15:06:51 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\temp_debug_delete3.php(24): CodeIgniter\Database\BaseBuilder->delete()
+#5 {main}
+ERROR - 2026-07-31 10:16:28 --> mysqli_sql_exception: Unknown column 'id_outro' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `kits` S...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `kits` S...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `kits` S...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2476): CodeIgniter\Database\BaseConnection->query('UPDATE `kits` S...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(284): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 10:16:28 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(292): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2026-07-31 10:16:28 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`sistema_web`.`kits`, CONSTRAINT `fk_kits_notebook` FOREIGN KEY (`id_notebook`) REFERENCES `itens` (`id_item`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2791): CodeIgniter\Database\BaseConnection->query('DELETE FROM `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(296): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(41): App\Models\InventarioModel->deleteKitItems(1)
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->excluir('1')
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+INFO - 2026-07-31 10:16:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-31 10:16:28 --> mysqli_sql_exception: Unknown column 'k.id_outro' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(77): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(13): App\Models\InventarioModel->getKitsWithItems()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-07-31 10:16:28 --> Unknown column 'k.id_outro' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, `k`.`id_notebook`, `k`.`id_mouse`, `k`.`id_carregador`, `k`.`id_outro`, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `o`.`tipo` AS `outro_tipo`, `o`.`marca_modelo` AS `outro_marca_modelo`, `o`.`serial` AS `outro_serial`, `o`.`patrimonio` AS `outro_patrimonio`, `o`.`estado_conservacao` AS `outro_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `o` ON `o`.`id_item` = `k`.`id_outro`
+ORDER BY `k`.`id_kit` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, `k`.`id_notebook`, `k`.`id_mouse`, `k`.`id_carregador`, `k`.`id_outro`, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `o`.`tipo` AS `outro_tipo`, `o`.`marca_modelo` AS `outro_marca_modelo`, `o`.`serial` AS `outro_serial`, `o`.`patrimonio` AS `outro_patrimonio`, `o`.`estado_conservacao` AS `outro_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `o` ON `o`.`id_item` = `k`.`id_outro`
+ORDER BY `k`.`id_kit` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, `k`.`id_notebook`, `k`.`id_mouse`, `k`.`id_carregador`, `k`.`id_outro`, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `o`.`tipo` AS `outro_tipo`, `o`.`marca_modelo` AS `outro_marca_modelo`, `o`.`serial` AS `outro_serial`, `o`.`patrimonio` AS `outro_patrimonio`, `o`.`estado_conservacao` AS `outro_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `o` ON `o`.`id_item` = `k`.`id_outro`
+ORDER BY `k`.`id_kit` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, `k`.`id_notebook`, `k`.`id_mouse`, `k`.`id_carregador`, `k`.`id_outro`, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `o`.`tipo` AS `outro_tipo`, `o`.`marca_modelo` AS `outro_marca_modelo`, `o`.`serial` AS `outro_serial`, `o`.`patrimonio` AS `outro_patrimonio`, `o`.`estado_conservacao` AS `outro_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `o` ON `o`.`id_item` = `k`.`id_outro`
+ORDER BY `k`.`id_kit` DESC', [], false)
+ 5 APPPATH\Models\InventarioModel.php(77): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Inventario.php(13): App\Models\InventarioModel->getKitsWithItems()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Inventario->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
