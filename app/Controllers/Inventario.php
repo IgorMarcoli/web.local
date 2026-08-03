@@ -27,7 +27,7 @@ class Inventario extends BaseController
 
         try {
             $inventarioModel->saveKit($dados);
-            return redirect()->to('/inventario?alert=successCreate');
+            return redirect()->back()->with('alert', 'successCreate');
         } catch (\Throwable $e) {
             return redirect()->back()->with('alert', 'errorCreate');
         }
@@ -39,7 +39,7 @@ class Inventario extends BaseController
 
         try {
             $inventarioModel->deleteKitItems((int) $idKit);
-            return redirect()->to('/inventario?alert=successDelete');
+            return redirect()->back()->with('alert', 'successDelete');
         } catch (\Throwable $e) {
             return redirect()->back()->with('alert', 'errorDelete');
         }

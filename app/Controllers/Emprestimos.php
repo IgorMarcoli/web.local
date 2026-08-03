@@ -51,6 +51,14 @@ class Emprestimos extends BaseController
             $builder->where('status_equipamento', $statusFiltro);
         }
 
+        $db = \Config\Database::connect();
+        $kits = $db->table('kits')
+            ->select('id_kit')
+            ->orderBy('id_kit', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $emprestimosBase = $emprestimoModel->orderBy('data_emprestimo', 'DESC')->get()->getResultArray();
         $emprestimos = $builder->orderBy('data_emprestimo', 'DESC')->get()->getResultArray();
         $sessoes     = $secaoModel->orderBy('secaoID', 'ASC')->findAll();
         $servicos    = $servicoModel->orderBy('servicoId', 'ASC')->findAll();
@@ -101,6 +109,68 @@ class Emprestimos extends BaseController
         }
         unset($e);
 
+        $resumoMochilas = [];
+        foreach ($kits as $kit) {
+            $numeroMochilaInt = (int) ($kit['id_kit'] ?? 0);
+            if ($numeroMochilaInt <= 0) {
+                continue;
+            }
+
+            $resumoMochilas[$numeroMochilaInt] = [
+                'numero' => $numeroMochilaInt,
+                'status' => 'disponível para empréstimo',
+                'data_emprestimo' => null,
+                'data_devolucao' => null,
+                'duracao_emprestimo' => '-',
+            ];
+        }
+
+        $ultimoEmprestimoPorMochila = [];
+        foreach ($emprestimosBase as $emprestimoBase) {
+            $numeroMochila = $emprestimoBase['numero_mochila'] ?? null;
+            if ($numeroMochila === null || $numeroMochila === '') {
+                continue;
+            }
+
+            $numeroMochilaInt = (int) $numeroMochila;
+            if (!isset($resumoMochilas[$numeroMochilaInt])) {
+                continue;
+            }
+
+            $statusEquipamento = $emprestimoBase['status_equipamento'] ?? '';
+            $dataDevolucao = $emprestimoBase['data_devolucao'] ?? null;
+            $dataEmprestimo = $emprestimoBase['data_emprestimo'] ?? null;
+            $statusAtivo = $statusEquipamento === 'emprestado' || $statusEquipamento === 'chamado aberto' || $this->isDevolucaoPending($dataDevolucao);
+
+            if (!$statusAtivo) {
+                continue;
+            }
+
+            $dataEmprestimoTimestamp = strtotime((string) $dataEmprestimo);
+            $dataResumoTimestamp = $ultimoEmprestimoPorMochila[$numeroMochilaInt]['data_emprestimo_timestamp'] ?? null;
+
+            if ($dataEmprestimoTimestamp === false || ($dataResumoTimestamp !== null && $dataEmprestimoTimestamp < $dataResumoTimestamp)) {
+                continue;
+            }
+
+            $ultimoEmprestimoPorMochila[$numeroMochilaInt] = [
+                'data_emprestimo' => $dataEmprestimo,
+                'data_devolucao' => $dataDevolucao,
+                'status' => $statusEquipamento !== '' ? $statusEquipamento : 'emprestado',
+                'data_emprestimo_timestamp' => $dataEmprestimoTimestamp,
+            ];
+        }
+
+        foreach ($ultimoEmprestimoPorMochila as $numeroMochilaInt => $ultimoEmprestimo) {
+            $resumoMochilas[$numeroMochilaInt]['status'] = $ultimoEmprestimo['status'];
+            $resumoMochilas[$numeroMochilaInt]['data_emprestimo'] = $ultimoEmprestimo['data_emprestimo'];
+            $resumoMochilas[$numeroMochilaInt]['data_devolucao'] = $ultimoEmprestimo['data_devolucao'];
+            $resumoMochilas[$numeroMochilaInt]['duracao_emprestimo'] = $this->formatDuration($ultimoEmprestimo['data_emprestimo'], $ultimoEmprestimo['data_devolucao']);
+        }
+
+        ksort($resumoMochilas);
+        $resumoMochilas = array_values($resumoMochilas);
+
         $setorOptions = [];
         foreach ($sessoes as $s) {
             $setorOptions[] = [
@@ -138,6 +208,7 @@ class Emprestimos extends BaseController
         }));
 
         $data['emprestimos'] = $emprestimos;
+        $data['resumoMochilas'] = $resumoMochilas;
         $data['sessoes']     = $sessoes;
         $data['setorOptions'] = $setorOptions;
         $data['servidores'] = $servidoresFormatados;
@@ -205,7 +276,7 @@ class Emprestimos extends BaseController
         $emprestimoModel = new EmprestimosModel();
         $emprestimoModel->update($dados['id_emprestimo'], $dados);
 
-        return redirect()->to('/emprestimos?alert=successEdit');
+        return redirect()->back()->with('alert', 'successCreate');
     }
 
     public function salvarDataDevolucao()
@@ -367,17 +438,25 @@ class Emprestimos extends BaseController
 
     private function formatDuration($startDate, $endDate = null)
     {
-        if (empty($startDate)) {
+        $startValue = trim((string) ($startDate ?? ''));
+        if ($startValue === '' || $startValue === '-') {
+            return '-';
+        }
+
+        $start = $this->buildDurationDateTime($startValue);
+        if ($start === null) {
             return '-';
         }
 
         if ($this->isDevolucaoPending($endDate)) {
             $end = new \DateTimeImmutable('now');
         } else {
-            $end = new \DateTimeImmutable($endDate);
+            $endValue = trim((string) $endDate);
+            $end = $this->buildDurationDateTime($endValue);
+            if ($end === null) {
+                $end = new \DateTimeImmutable('now');
+            }
         }
-
-        $start = new \DateTimeImmutable($startDate);
 
         if ($end < $start) {
             $end = $start;
@@ -411,5 +490,30 @@ class Emprestimos extends BaseController
         }
 
         return implode(' ', $parts);
+    }
+
+    private function buildDurationDateTime($value)
+    {
+        $value = trim((string) $value);
+        if ($value === '' || $value === '-') {
+            return null;
+        }
+
+        if (!preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
+            return null;
+        }
+
+        [$year, $month, $day, $hour, $minute, $second] = array_map('intval', explode(' ', str_replace('-', ' ', str_replace(':', ' ', $value))));
+
+        if ($year < 1 || $month < 1 || $month > 12 || $day < 1 || $day > 31 || $hour < 0 || $hour > 23 || $minute < 0 || $minute > 59 || $second < 0 || $second > 59) {
+            return null;
+        }
+
+        $daysInMonth = (int) cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        if ($day > $daysInMonth) {
+            return null;
+        }
+
+        return new \DateTimeImmutable($value);
     }
 }

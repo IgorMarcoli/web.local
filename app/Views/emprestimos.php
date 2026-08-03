@@ -186,60 +186,96 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-9 col-12">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Numero Mochila</th>
-                                        <th>Setor</th>
-                                        <th>Nome Solicitante</th>
-                                        <th>Email Solicitante</th>
-                                        <th>Responsável SEINTEC/SETEC</th>
-                                        <th>Status</th>
-                                        <th>Número Chamado</th>
-                                        <th>Data Recebimento</th>
-                                        <th>Data Devolução</th>
-                                        <th>Duração de Empréstimo</th>
-                                        <th>Obs</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($emprestimos as $e): ?>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td><?= esc($e['id_emprestimo'] ?? '-') ?></td>
-                                            <td><?= esc($e['numero_mochila']) ?></td>
-                                            <td><?= esc($e['setor_display'] ?? '-') ?></td>
-                                            <td><?= esc($e['nome_recebedor']) ?></td>
-                                            <td><?= esc($e['email_recebedor']) ?></td>
-                                            <td><?= esc($e['nome_responsavel']) ?></td>
-                                            <td><?= esc($e['status_equipamento']) ?></td>
-                                            <td><?= esc($e['numero_chamado']) ?></td>
-                                            <td><?= esc($e['data_emprestimo']) ?></td>
-                                            <td>
-                                                <?php $dataDevolucao = $e['data_devolucao'] ?? '';
-                                                $devolucaoEhPadrao = $dataDevolucao === '0000-00-00 00:00:00' || $dataDevolucao === '0000-00-00';
-                                                if (!empty($dataDevolucao) && !$devolucaoEhPadrao): ?>
-                                                    <?= esc($dataDevolucao) ?>
-                                                <?php else: ?>
-                                                    <form method="post" action="/emprestimos/salvarDataDevolucao" class="d-flex align-items-center">
-                                                        <?= csrf_field() ?>
-                                                        <input type="hidden" name="id_emprestimo" value="<?= esc($e['id_emprestimo'] ?? '') ?>">
-                                                        <input type="hidden" name="data_devolucao" class="data-devolucao-valor" value="">
-                                                        <button type="submit" class="btn btn-success btn-sm btn-liberar-devolucao" data-id="<?= esc($e['id_emprestimo'] ?? '') ?>">
-                                                            Liberar
-                                                        </button>
-                                                    </form>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="duracao-emprestimo" data-start="<?= esc($e['data_emprestimo']) ?>" data-end="<?= esc($e['data_devolucao'] ?? '') ?>"><?= esc($e['duracao_emprestimo']) ?></td>
-                                            <td><?= esc($e['obs']) ?></td>
+                                            <th>ID</th>
+                                            <th>Numero Mochila</th>
+                                            <th>Setor</th>
+                                            <th>Nome Solicitante</th>
+                                            <th>Email Solicitante</th>
+                                            <th>Responsável SEINTEC/SETEC</th>
+                                            <th>Status</th>
+                                            <th>Número Chamado</th>
+                                            <th>Data Recebimento</th>
+                                            <th>Data Devolução</th>
+                                            <th>Duração de Empréstimo</th>
+                                            <th>Obs</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($emprestimos as $e): ?>
+                                            <tr>
+                                                <td><?= esc($e['id_emprestimo'] ?? '-') ?></td>
+                                                <td><?= esc($e['numero_mochila']) ?></td>
+                                                <td><?= esc($e['setor_display'] ?? '-') ?></td>
+                                                <td><?= esc($e['nome_recebedor']) ?></td>
+                                                <td><?= esc($e['email_recebedor']) ?></td>
+                                                <td><?= esc($e['nome_responsavel']) ?></td>
+                                                <td><?= esc($e['status_equipamento']) ?></td>
+                                                <td><?= esc($e['numero_chamado']) ?></td>
+                                                <td><?= esc($e['data_emprestimo']) ?></td>
+                                                <td>
+                                                    <?php $dataDevolucao = $e['data_devolucao'] ?? '';
+                                                    $devolucaoEhPadrao = $dataDevolucao === '0000-00-00 00:00:00' || $dataDevolucao === '0000-00-00';
+                                                    if (!empty($dataDevolucao) && !$devolucaoEhPadrao): ?>
+                                                        <?= esc($dataDevolucao) ?>
+                                                    <?php else: ?>
+                                                        <form method="post" action="/emprestimos/salvarDataDevolucao" class="d-flex align-items-center">
+                                                            <?= csrf_field() ?>
+                                                            <input type="hidden" name="id_emprestimo" value="<?= esc($e['id_emprestimo'] ?? '') ?>">
+                                                            <input type="hidden" name="data_devolucao" class="data-devolucao-valor" value="">
+                                                            <button type="submit" class="btn btn-success btn-sm btn-liberar-devolucao" data-id="<?= esc($e['id_emprestimo'] ?? '') ?>">
+                                                                Liberar
+                                                            </button>
+                                                        </form>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="duracao-emprestimo" data-start="<?= esc($e['data_emprestimo']) ?>" data-end="<?= esc($e['data_devolucao'] ?? '') ?>"><?= esc($e['duracao_emprestimo']) ?></td>
+                                                <td><?= esc($e['obs']) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Resumo por mochila</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Número</th>
+                                            <th>Status</th>
+                                            <th>Duração</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($resumoMochilas)): ?>
+                                            <?php foreach ($resumoMochilas as $resumo): ?>
+                                                <tr>
+                                                    <td><?= esc($resumo['numero'] ?? '-') ?></td>
+                                                    <td><?= esc($resumo['status'] ?? '-') ?></td>
+                                                    <td class="duracao-emprestimo" data-start="<?= esc($resumo['data_emprestimo'] ?? '') ?>" data-end="<?= esc($resumo['data_devolucao'] ?? '') ?>"><?= esc($resumo['duracao_emprestimo'] ?? '-') ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="3" class="text-center">Nenhuma mochila encontrada.</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -482,6 +518,39 @@
             return parts.join(' ');
         }
 
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+
+        function daysInMonth(year, month) {
+            const map = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            return map[month - 1];
+        }
+
+        function isValidCalendarDate(year, month, day, hour, minute, second) {
+            if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31 || hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+                return false;
+            }
+
+            if (day > daysInMonth(year, month)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function toJulianDayNumber(year, month, day) {
+            let a = Math.floor((14 - month) / 12);
+            let y = year + 4800 - a;
+            let m = month + 12 * a - 3;
+            return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+        }
+
+        function datePartsToSeconds(parts) {
+            const jd = toJulianDayNumber(parts.year, parts.month, parts.day);
+            return (jd * 86400) + (parts.hour * 3600) + (parts.minute * 60) + parts.second;
+        }
+
         function parseDateTime(value) {
             if (!value) {
                 return null;
@@ -496,42 +565,64 @@
                 return null;
             }
 
-            const directMatch = rawValue.match(/^\s*(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?\s*$/);
-            if (directMatch) {
-                const year = Number(directMatch[1]);
-                const month = Number(directMatch[2]);
-                const day = Number(directMatch[3]);
-                const hour = Number(directMatch[4]);
-                const minute = Number(directMatch[5]);
-                const second = Number(directMatch[6]);
+            const isoMatch = rawValue.match(/^\s*(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?\s*$/);
+            if (isoMatch) {
+                const year = Number(isoMatch[1]);
+                const month = Number(isoMatch[2]);
+                const day = Number(isoMatch[3]);
+                const hour = Number(isoMatch[4]);
+                const minute = Number(isoMatch[5]);
+                const second = Number(isoMatch[6]);
 
-                if (year <= 0 || month <= 0 || day <= 0) {
+                if (!isValidCalendarDate(year, month, day, hour, minute, second)) {
                     return null;
                 }
 
-                return new Date(year, month - 1, day, hour, minute, second);
+                return { year, month, day, hour, minute, second };
             }
 
-            const normalized = rawValue.replace(/\s+/g, 'T');
-            const parsedIso = new Date(normalized);
-            return Number.isNaN(parsedIso.getTime()) ? null : parsedIso;
+            const brasilMatch = rawValue.match(/^\s*(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}):?(\d{2})?)?\s*$/);
+            if (brasilMatch) {
+                const day = Number(brasilMatch[1]);
+                const month = Number(brasilMatch[2]);
+                const year = Number(brasilMatch[3]);
+                const hour = Number(brasilMatch[4] || 0);
+                const minute = Number(brasilMatch[5] || 0);
+                const second = Number(brasilMatch[6] || 0);
+
+                if (!isValidCalendarDate(year, month, day, hour, minute, second)) {
+                    return null;
+                }
+
+                return { year, month, day, hour, minute, second };
+            }
+
+            return null;
         }
 
         function atualizarDuracoes() {
             const now = new Date();
+            const nowParts = {
+                year: now.getFullYear(),
+                month: now.getMonth() + 1,
+                day: now.getDate(),
+                hour: now.getHours(),
+                minute: now.getMinutes(),
+                second: now.getSeconds()
+            };
 
             document.querySelectorAll('.duracao-emprestimo').forEach(function (cell) {
                 const startValue = cell.getAttribute('data-start');
                 const endValue = cell.getAttribute('data-end');
                 const start = parseDateTime(startValue);
-                const end = parseDateTime(endValue) || now;
+                const end = parseDateTime(endValue) || nowParts;
 
                 if (!start) {
                     cell.textContent = '-';
                     return;
                 }
 
-                const diffSeconds = Math.max(0, Math.floor((end - start) / 1000));
+                const diffSeconds = Math.max(0, datePartsToSeconds(end) - datePartsToSeconds(start));
                 cell.textContent = formatarDuracao(diffSeconds);
             });
         }

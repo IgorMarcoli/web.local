@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/maquinas#" class="nav-link">
+                    <a href="/equipamentos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Equipamentos

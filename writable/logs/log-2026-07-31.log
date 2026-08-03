@@ -359,3 +359,14 @@ ORDER BY `k`.`id_kit` DESC', [], false)
  8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
  9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-07-31 13:47:32 --> Failed to parse time string (-) at position 0 (-): Unexpected character
+in APPPATH\Controllers\Emprestimos.php on line 440.
+ 1 APPPATH\Controllers\Emprestimos.php(440): DateTimeImmutable->__construct('-')
+ 2 APPPATH\Controllers\Emprestimos.php(127): App\Controllers\Emprestimos->formatDuration('-', '-')
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimos->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimos))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2026-07-31 13:57:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-31 13:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-31 14:00:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
