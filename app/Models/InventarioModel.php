@@ -28,13 +28,8 @@ class InventarioModel extends Model
     {
         $builder = $this->db->table('kits k');
         $builder->select([
-            'k.id_kit',
+            'k.*',
             'k.numero AS numero_mochila',
-            'k.id_notebook',
-            'k.id_mouse',
-            'k.id_carregador',
-            'k.id_adaptador',
-            'k.id_locker',
             'n.marca_modelo AS notebook_marca_modelo',
             'n.serial AS notebook_serial',
             'n.patrimonio AS notebook_patrimonio',
@@ -62,8 +57,9 @@ class InventarioModel extends Model
         $builder->join('itens c', 'c.id_item = k.id_carregador', 'left');
         $builder->join('itens a', 'a.id_item = k.id_adaptador', 'left');
         $builder->join('itens l', 'l.id_item = k.id_locker', 'left');
+        $builder->orderBy('k.id_kit', 'ASC');
 
-        $kits = $builder->orderBy('k.id_kit', 'ASC')->get()->getResultArray();
+        $kits = $builder->get()->getResultArray();
 
         return [
             'kits' => $kits,
@@ -74,7 +70,7 @@ class InventarioModel extends Model
     public function saveKit(array $dados): int
     {
         $idKit = (int) ($dados['id_kit'] ?? 0);
-        $numeroMochila = $this->normalizeValue($dados['numero_mochila'] ?? '');
+        $numeroMochilaRaw = $this->normalizeValue($dados['numero_mochila'] ?? '');
 
         $db = $this->db;
         $builderKits = $db->table('kits');
@@ -85,37 +81,39 @@ class InventarioModel extends Model
             $kitRecord = $builderKits->where('id_kit', $idKit)->get()->getRowArray();
         }
 
-        if ($numeroMochila === '') {
-            if ($kitRecord && !empty($kitRecord['numero'])) {
-                $numeroMochila = (string) $kitRecord['numero'];
-            } elseif ($idKit > 0) {
-                $numeroMochila = (string) $idKit;
+        $numeroMochila = null;
+        if ($numeroMochilaRaw !== '') {
+            if (!ctype_digit($numeroMochilaRaw)) {
+                throw new \InvalidArgumentException('Número da mochila deve ser numérico.');
             }
-        }
 
-        if ($numeroMochila === '' || !ctype_digit($numeroMochila)) {
-            throw new \InvalidArgumentException('Número da mochila é obrigatório e deve ser numérico.');
+            $numeroMochila = (int) $numeroMochilaRaw;
         }
-
-        $numeroMochila = (int) $numeroMochila;
 
         $db->transStart();
 
-        if ($kitRecord) {
-            $builderKits->where('id_kit', $idKit)->update([
-                'numero' => $numeroMochila,
-            ]);
-        } else {
-            $builderKits->insert([
-                'id_kit' => $numeroMochila,
-                'numero' => $numeroMochila,
-            ]);
-            $idKit = $numeroMochila;
+        $categoriaKit = $this->normalizeValue($dados['categoria'] ?? '');
+        if ($categoriaKit === '') {
+            $categoriaKit = 'kit_' . ($numeroMochila ?? $this->getNextAvailableKitId());
         }
 
-        if ($idKit <= 0) {
-            $db->transComplete();
-            throw new \RuntimeException('Não foi possível criar ou atualizar o kit.');
+        $existingKitId = (int) ($kitRecord['id_kit'] ?? 0);
+        $targetNumeroKit = $numeroMochila;
+        $targetKitId = $numeroMochila !== null ? $numeroMochila : null;
+
+        if ($kitRecord && $numeroMochila === null && $kitRecord['numero'] !== null) {
+            $targetKitId = $this->getNextAvailableKitId();
+        }
+
+        if ($kitRecord && $numeroMochila !== null) {
+            $currentKitId = (int) ($kitRecord['id_kit'] ?? 0);
+            $currentNumero = (int) ($kitRecord['numero'] ?? 0);
+            if ($targetKitId !== $currentKitId && $targetKitId !== $currentNumero) {
+                $conflictKit = $builderKits->select('id_kit')->where('id_kit', $targetKitId)->get()->getRowArray();
+                if ($conflictKit) {
+                    throw new \RuntimeException('Já existe outro kit com esse número da mochila.');
+                }
+            }
         }
 
         $existingDataRegistro = null;
@@ -132,6 +130,33 @@ class InventarioModel extends Model
                     break;
                 }
             }
+        }
+
+        $actualKitId = $existingKitId;
+        if ($kitRecord) {
+            $updatePayload = [
+                'categoria' => $categoriaKit,
+                'numero' => $targetNumeroKit,
+            ];
+
+            if ($targetKitId !== null && $targetKitId !== $existingKitId) {
+                $updatePayload['id_kit'] = $targetKitId;
+            }
+
+            $builderKits->where('id_kit', $existingKitId)->update($updatePayload);
+            $actualKitId = $targetKitId !== null ? $targetKitId : $existingKitId;
+        } else {
+            $insertPayload = [
+                'categoria' => $categoriaKit,
+                'numero' => $targetNumeroKit,
+            ];
+
+            if ($targetKitId !== null) {
+                $insertPayload['id_kit'] = $targetKitId;
+            }
+
+            $builderKits->insert($insertPayload);
+            $actualKitId = $targetKitId !== null ? $targetKitId : (int) $db->insertID();
         }
 
         $dataRegistro = $existingDataRegistro ?? Time::now()->format('Y-m-d H:i:s');
@@ -176,7 +201,6 @@ class InventarioModel extends Model
             $serial = $this->normalizeValue($itemInput['serial'] ?? '');
             $patrimonio = $this->normalizeValue($itemInput['patrimonio'] ?? '');
             $estadoConservacao = $this->normalizeValue($itemInput['estado_conservacao'] ?? '');
-            $tipoPersonalizado = $this->normalizeValue($itemInput['tipo_personalizado'] ?? '');
 
             $hasAnyValue = $marcaModelo !== '' || $serial !== '' || $patrimonio !== '' || $estadoConservacao !== '';
 
@@ -199,7 +223,8 @@ class InventarioModel extends Model
                     'serial' => $serial,
                     'patrimonio' => $patrimonio,
                     'estado_conservacao' => $estadoConservacao,
-                    'numero_mochila' => $numeroMochila,
+                    'numero_mochila' => $actualKitId,
+                    'categoria' => $categoriaKit,
                     'data_registro' => $dataRegistro,
                 ]);
                 $itemIds[$inputKey] = (int) $existingItemId;
@@ -210,7 +235,8 @@ class InventarioModel extends Model
                     'serial' => $serial,
                     'patrimonio' => $patrimonio,
                     'estado_conservacao' => $estadoConservacao,
-                    'numero_mochila' => $numeroMochila,
+                    'numero_mochila' => $actualKitId,
+                    'categoria' => $categoriaKit,
                     'data_registro' => $dataRegistro,
                 ]);
 
@@ -223,7 +249,9 @@ class InventarioModel extends Model
             throw new \RuntimeException('Não foi possível registrar todos os itens obrigatórios do kit.');
         }
 
-        $builderKits->where('id_kit', $idKit)->update([
+        $builderKits->where('id_kit', $actualKitId)->update([
+            'numero' => $targetNumeroKit,
+            'categoria' => $categoriaKit,
             'id_notebook' => $itemIds['notebook'],
             'id_mouse' => $itemIds['mouse'],
             'id_carregador' => $itemIds['carregador'],
@@ -237,7 +265,7 @@ class InventarioModel extends Model
             throw new \RuntimeException('O registro do kit falhou.');
         }
 
-        return $idKit;
+        return $actualKitId;
     }
 
     public function deleteKitItems(int $idKit): void
@@ -260,29 +288,48 @@ class InventarioModel extends Model
             }
         }
 
-        $numeroMochila = $kitRecord['numero'] ?? null;
-
-        $builderKits->where('id_kit', $idKit)->update([
-            'id_notebook' => null,
-            'id_mouse' => null,
-            'id_carregador' => null,
-            'id_adaptador' => null,
-            'id_locker' => null,
-        ]);
-
         if (!empty($itemIdsToRemove)) {
             $db->table('itens')->whereIn('id_item', array_unique($itemIdsToRemove))->delete();
         }
 
-        if (!empty($numeroMochila) && is_numeric($numeroMochila)) {
-            $db->table('itens')->where('numero_mochila', (int) $numeroMochila)->delete();
-        }
-
+        $builderKits->where('id_kit', $idKit)->delete();
         $db->transComplete();
 
         if ($db->transStatus() === false) {
             throw new \RuntimeException('A exclusão do kit falhou.');
         }
+    }
+
+    private function resolveTargetKitId(?array $kitRecord, int $currentId, ?int $numeroMochila): int
+    {
+        if ($numeroMochila !== null) {
+            return $numeroMochila;
+        }
+
+        if ($kitRecord && !empty($kitRecord['id_kit'])) {
+            return (int) $kitRecord['id_kit'];
+        }
+
+        return $this->getNextAvailableKitId();
+    }
+
+    private function getNextAvailableKitId(): int
+    {
+        $builder = $this->db->table('kits');
+        $result = $builder->select('id_kit')->get()->getResultArray();
+
+        $usedIds = [];
+        foreach ($result as $row) {
+            $kitId = (int) ($row['id_kit'] ?? 0);
+            $usedIds[$kitId] = true;
+        }
+
+        $candidate = 0;
+        while (isset($usedIds[$candidate])) {
+            $candidate++;
+        }
+
+        return $candidate;
     }
 
     private function normalizeValue(string $value): string

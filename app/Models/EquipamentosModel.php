@@ -28,20 +28,33 @@ class EquipamentosModel extends Model
 
     public function listar(): array
     {
-        $builder = $this->db->table('itens');
+        $builder = $this->db->table('itens i');
         $builder->select([
-            'id_item',
-            'tipo',
-            'marca_modelo',
-            'serial',
-            'patrimonio',
-            'estado_conservacao',
-            'andar',
-            'sala',
-            'data_registro',
+            'i.id_item',
+            'i.tipo',
+            'i.marca_modelo',
+            'i.serial',
+            'i.patrimonio',
+            'i.estado_conservacao',
+            'i.andar',
+            'i.sala',
+            's.nome_sala',
+            'i.data_registro',
+        ]);
+        $builder->join('salas s', 's.id_sala = i.sala', 'left');
+
+        return $builder->orderBy('i.id_item', 'DESC')->get()->getResultArray();
+    }
+
+    public function listarSalas(): array
+    {
+        $builder = $this->db->table('salas');
+        $builder->select([
+            'id_sala',
+            'nome_sala',
         ]);
 
-        return $builder->orderBy('id_item', 'DESC')->get()->getResultArray();
+        return $builder->orderBy('nome_sala', 'ASC')->get()->getResultArray();
     }
 
     public function salvar(array $dados): int
@@ -54,6 +67,14 @@ class EquipamentosModel extends Model
         $estadoConservacao = $this->normalizeValue($dados['estado_conservacao'] ?? '');
         $andar = $this->normalizeValue($dados['andar'] ?? '');
         $sala = $this->normalizeValue($dados['sala'] ?? '');
+
+        if ($andar !== '' && !ctype_digit((string) $andar)) {
+            throw new \InvalidArgumentException('O número do andar deve estar entre 0 e 4.');
+        }
+
+        if ($andar !== '' && ((int) $andar < 0 || (int) $andar > 4)) {
+            throw new \InvalidArgumentException('O número do andar deve estar entre 0 e 4.');
+        }
 
         if ($tipo === '' || $marcaModelo === '' || $serial === '' || $patrimonio === '' || $estadoConservacao === '') {
             throw new \InvalidArgumentException('Todos os campos obrigatórios devem ser preenchidos.');

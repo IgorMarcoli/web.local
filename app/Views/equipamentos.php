@@ -52,13 +52,25 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="andar">Nº do Andar</label>
-                                <input type="text" class="form-control" id="andar" name="andar" value="">
+                                <select class="form-control" id="andar" name="andar">
+                                    <option value="">Selecione</option>
+                                    <?php for ($andarOption = 0; $andarOption <= 4; $andarOption++) : ?>
+                                        <option value="<?= esc($andarOption) ?>"><?= esc($andarOption) ?></option>
+                                    <?php endfor; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="sala">Nome da Sala</label>
-                                <input type="text" class="form-control" id="sala" name="sala" value="">
+                                <select class="form-control" id="sala" name="sala">
+                                    <option value="">Selecione</option>
+                                    <?php if (!empty($salas)) : ?>
+                                        <?php foreach ($salas as $salaOpcao) : ?>
+                                            <option value="<?= esc($salaOpcao['id_sala'] ?? '') ?>"><?= esc($salaOpcao['nome_sala'] ?? '-') ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -195,7 +207,7 @@
                                                 <td><?= esc($item['serial'] ?? '-') ?></td>
                                                 <td><?= esc($item['estado_conservacao'] ?? '-') ?></td>
                                                 <td><?= esc($item['andar'] ?? '-') ?></td>
-                                                <td><?= esc($item['sala'] ?? '-') ?></td>
+                                                <td><?= esc($item['nome_sala'] ?? $item['sala'] ?? '-') ?></td>
                                                 <td><?= esc($item['data_registro'] ?? '-') ?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-novo-equipamento" onclick="prepararDadosEquipamento(

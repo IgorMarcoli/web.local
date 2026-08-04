@@ -11,6 +11,7 @@ class Equipamentos extends BaseController
     {
         $equipamentosModel = new EquipamentosModel();
         $data['itens'] = $equipamentosModel->listar();
+        $data['salas'] = $equipamentosModel->listarSalas();
 
         echo view('templates/header');
         echo view('equipamentos', $data);

@@ -13,6 +13,13 @@
                 </div>
 
                 <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="numero_mochila">Número da Mochila</label>
+                            <input type="text" class="form-control" id="numero_mochila" name="numero_mochila" value="">
+                        </div>
+                    </div>
+
                     <div class="row font-weight-bold border-bottom pb-2 mb-2">
                         <div class="col-3"></div>
                         <div class="col-3">Marca e Modelo</div>
@@ -132,6 +139,10 @@
                         <div class="card-body">
                             <?php $extraColumns = $extra_columns ?? []; ?>
 
+                            <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#modal-editar-kit" onclick="resetarModalKit()">
+                                <i class="fas fa-plus-circle"></i> Adicionar Kit
+                            </button>
+
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -162,6 +173,7 @@
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-editar-kit"
                                                         onclick="prepararDadosKit(
                                                             '<?= esc($kit['id_kit'] ?? '', 'js') ?>',
+                                                            '<?= esc($kit['numero_mochila'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['notebook_marca_modelo'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['notebook_serial'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['notebook_patrimonio'] ?? '', 'js') ?>',
@@ -185,7 +197,7 @@
                                                         )">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <form action="/inventario/excluir/<?= esc($kit['id_kit'] ?? '', 'url') ?>" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir os equipamentos deste kit?');">
+                                                    <form action="/inventario/excluir/<?= esc($kit['id_kit'] ?? '', 'url') ?>" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir todo este kit?');">
                                                         <?= csrf_field() ?>
                                                         <button type="submit" class="btn btn-danger btn-sm">
                                                             <i class="fas fa-trash"></i>
@@ -217,13 +229,27 @@
         window.history.replaceState({}, document.title, newUrl);
     }
 
-    function prepararDadosKit(idKit, notebookMarcaModelo, notebookSerial, notebookPatrimonio, notebookEstado, mouseMarcaModelo, mouseSerial, mousePatrimonio, mouseEstado, carregadorMarcaModelo, carregadorSerial, carregadorPatrimonio, carregadorEstado, adaptadorMarcaModelo, adaptadorSerial, adaptadorPatrimonio, adaptadorEstado, lockerMarcaModelo, lockerSerial, lockerPatrimonio, lockerEstado) {
+    function resetarModalKit() {
+        const form = document.querySelector('#modal-editar-kit form');
+        if (!form) {
+            return;
+        }
+
+        form.reset();
+        form.querySelector('input[name="id_kit"]').value = '';
+        document.querySelector('#modal-editar-kit .modal-title').textContent = 'Adicionar Kit de Equipamentos';
+        document.querySelector('#modal-editar-kit .btn-primary').innerHTML = '<i class="fas fa-save"></i> Salvar Kit';
+        form.action = '/inventario/salvar';
+    }
+
+    function prepararDadosKit(idKit, numeroMochila, notebookMarcaModelo, notebookSerial, notebookPatrimonio, notebookEstado, mouseMarcaModelo, mouseSerial, mousePatrimonio, mouseEstado, carregadorMarcaModelo, carregadorSerial, carregadorPatrimonio, carregadorEstado, adaptadorMarcaModelo, adaptadorSerial, adaptadorPatrimonio, adaptadorEstado, lockerMarcaModelo, lockerSerial, lockerPatrimonio, lockerEstado) {
         const form = document.querySelector('#modal-editar-kit form');
         if (!form) {
             return;
         }
 
         form.querySelector('input[name="id_kit"]').value = idKit || '';
+        form.querySelector('[name="numero_mochila"]').value = numeroMochila || '';
 
         const setFieldValue = (name, value) => {
             const field = form.querySelector(`[name="${name}"]`);
@@ -256,5 +282,8 @@
         setFieldValue('items[locker][serial]', lockerSerial);
         setFieldValue('items[locker][patrimonio]', lockerPatrimonio);
         setFieldValue('items[locker][estado_conservacao]', lockerEstado);
+
+        document.querySelector('#modal-editar-kit .modal-title').textContent = 'Editar Kit de Equipamentos';
+        document.querySelector('#modal-editar-kit .btn-primary').innerHTML = '<i class="fas fa-save"></i> Salvar Alterações';
     }
 </script>
