@@ -1,0 +1,37 @@
+ERROR - 2026-08-05 08:15:25 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`sistema_web`.`itens`, CONSTRAINT `fk_itens_categoria` FOREIGN KEY (`categoria`) REFERENCES `kits` (`categoria`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(103): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(27): App\Models\EquipamentosModel->salvar(Array)
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->salvar()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+INFO - 2026-08-05 08:15:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-05 08:16:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-05 08:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-05 08:44:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-05 13:19:38 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`sistema_web`.`itens`, CONSTRAINT `fk_itens_sala` FOREIGN KEY (`sala`) REFERENCES `salas` (`id_sala`)) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `it...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `it...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `it...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `it...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(111): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(27): App\Models\EquipamentosModel->salvar(Array)
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->salvar()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+INFO - 2026-08-05 13:19:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
