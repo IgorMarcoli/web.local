@@ -49,18 +49,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="andar">Nº do Andar</label>
-                                <select class="form-control" id="andar" name="andar">
+                                <label for="categoria">Categoria</label>
+                                <select class="form-control" id="categoria" name="categoria" required>
                                     <option value="">Selecione</option>
-                                    <?php for ($andarOption = 0; $andarOption <= 4; $andarOption++) : ?>
-                                        <option value="<?= esc($andarOption) ?>"><?= esc($andarOption) ?></option>
-                                    <?php endfor; ?>
+                                    <option value="Individual">Individual</option>
+                                    <option value="Reserva técnica">Reserva técnica</option>
+                                    <option value="Empréstimo">Empréstimo</option>
+                                    <option value="Multiplica">Multiplica</option>
+                                    <option value="ESE">ESE</option>
+                                    <option value="EEC">EEC</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="sala">Nome da Sala</label>
                                 <select class="form-control" id="sala" name="sala">
@@ -190,6 +193,7 @@
                                         <th>Nº de Patrimônio</th>
                                         <th>Nº de Serial</th>
                                         <th>Estado de Conservação</th>
+                                        <th>Categoria</th>
                                         <th>Nº do Andar</th>
                                         <th>Nome da Sala</th>
                                         <th>Data Registro</th>
@@ -206,6 +210,7 @@
                                                 <td><?= esc($item['patrimonio'] ?? '-') ?></td>
                                                 <td><?= esc($item['serial'] ?? '-') ?></td>
                                                 <td><?= esc($item['estado_conservacao'] ?? '-') ?></td>
+                                                <td><?= esc($item['categoria'] ?? '-') ?></td>
                                                 <td><?= esc($item['andar'] ?? '-') ?></td>
                                                 <td><?= esc($item['nome_sala'] ?? $item['sala'] ?? '-') ?></td>
                                                 <td><?= esc($item['data_registro'] ?? '-') ?></td>
@@ -217,6 +222,7 @@
                                                         '<?= esc($item['patrimonio'] ?? '', 'js') ?>',
                                                         '<?= esc($item['serial'] ?? '', 'js') ?>',
                                                         '<?= esc($item['estado_conservacao'] ?? '', 'js') ?>',
+                                                        '<?= esc($item['categoria'] ?? '', 'js') ?>',
                                                         '<?= esc($item['andar'] ?? '', 'js') ?>',
                                                         '<?= esc($item['sala'] ?? '', 'js') ?>'
                                                     )">
@@ -269,7 +275,7 @@
         document.querySelector('#modal-novo-equipamento .btn-primary').innerHTML = '<i class="fas fa-save"></i> Cadastrar';
     }
 
-    function prepararDadosEquipamento(idItem, tipo, marcaModelo, patrimonio, serial, estadoConservacao, andar, sala) {
+    function prepararDadosEquipamento(idItem, tipo, marcaModelo, patrimonio, serial, estadoConservacao, categoria, andar, sala) {
         const form = document.querySelector('#modal-novo-equipamento form');
         if (!form) {
             return;
@@ -291,7 +297,7 @@
         form.querySelector('[name="patrimonio"]').value = patrimonio || '';
         form.querySelector('[name="serial"]').value = serial || '';
         form.querySelector('[name="estado_conservacao"]').value = estadoConservacao || '';
-        form.querySelector('[name="andar"]').value = andar || '';
+        form.querySelector('[name="categoria"]').value = categoria || '';
         form.querySelector('[name="sala"]').value = sala || '';
         form.action = '/equipamentos/editar';
         document.querySelector('#modal-novo-equipamento .modal-title').textContent = 'Editar Equipamento';

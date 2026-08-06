@@ -67,24 +67,29 @@ class Emprestimos extends BaseController
         $nomeRecebedores = $emprestimoModel->select('nome_recebedor')->distinct()->orderBy('nome_recebedor')->findColumn('nome_recebedor');
         $nomeResponsaveis = $emprestimoModel->select('nome_responsavel')->distinct()->orderBy('nome_responsavel')->findColumn('nome_responsavel');
 
-        $emprestimosAtivos = $emprestimoModel->select('numero_mochila, status_equipamento, data_devolucao')->findAll();
-        $activeMochilas = [];
+        $emprestimosAtivos = $emprestimoModel->select('numero_mochila, status_equipamento')->where('status_equipamento', 'emprestado')->findAll();
+        $activeKitIds = [];
         foreach ($emprestimosAtivos as $emprestimoAtivo) {
-            $status = $emprestimoAtivo['status_equipamento'] ?? '';
-            $dataDevolucao = $emprestimoAtivo['data_devolucao'] ?? '';
-
-            if ($status === 'chamado aberto' || $status === 'emprestado' || $this->isDevolucaoPending($dataDevolucao)) {
-                $activeMochilas[] = (int) $emprestimoAtivo['numero_mochila'];
+            $kitId = (int) ($emprestimoAtivo['numero_mochila'] ?? 0);
+            if ($kitId > 0) {
+                $activeKitIds[] = $kitId;
             }
         }
-        $activeMochilas = array_unique($activeMochilas);
+        $activeKitIds = array_unique($activeKitIds);
 
         $availableMochilas = [];
-        for ($i = 0; $i <= 15; $i++) {
-            if (!in_array($i, $activeMochilas, true)) {
-                $availableMochilas[] = $i;
+        foreach ($kits as $kit) {
+            $kitId = (int) ($kit['id_kit'] ?? 0);
+            if ($kitId <= 0) {
+                continue;
+            }
+
+            if (!in_array($kitId, $activeKitIds, true)) {
+                $availableMochilas[] = $kitId;
             }
         }
+
+        sort($availableMochilas);
 
         $secaoNomePorId = [];
         foreach ($sessoes as $s) {

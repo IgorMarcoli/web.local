@@ -94,7 +94,7 @@ class InventarioModel extends Model
 
         $categoriaKit = $this->normalizeValue($dados['categoria'] ?? '');
         if ($categoriaKit === '') {
-            $categoriaKit = 'kit_' . ($numeroMochila ?? $this->getNextAvailableKitId());
+            throw new \InvalidArgumentException('A categoria é obrigatória.');
         }
 
         $existingKitId = (int) ($kitRecord['id_kit'] ?? 0);
@@ -197,6 +197,12 @@ class InventarioModel extends Model
 
         foreach ($itemDefinitions as $inputKey => $definition) {
             $itemInput = $dados['items'][$inputKey] ?? [];
+            $skipItem = !empty($itemInput['skip'] ?? '');
+            if ($skipItem) {
+                $itemIds[$inputKey] = null;
+                continue;
+            }
+
             $marcaModelo = $this->normalizeValue($itemInput['marca_modelo'] ?? '');
             $serial = $this->normalizeValue($itemInput['serial'] ?? '');
             $patrimonio = $this->normalizeValue($itemInput['patrimonio'] ?? '');
@@ -244,7 +250,7 @@ class InventarioModel extends Model
             }
         }
 
-        if (empty($itemIds['notebook']) || empty($itemIds['mouse']) || empty($itemIds['carregador'])) {
+        if (empty($itemIds['notebook'])) {
             $db->transComplete();
             throw new \RuntimeException('Não foi possível registrar todos os itens obrigatórios do kit.');
         }

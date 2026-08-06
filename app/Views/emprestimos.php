@@ -16,7 +16,7 @@
 
 <div class="col-4">
 <div class="form-group">
-<label>Numero da Mochila</label>
+<label>ID do Kit</label>
 <select name="numero_mochila" class="form-control" required>
 <option value="">Selecione</option>
 <?php foreach ($availableMochilas as $mochila): ?>
@@ -194,7 +194,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Numero Mochila</th>
+                                            <th>ID do Kit</th>
                                             <th>Setor</th>
                                             <th>Nome Solicitante</th>
                                             <th>Email Solicitante</th>

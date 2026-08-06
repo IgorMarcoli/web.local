@@ -22,6 +22,7 @@ class EquipamentosModel extends Model
         'estado_conservacao',
         'andar',
         'sala',
+        'categoria',
         'numero_mochila',
         'data_registro',
     ];
@@ -36,6 +37,7 @@ class EquipamentosModel extends Model
             'i.serial',
             'i.patrimonio',
             'i.estado_conservacao',
+            'i.categoria',
             'i.andar',
             'i.sala',
             's.nome_sala',
@@ -65,15 +67,20 @@ class EquipamentosModel extends Model
         $serial = $this->normalizeValue($dados['serial'] ?? '');
         $patrimonio = $this->normalizeValue($dados['patrimonio'] ?? '');
         $estadoConservacao = $this->normalizeValue($dados['estado_conservacao'] ?? '');
-        $andar = $this->normalizeValue($dados['andar'] ?? '');
         $sala = $this->normalizeValue($dados['sala'] ?? '');
+        $andar = '';
+        $categoria = $this->normalizeValue($dados['categoria'] ?? '');
 
-        if ($andar !== '' && !ctype_digit((string) $andar)) {
-            throw new \InvalidArgumentException('O número do andar deve estar entre 0 e 4.');
+        if ($sala !== '') {
+            $salaRow = $this->db->table('salas')->select('andar')->where('id_sala', (int) $sala)->get()->getRowArray();
+            if (isset($salaRow['andar'])) {
+                $andar = (string) $salaRow['andar'];
+            }
         }
 
-        if ($andar !== '' && ((int) $andar < 0 || (int) $andar > 4)) {
-            throw new \InvalidArgumentException('O número do andar deve estar entre 0 e 4.');
+        $allowedCategorias = ['Individual','Reserva técnica','Empréstimo','Multiplica','ESE','EEC'];
+        if ($categoria === '' || !in_array($categoria, $allowedCategorias, true)) {
+            throw new \InvalidArgumentException('A categoria é obrigatória.');
         }
 
         if ($tipo === '' || $marcaModelo === '' || $serial === '' || $patrimonio === '' || $estadoConservacao === '') {
@@ -88,6 +95,7 @@ class EquipamentosModel extends Model
             'estado_conservacao' => $estadoConservacao,
             'andar' => $andar,
             'sala' => $sala,
+            'categoria' => $categoria,
         ];
 
         if ($idItem > 0) {

@@ -14,9 +14,21 @@
 
                 <div class="modal-body">
                     <div class="row mb-3">
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="numero_mochila">Número da Mochila</label>
                             <input type="text" class="form-control" id="numero_mochila" name="numero_mochila" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="categoria">Categoria</label>
+                            <select class="form-control" id="categoria" name="categoria" required>
+                                <option value="">Selecione</option>
+                                <option value="Individual">Individual</option>
+                                <option value="Reserva técnica">Reserva técnica</option>
+                                <option value="Empréstimo">Empréstimo</option>
+                                <option value="Multiplica">Multiplica</option>
+                                <option value="ESE">ESE</option>
+                                <option value="EEC">EEC</option>
+                            </select>
                         </div>
                     </div>
 
@@ -29,35 +41,49 @@
                     </div>
 
                     <?php $items = [
-                        'notebook' => ['label' => 'Notebook', 'required' => true],
-                        'mouse' => ['label' => 'Mouse', 'required' => true],
-                        'carregador' => ['label' => 'Carregador', 'required' => true],
-                        'adaptador' => ['label' => 'Adaptador USB VGA', 'required' => false],
-                        'locker' => ['label' => 'Locker', 'required' => false],
+                        'notebook' => ['label' => 'Notebook', 'required' => true, 'checkbox' => false],
+                        'mouse' => ['label' => 'Mouse', 'required' => true, 'checkbox' => true],
+                        'carregador' => ['label' => 'Carregador', 'required' => true, 'checkbox' => true],
+                        'adaptador' => ['label' => 'Adaptador USB VGA', 'required' => false, 'checkbox' => true],
+                        'locker' => ['label' => 'Locker', 'required' => false, 'checkbox' => true],
                     ]; ?>
                     <?php foreach ($items as $key => $config): ?>
-                        <div class="row align-items-end mb-2">
+                        <div class="row align-items-end mb-2 item-row" data-item-key="<?= esc($key) ?>">
                             <div class="col-3">
-                                <label class="font-weight-bold"><?= esc($config['label']) ?></label>
+                                <?php if (!empty($config['checkbox'])): ?>
+                                    <div class="d-flex align-items-center">
+                                        <label class="font-weight-bold mb-0"><?= esc($config['label']) ?></label>
+                                        <div class="custom-control custom-checkbox ml-2">
+                                            <input type="checkbox" class="custom-control-input item-checkbox" id="skip-<?= esc($key) ?>" name="items[<?= esc($key) ?>][skip]" value="1" data-required="<?= $config['required'] ? 'true' : 'false' ?>">
+                                            <label class="custom-control-label" for="skip-<?= esc($key) ?>"></label>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <label class="font-weight-bold"><?= esc($config['label']) ?></label>
+                                <?php endif; ?>
                             </div>
-                            <div class="col-3">
-                                <input type="text" name="items[<?= esc($key) ?>][marca_modelo]" class="form-control" <?= $config['required'] ? 'required' : '' ?>>
-                            </div>
-                            <div class="col-2">
-                                <input type="text" name="items[<?= esc($key) ?>][serial]" class="form-control" <?= $config['required'] ? 'required' : '' ?>>
-                            </div>
-                            <div class="col-2">
-                                <input type="text" name="items[<?= esc($key) ?>][patrimonio]" class="form-control" <?= $config['required'] ? 'required' : '' ?>>
-                            </div>
-                            <div class="col-2">
-                                <select name="items[<?= esc($key) ?>][estado_conservacao]" class="form-control" <?= $config['required'] ? 'required' : '' ?>>
-                                    <option value="">Selecione</option>
-                                    <option value="Excelente">Excelente</option>
-                                    <option value="Bom">Bom</option>
-                                    <option value="Ruim">Ruim</option>
-                                    <option value="Péssimo">Péssimo</option>
-                                    <option value="Chamado Aberto">Chamado Aberto</option>
-                                </select>
+                            <div class="col-9 item-fields">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="text" name="items[<?= esc($key) ?>][marca_modelo]" class="form-control item-input" <?= $config['required'] ? 'required' : '' ?>>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" name="items[<?= esc($key) ?>][serial]" class="form-control item-input" <?= $config['required'] ? 'required' : '' ?>>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" name="items[<?= esc($key) ?>][patrimonio]" class="form-control item-input" <?= $config['required'] ? 'required' : '' ?>>
+                                    </div>
+                                    <div class="col-3">
+                                        <select name="items[<?= esc($key) ?>][estado_conservacao]" class="form-control item-input" <?= $config['required'] ? 'required' : '' ?>>
+                                            <option value="">Selecione</option>
+                                            <option value="Excelente">Excelente</option>
+                                            <option value="Bom">Bom</option>
+                                            <option value="Ruim">Ruim</option>
+                                            <option value="Péssimo">Péssimo</option>
+                                            <option value="Chamado Aberto">Chamado Aberto</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -148,6 +174,7 @@
                                     <tr>
                                         <th>ID Kit</th>
                                         <th>Número Mochila</th>
+                                        <th>Categoria</th>
                                         <th>Notebook</th>
                                         <th>Mouse</th>
                                         <th>Carregador</th>
@@ -163,6 +190,7 @@
                                             <tr>
                                                 <td><?= esc($kit['id_kit'] ?? '-') ?></td>
                                                 <td><?= esc($kit['numero_mochila'] ?? '-') ?></td>
+                                                <td><?= esc($kit['categoria'] ?? '-') ?></td>
                                                 <td><?= esc($kit['notebook_serial'] ?? '-') ?></td>
                                                 <td><?= esc($kit['mouse_serial'] ?? '-') ?></td>
                                                 <td><?= esc($kit['carregador_serial'] ?? '-') ?></td>
@@ -174,6 +202,7 @@
                                                         onclick="prepararDadosKit(
                                                             '<?= esc($kit['id_kit'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['numero_mochila'] ?? '', 'js') ?>',
+                                                            '<?= esc($kit['categoria'] ?? 'Individual', 'js') ?>',
                                                             '<?= esc($kit['notebook_marca_modelo'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['notebook_serial'] ?? '', 'js') ?>',
                                                             '<?= esc($kit['notebook_patrimonio'] ?? '', 'js') ?>',
@@ -229,6 +258,52 @@
         window.history.replaceState({}, document.title, newUrl);
     }
 
+    function atualizarVisibilidadeItem(row) {
+        const checkbox = row.querySelector('.item-checkbox');
+        const fieldsContainer = row.querySelector('.item-fields');
+        const fields = row.querySelectorAll('input, select');
+
+        if (!checkbox || !fieldsContainer) {
+            return;
+        }
+
+        const checked = checkbox.checked;
+        fieldsContainer.style.display = checked ? 'none' : '';
+
+        fields.forEach((field) => {
+            if (field.name.includes('[skip]')) {
+                return;
+            }
+
+            field.disabled = checked;
+
+            if (checked) {
+                field.removeAttribute('required');
+                field.value = '';
+            } else if (checkbox.dataset.required === 'true') {
+                field.setAttribute('required', 'required');
+            } else {
+                field.removeAttribute('required');
+            }
+        });
+    }
+
+    function configurarLinhasItens() {
+        document.querySelectorAll('#modal-editar-kit .item-row').forEach((row) => {
+            if (row.dataset.initialized === 'true') {
+                atualizarVisibilidadeItem(row);
+                return;
+            }
+
+            row.dataset.initialized = 'true';
+            const checkbox = row.querySelector('.item-checkbox');
+            if (checkbox) {
+                checkbox.addEventListener('change', () => atualizarVisibilidadeItem(row));
+            }
+            atualizarVisibilidadeItem(row);
+        });
+    }
+
     function resetarModalKit() {
         const form = document.querySelector('#modal-editar-kit form');
         if (!form) {
@@ -237,12 +312,17 @@
 
         form.reset();
         form.querySelector('input[name="id_kit"]').value = '';
+        const categoriaField = form.querySelector('[name="categoria"]');
+        if (categoriaField) {
+            categoriaField.value = '';
+        }
+        configurarLinhasItens();
         document.querySelector('#modal-editar-kit .modal-title').textContent = 'Adicionar Kit de Equipamentos';
         document.querySelector('#modal-editar-kit .btn-primary').innerHTML = '<i class="fas fa-save"></i> Salvar Kit';
         form.action = '/inventario/salvar';
     }
 
-    function prepararDadosKit(idKit, numeroMochila, notebookMarcaModelo, notebookSerial, notebookPatrimonio, notebookEstado, mouseMarcaModelo, mouseSerial, mousePatrimonio, mouseEstado, carregadorMarcaModelo, carregadorSerial, carregadorPatrimonio, carregadorEstado, adaptadorMarcaModelo, adaptadorSerial, adaptadorPatrimonio, adaptadorEstado, lockerMarcaModelo, lockerSerial, lockerPatrimonio, lockerEstado) {
+    function prepararDadosKit(idKit, numeroMochila, categoria, notebookMarcaModelo, notebookSerial, notebookPatrimonio, notebookEstado, mouseMarcaModelo, mouseSerial, mousePatrimonio, mouseEstado, carregadorMarcaModelo, carregadorSerial, carregadorPatrimonio, carregadorEstado, adaptadorMarcaModelo, adaptadorSerial, adaptadorPatrimonio, adaptadorEstado, lockerMarcaModelo, lockerSerial, lockerPatrimonio, lockerEstado) {
         const form = document.querySelector('#modal-editar-kit form');
         if (!form) {
             return;
@@ -250,6 +330,7 @@
 
         form.querySelector('input[name="id_kit"]').value = idKit || '';
         form.querySelector('[name="numero_mochila"]').value = numeroMochila || '';
+        form.querySelector('[name="categoria"]').value = categoria || '';
 
         const setFieldValue = (name, value) => {
             const field = form.querySelector(`[name="${name}"]`);
@@ -285,5 +366,8 @@
 
         document.querySelector('#modal-editar-kit .modal-title').textContent = 'Editar Kit de Equipamentos';
         document.querySelector('#modal-editar-kit .btn-primary').innerHTML = '<i class="fas fa-save"></i> Salvar Alterações';
+        configurarLinhasItens();
     }
+
+    document.addEventListener('DOMContentLoaded', configurarLinhasItens);
 </script>
