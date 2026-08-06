@@ -54,12 +54,11 @@
                                 <label for="categoria">Categoria</label>
                                 <select class="form-control" id="categoria" name="categoria" required>
                                     <option value="">Selecione</option>
-                                    <option value="Individual">Individual</option>
-                                    <option value="Reserva técnica">Reserva técnica</option>
-                                    <option value="Empréstimo">Empréstimo</option>
-                                    <option value="Multiplica">Multiplica</option>
-                                    <option value="ESE">ESE</option>
-                                    <option value="EEC">EEC</option>
+                                    <?php if (!empty($categorias)) : ?>
+                                        <?php foreach ($categorias as $categoriaOpcao) : ?>
+                                            <option value="<?= esc($categoriaOpcao['nome'] ?? '') ?>"><?= esc($categoriaOpcao['nome'] ?? '-') ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </select>
                             </div>
                         </div>

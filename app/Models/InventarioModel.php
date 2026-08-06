@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CategoriasModel;
 use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
 
@@ -28,8 +29,9 @@ class InventarioModel extends Model
     {
         $builder = $this->db->table('kits k');
         $builder->select([
-            'k.*',
+            'k.id_kit',
             'k.numero AS numero_mochila',
+            'COALESCE(cat.nome, k.categoria) AS categoria',
             'n.marca_modelo AS notebook_marca_modelo',
             'n.serial AS notebook_serial',
             'n.patrimonio AS notebook_patrimonio',
@@ -52,6 +54,7 @@ class InventarioModel extends Model
             'l.estado_conservacao AS locker_estado_conservacao',
             'n.data_registro AS data_registro'
         ]);
+        $builder->join('categorias cat', 'cat.nome = k.categoria', 'left');
         $builder->join('itens n', 'n.id_item = k.id_notebook', 'left');
         $builder->join('itens m', 'm.id_item = k.id_mouse', 'left');
         $builder->join('itens c', 'c.id_item = k.id_carregador', 'left');
@@ -93,7 +96,8 @@ class InventarioModel extends Model
         $db->transStart();
 
         $categoriaKit = $this->normalizeValue($dados['categoria'] ?? '');
-        if ($categoriaKit === '') {
+        $categoriasModel = new CategoriasModel();
+        if ($categoriaKit === '' || !$categoriasModel->exists($categoriaKit)) {
             throw new \InvalidArgumentException('A categoria é obrigatória.');
         }
 

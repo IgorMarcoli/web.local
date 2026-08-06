@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CategoriasModel;
 use App\Models\EquipamentosModel;
 
 class Equipamentos extends BaseController
@@ -10,8 +11,11 @@ class Equipamentos extends BaseController
     public function index()
     {
         $equipamentosModel = new EquipamentosModel();
+        $categoriasModel = new CategoriasModel();
+
         $data['itens'] = $equipamentosModel->listar();
         $data['salas'] = $equipamentosModel->listarSalas();
+        $data['categorias'] = $categoriasModel->listar();
 
         echo view('templates/header');
         echo view('equipamentos', $data);

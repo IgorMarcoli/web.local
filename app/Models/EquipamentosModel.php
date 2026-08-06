@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CategoriasModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
@@ -37,12 +38,13 @@ class EquipamentosModel extends Model
             'i.serial',
             'i.patrimonio',
             'i.estado_conservacao',
-            'i.categoria',
+            'COALESCE(c.nome, i.categoria) AS categoria',
             'i.andar',
             'i.sala',
             's.nome_sala',
             'i.data_registro',
         ]);
+        $builder->join('categorias c', 'c.nome = i.categoria', 'left');
         $builder->join('salas s', 's.id_sala = i.sala', 'left');
 
         return $builder->orderBy('i.id_item', 'DESC')->get()->getResultArray();
@@ -67,19 +69,20 @@ class EquipamentosModel extends Model
         $serial = $this->normalizeValue($dados['serial'] ?? '');
         $patrimonio = $this->normalizeValue($dados['patrimonio'] ?? '');
         $estadoConservacao = $this->normalizeValue($dados['estado_conservacao'] ?? '');
-        $sala = $this->normalizeValue($dados['sala'] ?? '');
+        $salaRaw = $this->normalizeValue($dados['sala'] ?? '');
+        $sala = $salaRaw !== '' ? (int) $salaRaw : null;
         $andar = '';
         $categoria = $this->normalizeValue($dados['categoria'] ?? '');
 
-        if ($sala !== '') {
-            $salaRow = $this->db->table('salas')->select('andar')->where('id_sala', (int) $sala)->get()->getRowArray();
+        if ($sala !== null) {
+            $salaRow = $this->db->table('salas')->select('andar')->where('id_sala', $sala)->get()->getRowArray();
             if (isset($salaRow['andar'])) {
                 $andar = (string) $salaRow['andar'];
             }
         }
 
-        $allowedCategorias = ['Individual','Reserva técnica','Empréstimo','Multiplica','ESE','EEC'];
-        if ($categoria === '' || !in_array($categoria, $allowedCategorias, true)) {
+        $categoriasModel = new CategoriasModel();
+        if ($categoria === '' || !$categoriasModel->exists($categoria)) {
             throw new \InvalidArgumentException('A categoria é obrigatória.');
         }
 
