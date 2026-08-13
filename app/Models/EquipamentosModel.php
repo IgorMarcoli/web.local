@@ -63,6 +63,11 @@ class EquipamentosModel extends Model
 
     public function salvar(array $dados): int
     {
+        if (isset($dados['tipo']) && is_array($dados['tipo'])) {
+            $this->salvarMultiplo($dados);
+            return 0;
+        }
+
         $idItem = (int) ($dados['id_item'] ?? 0);
         $tipo = $this->normalizeValue($dados['tipo'] ?? '');
         $marcaModelo = $this->normalizeValue($dados['marca_modelo'] ?? '');
@@ -71,13 +76,13 @@ class EquipamentosModel extends Model
         $estadoConservacao = $this->normalizeValue($dados['estado_conservacao'] ?? '');
         $salaRaw = $this->normalizeValue($dados['sala'] ?? '');
         $sala = $salaRaw !== '' ? (int) $salaRaw : null;
-        $andar = '';
+        $andar = null;
         $categoria = $this->normalizeValue($dados['categoria'] ?? '');
 
         if ($sala !== null) {
             $salaRow = $this->db->table('salas')->select('andar')->where('id_sala', $sala)->get()->getRowArray();
             if (isset($salaRow['andar'])) {
-                $andar = (string) $salaRow['andar'];
+                $andar = $salaRow['andar'];
             }
         }
 
@@ -114,6 +119,45 @@ class EquipamentosModel extends Model
         $this->insert($payload);
 
         return (int) $this->insertID();
+    }
+
+    public function salvarMultiplo(array $dados): void
+    {
+        $tipos = $dados['tipo'] ?? [];
+        if (!is_array($tipos) || empty($tipos)) {
+            $this->salvar($dados);
+            return;
+        }
+
+        $count = count($tipos);
+        for ($i = 0; $i < $count; $i++) {
+            $single = [
+                'id_item' => $dados['id_item'][$i] ?? null,
+                'tipo' => $tipos[$i] ?? '',
+                'marca_modelo' => $dados['marca_modelo'][$i] ?? '',
+                'serial' => $dados['serial'][$i] ?? '',
+                'patrimonio' => $dados['patrimonio'][$i] ?? '',
+                'estado_conservacao' => $dados['estado_conservacao'][$i] ?? '',
+                'categoria' => $dados['categoria'][$i] ?? '',
+                'sala' => $dados['sala'][$i] ?? '',
+            ];
+            $this->salvar($single);
+        }
+    }
+
+    public function editarMultiplo(array $dados): void
+    {
+        $this->salvarMultiplo($dados);
+    }
+
+    public function excluirMultiplo(array $ids): void
+    {
+        foreach ($ids as $idItem) {
+            $itemId = (int) $idItem;
+            if ($itemId > 0) {
+                $this->excluir($itemId);
+            }
+        }
     }
 
     public function excluir(int $idItem): void

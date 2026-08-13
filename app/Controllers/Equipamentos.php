@@ -35,6 +35,19 @@ class Equipamentos extends BaseController
         }
     }
 
+    public function salvarMultiplo()
+    {
+        $dados = $this->request->getPost();
+        $equipamentosModel = new EquipamentosModel();
+
+        try {
+            $equipamentosModel->salvarMultiplo($dados);
+            return redirect()->back()->with('alert', 'successCreate');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('alert', 'errorCreate');
+        }
+    }
+
     public function editar()
     {
         $dados = $this->request->getPost();
@@ -48,12 +61,42 @@ class Equipamentos extends BaseController
         }
     }
 
+    public function editarMultiplo()
+    {
+        $dados = $this->request->getPost();
+        $equipamentosModel = new EquipamentosModel();
+
+        try {
+            $equipamentosModel->editarMultiplo($dados);
+            return redirect()->back()->with('alert', 'successEdit');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('alert', 'errorEdit');
+        }
+    }
+
     public function excluir($idItem)
     {
         $equipamentosModel = new EquipamentosModel();
 
         try {
             $equipamentosModel->excluir((int) $idItem);
+            return redirect()->back()->with('alert', 'successDelete');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('alert', 'errorDelete');
+        }
+    }
+
+    public function excluirMultiplo()
+    {
+        $ids = $this->request->getPost('id_item') ?? [];
+        if (empty($ids) || !is_array($ids)) {
+            return redirect()->back();
+        }
+
+        $equipamentosModel = new EquipamentosModel();
+
+        try {
+            $equipamentosModel->excluirMultiplo($ids);
             return redirect()->back()->with('alert', 'successDelete');
         } catch (\Throwable $e) {
             return redirect()->back()->with('alert', 'errorDelete');

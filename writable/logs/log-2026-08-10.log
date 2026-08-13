@@ -1,0 +1,35 @@
+ERROR - 2026-08-10 09:45:02 --> mysqli_sql_exception: Operand should contain 1 column(s) in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
+#4 C:\xampp\htdocs\web.local\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\web.local\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\web.local\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Emprestimos.php(300): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Emprestimos->salvar()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimos))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-10 09:45:02 --> Operand should contain 1 column(s)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emprestimos` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `servico`, `status_equipamento`, `id_emprestimo`) VALUES ((\'4\',\'5\',\'8\'), (\'SÓCRATES\',\'teste\',\'teste\'), (\'teste@a\',\'teste@a\',\'teste@a\'), (\'Sandro Jesus\',\'teste\',\'Sandro Jesus\'), NULL, (\'\',\'\',\'\'), \'2026-08-10 09:45:01\', \'0000-00-00 00:00:00\', NULL, NULL, \'emprestado\', 1004)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emprestimos` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `servico`, `status_equipamento`, `id_emprestimo`) VALUES ((\'4\',\'5\',\'8\'), (\'SÓCRATES\',\'teste\',\'teste\'), (\'teste@a\',\'teste@a\',\'teste@a\'), (\'Sandro Jesus\',\'teste\',\'Sandro Jesus\'), NULL, (\'\',\'\',\'\'), \'2026-08-10 09:45:01\', \'0000-00-00 00:00:00\', NULL, NULL, \'emprestado\', 1004)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emprestimos` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `servico`, `status_equipamento`, `id_emprestimo`) VALUES ((\'4\',\'5\',\'8\'), (\'SÓCRATES\',\'teste\',\'teste\'), (\'teste@a\',\'teste@a\',\'teste@a\'), (\'Sandro Jesus\',\'teste\',\'Sandro Jesus\'), NULL, (\'\',\'\',\'\'), \'2026-08-10 09:45:01\', \'0000-00-00 00:00:00\', NULL, NULL, \'emprestado\', 1004)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emprestimos` (`numero_mochila`, `nome_recebedor`, `email_recebedor`, `nome_responsavel`, `numero_chamado`, `obs`, `data_emprestimo`, `data_devolucao`, `secao`, `servico`, `status_equipamento`, `id_emprestimo`) VALUES (:numero_mochila:, :nome_recebedor:, :email_recebedor:, :nome_responsavel:, :numero_chamado:, :obs:, :data_emprestimo:, :data_devolucao:, :secao:, :servico:, :status_equipamento:, :id_emprestimo:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Emprestimos.php(300): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimos->salvar()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimos))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2026-08-10 10:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-10 10:56:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-10 10:57:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-10 10:57:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-10 10:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-10 10:58:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

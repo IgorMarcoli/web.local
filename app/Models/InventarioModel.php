@@ -72,6 +72,19 @@ class InventarioModel extends Model
 
     public function saveKit(array $dados): int
     {
+        $isBulkPayload = is_array($dados['numero_mochila'] ?? null)
+            || is_array($dados['categoria'] ?? null)
+            || is_array($dados['items']['notebook']['marca_modelo'] ?? null)
+            || is_array($dados['items']['mouse']['marca_modelo'] ?? null)
+            || is_array($dados['items']['carregador']['marca_modelo'] ?? null)
+            || is_array($dados['items']['adaptador']['marca_modelo'] ?? null)
+            || is_array($dados['items']['locker']['marca_modelo'] ?? null);
+
+        if ($isBulkPayload) {
+            $this->saveKitMultiplo($dados, !empty($dados['id_kit']));
+            return 0;
+        }
+
         $idKit = (int) ($dados['id_kit'] ?? 0);
         $numeroMochilaRaw = $this->normalizeValue($dados['numero_mochila'] ?? '');
 
@@ -91,6 +104,22 @@ class InventarioModel extends Model
             }
 
             $numeroMochila = (int) $numeroMochilaRaw;
+        }
+
+        if ($numeroMochila !== null) {
+            if ($idKit > 0) {
+                // When editing a single kit, validate against existing kit IDs/numbers
+                $this->validateBulkKitNumbers([$idKit], [$numeroMochilaRaw]);
+            }
+            $duplicateKit = $builderKits
+                ->where('numero', $numeroMochila)
+                ->where('id_kit !=', $idKit > 0 ? $idKit : -1)
+                ->get()
+                ->getRowArray();
+
+            if ($duplicateKit) {
+                throw new \RuntimeException('Esse número ou ID de kit já está registrado. Favor insira outro.');
+            }
         }
 
         $db->transStart();
@@ -115,7 +144,7 @@ class InventarioModel extends Model
             if ($targetKitId !== $currentKitId && $targetKitId !== $currentNumero) {
                 $conflictKit = $builderKits->select('id_kit')->where('id_kit', $targetKitId)->get()->getRowArray();
                 if ($conflictKit) {
-                    throw new \RuntimeException('Já existe outro kit com esse número da mochila.');
+                    throw new \RuntimeException('Esse número ou ID de kit já está registrado. Favor insira outro.');
                 }
             }
         }
@@ -156,6 +185,11 @@ class InventarioModel extends Model
             ];
 
             if ($targetKitId !== null) {
+                // Prevent inserting with an id_kit that already exists
+                $existingId = $builderKits->select('id_kit')->where('id_kit', $targetKitId)->get()->getRowArray();
+                if ($existingId) {
+                    throw new \RuntimeException('Esse número ou ID de kit já está registrado. Favor insira outro.');
+                }
                 $insertPayload['id_kit'] = $targetKitId;
             }
 
@@ -165,26 +199,11 @@ class InventarioModel extends Model
 
         $dataRegistro = $existingDataRegistro ?? Time::now()->format('Y-m-d H:i:s');
         $itemDefinitions = [
-            'notebook' => [
-                'tipo' => 'Notebook',
-                'required' => true,
-            ],
-            'mouse' => [
-                'tipo' => 'Mouse',
-                'required' => true,
-            ],
-            'carregador' => [
-                'tipo' => 'Carregador',
-                'required' => true,
-            ],
-            'adaptador' => [
-                'tipo' => 'Adaptador USB VGA',
-                'required' => false,
-            ],
-            'locker' => [
-                'tipo' => 'Locker',
-                'required' => false,
-            ],
+            'notebook' => ['tipo' => 'Notebook', 'required' => true],
+            'mouse' => ['tipo' => 'Mouse', 'required' => true],
+            'carregador' => ['tipo' => 'Carregador', 'required' => true],
+            'adaptador' => ['tipo' => 'Adaptador USB VGA', 'required' => false],
+            'locker' => ['tipo' => 'Locker', 'required' => false],
         ];
 
         $itemIds = [];
@@ -224,7 +243,6 @@ class InventarioModel extends Model
             }
 
             $tipoItem = $definition['tipo'];
-
             $existingItemId = $existingItemIds[$inputKey] ?? null;
             if (!empty($existingItemId)) {
                 $builderItens->where('id_item', $existingItemId)->update([
@@ -276,6 +294,254 @@ class InventarioModel extends Model
         }
 
         return $actualKitId;
+    }
+
+    public function saveKitMultiplo(array $dados, bool $isEdit = false): void
+    {
+        $numeros = $dados['numero_mochila'] ?? [];
+        if (!is_array($numeros) || empty($numeros)) {
+            $this->saveKit($dados);
+            return;
+        }
+
+        $idKits = is_array($dados['id_kit'] ?? null) ? $dados['id_kit'] : [ $dados['id_kit'] ?? null ];
+        $categorias = is_array($dados['categoria'] ?? null) ? $dados['categoria'] : [ $dados['categoria'] ?? ''];
+        $items = $dados['items'] ?? [];
+        $count = count($numeros);
+
+        // Validate bulk numbers/ids when editing to avoid accidental duplicates
+        if ($isEdit) {
+            // Ensure every edited row includes its original id to avoid accidental inserts
+            foreach ($idKits as $idx => $val) {
+                $v = $this->normalizeValue($val ?? '');
+                if ($v === '') {
+                    throw new \RuntimeException('ID do kit ausente em pelo menos um registro editado. Verifique os registros selecionados.');
+                }
+                if (!ctype_digit($v)) {
+                    throw new \InvalidArgumentException('ID do kit deve ser numérico.');
+                }
+            }
+
+            $this->validateBulkKitNumbers($idKits, $numeros);
+
+            // Detect target-id collisions inside the batch (when a target id equals another original id)
+            $originalIds = array_map(function ($v) { $v = $this->normalizeValue($v ?? ''); return $v === '' ? null : (int) $v; }, $idKits);
+            $desiredTargets = [];
+            $countNumeros = count($numeros);
+            for ($i = 0; $i < $countNumeros; $i++) {
+                $num = $this->normalizeValue($numeros[$i] ?? '');
+                $desiredTargets[$i] = ($num !== '' && ctype_digit($num)) ? (int) $num : null;
+            }
+
+            $originalIdSet = array_values(array_filter($originalIds, function ($v) { return $v !== null; }));
+            $needsTemp = [];
+            foreach ($desiredTargets as $i => $tgt) {
+                $orig = $originalIds[$i] ?? null;
+                if ($tgt !== null && $orig !== null && $tgt !== $orig && in_array($tgt, $originalIdSet, true)) {
+                    $needsTemp[$i] = true;
+                }
+            }
+
+            if (!empty($needsTemp)) {
+                // Assign unique negative temp ids and update DB rows to free desired targets
+                $tempCounter = 1;
+                foreach ($needsTemp as $i => $_) {
+                    $origId = $originalIds[$i];
+                    $tempId = -1 * (1000 + $tempCounter);
+                    $tempCounter++;
+
+                    // Update kits primary key to temporary id
+                    $this->db->table('kits')->where('id_kit', $origId)->update(['id_kit' => $tempId]);
+                    // Update itens.numero_mochila references
+                    $this->db->table('itens')->where('numero_mochila', $origId)->update(['numero_mochila' => $tempId]);
+
+                    // Reflect temp id back into idKits array so subsequent saveKit sees the right record
+                    $idKits[$i] = (string) $tempId;
+                    // Also update originalIds to the temp so we don't try to temp it again
+                    $originalIds[$i] = $tempId;
+                }
+            }
+        }
+
+        for ($i = 0; $i < $count; $i++) {
+            $single = [
+                'id_kit' => $idKits[$i] ?? null,
+                'numero_mochila' => $numeros[$i] ?? '',
+                'categoria' => $categorias[$i] ?? '',
+                'items' => [
+                    'notebook' => [
+                        'marca_modelo' => $items['notebook']['marca_modelo'][$i] ?? '',
+                        'serial' => $items['notebook']['serial'][$i] ?? '',
+                        'patrimonio' => $items['notebook']['patrimonio'][$i] ?? '',
+                        'estado_conservacao' => $items['notebook']['estado_conservacao'][$i] ?? '',
+                        'skip' => $items['notebook']['skip'][$i] ?? '',
+                    ],
+                    'mouse' => [
+                        'marca_modelo' => $items['mouse']['marca_modelo'][$i] ?? '',
+                        'serial' => $items['mouse']['serial'][$i] ?? '',
+                        'patrimonio' => $items['mouse']['patrimonio'][$i] ?? '',
+                        'estado_conservacao' => $items['mouse']['estado_conservacao'][$i] ?? '',
+                        'skip' => $items['mouse']['skip'][$i] ?? '',
+                    ],
+                    'carregador' => [
+                        'marca_modelo' => $items['carregador']['marca_modelo'][$i] ?? '',
+                        'serial' => $items['carregador']['serial'][$i] ?? '',
+                        'patrimonio' => $items['carregador']['patrimonio'][$i] ?? '',
+                        'estado_conservacao' => $items['carregador']['estado_conservacao'][$i] ?? '',
+                        'skip' => $items['carregador']['skip'][$i] ?? '',
+                    ],
+                    'adaptador' => [
+                        'marca_modelo' => $items['adaptador']['marca_modelo'][$i] ?? '',
+                        'serial' => $items['adaptador']['serial'][$i] ?? '',
+                        'patrimonio' => $items['adaptador']['patrimonio'][$i] ?? '',
+                        'estado_conservacao' => $items['adaptador']['estado_conservacao'][$i] ?? '',
+                        'skip' => $items['adaptador']['skip'][$i] ?? '',
+                    ],
+                    'locker' => [
+                        'marca_modelo' => $items['locker']['marca_modelo'][$i] ?? '',
+                        'serial' => $items['locker']['serial'][$i] ?? '',
+                        'patrimonio' => $items['locker']['patrimonio'][$i] ?? '',
+                        'estado_conservacao' => $items['locker']['estado_conservacao'][$i] ?? '',
+                        'skip' => $items['locker']['skip'][$i] ?? '',
+                    ],
+                ],
+            ];
+
+            if ($this->isKitPayloadEmpty($single)) {
+                continue;
+            }
+
+            $this->saveKit($single);
+        }
+    }
+
+    private function isKitPayloadEmpty(array $kit): bool
+    {
+        if (trim((string) ($kit['numero_mochila'] ?? '')) !== '') {
+            return false;
+        }
+
+        if (trim((string) ($kit['categoria'] ?? '')) !== '') {
+            return false;
+        }
+
+        foreach ($kit['items'] as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            if (trim((string) ($item['marca_modelo'] ?? '')) !== '') {
+                return false;
+            }
+            if (trim((string) ($item['serial'] ?? '')) !== '') {
+                return false;
+            }
+            if (trim((string) ($item['patrimonio'] ?? '')) !== '') {
+                return false;
+            }
+            if (trim((string) ($item['estado_conservacao'] ?? '')) !== '') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private function validateBulkKitNumbers(array $idKits, array $numeros): void
+    {
+        // Normalize inputs but keep pairwise mapping for bulk validation
+        $normalizedNumerosMap = [];
+        $normalizedIdsMap = [];
+        $selectedIds = array_values(array_filter(array_map(function ($id) {
+            return is_numeric($id) ? (int) $id : null;
+        }, $idKits), function ($id) {
+            return $id > 0;
+        }));
+
+        $countNumeros = count($numeros);
+        for ($i = 0; $i < $countNumeros; $i++) {
+            $rawNumero = $numeros[$i] ?? '';
+            $numero = $this->normalizeValue($rawNumero);
+            $rawIdKit = $idKits[$i] ?? '';
+            $idKit = $this->normalizeValue($rawIdKit);
+
+            if ($idKit !== '') {
+                if (!ctype_digit($idKit)) {
+                    throw new \InvalidArgumentException('ID do kit deve ser numérico.');
+                }
+                $normalizedIdsMap[$i] = (int) $idKit;
+            } else {
+                $normalizedIdsMap[$i] = null;
+            }
+
+            if ($numero === '') {
+                $normalizedNumerosMap[$i] = null;
+                continue;
+            }
+
+            if (!ctype_digit($numero)) {
+                throw new \InvalidArgumentException('Número da mochila deve ser numérico.');
+            }
+
+            $normalizedNumerosMap[$i] = (int) $numero;
+        }
+
+        // Check for duplicates among provided numeros and ids
+        $presentNumeros = array_values(array_filter($normalizedNumerosMap, function ($v) {
+            return $v !== null;
+        }));
+        if (count($presentNumeros) !== count(array_unique($presentNumeros))) {
+            throw new \RuntimeException('Existem números de mochila duplicados na edição em lote.');
+        }
+
+        $presentIds = array_values(array_filter($normalizedIdsMap, function ($v) {
+            return $v !== null;
+        }));
+        if (count($presentIds) !== count(array_unique($presentIds))) {
+            throw new \RuntimeException('Existem IDs de kit duplicados na edição em lote.');
+        }
+
+        $conflictMessage = 'Esse número ou ID de kit já está registrado. Favor insira outro.';
+
+        // Per-item validation: each provided numero must not conflict with any other kit's numero or id,
+        // except when it equals the id of the same kit being edited (self).
+        foreach ($normalizedNumerosMap as $idx => $numVal) {
+            if ($numVal === null) {
+                continue;
+            }
+
+            $currentId = $normalizedIdsMap[$idx] ?? null; // may be null for new inserts
+
+            // If numero equals own id, allow
+            if ($currentId !== null && $numVal === $currentId) {
+                continue;
+            }
+
+            // Check DB for any kit that has this numero or has this id (regardless of selectedIds)
+            $qb = $this->db->table('kits');
+            $qb->groupStart();
+            $qb->where('numero', $numVal);
+            $qb->orWhere('id_kit', $numVal);
+            $qb->groupEnd();
+            if ($currentId !== null) {
+                $qb->where('id_kit !=', $currentId);
+            }
+
+            $found = $qb->get()->getResultArray();
+            if (!empty($found)) {
+                throw new \RuntimeException($conflictMessage);
+            }
+        }
+    }
+
+    public function deleteKitItemsMultiplo(array $ids): void
+    {
+        foreach ($ids as $idKit) {
+            $kitId = (int) $idKit;
+            if ($kitId > 0) {
+                $this->deleteKitItems($kitId);
+            }
+        }
     }
 
     public function deleteKitItems(int $idKit): void
@@ -342,8 +608,8 @@ class InventarioModel extends Model
         return $candidate;
     }
 
-    private function normalizeValue(string $value): string
+    private function normalizeValue($value): string
     {
-        return trim($value);
+        return trim((string) ($value ?? ''));
     }
 }

@@ -38,14 +38,26 @@ $routes->get('emprestimo', 'Emprestimos::index');
 $routes->get('emprestimoequi', 'Emprestimos::index');
 $routes->get('equipamentos', 'Equipamentos::index');
 $routes->post('equipamentos/salvar', 'Equipamentos::salvar');
+$routes->post('equipamentos/salvarMultiplo', 'Equipamentos::salvarMultiplo');
 $routes->post('equipamentos/editar', 'Equipamentos::editar');
+$routes->post('equipamentos/editarMultiplo', 'Equipamentos::editarMultiplo');
 $routes->get('equipamentos/excluir/(:num)', 'Equipamentos::excluir/$1');
 $routes->post('equipamentos/excluir/(:num)', 'Equipamentos::excluir/$1');
+$routes->post('equipamentos/excluirMultiplo', 'Equipamentos::excluirMultiplo');
+$routes->post('inventario/salvar', 'Inventario::salvar');
+$routes->post('inventario/salvarMultiplo', 'Inventario::salvarMultiplo');
+$routes->post('inventario/editar', 'Inventario::editar');
+$routes->post('inventario/editarMultiplo', 'Inventario::editarMultiplo');
 $routes->get('inventario/excluir/(:num)', 'Inventario::excluir/$1');
 $routes->post('inventario/excluir/(:num)', 'Inventario::excluir/$1');
+$routes->post('inventario/excluirMultiplo', 'Inventario::excluirMultiplo');
 $routes->post('emprestimos/salvar', 'Emprestimos::salvar');
 $routes->post('emprestimos/editar', 'Emprestimos::editar');
 $routes->post('emprestimos/salvarDataDevolucao', 'Emprestimos::salvarDataDevolucao');
+$routes->post('emprestimos/salvarDataDevolucaoMultiplo', 'Emprestimos::salvarDataDevolucaoMultiplo');
+$routes->post('emprestimos/excluirMultiplo', 'Emprestimos::excluirMultiplo');
+$routes->post('emprestimos/editarMultiplo', 'Emprestimos::editarMultiplo');
+$routes->post('emprestimos/excluir/(:num)', 'Emprestimos::excluir/$1');
 
 /*
  * --------------------------------------------------------------------

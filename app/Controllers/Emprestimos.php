@@ -7,6 +7,8 @@ use App\Models\EmprestimosModel;
 use App\Models\SecaoModel;
 use App\Models\ServicoModel;
 use App\Models\ServidoresModel;
+use App\Models\SupervisoresModelGab;
+use App\Models\FieldsModel;
 use CodeIgniter\I18n\Time;
 
 class Emprestimos extends BaseController
@@ -109,7 +111,7 @@ class Emprestimos extends BaseController
                 $e['id_emprestimo'] = $e['numero_mochila'] ?? '-';
             }
 
-            $e['setor_display'] = $this->formatSetorDisplay($e['secao'] ?? null, $e['servico'] ?? null, $secaoNomePorId, $servicoNomePorId);
+            $e['setor_display'] = $this->formatSetorDisplay($e['secao'] ?? null, $e['servico'] ?? null, $e['outro_setor'] ?? null, $secaoNomePorId, $servicoNomePorId);
             $e['duracao_emprestimo'] = $this->formatDuration($e['data_emprestimo'], $e['data_devolucao'] ?? null);
         }
         unset($e);
@@ -217,6 +219,41 @@ class Emprestimos extends BaseController
         $data['sessoes']     = $sessoes;
         $data['setorOptions'] = $setorOptions;
         $data['servidores'] = $servidoresFormatados;
+        // Load supervisors and field technicians to include in suggestions
+        $supervisoresModel = new SupervisoresModelGab();
+        $fieldsModel = new FieldsModel();
+
+        $supervisores = $supervisoresModel->orderBy('Nome', 'ASC')->findAll();
+        $fields = $fieldsModel->orderBy('nome', 'ASC')->findAll();
+
+        $supervisoresFormatados = [];
+        foreach ($supervisores as $sup) {
+            $nome = trim($sup['Nome'] ?? $sup['nome'] ?? '');
+            if ($nome === '') {
+                continue;
+            }
+
+            $supervisoresFormatados[] = [
+                'nome_completo' => $nome,
+                'tipo' => 'supervisor'
+            ];
+        }
+
+        $fieldsFormatados = [];
+        foreach ($fields as $f) {
+            $nome = trim($f['nome'] ?? $f['Nome'] ?? '');
+            if ($nome === '') {
+                continue;
+            }
+
+            $fieldsFormatados[] = [
+                'nome_completo' => $nome,
+                'tipo' => 'field'
+            ];
+        }
+
+        $data['supervisoresExtras'] = $supervisoresFormatados;
+        $data['fieldsExtras'] = $fieldsFormatados;
         $data['servidoresSolicitante'] = $servidoresSolicitante;
         $data['servidoresResponsavel'] = $servidoresResponsavel;
         $data['availableMochilas'] = $availableMochilas;
@@ -240,27 +277,91 @@ class Emprestimos extends BaseController
     public function salvar()
     {
         $emprestimoModel = new EmprestimosModel();
-        $dados = $this->request->getPost();
+        // Support batch insert when form fields are arrays (multiple groups)
+        $post = $this->request->getPost();
 
-        if (!isset($dados['numero_chamado']) || ($dados['status_equipamento'] ?? '') !== 'chamado aberto' || trim((string) $dados['numero_chamado']) === '') {
-            $dados['numero_chamado'] = null;
+        // If single record (not arrays), keep original behavior
+        if (!is_array($post['numero_mochila'] ?? null)) {
+            $dados = $post;
+
+            if (!isset($dados['numero_chamado']) || ($dados['status_equipamento'] ?? '') !== 'chamado aberto' || trim((string) $dados['numero_chamado']) === '') {
+                $dados['numero_chamado'] = null;
+            }
+
+            $dados['data_emprestimo'] = Time::now()->format('Y-m-d H:i:s');
+            $dados['data_devolucao'] = $this->normalizeDataDevolucao($dados['data_devolucao'] ?? null);
+            $this->applySetorSelection($dados);
+            $this->applyServerMappingFallback($dados);
+            $dados['status_equipamento'] = $this->determineStatus($dados['status_equipamento'] ?? '', $dados['data_devolucao']);
+
+            $lastRecord = $emprestimoModel->select('MAX(id_emprestimo) as max_id')
+                ->get()->getRowArray();
+            $nextId = 1001;
+            if (!empty($lastRecord['max_id']) && is_numeric($lastRecord['max_id'])) {
+                $nextId = max(1001, (int) $lastRecord['max_id'] + 1);
+            }
+            $dados['id_emprestimo'] = $nextId;
+
+            $emprestimoModel->insert($dados);
+
+            return redirect()->back()->with('alert', 'successCreate');
         }
 
-        $dados['data_emprestimo'] = Time::now()->format('Y-m-d H:i:s');
-        $dados['data_devolucao'] = $this->normalizeDataDevolucao($dados['data_devolucao'] ?? null);
-        $this->applySetorSelection($dados);
-        $this->applyServerMappingFallback($dados);
-        $dados['status_equipamento'] = $this->determineStatus($dados['status_equipamento'] ?? '', $dados['data_devolucao']);
+        // Prepare arrays (ensure indexes exist)
+        $numeros = $this->request->getPost('numero_mochila') ?? [];
+        $nomes = $this->request->getPost('nome_recebedor') ?? [];
+        $emails = $this->request->getPost('email_recebedor') ?? [];
+        $responsaveis = $this->request->getPost('nome_responsavel') ?? [];
+        $statusArr = $this->request->getPost('status_equipamento') ?? [];
+        $numeroChamados = $this->request->getPost('numero_chamado') ?? [];
+        $setores = $this->request->getPost('setor') ?? [];
+        $outros = $this->request->getPost('outro_setor') ?? [];
+        $obsArr = $this->request->getPost('obs') ?? [];
+        $dataDevolucaoArr = $this->request->getPost('data_devolucao') ?? [];
 
+        $count = count($numeros);
+        if ($count <= 0) {
+            return redirect()->back()->with('alert', 'error');
+        }
+
+        // Shared timestamp for all inserted records
+        $sharedTimestamp = Time::now()->format('Y-m-d H:i:s');
+
+        // Determine starting id
         $lastRecord = $emprestimoModel->select('MAX(id_emprestimo) as max_id')
             ->get()->getRowArray();
         $nextId = 1001;
         if (!empty($lastRecord['max_id']) && is_numeric($lastRecord['max_id'])) {
             $nextId = max(1001, (int) $lastRecord['max_id'] + 1);
         }
-        $dados['id_emprestimo'] = $nextId;
 
-        $emprestimoModel->insert($dados);
+        $batch = [];
+        for ($i = 0; $i < $count; $i++) {
+            $entry = [];
+            $entry['numero_mochila'] = $numeros[$i] ?? '';
+            $entry['nome_recebedor'] = $nomes[$i] ?? '';
+            $entry['email_recebedor'] = $emails[$i] ?? '';
+            $entry['nome_responsavel'] = $responsaveis[$i] ?? '';
+            $entry['status_equipamento'] = $statusArr[$i] ?? '';
+            $entry['numero_chamado'] = (isset($entry['status_equipamento']) && $entry['status_equipamento'] === 'chamado aberto' && isset($numeroChamados[$i]) && trim((string) $numeroChamados[$i]) !== '') ? $numeroChamados[$i] : null;
+            $entry['data_emprestimo'] = $sharedTimestamp;
+            $entry['data_devolucao'] = $this->normalizeDataDevolucao($dataDevolucaoArr[$i] ?? null);
+            $entry['setor'] = $setores[$i] ?? null;
+            $entry['outro_setor'] = $outros[$i] ?? '';
+            $entry['obs'] = $obsArr[$i] ?? '';
+            $entry['id_emprestimo'] = $nextId++;
+
+            // Apply mapping logic per-entry
+            $this->applySetorSelection($entry);
+            $this->applyServerMappingFallback($entry);
+            $entry['status_equipamento'] = $this->determineStatus($entry['status_equipamento'] ?? '', $entry['data_devolucao']);
+
+            $batch[] = $entry;
+        }
+
+        if (!empty($batch)) {
+            $emprestimoModel->insertBatch($batch);
+        }
 
         return redirect()->back()->with('alert', 'successCreate');
     }
@@ -312,9 +413,130 @@ class Emprestimos extends BaseController
         return redirect()->back();
     }
 
+    public function salvarDataDevolucaoMultiplo()
+    {
+        $ids = $this->request->getPost('id_emprestimo') ?? [];
+        $dataDevolucao = $this->request->getPost('data_devolucao');
+
+        if (empty($ids) || empty($dataDevolucao)) {
+            return redirect()->back();
+        }
+
+        $dataDevolucaoNormalizada = $this->normalizeDataDevolucao($dataDevolucao);
+        $emprestimoModel = new EmprestimosModel();
+
+        foreach ($ids as $idEmprestimo) {
+            $emprestimoAtual = $emprestimoModel->find($idEmprestimo);
+            if (empty($emprestimoAtual)) {
+                continue;
+            }
+
+            if (! $this->isDevolucaoPending($emprestimoAtual['data_devolucao'] ?? null)) {
+                // Preserve existing returns; do not overwrite already released loans.
+                continue;
+            }
+
+            $status = $emprestimoAtual['status_equipamento'] ?? '';
+            $novoStatus = $this->determineStatus($status, $dataDevolucaoNormalizada);
+
+            $emprestimoModel->update($idEmprestimo, [
+                'data_devolucao' => $dataDevolucaoNormalizada,
+                'status_equipamento' => $novoStatus,
+            ]);
+        }
+
+        return redirect()->back()->with('alert', 'successCreate');
+    }
+
+    public function excluirMultiplo()
+    {
+        $ids = $this->request->getPost('id_emprestimo') ?? [];
+
+        if (empty($ids) || !is_array($ids)) {
+            return redirect()->back();
+        }
+
+        $emprestimoModel = new EmprestimosModel();
+        $emprestimoModel->whereIn('id_emprestimo', $ids)->delete();
+
+        return redirect()->back()->with('alert', 'successDelete');
+    }
+
+    public function excluir($id)
+    {
+        if (empty($id)) {
+            return redirect()->back();
+        }
+
+        $emprestimoModel = new EmprestimosModel();
+        $emprestimoModel->delete($id);
+
+        return redirect()->back()->with('alert', 'successDelete');
+    }
+
+    public function editarMultiplo()
+    {
+        $ids = $this->request->getPost('id_emprestimo') ?? [];
+        $numeros = $this->request->getPost('numero_mochila') ?? [];
+        $nomes = $this->request->getPost('nome_recebedor') ?? [];
+        $emails = $this->request->getPost('email_recebedor') ?? [];
+        $responsaveis = $this->request->getPost('nome_responsavel') ?? [];
+        $statusArr = $this->request->getPost('status_equipamento') ?? [];
+        $numeroChamados = $this->request->getPost('numero_chamado') ?? [];
+        $setores = $this->request->getPost('setor') ?? [];
+        $outros = $this->request->getPost('outro_setor') ?? [];
+        $obsArr = $this->request->getPost('obs') ?? [];
+        $dataEmprestimoArr = $this->request->getPost('data_emprestimo') ?? [];
+        $dataDevolucaoArr = $this->request->getPost('data_devolucao') ?? [];
+
+        $count = count($ids);
+        if ($count === 0) {
+            return redirect()->back();
+        }
+
+        $emprestimoModel = new EmprestimosModel();
+
+        for ($i = 0; $i < $count; $i++) {
+            $idEmprestimo = $ids[$i] ?? null;
+            if (empty($idEmprestimo)) {
+                continue;
+            }
+
+            $dados = [
+                'numero_mochila' => $numeros[$i] ?? '',
+                'nome_recebedor' => $nomes[$i] ?? '',
+                'email_recebedor' => $emails[$i] ?? '',
+                'nome_responsavel' => $responsaveis[$i] ?? '',
+                'status_equipamento' => $statusArr[$i] ?? '',
+                'numero_chamado' => (isset($statusArr[$i]) && $statusArr[$i] === 'chamado aberto' && isset($numeroChamados[$i]) && trim((string) $numeroChamados[$i]) !== '') ? $numeroChamados[$i] : null,
+                'data_emprestimo' => $dataEmprestimoArr[$i] ?? '',
+                'data_devolucao' => $this->normalizeDataDevolucao($dataDevolucaoArr[$i] ?? null),
+                'setor' => $setores[$i] ?? null,
+                'outro_setor' => $outros[$i] ?? '',
+                'obs' => $obsArr[$i] ?? '',
+            ];
+
+            $this->applySetorSelection($dados);
+            $this->applyServerMappingFallback($dados);
+            $dados['status_equipamento'] = $this->determineStatus($dados['status_equipamento'] ?? '', $dados['data_devolucao']);
+
+            $emprestimoModel->update($idEmprestimo, $dados);
+        }
+
+        return redirect()->back()->with('alert', 'successCreate');
+    }
+
     private function applySetorSelection(array &$dados)
     {
         $setorSelecionado = $dados['setor'] ?? '';
+
+        // If an explicit "outro_setor" was provided (e.g. Supervisor / Field),
+        // prefer it and don't attempt to map setor to secao/servico.
+        if (!empty($dados['outro_setor'])) {
+            $dados['secao'] = null;
+            $dados['servico'] = null;
+            return;
+        }
 
         if (empty($setorSelecionado)) {
             $dados['secao'] = null;
@@ -353,6 +575,10 @@ class Emprestimos extends BaseController
 
     private function applyServerMappingFallback(array &$dados)
     {
+        // If outro_setor is provided (e.g. Supervisor/Field selection), do not map servers to secao/servico
+        if (!empty($dados['outro_setor'])) {
+            return;
+        }
         $nomeRecebedor = trim((string) ($dados['nome_recebedor'] ?? ''));
         if ($nomeRecebedor === '') {
             return;
@@ -362,6 +588,34 @@ class Emprestimos extends BaseController
         $temServicoInformado = ($dados['servico'] ?? null) !== null && ($dados['servico'] ?? null) !== '';
 
         if ($temSecaoInformada || $temServicoInformado) {
+            return;
+        }
+
+        // Check if the selected requester is a supervisor or field technician by exact name.
+        $supervisoresModel = new SupervisoresModelGab();
+        $lowerNomeRecebedor = mb_strtolower($nomeRecebedor, 'UTF-8');
+        $supervisor = $supervisoresModel->where('LOWER(Nome)', $lowerNomeRecebedor)->first();
+        if (empty($supervisor)) {
+            $supervisor = $supervisoresModel->where('Nome', $nomeRecebedor)->first();
+        }
+
+        if (!empty($supervisor)) {
+            $dados['outro_setor'] = 'Supervisor';
+            $dados['secao'] = null;
+            $dados['servico'] = null;
+            return;
+        }
+
+        $fieldsModel = new FieldsModel();
+        $field = $fieldsModel->where('LOWER(nome)', $lowerNomeRecebedor)->first();
+        if (empty($field)) {
+            $field = $fieldsModel->where('nome', $nomeRecebedor)->first();
+        }
+
+        if (!empty($field)) {
+            $dados['outro_setor'] = 'Field';
+            $dados['secao'] = null;
+            $dados['servico'] = null;
             return;
         }
 
@@ -402,8 +656,12 @@ class Emprestimos extends BaseController
         }
     }
 
-    private function formatSetorDisplay($secaoId, $servicoId, array $secaoNomePorId, array $servicoNomePorId)
+    private function formatSetorDisplay($secaoId, $servicoId, $outroSetor, array $secaoNomePorId, array $servicoNomePorId)
     {
+        if (!empty($outroSetor)) {
+            return $outroSetor;
+        }
+
         $hasSecao = $secaoId !== null && $secaoId !== '';
         $hasServico = $servicoId !== null && $servicoId !== '';
 
