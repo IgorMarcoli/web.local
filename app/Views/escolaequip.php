@@ -79,7 +79,6 @@
                                         <th>Nome</th>
                                         <th>Código QR</th>
                                         <th>Categoria</th>
-                                        <th>Estado de Conservação</th>
                                         <th>Status</th>
                                         <th>Escola de Alocação</th>
                                         <th>Marca e Modelo</th>
@@ -98,8 +97,7 @@
                                                 <td><?= esc($it['nome']) ?></td>
                                                 <td><?= esc($it['codigo_qr']) ?></td>
                                                 <td><?= esc($it['categoria']) ?></td>
-                                                <td><?= esc($it['conservacao']) ?></td>
-                                                <td><?= esc($it['id_status']) ?></td>
+                                                <td><?= esc($it['status']) ?></td>
                                                 <td><?= esc($it['escola_id']) ?></td>
                                                 <td><?= esc($it['marca']) ?> <?= esc($it['modelo']) ?></td>
                                                 <td><?= esc($it['numero_serie']) ?></td>
@@ -110,7 +108,7 @@
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <tr><td colspan="13">Nenhum equipamento encontrado.</td></tr>
+                                        <tr><td colspan="12">Nenhum equipamento encontrado.</td></tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
