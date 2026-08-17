@@ -59,6 +59,17 @@ $routes->post('emprestimos/excluirMultiplo', 'Emprestimos::excluirMultiplo');
 $routes->post('emprestimos/editarMultiplo', 'Emprestimos::editarMultiplo');
 $routes->post('emprestimos/excluir/(:num)', 'Emprestimos::excluir/$1');
 
+// Conexão App - Escolas / URE
+$routes->get('conexao/escolas/dashboard', 'Escoladash::index');
+$routes->get('conexao/escolas/equipamentos', 'Escolaequip::index');
+$routes->get('conexao/ure/manutencao', 'Manutencao::index');
+$routes->get('conexao/escolas/proatis', 'Proatis::index');
+$routes->get('conexao/contatos', 'Contatos::index');
+
+// Friendly short paths
+$routes->get('proatis', 'Proatis::index');
+$routes->get('contatos', 'Contatos::index');
+
 /*
  * --------------------------------------------------------------------
  * Route Definitions

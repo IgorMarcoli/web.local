@@ -1,0 +1,67 @@
+INFO - 2026-08-17 08:18:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-17 09:50:52 --> mysqli_sql_exception: Unknown column 'status' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `n...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-17 09:50:53 --> Unknown column 'status' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC', [], false)
+ 5 APPPATH\Models\EscolaequipModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-17 09:53:37 --> mysqli_sql_exception: Unknown column 'status' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `n...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-17 09:53:37 --> Unknown column 'status' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nome`, `codigo_qr`, `categoria`, `status`, `escola_id`, `marca`, `modelo`, `numero_serie`, `local`, `lote_id`, `observacao`, `created_at`
+FROM `equipamentos_escolas`
+ORDER BY `id` DESC', [], false)
+ 5 APPPATH\Models\EscolaequipModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

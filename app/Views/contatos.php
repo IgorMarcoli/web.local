@@ -1,0 +1,19 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Contatos</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
+                <!-- Conteúdo de placeholder para Contatos -->
+                <p>Página Contatos (em branco).</p>
+            </div>
+        </div>
+    </section>
+</div>

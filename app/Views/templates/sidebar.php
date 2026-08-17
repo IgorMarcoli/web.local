@@ -33,6 +33,57 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Conexão App
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Escolas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/escoladash" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Dashboard Escolas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/escolaequip" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Equipamentos de Escolas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    URE
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/manutencao" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Dados de Manutenção</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                <li class="nav-item">
                     <a href="/produtos/listar" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -66,14 +117,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="manuais#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Manuais
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="/emprestimos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
@@ -82,10 +125,34 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/proatis" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            PROATIs
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manuais#" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Manuais
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="fluxos#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Fluxos
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contatos" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Contatos
                         </p>
                     </a>
                 </li>

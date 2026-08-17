@@ -1,0 +1,9 @@
+CRITICAL - 2026-08-14 11:20:54 --> Invalid file: "conexao/escolas/dashboard.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('conexao/escolas/dashboard.php')
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('conexao/escolas/dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardEscolas.php(12): view('conexao/escolas/dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\DashboardEscolas->index()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardEscolas))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
