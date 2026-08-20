@@ -11,15 +11,16 @@ class Dashboardgab extends BaseController{
         $visitasModel = new VisitasModelgab();
         $supModel     = new SupervisoresModelgab();
         $escModel     = new EscolasModelgab();
-
+            $mesAtual = (int) date('m');
+        $anoAtual = (int) date('Y');
         // ===== CARDS =====
         $totalSupervisores = $supModel->countAll();
         $totalEscolas     = $escModel->countAll();
         $totalVisitas     = $visitasModel->countAll();
 
         $visitasMes = $visitasModel
-            ->where('MONTH(dataVisita)', date('m'))
-            ->where('YEAR(dataVisita)', date('Y'))
+->where('EXTRACT(MONTH FROM "DataVisita") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "DataVisita") =', $anoAtual)
             ->countAllResults();
 
         // ===== GRÁFICO POR SUPERVISOR =====
@@ -35,15 +36,15 @@ $porSupervisorEscolas = $escModel
     ->select('
         supervisores.SupervisorId,
         supervisores.nome AS supervisor,
-        escolas.EscolaId,
-        escolas.Nome AS escola,
+        escolas.id,
+        escolas.nome AS escola, 
         COUNT(visitas_gab.VisitaId) AS total
     ')
     ->join('setores', 'setores.SetorId = escolas.SetorId')
     ->join('supervisores', 'supervisores.SupervisorId = setores.SupervisorId')
-    ->join('visitas_gab', 'visitas_gab.EscolaId = escolas.EscolaId', 'left')
-    ->groupBy('escolas.EscolaId')
-    ->orderBy('supervisores.nome, escolas.Nome')
+    ->join('visitas_gab', 'visitas_gab.EscolaId = escolas.id', 'left')
+    ->groupBy('escolas.id')
+    ->orderBy('supervisores.nome, escolas.nome')
     ->findAll();
 
 
@@ -51,7 +52,7 @@ $porSupervisorEscolas = $escModel
         // ===== GRÁFICO POR ESCOLA =====
         $porEscola = $visitasModel
             ->select('escolas.nome, COUNT(*) total')
-            ->join('escolas','escolas.EscolaId = visitas_gab.EscolaId')
+            ->join('escolas','escolas.id = visitas_gab.EscolaId')
             ->groupBy('escolas.nome')
             ->findAll();
 

@@ -21,8 +21,8 @@ class Agenda extends BaseController
     
         if ($periodo !== null && $periodo !== 'todos') {
         $query = $query
-            ->where('MONTH(Data)', $mes)
-            ->where('YEAR(Data)', $ano);
+            ->where('EXTRACT(MONTH FROM "Data") =', $mes)
+            ->where('EXTRACT(YEAR FROM "Data") =', $ano);
     }
               if ($status) {
         $query->where('status', $status);

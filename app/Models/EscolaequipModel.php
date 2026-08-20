@@ -21,7 +21,7 @@ class EscolaequipModel extends Model
         $builder->select([
             'id', 'nome', 'codigo_qr', 'categoria', 'status', 'escola_id', 'marca', 'modelo', 'numero_serie', 'local', 'lote_id', 'observacao', 'created_at'
         ]);
-
+        
         return $builder->orderBy('id', 'DESC')->get()->getResultArray();
     }
 

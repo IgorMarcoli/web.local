@@ -1,0 +1,196 @@
+ERROR - 2026-08-18 10:10:16 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-18 10:10:16 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', [], false)
+ 5 APPPATH\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-18 10:11:05 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(65): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(15): App\Models\InventarioModel->getKitsWithItems()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-18 10:11:05 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC', [], false)
+ 5 APPPATH\Models\InventarioModel.php(65): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Inventario.php(15): App\Models\InventarioModel->getKitsWithItems()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Inventario->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-18 10:11:18 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-18 10:11:18 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', [], false)
+ 5 APPPATH\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-18 10:11:21 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\InventarioModel.php(65): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Inventario.php(15): App\Models\InventarioModel->getKitsWithItems()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Inventario->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-18 10:11:21 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `k`.`id_kit`, `k`.`numero` AS `numero_mochila`, COALESCE(cat.nome, k.categoria) AS categoria, `n`.`marca_modelo` AS `notebook_marca_modelo`, `n`.`serial` AS `notebook_serial`, `n`.`patrimonio` AS `notebook_patrimonio`, `n`.`estado_conservacao` AS `notebook_estado_conservacao`, `m`.`marca_modelo` AS `mouse_marca_modelo`, `m`.`serial` AS `mouse_serial`, `m`.`patrimonio` AS `mouse_patrimonio`, `m`.`estado_conservacao` AS `mouse_estado_conservacao`, `c`.`marca_modelo` AS `carregador_marca_modelo`, `c`.`serial` AS `carregador_serial`, `c`.`patrimonio` AS `carregador_patrimonio`, `c`.`estado_conservacao` AS `carregador_estado_conservacao`, `a`.`marca_modelo` AS `adaptador_marca_modelo`, `a`.`serial` AS `adaptador_serial`, `a`.`patrimonio` AS `adaptador_patrimonio`, `a`.`estado_conservacao` AS `adaptador_estado_conservacao`, `l`.`marca_modelo` AS `locker_marca_modelo`, `l`.`serial` AS `locker_serial`, `l`.`patrimonio` AS `locker_patrimonio`, `l`.`estado_conservacao` AS `locker_estado_conservacao`, `n`.`data_registro` AS `data_registro`
+FROM `kits` `k`
+LEFT JOIN `categorias` `cat` ON `cat`.`nome` = `k`.`categoria`
+LEFT JOIN `itens` `n` ON `n`.`id_item` = `k`.`id_notebook`
+LEFT JOIN `itens` `m` ON `m`.`id_item` = `k`.`id_mouse`
+LEFT JOIN `itens` `c` ON `c`.`id_item` = `k`.`id_carregador`
+LEFT JOIN `itens` `a` ON `a`.`id_item` = `k`.`id_adaptador`
+LEFT JOIN `itens` `l` ON `l`.`id_item` = `k`.`id_locker`
+ORDER BY `k`.`id_kit` ASC', [], false)
+ 5 APPPATH\Models\InventarioModel.php(65): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Inventario.php(15): App\Models\InventarioModel->getKitsWithItems()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Inventario->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inventario))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

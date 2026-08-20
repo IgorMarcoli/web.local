@@ -75,7 +75,6 @@
                             <table class="table table-bordered table-striped" id="equip-table">
                                 <thead>
                                     <tr>
-                                        <th>ID Equipamento</th>
                                         <th>Nome</th>
                                         <th>Código QR</th>
                                         <th>Categoria</th>
@@ -93,7 +92,6 @@
                                     <?php if (!empty($items) && is_array($items)): ?>
                                         <?php foreach ($items as $it): ?>
                                             <tr>
-                                                <td><?= esc($it['id']) ?></td>
                                                 <td><?= esc($it['nome']) ?></td>
                                                 <td><?= esc($it['codigo_qr']) ?></td>
                                                 <td><?= esc($it['categoria']) ?></td>

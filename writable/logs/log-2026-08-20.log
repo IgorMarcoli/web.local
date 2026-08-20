@@ -1,0 +1,1270 @@
+ERROR - 2026-08-20 09:24:10 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-20 09:24:10 --> pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 09:32:33 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.SetorId does not exist
+LINE 3: JOIN &quot;setores&quot; ON &quot;setores&quot;.&quot;SetorId&quot; = &quot;escolas&quot;.&quot;SetorId&quot;
+                                                ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 09:32:33 --> pg_query(): Query failed: ERROR:  column escolas.SetorId does not exist
+LINE 3: JOIN &quot;setores&quot; ON &quot;setores&quot;.&quot;SetorId&quot; = &quot;escolas&quot;.&quot;SetorId&quot;
+                                                ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.SetorId does not exist
+LINE 3: JOIN &quot;setores&quot; ON &quot;setores&quot;.&quot;SetorId&quot; = &quot;escolas&quot;.&quot;SetorId&quot;
+                                                ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 09:35:49 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 5: ... JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas&quot;....
+                                                             ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 09:35:49 --> pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 5: ... JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas&quot;....
+                                                             ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 5: ... JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas&quot;....
+                                                             ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."EscolaId", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."EscolaId"
+GROUP BY "escolas"."EscolaId"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 09:36:18 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas_gab.id does not exist
+LINE 5: LEFT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;id&quot; = &quot;escolas&quot;.&quot;i...
+                                   ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 09:36:18 --> pg_query(): Query failed: ERROR:  column visitas_gab.id does not exist
+LINE 5: LEFT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;id&quot; = &quot;escolas&quot;.&quot;i...
+                                   ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas_gab.id does not exist
+LINE 5: LEFT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;id&quot; = &quot;escolas&quot;.&quot;i...
+                                   ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."id" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."id" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."id" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."id" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 09:36:40 --> ErrorException: pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 09:36:40 --> pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:36:30 --> ErrorException: pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:36:30 --> pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:36:42 --> ErrorException: pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:36:42 --> pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  operator does not exist: integer = uuid
+LINE 5: ...FT JOIN &quot;visitas_gab&quot; ON &quot;visitas_gab&quot;.&quot;EscolaId&quot; = &quot;escolas...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:45 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:45 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:47 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:47 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:48 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:48 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:49 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:49 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:49 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:49 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:49 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:49 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:50 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:50 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:50 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:50 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:39:50 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:39:50 --> pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.Nome does not exist
+LINE 1: ...rvisores&quot;.&quot;nome&quot; AS &quot;supervisor&quot;, &quot;escolas&quot;.&quot;id&quot;, &quot;escolas&quot;....
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.nome&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."Nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."Nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 10:41:00 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 10:41:00 --> pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 13:03:45 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervi...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervi...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervi...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervi...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-20 13:03:45 --> pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas_gab.visitaid does not exist
+LINE 1: ...scolas&quot;.&quot;id&quot;, &quot;escolas&quot;.&quot;nome&quot; AS &quot;escola&quot;, COUNT(visitas_ga...
+                                                             ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.VisitaId&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "supervisores"."SupervisorId", "supervisores"."nome" AS "supervisor", "escolas"."id", "escolas"."nome" AS "escola", COUNT(visitas_gab.VisitaId) AS total
+FROM "escolas"
+JOIN "setores" ON "setores"."SetorId" = "escolas"."SetorId"
+JOIN "supervisores" ON "supervisores"."SupervisorId" = "setores"."SupervisorId"
+LEFT JOIN "visitas_gab" ON "visitas_gab"."EscolaId" = "escolas"."id"
+GROUP BY "escolas"."id"
+ORDER BY "supervisores"."nome", "escolas"."nome"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboardgab.php(48): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 13:22:39 --> ErrorException: pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipam...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipam...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipam...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipam...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-08-20 13:22:39 --> pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+ 9 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+10 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+12 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 13:23:35 --> ErrorException: pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipam...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipam...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipam...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipam...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-08-20 13:23:35 --> pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+ 9 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+10 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+12 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 13:37:07 --> ErrorException: pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipam...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipam...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipam...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipam...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-08-20 13:37:07 --> pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+ 9 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+10 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+12 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-20 13:37:08 --> ErrorException: pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipam...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipam...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipam...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipam...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\app\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+#11 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-08-20 13:37:08 --> pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column reference &quot;nome&quot; is ambiguous
+LINE 1: SELECT &quot;equipamentos&quot;.*, &quot;escolas&quot;, &quot;nome&quot; as &quot;escola_nome&quot;
+                                            ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "equipamentos".*, "escolas", "nome" as "escola_nome"
+FROM "equipamentos"
+JOIN "escolas" ON "escolas"."id" = "equipamentos"."escola_id"', [], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Models\EscolaequipModel.php(26): CodeIgniter\BaseModel->findAll()
+ 9 APPPATH\Controllers\Escolaequip.php(13): App\Models\EscolaequipModel->getAll()
+10 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Escolaequip->index()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Escolaequip))
+12 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

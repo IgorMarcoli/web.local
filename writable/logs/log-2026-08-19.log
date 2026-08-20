@@ -1,0 +1,1348 @@
+ERROR - 2026-08-19 10:13:32 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-19 10:13:32 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', [], false)
+ 5 APPPATH\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:13:35 --> mysqli_sql_exception: Table 'sistema_web.categorias' doesn't exist in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\app\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-19 10:13:35 --> Table 'sistema_web.categorias' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `i`.`id_item`, `i`.`tipo`, `i`.`marca_modelo`, `i`.`serial`, `i`.`patrimonio`, `i`.`estado_conservacao`, COALESCE(c.nome, i.categoria) AS categoria, `i`.`andar`, `i`.`sala`, `s`.`nome_sala`, `i`.`data_registro`
+FROM `itens` `i`
+LEFT JOIN `categorias` `c` ON `c`.`nome` = `i`.`categoria`
+LEFT JOIN `salas` `s` ON `s`.`id_sala` = `i`.`sala`
+ORDER BY `i`.`id_item` DESC', [], false)
+ 5 APPPATH\Models\EquipamentosModel.php(50): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Equipamentos.php(16): App\Models\EquipamentosModel->listar()
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Equipamentos->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Equipamentos))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:13:50 --> mysqli_sql_exception: Unknown column 'id_kit' in 'field list' in C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id_kit`...', 0)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_kit`...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_kit`...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id_kit`...', Array, false)
+#4 C:\xampp\htdocs\web.local\app\Controllers\Emprestimos.php(60): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Emprestimos->index()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimos))
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2026-08-19 10:13:50 --> Unknown column 'id_kit' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id_kit`
+FROM `kits`
+ORDER BY `id_kit` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_kit`
+FROM `kits`
+ORDER BY `id_kit` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_kit`
+FROM `kits`
+ORDER BY `id_kit` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id_kit`
+FROM `kits`
+ORDER BY `id_kit` ASC', [], false)
+ 5 APPPATH\Controllers\Emprestimos.php(60): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Emprestimos->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emprestimos))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:17:35 --> Error connecting to the database: Error: Call to undefined function CodeIgniter\Database\Postgre\pg_connect() in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#3 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-19 10:17:35 --> Unable to connect to the database.
+Main connection [Postgre]: Call to undefined function CodeIgniter\Database\Postgre\pg_connect()
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:36:37 --> Error connecting to the database: Error: Call to undefined function CodeIgniter\Database\Postgre\pg_connect() in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#3 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-19 10:36:37 --> Unable to connect to the database.
+Main connection [Postgre]: Call to undefined function CodeIgniter\Database\Postgre\pg_connect()
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:36:38 --> Error connecting to the database: Error: Call to undefined function CodeIgniter\Database\Postgre\pg_connect() in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#1 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#3 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-08-19 10:36:38 --> Unable to connect to the database.
+Main connection [Postgre]: Call to undefined function CodeIgniter\Database\Postgre\pg_connect()
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:38:44 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=db.xzuavct...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 10:38:44 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:38:44 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=db.xzuavct...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 10:38:44 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:48:09 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;xzuavctadzcnihultxjh&quot; to address: Unknown host in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=xzuavctadz...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 10:48:09 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;xzuavctadzcnihultxjh&quot; to address: Unknown host
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 10:48:27 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=db.xzuavct...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 10:48:27 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &quot;db.xzuavctadzcnihultxjh.supabase.co&quot; to address: Unknown host
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:03:13 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543? in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=aws-1-sa-e...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM "...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 11:03:13 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543?
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM "agendas"
+ORDER BY "Data" DESC', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Agenda.php(31): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Agenda->agenda()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Agenda))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:04:02 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543? in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=aws-1-sa-e...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:04:02 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543?
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = :MONTH(Data):
+AND YEAR(Data) = :YEAR(Data):', [...], false)
+ 3 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 4 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:05:19 --> Error connecting to the database: ErrorException: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543? in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:72
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_connect(): U...', 'C:\\xampp\\htdocs...', 72)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(72): pg_connect('host=aws-1-sa-e...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(391): CodeIgniter\Database\Postgre\Connection->connect(false)
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:05:19 --> Unable to connect to the database.
+Main connection [Postgre]: pg_connect(): Unable to connect to PostgreSQL server: could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (54.232.77.43) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (18.228.163.245) and accepting
+	TCP/IP connections on port 6543?
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host &quot;aws-1-sa-east-1.pooler.supabase.com&quot; (52.67.188.92) and accepting
+	TCP/IP connections on port 6543?
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = :MONTH(Data):
+AND YEAR(Data) = :YEAR(Data):', [...], false)
+ 3 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 4 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:07:00 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;data&quot; does not exist
+LINE 3: WHERE MONTH(Data) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;agendas.Data&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:07:00 --> pg_query(): Query failed: ERROR:  column &quot;data&quot; does not exist
+LINE 3: WHERE MONTH(Data) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;agendas.Data&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;data&quot; does not exist
+LINE 3: WHERE MONTH(Data) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;agendas.Data&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = \'08\'
+AND YEAR(Data) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = \'08\'
+AND YEAR(Data) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = \'08\'
+AND YEAR(Data) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE MONTH(Data) = :MONTH(Data):
+AND YEAR(Data) = :YEAR(Data):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:23:24 --> ErrorException: pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:23:24 --> pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:25:48 --> ErrorException: pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:25:48 --> pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 11:25:49 --> ErrorException: pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 11:25:49 --> pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  function pg_catalog.extract(unknown, character) does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "agendas"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboard.php(33): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 12:44:44 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;EscolaId&quot; = visitas.&quot;EscolaId&quot;
+                          ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 12:44:44 --> pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;EscolaId&quot; = visitas.&quot;EscolaId&quot;
+                          ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.EscolaId does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;EscolaId&quot; = visitas.&quot;EscolaId&quot;
+                          ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."Nome", "escolas"."Endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."EscolaId" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."Nome", "escolas"."Endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."EscolaId" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."Nome", "escolas"."Endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."EscolaId" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."Nome", "escolas"."Endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."EscolaId" = visitas."EscolaId"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 12:47:22 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 12:47:22 --> pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 12:47:23 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 12:47:23 --> pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas.id does not exist
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;id&quot;
+                                         ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."id"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 12:47:46 --> ErrorException: pg_query(): Query failed: ERROR:  operator does not exist: uuid = integer
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;EscolaId&quot;
+                                       ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 12:47:46 --> pg_query(): Query failed: ERROR:  operator does not exist: uuid = integer
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;EscolaId&quot;
+                                       ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  operator does not exist: uuid = integer
+LINE 3: JOIN &quot;escolas&quot; ON escolas.&quot;id&quot; = visitas.&quot;EscolaId&quot;
+                                       ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:01:38 --> ErrorException: pg_query(): Query failed: ERROR:  column escolas.escola_endereço does not exist
+LINE 1: SELECT &quot;visitas&quot;.*, &quot;escolas&quot;.&quot;nome&quot;, &quot;escolas&quot;.&quot;escola_ende...
+                                              ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.escola_endereco&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 13:01:38 --> pg_query(): Query failed: ERROR:  column escolas.escola_endereço does not exist
+LINE 1: SELECT &quot;visitas&quot;.*, &quot;escolas&quot;.&quot;nome&quot;, &quot;escolas&quot;.&quot;escola_ende...
+                                              ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.escola_endereco&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column escolas.escola_endereço does not exist
+LINE 1: SELECT &quot;visitas&quot;.*, &quot;escolas&quot;.&quot;nome&quot;, &quot;escolas&quot;.&quot;escola_ende...
+                                              ^
+HINT:  Perhaps you meant to reference the column &quot;escolas.escola_endereco&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereço"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:02:06 --> ErrorException: pg_query(): Query failed: ERROR:  column visitas.status does not exist
+LINE 4: WHERE &quot;visitas&quot;.&quot;status&quot; = 'Pendente'
+              ^
+HINT:  Perhaps you meant to reference the column &quot;visitas.Status&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#6 C:\xampp\htdocs\web.local\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#7 C:\xampp\htdocs\web.local\app\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-19 13:02:06 --> pg_query(): Query failed: ERROR:  column visitas.status does not exist
+LINE 4: WHERE &quot;visitas&quot;.&quot;status&quot; = 'Pendente'
+              ^
+HINT:  Perhaps you meant to reference the column &quot;visitas.Status&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column visitas.status does not exist
+LINE 4: WHERE &quot;visitas&quot;.&quot;status&quot; = \'Pendente\'
+              ^
+HINT:  Perhaps you meant to reference the column &quot;visitas.Status&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = \'Pendente\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT "visitas".*, "escolas"."nome", "escolas"."escola_endereco"
+FROM "visitas"
+JOIN "escolas" ON escolas."id" = visitas."EscolaId"
+WHERE "visitas"."status" = :visitas.status:', [...], false)
+ 6 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 8 APPPATH\Controllers\Dashboard.php(78): CodeIgniter\BaseModel->findAll()
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2026-08-19 13:03:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-08-19 13:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-19 13:07:30 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:07:30 --> pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = :MONTH(dataVisita):
+AND YEAR(dataVisita) = :YEAR(dataVisita):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:28:14 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:28:14 --> pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = :MONTH(dataVisita):
+AND YEAR(dataVisita) = :YEAR(dataVisita):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:28:15 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:28:15 --> pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = :MONTH(dataVisita):
+AND YEAR(dataVisita) = :YEAR(dataVisita):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:28:15 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:28:15 --> pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = :MONTH(dataVisita):
+AND YEAR(dataVisita) = :YEAR(dataVisita):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(23): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:31:18 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:31:18 --> pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:31:20 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:31:20 --> pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:32:41 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:32:41 --> pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:33:39 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;. in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:33:39 --> pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = '08'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;datavisita&quot; does not exist
+LINE 3: WHERE MONTH(dataVisita) = \'08\'
+                    ^
+HINT:  Perhaps you meant to reference the column &quot;visitas_gab.DataVisita&quot;.', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = \'08\'
+AND YEAR(dataVisita) = \'2026\'')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE MONTH(dataVisita) = :MONTH(dataVisita):
+AND YEAR(dataVisita) = :YEAR(dataVisita):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-19 13:33:56 --> ErrorException: pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^ in C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php:187
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Que...', 'C:\\xampp\\htdocs...', 187)
+#1 C:\xampp\htdocs\web.local\system\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*)...')
+#2 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*)...')
+#3 C:\xampp\htdocs\web.local\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#4 C:\xampp\htdocs\web.local\system\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#5 C:\xampp\htdocs\web.local\system\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+#6 C:\xampp\htdocs\web.local\app\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+#7 C:\xampp\htdocs\web.local\system\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+#8 C:\xampp\htdocs\web.local\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+#9 C:\xampp\htdocs\web.local\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\web.local\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-19 13:33:56 --> pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^
+in SYSTEMPATH\Database\Postgre\Connection.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'pg_query(): Query failed: ERROR:  column &quot;Data&quot; does not exist
+LINE 3: WHERE EXTRACT(MONTH FROM &quot;Data&quot;) = 8
+                                 ^', 'C:\\xampp\\htdocs\\web.local\\system\\Database\\Postgre\\Connection.php', 187)
+ 2 SYSTEMPATH\Database\Postgre\Connection.php(187): pg_query(Object(PgSql\Connection), 'SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 3 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\Postgre\Connection->execute('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = 8
+AND EXTRACT(YEAR FROM "Data") = 2026')
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1700): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS "numrows"
+FROM "visitas_gab"
+WHERE EXTRACT(MONTH FROM "Data") = :EXTRACT(MONTH FROM "Data"):
+AND EXTRACT(YEAR FROM "Data") = :EXTRACT(YEAR FROM "Data"):', [...], false)
+ 6 SYSTEMPATH\Model.php(606): CodeIgniter\Database\BaseBuilder->countAllResults(true)
+ 7 APPPATH\Controllers\Dashboardgab.php(24): CodeIgniter\Model->countAllResults()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Dashboardgab->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboardgab))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
