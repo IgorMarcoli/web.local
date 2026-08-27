@@ -43,7 +43,7 @@ if (isset($dados['foto'])) {
             'logado'       => true
         ]);
 
-        return redirect()->to(base_url('setec'));
+        return redirect()->to('/setec');
     }
 
         return redirect()->to('/login?alert=errorLogin');
