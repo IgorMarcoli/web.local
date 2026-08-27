@@ -18,6 +18,7 @@ class LoginModel extends Model
         'Nomeuser',
         'Usuario',
         'Senha',
+        'foto'
     ];
 
     // Dates

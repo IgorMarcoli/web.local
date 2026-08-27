@@ -20,7 +20,7 @@ class Dashboardgab extends BaseController{
 
         $visitasMes = $visitasModel
 ->where('EXTRACT(MONTH FROM "DataVisita") =', $mesAtual)
-->where('EXTRACT(YEAR FROM "DataVisita") =', $anoAtual)
+->where('EXTRACT(YEAR FROM "DataVisita") =', $anoAtual)                               
             ->countAllResults();
 
         // ===== GRÁFICO POR SUPERVISOR =====
@@ -30,22 +30,22 @@ class Dashboardgab extends BaseController{
     ->groupBy('s.nome')
     ->get()
     ->getResultArray();
-
+$db = \Config\Database::connect();
     // ===== GRÁFICO POR SETOR=====
-$porSupervisorEscolas = $escModel
-    ->select('
+$porSupervisorEscolas = $db->query("
+    SELECT 
         supervisores.SupervisorId,
         supervisores.nome AS supervisor,
         escolas.id,
-        escolas.nome AS escola, 
+        escolas.nome AS escola,
         COUNT(visitas_gab.VisitaId) AS total
-    ')
-    ->join('setores', 'setores.SetorId = escolas.SetorId')
-    ->join('supervisores', 'supervisores.SupervisorId = setores.SupervisorId')
-    ->join('visitas_gab', 'visitas_gab.EscolaId = escolas.id', 'left')
-    ->groupBy('escolas.id')
-    ->orderBy('supervisores.nome, escolas.nome')
-    ->findAll();
+    FROM escolas
+    JOIN setores ON setores.SetorId = escolas.SetorId
+    JOIN supervisores ON supervisores.SupervisorId = setores.SupervisorId
+    LEFT JOIN visitas_gab ON visitas_gab.EscolaId = escolas.id
+    GROUP BY escolas.id
+    ORDER BY supervisores.nome, escolas.nome
+")->getResultArray();
 
 
 

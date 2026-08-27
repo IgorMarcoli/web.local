@@ -63,8 +63,12 @@
                         <div class="icon">
                             <i class="fas fa-tools"></i>
                         </div>
+                        
                     </div>
+
                 </div>
+                                    <label class="ml-3">Pesquisar</label>
+                            <input type="text" placeholder="Escola" id="pesquisarEquipamento">
             </div>
 
             <!-- Tabela de Equipamentos -->
@@ -96,7 +100,7 @@
                                                 <td><?= esc($it['codigo_qr']) ?></td>
                                                 <td><?= esc($it['categoria']) ?></td>
                                                 <td><?= esc($it['status']) ?></td>
-                                                <td><?= esc($it['escola_id']) ?></td>
+                                                <td><?= esc($it['escola_nome']) ?></td>
                                                 <td><?= esc($it['marca']) ?> <?= esc($it['modelo']) ?></td>
                                                 <td><?= esc($it['numero_serie']) ?></td>
                                                 <td><?= esc($it['local']) ?></td>
@@ -117,3 +121,17 @@
         </div>
     </div>
 </div>
+
+
+</html>
+<script>
+    document.getElementById("pesquisarEquipamento").addEventListener("keyup", function() {
+        let filtro = this.value.toLowerCase();
+        let linhas = document.querySelectorAll("table tbody tr");
+
+        linhas.forEach(function(linha) {
+            let nome = linha.children[1].textContent.toLowerCase();
+            linha.style.display = nome.includes(filtro) ? "" : "none";
+        });
+    });
+</script>

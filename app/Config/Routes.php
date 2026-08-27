@@ -28,6 +28,9 @@ $routes->get('agendagab/excluir/(:num)', 'Agendagab::excluir/$1');
 $routes->post('bancogab/bancogab/alterarStatusBanco', 'Bancogab::alterarStatusBanco');
 $routes->get('/bancogab/buscarPessoas', 'Bancogab::buscarPessoas');
 $routes->get('agenda/json', 'Agenda::json');
+$routes->get('/perfil', 'Login::perfil');
+$routes->post('/perfil/atualizar', 'Login::atualizarPerfil');
+$routes->get('/perfil/foto/(:segment)', 'Login::foto/$1');
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).

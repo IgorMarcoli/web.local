@@ -10,13 +10,19 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= base_url('tema/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
-            </div>
+           <div class="image">
+    <?php if (session()->get('usuario_foto')) : ?>
+<img src="<?= session()->get('usuario_foto') ?? base_url('tema/dist/img/user2-160x160.jpg') ?>"
+     class="img-circle elevation-2" alt="User Image"
+     style="width:34px; height:34px; object-fit:cover;">
+    <?php else : ?>
+        <img src="<?= base_url('tema/dist/img/user2-160x160.jpg') ?>"
+             class="img-circle elevation-2" alt="User Image">
+    <?php endif; ?>
+</div>
             <div class="info">
              
-                <a href="#" class="d-block" >Nome do usuário</a>
-                
+<a href="/perfil" class="d-block"><?= session()->get('usuario_nome') ?? 'Usuário' ?></a>  
             </div>
         </div>
 

@@ -21,7 +21,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="../../index2.html" class="h1"><b>Intranet</b> SVI</a>
+                <a href="index.html" class="h1"><b>Intranet</b> SVI</a>
             </div>
             <div class="card-body">
                 <?php if (isset($_GET['alert'])) : ?>
