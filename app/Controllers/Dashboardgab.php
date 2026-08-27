@@ -30,22 +30,22 @@ class Dashboardgab extends BaseController{
     ->groupBy('s.nome')
     ->get()
     ->getResultArray();
-$db = \Config\Database::connect();
+
     // ===== GRÁFICO POR SETOR=====
-$porSupervisorEscolas = $db->query("
-    SELECT 
+$porSupervisorEscolas = $escModel
+ ->select('
         supervisores.SupervisorId,
         supervisores.nome AS supervisor,
         escolas.id,
-        escolas.nome AS escola,
-        COUNT(visitas_gab.VisitaId) AS total
-    FROM escolas
-    JOIN setores ON setores.SetorId = escolas.SetorId
-    JOIN supervisores ON supervisores.SupervisorId = setores.SupervisorId
-    LEFT JOIN visitas_gab ON visitas_gab.EscolaId = escolas.id
-    GROUP BY escolas.id
-    ORDER BY supervisores.nome, escolas.nome
-")->getResultArray();
+        escolas.nome AS escola
+    ')
+    ->selectSum('visitas_gab.VisitaId IS NOT NULL', 'total')
+    ->join('setores', 'setores.SetorId = escolas.SetorId')
+    ->join('supervisores', 'supervisores.SupervisorId = setores.SupervisorId')
+    ->join('visitas_gab', 'visitas_gab.EscolaId = escolas.id', 'left')
+    ->groupBy('escolas.id')
+    ->orderBy('supervisores.nome, escolas.nome')
+    ->findAll();
 
 
 

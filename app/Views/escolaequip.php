@@ -130,7 +130,7 @@
         let linhas = document.querySelectorAll("table tbody tr");
 
         linhas.forEach(function(linha) {
-            let nome = linha.children[1].textContent.toLowerCase();
+            let nome = linha.children[4].textContent.toLowerCase();
             linha.style.display = nome.includes(filtro) ? "" : "none";
         });
     });

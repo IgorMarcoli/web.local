@@ -230,7 +230,6 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center"><input type="checkbox" id="select-all-equipamentos"></th>
-                                        <th>ID</th>
                                         <th>Tipo</th>
                                         <th>Marca e Modelo</th>
                                         <th>Nº de Patrimônio</th>
@@ -246,7 +245,7 @@
                                 <tbody>
                                     <?php if (!empty($itens)) : ?>
                                         <?php foreach ($itens as $item) : ?>
-                                            <tr data-id="<?= esc($item['id_item'] ?? '', 'attr') ?>"
+                                            <tr 
                                                 data-tipo="<?= esc($item['tipo'] ?? '', 'attr') ?>"
                                                 data-marca="<?= esc($item['marca_modelo'] ?? '', 'attr') ?>"
                                                 data-patrimonio="<?= esc($item['patrimonio'] ?? '', 'attr') ?>"
@@ -255,7 +254,6 @@
                                                 data-categoria="<?= esc($item['categoria'] ?? '', 'attr') ?>"
                                                 data-sala="<?= esc($item['sala'] ?? '', 'attr') ?>">
                                                 <td class="text-center"><input type="checkbox" class="row-select-equipamento"></td>
-                                                <td><?= esc($item['id_item'] ?? '-') ?></td>
                                                 <td><?= esc($item['tipo'] ?? '-') ?></td>
                                                 <td><?= esc($item['marca_modelo'] ?? '-') ?></td>
                                                 <td><?= esc($item['patrimonio'] ?? '-') ?></td>

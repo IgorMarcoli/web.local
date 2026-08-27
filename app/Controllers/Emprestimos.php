@@ -223,7 +223,7 @@ class Emprestimos extends BaseController
         $supervisoresModel = new SupervisoresModelGab();
         $fieldsModel = new FieldsModel();
 
-        $supervisores = $supervisoresModel->orderBy('Nome', 'ASC')->findAll();
+        $supervisores = $supervisoresModel->orderBy('nome', 'ASC')->findAll();
         $fields = $fieldsModel->orderBy('nome', 'ASC')->findAll();
 
         $supervisoresFormatados = [];

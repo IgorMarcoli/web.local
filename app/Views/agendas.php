@@ -247,7 +247,6 @@
                               <table class="table table-striped table-bordered">
                                   <thead>
                                       <tr>
-                                          <th>CÓD.:</th>
                                           <th>NOME / LOCAL</th>
                                           <th>DATA</th>
                                           <th>TIPO</th>
@@ -262,7 +261,6 @@
                                   <tbody>
                                       <?php foreach ($agendas as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['AgendaId'] ?></td>
                                               <td><?= $agend['Nomelocal'] ?></td>
                                               <td><?= $agend['Data'] ?></td>
                                               <td><?= $agend['Tipo'] ?></td>
@@ -379,7 +377,7 @@
         let linhas = document.querySelectorAll("table tbody tr");
 
         linhas.forEach(function(linha) {
-            let nome = linha.children[1].textContent.toLowerCase();
+            let nome = linha.children[0].textContent.toLowerCase();
             linha.style.display = nome.includes(filtro) ? "" : "none";
         });
     });
