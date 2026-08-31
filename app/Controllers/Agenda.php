@@ -57,7 +57,7 @@ class Agenda extends BaseController
 
         $agendas_model->insert($dados);
 
-        return redirect()->back()->with('alert', 'successCreate');
+       return redirect()->to('/agenda/agenda?alert=successCreate');
     }
 
     public function excluir($AgendaId)
