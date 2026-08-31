@@ -68,7 +68,7 @@ class Agenda extends BaseController
                 ->where('AgendaId', $AgendaId)
                 ->delete();
 
-        return redirect()->back()->with('alert', 'successCreate');
+        return redirect()->to('/agenda/agenda?alert=successDelete');
     }
 
     public function editar()
@@ -82,8 +82,7 @@ class Agenda extends BaseController
                 ->where('AgendaId', $dados['AgendaId'])
                 ->set($dados)
                 ->update();
-
-        return redirect()->back()->with('alert', 'successEdit');
+         return redirect()->to('/agenda/agenda?alert=successEdit');
     }
 
     public function alterarStatus(){

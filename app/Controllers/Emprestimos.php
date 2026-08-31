@@ -676,20 +676,18 @@ class Emprestimos extends BaseController
         return '-';
     }
 
-    private function normalizeDataDevolucao($dataDevolucao)
-    {
-        if ($dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00') {
-            return '0000-00-00 00:00:00';
-        }
-
-        return $dataDevolucao;
+private function normalizeDataDevolucao($dataDevolucao)
+{
+    if ($dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00') {
+        return null; // <-- NULL ao invés de '0000-00-00 00:00:00'
     }
+    return $dataDevolucao;
+}
 
-    private function isDevolucaoPending($dataDevolucao)
-    {
-        return $dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00';
-    }
-
+private function isDevolucaoPending($dataDevolucao)
+{
+    return $dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00';
+}
     private function determineStatus($statusAtual, $dataDevolucao)
     {
         if ($statusAtual === 'chamado aberto') {
@@ -757,6 +755,9 @@ class Emprestimos extends BaseController
 
     private function buildDurationDateTime($value)
     {
+         if ($value === null) {
+        return null; // <-- adiciona essa linha no início
+    }
         $value = trim((string) $value);
         if ($value === '' || $value === '-') {
             return null;
