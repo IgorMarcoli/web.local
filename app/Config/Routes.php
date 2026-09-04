@@ -25,6 +25,8 @@ $routes->get('agendagab/agendagab', 'Agendagab::Agendagab');
 $routes->post('agendagab/cadastrar', 'Agendagab::cadastrar');
 $routes->post('agendagab/editar', 'Agendagab::editar');
 $routes->get('agendagab/excluir/(:num)', 'Agendagab::excluir/$1');
+$routes->get('ouvidoriagab/exportar', 'Ouvidoriagab::exportar');
+$routes->get('Ouvidoriagab/exportar', 'Ouvidoriagab::exportar');
 $routes->post('bancogab/bancogab/alterarStatusBanco', 'Bancogab::alterarStatusBanco');
 $routes->get('/bancogab/buscarPessoas', 'Bancogab::buscarPessoas');
 $routes->get('agenda/json', 'Agenda::json');
