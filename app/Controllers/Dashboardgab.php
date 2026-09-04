@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\EscolasModelgab;
 use App\Models\SupervisoresModelgab;
 use App\Models\VisitasModelgab;
+use App\Models\OuvidoriaModel;
 class Dashboardgab extends BaseController{
     public function index(){
         $visitasModel = new VisitasModelgab();
@@ -31,22 +32,20 @@ class Dashboardgab extends BaseController{
     ->get()
     ->getResultArray();
 
-    // ===== GRÁFICO POR SETOR=====
 $porSupervisorEscolas = $escModel
- ->select('
+    ->select('
         supervisores.SupervisorId,
         supervisores.nome AS supervisor,
         escolas.id,
         escolas.nome AS escola
     ')
-    ->selectSum('visitas_gab.VisitaId IS NOT NULL', 'total')
+    ->selectCount('visitas_gab.VisitaId', 'total')
     ->join('setores', 'setores.SetorId = escolas.SetorId')
     ->join('supervisores', 'supervisores.SupervisorId = setores.SupervisorId')
     ->join('visitas_gab', 'visitas_gab.EscolaId = escolas.id', 'left')
-    ->groupBy('escolas.id')
+    ->groupBy('supervisores.SupervisorId, escolas.id')
     ->orderBy('supervisores.nome, escolas.nome')
     ->findAll();
-
 
 
         // ===== GRÁFICO POR ESCOLA =====
@@ -56,6 +55,18 @@ $porSupervisorEscolas = $escModel
             ->groupBy('escolas.nome')
             ->findAll();
 
+        // ===== GRÁFICO OUVIDORIA: Tipo x Responsável =====
+        $ouvidoriaModel = new OuvidoriaModel();
+        $ouvidoriaTipoResp = $ouvidoriaModel->db
+            ->table('ouvidoriagabs')
+            ->select('tipo_manifestacao, responsavel_resposta, COUNT(*) as total')
+            ->where('responsavel_resposta IS NOT NULL', null, false)
+            ->where("responsavel_resposta != ''")
+            ->groupBy('tipo_manifestacao, responsavel_resposta')
+            ->orderBy('tipo_manifestacao, responsavel_resposta')
+            ->get()
+            ->getResultArray();
+
         $data = [
             'totalSupervisores' => $totalSupervisores,
             'totalEscolas'     => $totalEscolas,
@@ -63,7 +74,8 @@ $porSupervisorEscolas = $escModel
             'visitasMes'       => $visitasMes,
             'porSupervisor'    => $porSupervisor,
             'porEscola'        => $porEscola,
-            'porSupervisorEscolas'         => $porSupervisorEscolas
+            'porSupervisorEscolas'         => $porSupervisorEscolas,
+            'ouvidoriaTipoResp' => $ouvidoriaTipoResp,
         ];
 
         echo view('templates/headergabinete');

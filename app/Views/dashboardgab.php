@@ -155,7 +155,42 @@
         </div>
       </div>
     </div>
+    </section><!-- /.right col -->
+  </div>
+  <!-- /.row (gráficos supervisores) -->
 
+  <!-- NOVA LINHA: Ouvidoria - Tipo x Responsável -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="card card-outline card-primary">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-headset mr-1"></i>
+            Ouvidoria — Tipo de Manifestação por Responsável pela Resposta
+          </h3>
+          <div class="card-tools" style="width:230px;">
+            <select id="filtroTipoOuvidoria" class="form-control form-control-sm">
+              <option value="todos">Todos os tipos</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="position: relative; height:320px;">
+            <canvas id="chartOuvidoriaTipoResp"></canvas>
+          </div>
+        </div>
+        <div class="card-footer text-muted text-sm">
+          <i class="fas fa-info-circle mr-1"></i>
+          Registros sem responsável definido não são exibidos.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /NOVA LINHA Ouvidoria -->
+
+</div><!-- /.container-fluid -->
+</section><!-- /.content -->
+</div><!-- /.content-wrapper -->
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
@@ -330,4 +365,107 @@ select.addEventListener('change', e => {
     atualizarGrafico(e.target.value);
 });
 
+</script>
+
+<!-- =====================================================
+     GRÁFICO OUVIDORIA: Tipo de Manifestação x Responsável
+     ===================================================== -->
+<script>
+(function() {
+    const dadosOuvidoria = <?= json_encode($ouvidoriaTipoResp ?? []) ?>;
+
+    if (!dadosOuvidoria || dadosOuvidoria.length === 0) {
+        const canvas = document.getElementById('chartOuvidoriaTipoResp');
+        if (canvas) {
+            canvas.style.display = 'none';
+            const msg = document.createElement('div');
+            msg.className = 'text-center text-muted py-4';
+            msg.innerHTML = '<i class="fas fa-inbox fa-2x mb-2 d-block"></i>Nenhum registro de ouvidoria com responsável definido.';
+            canvas.parentNode.appendChild(msg);
+        }
+        return;
+    }
+
+    // Paleta de cores por tipo de manifestação
+    const coresTipo = {
+        'reclamacao':  'rgba(255, 193, 7,  0.85)',
+        'denuncia':    'rgba(220, 53,  69,  0.85)',
+        'solicitacao': 'rgba(23,  162, 184, 0.85)',
+        'elogio':      'rgba(40,  167, 69,  0.85)',
+        'sugestao':    'rgba(0,   123, 255, 0.85)',
+        'outros':      'rgba(108, 117, 125, 0.85)',
+    };
+
+    // Extrai listas únicas de responsáveis e tipos
+    const responsaveis = [...new Set(dadosOuvidoria.map(d => d.responsavel_resposta))].sort();
+    const tipos        = [...new Set(dadosOuvidoria.map(d => d.tipo_manifestacao))].sort();
+
+    // Monta datasets: um por tipo, eixo X = responsável
+    function buildDatasets(filtroTipo) {
+        const tiposFiltrados = filtroTipo === 'todos' ? tipos : [filtroTipo];
+        return tiposFiltrados.map(tipo => {
+            const cor = coresTipo[tipo.toLowerCase()] || 'rgba(150,150,150,0.8)';
+            return {
+                label: tipo.charAt(0).toUpperCase() + tipo.slice(1),
+                backgroundColor: cor,
+                borderColor:     cor.replace('0.85', '1'),
+                borderWidth: 1,
+                data: responsaveis.map(resp => {
+                    const row = dadosOuvidoria.find(
+                        d => d.responsavel_resposta === resp && d.tipo_manifestacao === tipo
+                    );
+                    return row ? Number(row.total) : 0;
+                })
+            };
+        });
+    }
+
+    const ctxO = document.getElementById('chartOuvidoriaTipoResp');
+    let chartOuvidoria = new Chart(ctxO, {
+        type: 'bar',
+        data: {
+            labels: responsaveis,
+            datasets: buildDatasets('todos')
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        title: ctx => 'Responsável: ' + ctx[0].label
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    stacked: false,
+                    title: { display: true, text: 'Responsável pela Resposta' }
+                },
+                y: {
+                    stacked: false,
+                    beginAtZero: true,
+                    ticks: { stepSize: 1, precision: 0 },
+                    title: { display: true, text: 'Quantidade' }
+                }
+            }
+        }
+    });
+
+    // Popula o select de filtro
+    const selectTipo = document.getElementById('filtroTipoOuvidoria');
+    tipos.forEach(tipo => {
+        const opt = document.createElement('option');
+        opt.value = tipo;
+        opt.textContent = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+        selectTipo.appendChild(opt);
+    });
+
+    // Evento de filtro
+    selectTipo.addEventListener('change', function () {
+        chartOuvidoria.data.datasets = buildDatasets(this.value);
+        chartOuvidoria.update();
+    });
+})();
 </script>
