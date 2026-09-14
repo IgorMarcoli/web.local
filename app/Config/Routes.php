@@ -63,6 +63,7 @@ $routes->post('emprestimos/salvarDataDevolucaoMultiplo', 'Emprestimos::salvarDat
 $routes->post('emprestimos/excluirMultiplo', 'Emprestimos::excluirMultiplo');
 $routes->post('emprestimos/editarMultiplo', 'Emprestimos::editarMultiplo');
 $routes->post('emprestimos/excluir/(:num)', 'Emprestimos::excluir/$1');
+$routes->get('emprestimos/getServidorDetalhes', 'Emprestimos::getServidorDetalhes');
 
 // Conexão App - Escolas / URE
 $routes->get('conexao/escolas/dashboard', 'Escoladash::index');

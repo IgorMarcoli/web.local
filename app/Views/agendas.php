@@ -1,4 +1,69 @@
-
+<style>
+    /* Estilos responsivos e limpos */
+    .kpi-box {
+        border-radius: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .kpi-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    }
+    .kpi-box .inner h3 {
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .kpi-box .inner p {
+        font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+        margin-bottom: 0;
+        opacity: 0.9;
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    .badge-status {
+        font-size: 0.8rem;
+        padding: 0.4em 0.65em;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+    .code-tag {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.82rem;
+        background-color: #f1f3f5;
+        border: 1px solid #e9ecef;
+        padding: 0.2em 0.45em;
+        border-radius: 4px;
+        color: #343a40;
+    }
+    .empty-state {
+        padding: 45px 15px;
+        text-align: center;
+    }
+    .empty-state i {
+        font-size: 3.2rem;
+        color: #ced4da;
+        margin-bottom: 12px;
+    }
+    @media (max-width: 767.98px) {
+        .content-header h1 {
+            font-size: 1.35rem;
+        }
+    }
+    @media print {
+        .main-sidebar, .main-header, .main-footer, .no-print, .btn, .modal {
+            display: none !important;
+        }
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding: 0 !important;
+        }
+        .card {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+</style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="modal fade" id="modal-novo-produto">
       <div class="modal-dialog modal-lg">
@@ -148,7 +213,40 @@
                               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-novo-produto">
                                   <i class="fas fa-plus-circle"></i> Novo Agendamento
                               </button>
-                                    
+                                     <div class="row no-print mb-2">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-info kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <p>Total Geral</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-laptop"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-success kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <p>Concluido</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-warning kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <p>Pendente</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-danger kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <p>Em Atendimento</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-headset"></i></div>
+                    </div>
+                </div>
+            </div>
                                <label class="ml-3">Pesquisar</label>
                             <input type="text" placeholder="Escola" id="pesquisarAgenda">
                           </div>

@@ -163,15 +163,21 @@
   <div class="row mt-3">
     <div class="col-12">
       <div class="card card-outline card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
+        <div class="card-header d-flex align-items-center flex-wrap">
+          <h3 class="card-title mr-auto">
             <i class="fas fa-headset mr-1"></i>
             Ouvidoria — Tipo de Manifestação por Responsável pela Resposta
           </h3>
-          <div class="card-tools" style="width:230px;">
-            <select id="filtroTipoOuvidoria" class="form-control form-control-sm">
+          <div class="d-flex align-items-center flex-wrap" style="gap:6px;">
+            <select id="filtroTipoOuvidoria" class="form-control form-control-sm" style="width:190px;">
               <option value="todos">Todos os tipos</option>
             </select>
+            <button id="btnDownloadPNG" class="btn btn-sm btn-outline-secondary" title="Baixar gráfico como imagem PNG">
+              <i class="fas fa-image mr-1"></i>PNG
+            </button>
+            <button id="btnDownloadPDF" class="btn btn-sm btn-outline-danger" title="Baixar gráfico como PDF">
+              <i class="fas fa-file-pdf mr-1"></i>PDF
+            </button>
           </div>
         </div>
         <div class="card-body">
@@ -370,6 +376,9 @@ select.addEventListener('change', e => {
 <!-- =====================================================
      GRÁFICO OUVIDORIA: Tipo de Manifestação x Responsável
      ===================================================== -->
+<!-- jsPDF para exportação PDF -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
 <script>
 (function() {
     const dadosOuvidoria = <?= json_encode($ouvidoriaTipoResp ?? []) ?>;
@@ -383,6 +392,11 @@ select.addEventListener('change', e => {
             msg.innerHTML = '<i class="fas fa-inbox fa-2x mb-2 d-block"></i>Nenhum registro de ouvidoria com responsável definido.';
             canvas.parentNode.appendChild(msg);
         }
+        // Esconde botões se não há dados
+        ['btnDownloadPNG','btnDownloadPDF'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
         return;
     }
 
@@ -420,9 +434,33 @@ select.addEventListener('change', e => {
         });
     }
 
+    // Plugin inline: rótulo em cima de cada barra (oculta zeros)
+    const datalabelsPlugin = {
+        id: 'ouvidoriaDatalabels',
+        afterDatasetsDraw(chart) {
+            const ctx = chart.ctx;
+            chart.data.datasets.forEach((dataset, datasetIndex) => {
+                const meta = chart.getDatasetMeta(datasetIndex);
+                if (meta.hidden) return;
+                meta.data.forEach((bar, index) => {
+                    const value = dataset.data[index];
+                    if (!value || value === 0) return;
+                    ctx.save();
+                    ctx.fillStyle = '#333';
+                    ctx.font = 'bold 12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillText(value, bar.x, bar.y - 3);
+                    ctx.restore();
+                });
+            });
+        }
+    };
+
     const ctxO = document.getElementById('chartOuvidoriaTipoResp');
     let chartOuvidoria = new Chart(ctxO, {
         type: 'bar',
+        plugins: [datalabelsPlugin],
         data: {
             labels: responsaveis,
             datasets: buildDatasets('todos')
@@ -430,11 +468,13 @@ select.addEventListener('change', e => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: { padding: { top: 20 } },
             plugins: {
                 legend: { position: 'top' },
                 tooltip: {
                     callbacks: {
-                        title: ctx => 'Responsável: ' + ctx[0].label
+                        title: ctx => 'Responsável: ' + ctx[0].label,
+                        label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.raw
                     }
                 }
             },
@@ -467,5 +507,56 @@ select.addEventListener('change', e => {
         chartOuvidoria.data.datasets = buildDatasets(this.value);
         chartOuvidoria.update();
     });
+
+    // ─── DOWNLOAD PNG ─────────────────────────────────────────
+    document.getElementById('btnDownloadPNG').addEventListener('click', function () {
+        const link = document.createElement('a');
+        link.download = 'ouvidoria_tipo_responsavel_' + new Date().toLocaleDateString('pt-BR').replace(/\//g,'-') + '.png';
+        link.href = ctxO.toDataURL('image/png');
+        link.click();
+    });
+
+    // ─── DOWNLOAD PDF ─────────────────────────────────────────
+    document.getElementById('btnDownloadPDF').addEventListener('click', function () {
+        // Aguarda jsPDF estar disponível (carregado via CDN)
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) { alert('Biblioteca PDF ainda carregando, tente novamente.'); return; }
+
+        // Captura o canvas como imagem
+        const imgData   = ctxO.toDataURL('image/png', 1.0);
+        const imgWidth  = ctxO.width;
+        const imgHeight = ctxO.height;
+
+        // Calcula orientação e tamanho A4 em mm
+        const pdfW = 297; // A4 landscape width mm
+        const pdfH = 210; // A4 landscape height mm
+        const margin = 12;
+        const usableW = pdfW - margin * 2;
+        const usableH = pdfH - margin * 2 - 20; // espaço p/ título
+
+        // Mantém proporção
+        const ratio   = Math.min(usableW / imgWidth, usableH / imgHeight);
+        const finalW  = imgWidth  * ratio;
+        const finalH  = imgHeight * ratio;
+
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+        // Título
+        pdf.setFontSize(13);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Ouvidoria — Tipo de Manifestação por Responsável', margin, margin + 6);
+
+        // Data de geração
+        pdf.setFontSize(9);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('Gerado em: ' + new Date().toLocaleString('pt-BR'), margin, margin + 12);
+
+        // Imagem do gráfico
+        pdf.addImage(imgData, 'PNG', margin, margin + 18, finalW, finalH);
+
+        pdf.save('ouvidoria_tipo_responsavel_' + new Date().toLocaleDateString('pt-BR').replace(/\//g,'-') + '.pdf');
+    });
+
 })();
 </script>
+
