@@ -25,9 +25,14 @@ $routes->get('agendagab/agendagab', 'Agendagab::Agendagab');
 $routes->post('agendagab/cadastrar', 'Agendagab::cadastrar');
 $routes->post('agendagab/editar', 'Agendagab::editar');
 $routes->get('agendagab/excluir/(:num)', 'Agendagab::excluir/$1');
+$routes->get('ouvidoriagab/exportar', 'Ouvidoriagab::exportar');
+$routes->get('Ouvidoriagab/exportar', 'Ouvidoriagab::exportar');
 $routes->post('bancogab/bancogab/alterarStatusBanco', 'Bancogab::alterarStatusBanco');
 $routes->get('/bancogab/buscarPessoas', 'Bancogab::buscarPessoas');
 $routes->get('agenda/json', 'Agenda::json');
+$routes->get('/perfil', 'Login::perfil');
+$routes->post('/perfil/atualizar', 'Login::atualizarPerfil');
+$routes->get('/perfil/foto/(:segment)', 'Login::foto/$1');
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -58,6 +63,7 @@ $routes->post('emprestimos/salvarDataDevolucaoMultiplo', 'Emprestimos::salvarDat
 $routes->post('emprestimos/excluirMultiplo', 'Emprestimos::excluirMultiplo');
 $routes->post('emprestimos/editarMultiplo', 'Emprestimos::editarMultiplo');
 $routes->post('emprestimos/excluir/(:num)', 'Emprestimos::excluir/$1');
+$routes->get('emprestimos/getServidorDetalhes', 'Emprestimos::getServidorDetalhes');
 
 // Conexão App - Escolas / URE
 $routes->get('conexao/escolas/dashboard', 'Escoladash::index');

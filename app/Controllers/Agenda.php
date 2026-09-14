@@ -21,8 +21,8 @@ class Agenda extends BaseController
     
         if ($periodo !== null && $periodo !== 'todos') {
         $query = $query
-            ->where('MONTH(Data)', $mes)
-            ->where('YEAR(Data)', $ano);
+            ->where('EXTRACT(MONTH FROM "Data") =', $mes)
+            ->where('EXTRACT(YEAR FROM "Data") =', $ano);
     }
               if ($status) {
         $query->where('status', $status);
@@ -57,7 +57,7 @@ class Agenda extends BaseController
 
         $agendas_model->insert($dados);
 
-        return redirect()->back()->with('alert', 'successCreate');
+       return redirect()->to('/agenda/agenda?alert=successCreate');
     }
 
     public function excluir($AgendaId)
@@ -68,7 +68,7 @@ class Agenda extends BaseController
                 ->where('AgendaId', $AgendaId)
                 ->delete();
 
-        return redirect()->back()->with('alert', 'successCreate');
+        return redirect()->to('/agenda/agenda?alert=successDelete');
     }
 
     public function editar()
@@ -82,8 +82,7 @@ class Agenda extends BaseController
                 ->where('AgendaId', $dados['AgendaId'])
                 ->set($dados)
                 ->update();
-
-        return redirect()->back()->with('alert', 'successEdit');
+         return redirect()->to('/agenda/agenda?alert=successEdit');
     }
 
     public function alterarStatus(){

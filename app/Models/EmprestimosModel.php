@@ -25,7 +25,8 @@ class EmprestimosModel extends Model
         'numero_chamado',
         'data_emprestimo',
         'data_devolucao',
-        'obs'
+        'obs',
+        'pertence_a'
     ];
 
     // Dates

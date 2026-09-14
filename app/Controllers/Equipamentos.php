@@ -14,8 +14,44 @@ class Equipamentos extends BaseController
         $categoriasModel = new CategoriasModel();
 
         $data['itens'] = $equipamentosModel->listar();
+        $filtros = [
+            'busca'     => trim((string) ($this->request->getGet('busca') ?? '')),
+            'estado'    => trim((string) ($this->request->getGet('estado') ?? '')),
+            'categoria' => trim((string) ($this->request->getGet('categoria') ?? '')),
+            'sala'      => trim((string) ($this->request->getGet('sala') ?? '')),
+        ];
+
+        $todosItens = $equipamentosModel->listar();
+
+        $temFiltro = ($filtros['busca'] !== '' || $filtros['estado'] !== '' || $filtros['categoria'] !== '' || $filtros['sala'] !== '');
+        $data['itens'] = $temFiltro ? $equipamentosModel->listar($filtros) : $todosItens;
         $data['salas'] = $equipamentosModel->listarSalas();
         $data['categorias'] = $categoriasModel->listar();
+        $data['filtros'] = $filtros;
+
+        // Cálculo de KPIs estatísticos
+        $totalItens = count($todosItens);
+        $excelenteBom = 0;
+        $atencaoProblema = 0;
+        $chamadosAbertos = 0;
+
+        foreach ($todosItens as $it) {
+            $st = mb_strtolower((string) ($it['estado_conservacao'] ?? ''), 'UTF-8');
+            if (strpos($st, 'excelente') !== false || strpos($st, 'bom') !== false) {
+                $excelenteBom++;
+            } elseif (strpos($st, 'ruim') !== false || strpos($st, 'péssimo') !== false || strpos($st, 'pessimo') !== false) {
+                $atencaoProblema++;
+            } elseif (strpos($st, 'chamado') !== false) {
+                $chamadosAbertos++;
+            }
+        }
+
+        $data['stats'] = [
+            'total'           => $totalItens,
+            'excelenteBom'    => $excelenteBom,
+            'atencaoProblema' => $atencaoProblema,
+            'chamadosAbertos' => $chamadosAbertos,
+        ];
 
         echo view('templates/header');
         echo view('equipamentos', $data);

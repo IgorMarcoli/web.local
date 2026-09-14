@@ -31,6 +31,14 @@
             </div>
 
             <div class="col-4">
+                <div class="form-group position-relative">
+                    <label><i class="fas fa-user-tag text-info mr-1"></i> Pertence a (Servidor)</label>
+                    <input type="text" class="form-control nome-pertencente" name="pertence_a[]" autocomplete="off" placeholder="Nome do servidor...">
+                    <div class="list-group position-absolute w-100 lista-pertencentes" style="z-index:999; max-height:180px; overflow:auto;"></div>
+                </div>
+            </div>
+
+            <div class="col-4">
                 <div class="form-group">
                     <label>Nome do Solicitante</label>
                     <input type="text" class="form-control nome-solicitante" name="nome_recebedor[]" required autocomplete="off">
@@ -129,6 +137,132 @@
 </div>
 </div>
 
+<!-- Modal Detalhes do Servidor / Supervisor -->
+<div class="modal fade" id="modal-detalhes-servidor" tabindex="-1" role="dialog" aria-labelledby="modalServidorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+            
+            <!-- Header vibrante com gradiente azul/índigo de alto contraste -->
+            <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%); color: #ffffff; border-bottom: none;">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-white text-primary p-2 mr-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 44px; height: 44px; min-width: 44px; font-size: 1.3rem;">
+                        <i class="fas fa-id-badge text-primary"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title font-weight-bold text-white mb-0" id="modalServidorTitle" style="letter-spacing: 0.5px;">Dados do Servidor</h5>
+                        <small class="text-white-50 font-weight-light">Informações oficiais da tabela servidores</small>
+                    </div>
+                </div>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar" style="opacity: 0.9; text-shadow: none; font-size: 1.8rem; line-height: 1;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body p-4" style="background-color: #f8fafc;">
+                
+                <!-- Card Principal com Avatar e Nome -->
+                <div class="card border-0 shadow-sm mb-4" style="border-radius: 14px; background: #ffffff;">
+                    <div class="card-body p-3 d-flex align-items-center">
+                        <div id="modal-servidor-avatar" class="rounded-circle mr-3 d-flex align-items-center justify-content-center font-weight-bold shadow-sm" 
+                             style="width: 60px; height: 60px; min-width: 60px; background: linear-gradient(135deg, #0284c7, #0ea5e9); color: #ffffff; font-size: 1.4rem;">
+                            SB
+                        </div>
+                        <div class="flex-grow-1 overflow-hidden">
+                            <div class="d-flex align-items-center flex-wrap mb-1">
+                                <span id="modal-servidor-tipo" class="badge badge-pill badge-primary px-3 py-1 font-weight-bold mr-2 mb-1" style="background-color: #2563eb; font-size: 0.8rem; letter-spacing: 0.5px;">SERVIDOR</span>
+                                <span id="modal-servidor-badge-id" class="badge badge-pill badge-dark px-3 py-1 font-weight-bold mb-1" style="background-color: #0f172a; font-size: 0.8rem;">
+                                    <i class="fas fa-hashtag text-warning mr-1"></i>ID: <span id="modal-servidor-id">--</span>
+                                </span>
+                            </div>
+                            <h4 class="font-weight-bold text-dark mb-0 text-truncate" id="modal-servidor-nome-completo" style="color: #0f172a !important;">
+                                Nome do Servidor
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Informações Acessível com Cores Vivas -->
+                <div class="row">
+                    
+                    <!-- Card Ramal (Verde Esmeralda Vibrante) -->
+                    <div class="col-sm-6 col-12 mb-3">
+                        <div class="card h-100 border-0 shadow-sm p-3" style="border-radius: 12px; background: #ecfdf5; border-left: 5px solid #10b981 !important;">
+                            <div class="d-flex align-items-center mb-1">
+                                <div class="rounded-circle p-2 mr-2 d-flex align-items-center justify-content-center" style="background: #10b981; color: #fff; width: 32px; height: 32px; font-size: 0.9rem;">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <span class="font-weight-bold" style="color: #065f46; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Ramal Telefônico</span>
+                            </div>
+                            <div class="mt-2">
+                                <span id="modal-servidor-ramal" class="font-weight-bold text-dark" style="font-size: 1.25rem; color: #064e3b !important;">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Primeiro / Último Nome (Azul Celeste) -->
+                    <div class="col-sm-6 col-12 mb-3">
+                        <div class="card h-100 border-0 shadow-sm p-3" style="border-radius: 12px; background: #eff6ff; border-left: 5px solid #3b82f6 !important;">
+                            <div class="d-flex align-items-center mb-1">
+                                <div class="rounded-circle p-2 mr-2 d-flex align-items-center justify-content-center" style="background: #3b82f6; color: #fff; width: 32px; height: 32px; font-size: 0.9rem;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="font-weight-bold" style="color: #1e40af; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Primeiro / Sobrenome</span>
+                            </div>
+                            <div class="mt-2 text-dark font-weight-bold" style="font-size: 1.05rem;">
+                                <span id="modal-servidor-primeiro-nome">--</span> / <span id="modal-servidor-ultimo-nome">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Seção / Setor (Roxo Vibrante) -->
+                    <div class="col-sm-6 col-12 mb-3">
+                        <div class="card h-100 border-0 shadow-sm p-3" style="border-radius: 12px; background: #faf5ff; border-left: 5px solid #8b5cf6 !important;">
+                            <div class="d-flex align-items-center mb-1">
+                                <div class="rounded-circle p-2 mr-2 d-flex align-items-center justify-content-center" style="background: #8b5cf6; color: #fff; width: 32px; height: 32px; font-size: 0.9rem;">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <span class="font-weight-bold" style="color: #5b21b6; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Seção / Lotação</span>
+                            </div>
+                            <div class="mt-2 font-weight-bold" style="font-size: 1.05rem; color: #3b0764 !important;">
+                                <span id="modal-servidor-secao">Não informado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Serviço (Âmbar / Laranja Vibrante) -->
+                    <div class="col-sm-6 col-12 mb-3">
+                        <div class="card h-100 border-0 shadow-sm p-3" style="border-radius: 12px; background: #fffbeb; border-left: 5px solid #f59e0b !important;">
+                            <div class="d-flex align-items-center mb-1">
+                                <div class="rounded-circle p-2 mr-2 d-flex align-items-center justify-content-center" style="background: #f59e0b; color: #fff; width: 32px; height: 32px; font-size: 0.9rem;">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <span class="font-weight-bold" style="color: #92400e; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Serviço</span>
+                            </div>
+                            <div class="mt-2 font-weight-bold" style="font-size: 1.05rem; color: #78350f !important;">
+                                <span id="modal-servidor-servico">Não informado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Aviso caso não encontrado -->
+                <div id="modal-servidor-alerta-nao-encontrado" class="alert alert-warning border-0 shadow-sm mt-2 mb-0 d-none" style="border-radius: 10px; background-color: #fef3c7; color: #92400e;">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    Servidor não localizado na tabela servidores. Exibindo dados informados.
+                </div>
+
+            </div>
+
+            <div class="modal-footer py-2 px-4 bg-white border-top d-flex justify-content-between">
+                <small class="text-muted"><i class="fas fa-check-circle text-success mr-1"></i> Informações da Tabela Servidores</small>
+                <button type="button" class="btn btn-secondary font-weight-bold px-4 shadow-sm" data-dismiss="modal" style="border-radius: 8px;">Fechar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <form id="bulk-release-form" action="/emprestimos/salvarDataDevolucaoMultiplo" method="post" class="d-none">
     <?= csrf_field() ?>
 </form>
@@ -206,6 +340,13 @@
                             <?php endforeach; ?>
                         </select>
 
+                        <select name="pertence_a" class="form-control form-control-sm mr-2 mb-2">
+                            <option value="">Todos os pertencentes</option>
+                            <?php foreach ($nomesPertencentes as $nomeP): ?>
+                                <option value="<?= esc($nomeP) ?>" <?= ($filtros['pertence_a'] ?? '') === $nomeP ? 'selected' : '' ?>><?= esc($nomeP) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
                         <input type="date" name="data_emprestimo" class="form-control form-control-sm mr-2 mb-2" value="<?= esc($filtros['data_emprestimo'] ?? '') ?>" title="Data de recebimento">
                         <input type="date" name="data_devolucao" class="form-control form-control-sm mr-2 mb-2" value="<?= esc($filtros['data_devolucao'] ?? '') ?>" title="Data de devolução">
 
@@ -251,6 +392,7 @@
                                             <th class="text-center"><input type="checkbox" id="select-all-emprestimos"></th>
                                             <th>ID</th>
                                             <th>ID do Kit</th>
+                                            <th>Pertence a</th>
                                             <th>Setor</th>
                                             <th>Nome Solicitante</th>
                                             <th>Email Solicitante</th>
@@ -269,6 +411,7 @@
                                             <tr
                                                 data-id="<?= esc($e['id_emprestimo'] ?? '') ?>"
                                                 data-numero-mochila="<?= esc($e['numero_mochila']) ?>"
+                                                data-pertence-a="<?= esc($e['pertence_a'] ?? '') ?>"
                                                 data-nome-recebedor="<?= esc($e['nome_recebedor']) ?>"
                                                 data-email-recebedor="<?= esc($e['email_recebedor']) ?>"
                                                 data-setor="<?= esc($e['setor'] ?? '') ?>"
@@ -286,10 +429,37 @@
                                                 </td>
                                                 <td><?= esc($e['id_emprestimo'] ?? '-') ?></td>
                                                 <td><?= esc($e['numero_mochila']) ?></td>
+                                                <td>
+                                                    <?php if (!empty($e['pertence_a'])): ?>
+                                                        <button type="button" 
+                                                                class="btn btn-sm btn-outline-info font-weight-bold btn-abrir-servidor shadow-sm" 
+                                                                data-nome="<?= esc($e['pertence_a']) ?>" 
+                                                                title="Clique para ver informações completas do servidor"
+                                                                style="border-radius: 20px; padding: 2px 10px; border-width: 2px;">
+                                                            <i class="fas fa-user-circle mr-1 text-primary"></i><?= esc($e['pertence_a']) ?>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <span class="text-muted font-italic">-</span>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?= esc($e['setor_display'] ?? '-') ?></td>
-                                                <td><?= esc($e['nome_recebedor']) ?></td>
+                                                <td>
+                                                    <?= esc($e['nome_recebedor']) ?>
+                                                    <?php if (!empty($e['nome_recebedor'])): ?>
+                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_recebedor']) ?>" title="Ver informações do servidor/supervisor">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?= esc($e['email_recebedor']) ?></td>
-                                                <td><?= esc($e['nome_responsavel']) ?></td>
+                                                <td>
+                                                    <?= esc($e['nome_responsavel']) ?>
+                                                    <?php if (!empty($e['nome_responsavel'])): ?>
+                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_responsavel']) ?>" title="Ver informações do servidor/supervisor">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?= esc($e['status_equipamento']) ?></td>
                                                 <td><?= esc($e['numero_chamado']) ?></td>
                                                 <td><?= esc($e['data_emprestimo']) ?></td>
@@ -443,6 +613,36 @@
                 return;
             }
 
+            if (tipo === 'pertencente') {
+                const filtradas = (typeof servidoresData !== 'undefined' ? servidoresData : []).filter(function (item) {
+                    const nomeCompleto = (item.nome_completo || '').toLowerCase();
+                    const pNome = (item.nome || '').toLowerCase();
+                    const uNome = (item.ultimoNome || '').toLowerCase();
+                    return nomeCompleto.indexOf(texto) !== -1 || pNome.indexOf(texto) !== -1 || uNome.indexOf(texto) !== -1;
+                });
+
+                filtradas.slice(0, 8).forEach(function (item) {
+                    const itemLista = document.createElement('a');
+                    itemLista.className = 'list-group-item list-group-item-action py-2 d-flex justify-content-between align-items-center';
+                    itemLista.href = '#';
+                    itemLista.style.cursor = 'pointer';
+                    const ramalInfo = item.ramal ? `<span class="badge badge-success font-weight-normal"><i class="fas fa-phone-alt mr-1"></i>Ramal ${escapeHtml(item.ramal)}</span>` : '';
+                    itemLista.innerHTML = `<div><i class="fas fa-user-circle text-info mr-2"></i><strong>${escapeHtml(item.nome_completo || '')}</strong></div> ${ramalInfo}`;
+                    itemLista.onclick = function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        const pertencenteInput = group.querySelector('.nome-pertencente');
+                        if (pertencenteInput) {
+                            pertencenteInput.value = item.nome_completo || '';
+                            pertencenteInput.focus();
+                        }
+                        listaElemento.innerHTML = '';
+                    };
+                    listaElemento.appendChild(itemLista);
+                });
+                return;
+            }
+
             const baseServidores = (tipo === 'responsavel') ? servidoresResponsavel : servidoresData;
             const normalizedServidores = baseServidores.map(function (s) {
                 return Object.assign({}, s, { tipo: s.tipo || 'servidor' });
@@ -509,7 +709,7 @@
         }
 
         function clearAllSuggestions() {
-            document.querySelectorAll('.lista-solicitantes, .lista-responsaveis').forEach(function (lista) {
+            document.querySelectorAll('.lista-solicitantes, .lista-responsaveis, .lista-pertencentes').forEach(function (lista) {
                 lista.innerHTML = '';
             });
         }
@@ -623,6 +823,7 @@
         function createEditGroupMarkup(row) {
             const id = row.dataset.id || '';
             const numeroMochila = row.dataset.numeroMochila || '';
+            const pertenceA = row.dataset.pertenceA || '';
             const nomeRecebedor = row.dataset.nomeRecebedor || '';
             const emailRecebedor = row.dataset.emailRecebedor || '';
             const setor = row.dataset.setor || '';
@@ -649,6 +850,13 @@
                                     <select name="numero_mochila[]" class="form-control numero-mochila" required>
                                         ${buildKitOptionsHtml(numeroMochila)}
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group position-relative">
+                                    <label><i class="fas fa-user-tag text-info mr-1"></i> Pertence a (Servidor)</label>
+                                    <input type="text" name="pertence_a[]" class="form-control nome-pertencente" autocomplete="off" value="${escapeHtml(pertenceA)}" placeholder="Nome do servidor...">
+                                    <div class="list-group position-absolute w-100 lista-pertencentes" style="z-index:999; max-height:180px; overflow:auto;"></div>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -1134,6 +1342,8 @@
         function bindGroupHandlers(group) {
             if (!group) return;
 
+            const nomePertencenteInput = group.querySelector('.nome-pertencente');
+            const listaPertencentes = group.querySelector('.lista-pertencentes');
             const nomeSolicitanteInput = group.querySelector('.nome-solicitante');
             const nomeResponsavelInput = group.querySelector('.nome-responsavel');
             const listaSolicitantes = group.querySelector('.lista-solicitantes');
@@ -1166,6 +1376,13 @@
             if (statusCheckbox) {
                 statusCheckbox.addEventListener('change', toggleChamado);
                 toggleChamado();
+            }
+
+            if (nomePertencenteInput && listaPertencentes) {
+                nomePertencenteInput.addEventListener('input', function () {
+                    const texto = this.value.trim().toLowerCase();
+                    mostrarSugestoes(texto, listaPertencentes, 'pertencente', group);
+                });
             }
 
             if (nomeSolicitanteInput) {
@@ -1246,9 +1463,134 @@
 
         document.addEventListener('click', function (event) {
             if (!event.target.closest('.emprestimo-group')) {
-                document.querySelectorAll('.lista-solicitantes, .lista-responsaveis').forEach(function (lista) {
+                document.querySelectorAll('.lista-solicitantes, .lista-responsaveis, .lista-pertencentes').forEach(function (lista) {
                     lista.innerHTML = '';
                 });
+            }
+        });
+
+        // ===============================================
+        // MODAL DE DETALHES DO SERVIDOR / SUPERVISOR
+        // ===============================================
+        window.abrirModalServidor = function (nomeBuscado) {
+            if (!nomeBuscado) return;
+            nomeBuscado = String(nomeBuscado).trim();
+            if (!nomeBuscado) return;
+
+            const modalEl = $('#modal-detalhes-servidor');
+            const alertNaoEncontrado = document.getElementById('modal-servidor-alerta-nao-encontrado');
+            if (alertNaoEncontrado) alertNaoEncontrado.classList.add('d-none');
+
+            // Valores iniciais de placeholder
+            document.getElementById('modal-servidor-nome-completo').textContent = nomeBuscado;
+            document.getElementById('modal-servidor-avatar').textContent = nomeBuscado.substring(0, 2).toUpperCase();
+            document.getElementById('modal-servidor-id').textContent = '--';
+            document.getElementById('modal-servidor-primeiro-nome').textContent = '--';
+            document.getElementById('modal-servidor-ultimo-nome').textContent = '--';
+            document.getElementById('modal-servidor-ramal').textContent = '--';
+            document.getElementById('modal-servidor-secao').textContent = '--';
+            document.getElementById('modal-servidor-servico').textContent = '--';
+
+            const lowerBuscado = nomeBuscado.toLowerCase();
+
+            // 1. Busca local na lista de servidores
+            let servidor = (typeof servidoresData !== 'undefined' ? servidoresData : []).find(function (item) {
+                if (!item) return false;
+                const nc = (item.nome_completo || '').toLowerCase();
+                const p = (item.nome || '').toLowerCase();
+                const u = (item.ultimoNome || '').toLowerCase();
+                return nc === lowerBuscado || p === lowerBuscado || nc.includes(lowerBuscado) || lowerBuscado.includes(nc);
+            });
+
+            if (servidor) {
+                preencherModalComServidor(servidor);
+                modalEl.modal('show');
+                return;
+            }
+
+            // 2. Busca local na lista de supervisores
+            let supervisor = (typeof supervisoresExtras !== 'undefined' ? supervisoresExtras : []).find(function (item) {
+                if (!item) return false;
+                const nc = (item.nome_completo || item.nome || '').toLowerCase();
+                return nc === lowerBuscado || nc.includes(lowerBuscado) || lowerBuscado.includes(nc);
+            });
+
+            if (supervisor) {
+                preencherModalComSupervisor(supervisor);
+                modalEl.modal('show');
+                return;
+            }
+
+            // 3. Fallback AJAX para buscar dinamicamente na rota do servidor
+            fetch('/emprestimos/getServidorDetalhes?nome=' + encodeURIComponent(nomeBuscado))
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data && data.encontrado && data.dados) {
+                        if (data.tipo === 'supervisor') {
+                            preencherModalComSupervisor(data.dados);
+                        } else {
+                            preencherModalComServidor(data.dados);
+                        }
+                    } else {
+                        if (alertNaoEncontrado) alertNaoEncontrado.classList.remove('d-none');
+                        const tipoBadge = document.getElementById('modal-servidor-tipo');
+                        tipoBadge.textContent = 'NÃO LOCALIZADO';
+                        tipoBadge.className = 'badge badge-pill badge-secondary px-3 py-1 font-weight-bold mr-2 mb-1';
+                    }
+                    modalEl.modal('show');
+                })
+                .catch(function () {
+                    if (alertNaoEncontrado) alertNaoEncontrado.classList.remove('d-none');
+                    modalEl.modal('show');
+                });
+        };
+
+        function preencherModalComServidor(s) {
+            const nomeCompleto = s.nome_completo || (trim((s.nome || '') + ' ' + (s.ultimoNome || '')));
+            document.getElementById('modal-servidor-nome-completo').textContent = nomeCompleto;
+            const pChar = (s.nome ? s.nome.charAt(0) : '');
+            const uChar = (s.ultimoNome ? s.ultimoNome.charAt(0) : (nomeCompleto.length > 1 ? nomeCompleto.charAt(1) : ''));
+            document.getElementById('modal-servidor-avatar').textContent = (pChar + uChar).toUpperCase() || 'SV';
+            document.getElementById('modal-servidor-id').textContent = s.servidorID || s.id || '--';
+            document.getElementById('modal-servidor-primeiro-nome').textContent = s.nome || '-';
+            document.getElementById('modal-servidor-ultimo-nome').textContent = s.ultimoNome || '-';
+            document.getElementById('modal-servidor-ramal').textContent = s.ramal || 'Não informado';
+            document.getElementById('modal-servidor-secao').textContent = s.secao_nome || (s.secao ? 'Seção #' + s.secao : 'Não informada');
+            document.getElementById('modal-servidor-servico').textContent = s.servico_nome || (s.servico ? 'Serviço #' + s.servico : 'Não informado');
+            
+            const tipoBadge = document.getElementById('modal-servidor-tipo');
+            tipoBadge.textContent = 'SERVIDOR';
+            tipoBadge.className = 'badge badge-pill badge-primary px-3 py-1 font-weight-bold mr-2 mb-1';
+            tipoBadge.style.backgroundColor = '#2563eb';
+        }
+
+        function preencherModalComSupervisor(sup) {
+            const nomeCompleto = sup.nome_completo || sup.nome || '';
+            document.getElementById('modal-servidor-nome-completo').textContent = nomeCompleto;
+            document.getElementById('modal-servidor-avatar').textContent = nomeCompleto.substring(0, 2).toUpperCase() || 'SP';
+            document.getElementById('modal-servidor-id').textContent = sup.id || sup.SupervisorId || '--';
+            document.getElementById('modal-servidor-primeiro-nome').textContent = sup.nome || nomeCompleto;
+            document.getElementById('modal-servidor-ultimo-nome').textContent = '-';
+            document.getElementById('modal-servidor-ramal').textContent = sup.ramal || 'Não informado';
+            document.getElementById('modal-servidor-secao').textContent = sup.setor_nome || (sup.setor_id ? 'Setor ' + sup.setor_id : 'Supervisão de Ensino');
+            document.getElementById('modal-servidor-servico').textContent = sup.servico_nome || 'Supervisão';
+            
+            const tipoBadge = document.getElementById('modal-servidor-tipo');
+            tipoBadge.textContent = 'SUPERVISOR';
+            tipoBadge.className = 'badge badge-pill badge-success px-3 py-1 font-weight-bold mr-2 mb-1';
+            tipoBadge.style.backgroundColor = '#10b981';
+        }
+
+        // Delegação de evento de clique em .btn-abrir-servidor
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-abrir-servidor');
+            if (btn) {
+                e.preventDefault();
+                e.stopPropagation();
+                const nome = btn.getAttribute('data-nome') || btn.dataset.nome;
+                if (nome) {
+                    abrirModalServidor(nome);
+                }
             }
         });
     });

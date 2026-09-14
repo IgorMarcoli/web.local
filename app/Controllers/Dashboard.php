@@ -15,8 +15,8 @@ class Dashboard extends BaseController
         $agenda = new AgendaModel();
         $field = new FieldsModel();
 
-        $mesAtual = date('m');
-        $anoAtual = date('Y');
+        $mesAtual = (int) date('m');
+        $anoAtual = (int) date('Y');
 
           /*grafico tecnico 
         $porTecnico = $visitas
@@ -28,38 +28,38 @@ class Dashboard extends BaseController
         */
         // CHAMADOS
          $totalChamados = $agenda
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->countAllResults();
         // separados por status
         $totalChamados = $agenda
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->countAllResults();
 
     // separados por status, também filtrando pelo mês
     $abertos = $agenda
         ->where('status', 'pendente')
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->countAllResults();
 
     $resolvidos = $agenda
         ->where('status', 'concluido')
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->countAllResults();
 
     $naoResolvidos = $agenda
         ->where('status', 'NA')
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->countAllResults();
 
     $statusChamados = $agenda
         ->select('status, COUNT(*) as total')
-        ->where('MONTH(Data)', $mesAtual)
-        ->where('YEAR(Data)', $anoAtual)
+->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
         ->groupBy('status')
         ->findAll();
 
@@ -72,9 +72,9 @@ class Dashboard extends BaseController
         $totalVisitas = $agenda ->countAll();
 
         $visitasPendentes = $visitas
-        ->select('visitas.*, escolas.Nome, escolas.Endereco')
-        ->join('escolas', 'escolas.EscolaId = visitas.EscolaId')
-        ->where('visitas.status', 'Pendente')
+        ->select('visitas.*, escolas."nome", escolas."escola_endereco"')
+        ->join('escolas', 'escolas."id" = visitas."EscolaId"')
+        ->where('visitas.Status', 'Pendente')
         ->findAll();
 
         $data = [

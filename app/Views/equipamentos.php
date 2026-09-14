@@ -1,272 +1,400 @@
+<style>
+    /* Estilos responsivos e limpos */
+    .kpi-box {
+        border-radius: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .kpi-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    }
+    .kpi-box .inner h3 {
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .kpi-box .inner p {
+        font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+        margin-bottom: 0;
+        opacity: 0.9;
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    .badge-status {
+        font-size: 0.8rem;
+        padding: 0.4em 0.65em;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+    .code-tag {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.82rem;
+        background-color: #f1f3f5;
+        border: 1px solid #e9ecef;
+        padding: 0.2em 0.45em;
+        border-radius: 4px;
+        color: #343a40;
+    }
+    .empty-state {
+        padding: 45px 15px;
+        text-align: center;
+    }
+    .empty-state i {
+        font-size: 3.2rem;
+        color: #ced4da;
+        margin-bottom: 12px;
+    }
+    @media (max-width: 767.98px) {
+        .content-header h1 {
+            font-size: 1.35rem;
+        }
+    }
+    @media print {
+        .main-sidebar, .main-header, .main-footer, .no-print, .btn, .modal {
+            display: none !important;
+        }
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding: 0 !important;
+        }
+        .card {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+</style>
 
-<div class="modal fade" id="modal-novo-equipamento">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form action="/equipamentos/salvarMultiplo" method="post">
+<!-- Modal Único de Equipamento (Cadastro e Edição) -->
+<div class="modal fade" id="modal-equipamento" tabindex="-1" role="dialog" aria-labelledby="modalEquipamentoTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+            <form id="form-equipamento" action="/equipamentos/salvar" method="post">
                 <?= csrf_field() ?>
-                <div class="modal-header">
-                    <h4 class="modal-title">Registrar Equipamento</h4>
-                    <button type="button" id="btn-add-equipamento" class="btn btn-sm btn-success ml-3">Adicionar</button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <input type="hidden" id="equip-id-item" name="id_item" value="">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title font-weight-bold" id="modalEquipamentoTitulo">
+                        <i class="fas fa-laptop mr-2"></i>Novo Equipamento
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height:60vh; overflow:auto;">
-                    <div id="equipamento-groups">
-                        <div class="equipamento-group" data-index="0">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tipo</label>
-                                                <input type="text" class="form-control" name="tipo[]" value="" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Marca e Modelo</label>
-                                                <input type="text" class="form-control" name="marca_modelo[]" value="" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nº de Patrimônio</label>
-                                                <input type="text" class="form-control" name="patrimonio[]" value="" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nº de Serial</label>
-                                                <input type="text" class="form-control" name="serial[]" value="" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Estado de Conservação</label>
-                                                <select class="form-control" name="estado_conservacao[]" required>
-                                                    <option value="">Selecione</option>
-                                                    <option value="Excelente">Excelente</option>
-                                                    <option value="Bom">Bom</option>
-                                                    <option value="Ruim">Ruim</option>
-                                                    <option value="Péssimo">Péssimo</option>
-                                                    <option value="Chamado Aberto">Chamado Aberto</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Categoria</label>
-                                                <select class="form-control" name="categoria[]" required>
-                                                    <option value="">Selecione</option>
-                                                    <?php if (!empty($categorias)) : ?>
-                                                        <?php foreach ($categorias as $categoriaOpcao) : ?>
-                                                            <option value="<?= esc($categoriaOpcao['nome'] ?? '') ?>"><?= esc($categoriaOpcao['nome'] ?? '-') ?></option>
-                                                        <?php endforeach; ?>
-                                                    <?php endif; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nome da Sala</label>
-                                                <select class="form-control" name="sala[]">
-                                                    <option value="">Selecione</option>
-                                                    <?php if (!empty($salas)) : ?>
-                                                        <?php foreach ($salas as $salaOpcao) : ?>
-                                                            <option value="<?= esc($salaOpcao['id_sala'] ?? '') ?>"><?= esc($salaOpcao['nome_sala'] ?? '-') ?></option>
-                                                        <?php endforeach; ?>
-                                                    <?php endif; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end mt-2">
-                                        <button type="button" class="btn btn-danger btn-sm btn-remove-equipamento-group">Remover</button>
-                                    </div>
-                                </div>
-                            </div>
+
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="font-weight-bold">Tipo <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="equip-tipo" name="tipo" placeholder="Ex: Computador, Monitor, Nobreak..." required>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="font-weight-bold">Marca e Modelo <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="equip-marca-modelo" name="marca_modelo" placeholder="Ex: Dell OptiPlex 3080..." required>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="font-weight-bold">Nº de Patrimônio <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="equip-patrimonio" name="patrimonio" placeholder="Ex: PAT-10492" required>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="font-weight-bold">Nº de Serial <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="equip-serial" name="serial" placeholder="Ex: BRJ1234XYZ" required>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <label class="font-weight-bold">Estado de Conservação <span class="text-danger">*</span></label>
+                            <select class="form-control" id="equip-estado" name="estado_conservacao" required>
+                                <option value="">Selecione...</option>
+                                <option value="Excelente">Excelente</option>
+                                <option value="Bom" selected>Bom</option>
+                                <option value="Ruim">Ruim</option>
+                                <option value="Péssimo">Péssimo</option>
+                                <option value="Chamado Aberto">Chamado Aberto</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <label class="font-weight-bold">Categoria <span class="text-danger">*</span></label>
+                            <select class="form-control" id="equip-categoria" name="categoria" required>
+                                <option value="">Selecione...</option>
+                                <?php if (!empty($categorias)) : ?>
+                                    <?php foreach ($categorias as $cat) : ?>
+                                        <option value="<?= esc($cat['nome'] ?? '') ?>"><?= esc($cat['nome'] ?? '-') ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <label class="font-weight-bold">Sala</label>
+                            <select class="form-control" id="equip-sala" name="sala">
+                                <option value="">Selecione...</option>
+                                <?php if (!empty($salas)) : ?>
+                                    <?php foreach ($salas as $sala) : ?>
+                                        <option value="<?= esc($sala['id_sala'] ?? '') ?>"><?= esc($sala['nome_sala'] ?? '-') ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
+
+                <div class="modal-footer bg-light justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="btn-salvar-equipamento">
+                        <i class="fas fa-save mr-1"></i> Cadastrar
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modal-editar-equipamentos">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form action="/equipamentos/editarMultiplo" method="post">
-                <?= csrf_field() ?>
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar Equipamentos Selecionados</h4>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div id="editar-equipamento-groups"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar alterações</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<form id="bulk-delete-equipamentos" action="/equipamentos/excluirMultiplo" method="post" class="d-none">
-    <?= csrf_field() ?>
-</form>
-
+<!-- Content Wrapper -->
 <div class="content-wrapper">
+    <!-- Header da Página -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Registro de Equipamentos</h1>
+            <div class="row align-items-center justify-content-between mb-2">
+                <div class="col-auto">
+                    <h1 class="m-0 font-weight-bold text-dark d-flex align-items-center">
+                        <i class="fas fa-desktop text-primary mr-2"></i> Equipamentos
+                    </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active">Equipamentos</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="container-fluid">
-            <?php if (isset($_GET['alert']) && $_GET['alert'] === 'successCreate') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Equipamento registrado com sucesso.
-                        </div>
-                    </div>
-                </div>
-            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'errorCreate') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Erro</h5>
-                            Falha ao registrar o equipamento.
-                        </div>
-                    </div>
-                </div>
-            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'successEdit') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Equipamento atualizado com sucesso.
-                        </div>
-                    </div>
-                </div>
-            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'errorEdit') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Erro</h5>
-                            Falha ao atualizar o equipamento.
-                        </div>
-                    </div>
-                </div>
-            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'successDelete') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Equipamento removido com sucesso.
-                        </div>
-                    </div>
-                </div>
-            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'errorDelete') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Erro</h5>
-                            Falha ao remover o equipamento.
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-            <div class="row mb-3">
-                <div class="col-12 d-flex align-items-center flex-wrap">
-                    <button type="button" class="btn btn-info mr-2 mb-2" data-toggle="modal" data-target="#modal-novo-equipamento" onclick="resetarModalEquipamento()">
-                        <i class="fas fa-plus-circle"></i> Novo Equipamento
+                <div class="col-auto d-flex align-items-center flex-wrap no-print">
+                    <button type="button" class="btn btn-success shadow-sm font-weight-bold mr-2 my-1" onclick="abrirModalNovo()">
+                        <i class="fas fa-plus mr-1"></i> Novo Equipamento
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary shadow-sm my-1" onclick="window.print()" title="Imprimir Relatório">
+                        <i class="fas fa-print mr-1"></i> Imprimir
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="row mb-3">
-                <div class="col-12">
-                    <div id="bulk-actions-equipamentos" class="d-none align-items-center mb-2">
-                        <span id="bulk-selected-count-equipamentos" class="mr-3 font-weight-bold"></span>
-                        <button type="button" class="btn btn-warning btn-sm mr-2" id="btn-bulk-editar-equipamentos">Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="btn-bulk-apagar-equipamentos">Apagar</button>
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <!-- Alertas de Feedback -->
+            <?php if (isset($_GET['alert']) && $_GET['alert'] === 'successCreate') : ?>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Equipamento registrado com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'successEdit') : ?>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Equipamento atualizado com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php elseif (isset($_GET['alert']) && $_GET['alert'] === 'successDelete') : ?>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Equipamento excluído com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php elseif (isset($_GET['alert']) && in_array($_GET['alert'], ['errorCreate', 'errorEdit', 'errorDelete'])) : ?>
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-exclamation-triangle mr-2"></i> Ocorreu um erro ao processar a solicitação.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php endif; ?>
+
+            <!-- Cards Indicadores (KPIs) Responsivos -->
+            <div class="row no-print mb-2">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-info kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $stats['total'] ?? count($itens) ?></h3>
+                            <p>Total Geral</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-laptop"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-success kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $stats['excelenteBom'] ?? 0 ?></h3>
+                            <p>Em Bom Estado</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-warning kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $stats['atencaoProblema'] ?? 0 ?></h3>
+                            <p>Ruim / Péssimo</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-danger kpi-box shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $stats['chamadosAbertos'] ?? 0 ?></h3>
+                            <p>Chamados Abertos</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-headset"></i></div>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center"><input type="checkbox" id="select-all-equipamentos"></th>
-                                        <th>ID</th>
-                                        <th>Tipo</th>
-                                        <th>Marca e Modelo</th>
-                                        <th>Nº de Patrimônio</th>
-                                        <th>Nº de Serial</th>
-                                        <th>Estado de Conservação</th>
-                                        <th>Categoria</th>
-                                        <th>Nº do Andar</th>
-                                        <th>Nome da Sala</th>
-                                        <th>Data Registro</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (!empty($itens)) : ?>
-                                        <?php foreach ($itens as $item) : ?>
-                                            <tr data-id="<?= esc($item['id_item'] ?? '', 'attr') ?>"
-                                                data-tipo="<?= esc($item['tipo'] ?? '', 'attr') ?>"
-                                                data-marca="<?= esc($item['marca_modelo'] ?? '', 'attr') ?>"
-                                                data-patrimonio="<?= esc($item['patrimonio'] ?? '', 'attr') ?>"
-                                                data-serial="<?= esc($item['serial'] ?? '', 'attr') ?>"
-                                                data-estado="<?= esc($item['estado_conservacao'] ?? '', 'attr') ?>"
-                                                data-categoria="<?= esc($item['categoria'] ?? '', 'attr') ?>"
-                                                data-sala="<?= esc($item['sala'] ?? '', 'attr') ?>">
-                                                <td class="text-center"><input type="checkbox" class="row-select-equipamento"></td>
-                                                <td><?= esc($item['id_item'] ?? '-') ?></td>
-                                                <td><?= esc($item['tipo'] ?? '-') ?></td>
-                                                <td><?= esc($item['marca_modelo'] ?? '-') ?></td>
-                                                <td><?= esc($item['patrimonio'] ?? '-') ?></td>
-                                                <td><?= esc($item['serial'] ?? '-') ?></td>
-                                                <td><?= esc($item['estado_conservacao'] ?? '-') ?></td>
-                                                <td><?= esc($item['categoria'] ?? '-') ?></td>
-                                                <td><?= esc($item['andar'] ?? '-') ?></td>
-                                                <td><?= esc($item['nome_sala'] ?? $item['sala'] ?? '-') ?></td>
-                                                <td><?= esc($item['data_registro'] ?? '-') ?></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-novo-equipamento" onclick="prepararDadosEquipamento(
+            <!-- Filtros de Pesquisa Simplificados e Responsivos -->
+            <div class="card card-outline card-primary shadow-sm no-print mb-3">
+                <div class="card-body p-3">
+                    <form action="/equipamentos" method="get">
+                        <div class="row align-items-end">
+                            <div class="col-12 col-md-4 col-lg-4 mb-2 mb-md-0">
+                                <label class="small text-muted font-weight-bold mb-1">Pesquisa rápida:</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="busca" id="input-busca-geral"
+                                           placeholder="Tipo, modelo, serial ou patrimônio..."
+                                           value="<?= esc($filtros['busca'] ?? '') ?>">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2 mb-2 mb-md-0">
+                                <label class="small text-muted font-weight-bold mb-1">Estado:</label>
+                                <select class="form-control form-control-sm" name="estado">
+                                    <option value="">Todos</option>
+                                    <option value="Excelente" <?= (($filtros['estado'] ?? '') === 'Excelente') ? 'selected' : '' ?>>Excelente</option>
+                                    <option value="Bom" <?= (($filtros['estado'] ?? '') === 'Bom') ? 'selected' : '' ?>>Bom</option>
+                                    <option value="Ruim" <?= (($filtros['estado'] ?? '') === 'Ruim') ? 'selected' : '' ?>>Ruim</option>
+                                    <option value="Péssimo" <?= (($filtros['estado'] ?? '') === 'Péssimo') ? 'selected' : '' ?>>Péssimo</option>
+                                    <option value="Chamado Aberto" <?= (($filtros['estado'] ?? '') === 'Chamado Aberto') ? 'selected' : '' ?>>Chamado Aberto</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2 mb-2 mb-md-0">
+                                <label class="small text-muted font-weight-bold mb-1">Categoria:</label>
+                                <select class="form-control form-control-sm" name="categoria">
+                                    <option value="">Todas</option>
+                                    <?php if (!empty($categorias)): ?>
+                                        <?php foreach ($categorias as $cat): ?>
+                                            <?php $nomeCat = $cat['nome'] ?? ''; ?>
+                                            <option value="<?= esc($nomeCat) ?>" <?= (($filtros['categoria'] ?? '') === $nomeCat) ? 'selected' : '' ?>>
+                                                <?= esc($nomeCat) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2 col-lg-2 mb-2 mb-md-0">
+                                <label class="small text-muted font-weight-bold mb-1">Sala:</label>
+                                <select class="form-control form-control-sm" name="sala">
+                                    <option value="">Todas</option>
+                                    <?php if (!empty($salas)): ?>
+                                        <?php foreach ($salas as $sl): ?>
+                                            <?php $idSl = $sl['id_sala'] ?? ''; $nomeSl = $sl['nome_sala'] ?? ''; ?>
+                                            <option value="<?= esc($idSl) ?>" <?= (($filtros['sala'] ?? '') == $idSl) ? 'selected' : '' ?>>
+                                                <?= esc($nomeSl) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-12 col-lg-2 d-flex">
+                                <button type="submit" class="btn btn-primary btn-sm flex-fill mr-1" title="Aplicar Filtros">
+                                    <i class="fas fa-filter mr-1"></i> Filtrar
+                                </button>
+                                <?php if (!empty($filtros['busca']) || !empty($filtros['estado']) || !empty($filtros['categoria']) || !empty($filtros['sala'])): ?>
+                                    <a href="/equipamentos" class="btn btn-outline-secondary btn-sm" title="Limpar Filtros">
+                                        <i class="fas fa-undo"></i>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tabela Principal Limpa e 100% Responsiva -->
+            <div class="card card-outline card-secondary shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                    <h3 class="card-title font-weight-bold text-dark mb-0 small text-uppercase">
+                        <i class="fas fa-list mr-1"></i> Lista de Equipamentos
+                    </h3>
+                    <span class="badge badge-primary badge-pill px-2 py-1">
+                        <?= count($itens) ?> <?= (count($itens) === 1) ? 'item' : 'itens' ?>
+                    </span>
+                </div>
+
+                <div class="card-body p-0 table-responsive">
+                    <table class="table table-hover table-striped mb-0 text-nowrap" id="tabela-equipamentos">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Marca e Modelo</th>
+                                <th>Nº Patrimônio</th>
+                                <th>Nº Serial</th>
+                                <th>Estado</th>
+                                <th>Categoria</th>
+                                <th>Sala / Andar</th>
+                                <th>Data</th>
+                                <th class="text-center no-print" style="width: 100px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($itens)) : ?>
+                                <?php foreach ($itens as $item) : ?>
+                                    <?php
+                                        $st = trim((string)($item['estado_conservacao'] ?? ''));
+                                        $stLower = mb_strtolower($st, 'UTF-8');
+                                        $badgeClass = 'badge-secondary';
+                                        if (strpos($stLower, 'excelente') !== false) {
+                                            $badgeClass = 'badge-success';
+                                        } elseif (strpos($stLower, 'bom') !== false) {
+                                            $badgeClass = 'badge-info';
+                                        } elseif (strpos($stLower, 'ruim') !== false) {
+                                            $badgeClass = 'badge-warning';
+                                        } elseif (strpos($stLower, 'péssimo') !== false || strpos($stLower, 'pessimo') !== false) {
+                                            $badgeClass = 'badge-danger';
+                                        } elseif (strpos($stLower, 'chamado') !== false) {
+                                            $badgeClass = 'badge-danger';
+                                        }
+                                    ?>
+                                    <tr class="linha-equipamento">
+                                        <td class="font-weight-bold text-dark">
+                                            <i class="fas fa-desktop text-primary mr-1"></i><?= esc($item['tipo'] ?? '-') ?>
+                                        </td>
+                                        <td><?= esc($item['marca_modelo'] ?? '-') ?></td>
+                                        <td>
+                                            <?php if (!empty($item['patrimonio'])): ?>
+                                                <span class="code-tag"><?= esc($item['patrimonio']) ?></span>
+                                            <?php else: ?>
+                                                <span class="text-muted">-</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php if (!empty($item['serial'])): ?>
+                                                <span class="code-tag"><?= esc($item['serial']) ?></span>
+                                            <?php else: ?>
+                                                <span class="text-muted">-</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-status <?= $badgeClass ?>">
+                                                <?= esc($st ?: '-') ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-light border"><?= esc($item['categoria'] ?? '-') ?></span>
+                                        </td>
+                                        <td>
+                                            <?php if (!empty($item['nome_sala'] ?? $item['sala'])): ?>
+                                                <i class="fas fa-door-open text-muted mr-1"></i><?= esc($item['nome_sala'] ?? $item['sala']) ?>
+                                                <?php if (!empty($item['andar'])): ?>
+                                                    <small class="text-muted d-block"><?= esc($item['andar']) ?>º andar</small>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <span class="text-muted">-</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><small class="text-muted"><?= esc($item['data_registro'] ?? '-') ?></small></td>
+                                        <td class="text-center no-print">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" title="Editar" 
+                                                    onclick="abrirModalEditar(
                                                         '<?= esc($item['id_item'] ?? '', 'js') ?>',
                                                         '<?= esc($item['tipo'] ?? '', 'js') ?>',
                                                         '<?= esc($item['marca_modelo'] ?? '', 'js') ?>',
@@ -274,29 +402,43 @@
                                                         '<?= esc($item['serial'] ?? '', 'js') ?>',
                                                         '<?= esc($item['estado_conservacao'] ?? '', 'js') ?>',
                                                         '<?= esc($item['categoria'] ?? '', 'js') ?>',
-                                                        '<?= esc($item['andar'] ?? '', 'js') ?>',
                                                         '<?= esc($item['sala'] ?? '', 'js') ?>'
                                                     )">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <form action="/equipamentos/excluir/<?= esc($item['id_item'] ?? '', 'url') ?>" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este equipamento?');">
-                                                        <?= csrf_field() ?>
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <tr>
-                                            <td colspan="12" class="text-center">Nenhum equipamento registrado ainda.</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form action="/equipamentos/excluir/<?= esc($item['id_item'] ?? '', 'url') ?>" method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este equipamento?');">
+                                                <?= csrf_field() ?>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger ml-1" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="empty-state">
+                                            <i class="fas fa-box-open"></i>
+                                            <h5 class="text-secondary font-weight-bold">Nenhum equipamento encontrado</h5>
+                                            <p class="text-muted mb-3">Não há equipamentos cadastrados ou correspondentes aos filtros.</p>
+                                            <button type="button" class="btn btn-sm btn-primary" onclick="abrirModalNovo()">
+                                                <i class="fas fa-plus mr-1"></i> Cadastrar Equipamento
+                                            </button>
+                                            <?php if (!empty($filtros['busca']) || !empty($filtros['estado']) || !empty($filtros['categoria']) || !empty($filtros['sala'])): ?>
+                                                <a href="/equipamentos" class="btn btn-sm btn-outline-secondary ml-2">
+                                                    <i class="fas fa-undo mr-1"></i> Limpar Filtros
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -305,236 +447,50 @@
     function removerParametroAlerta() {
         const url = new URL(window.location.href);
         url.searchParams.delete('alert');
-        const newUrl = url.pathname + (url.search ? url.search : '');
-        window.history.replaceState({}, document.title, newUrl);
+        window.history.replaceState({}, document.title, url.pathname + (url.search ? url.search : ''));
     }
 
-    function resetarModalEquipamento() {
-        const form = document.querySelector('#modal-novo-equipamento form');
-        if (!form) {
-            return;
-        }
-
-        const existingHiddenId = form.querySelector('input[name="id_item"]');
-        if (existingHiddenId) {
-            existingHiddenId.remove();
-        }
-
-        form.reset();
-        form.action = '/equipamentos/salvarMultiplo';
-        document.querySelector('#modal-novo-equipamento .modal-title').textContent = 'Registrar Equipamento';
-        document.querySelector('#modal-novo-equipamento .btn-primary').innerHTML = '<i class="fas fa-save"></i> Cadastrar';
+    function abrirModalNovo() {
+        document.getElementById('form-equipamento').reset();
+        document.getElementById('equip-id-item').value = '';
+        document.getElementById('modalEquipamentoTitulo').innerHTML = '<i class="fas fa-plus-circle mr-2"></i>Novo Equipamento';
+        document.getElementById('btn-salvar-equipamento').innerHTML = '<i class="fas fa-save mr-1"></i>Cadastrar';
+        $('#modal-equipamento').modal('show');
     }
 
-    function prepararDadosEquipamento(idItem, tipo, marcaModelo, patrimonio, serial, estadoConservacao, categoria, andar, sala) {
-        const form = document.querySelector('#modal-novo-equipamento form');
-        if (!form) {
-            return;
-        }
+    function abrirModalEditar(id, tipo, marcaModelo, patrimonio, serial, estado, categoria, sala) {
+        document.getElementById('equip-id-item').value = id || '';
+        document.getElementById('equip-tipo').value = tipo || '';
+        document.getElementById('equip-marca-modelo').value = marcaModelo || '';
+        document.getElementById('equip-patrimonio').value = patrimonio || '';
+        document.getElementById('equip-serial').value = serial || '';
+        document.getElementById('equip-estado').value = estado || '';
+        document.getElementById('equip-categoria').value = categoria || '';
+        document.getElementById('equip-sala').value = sala || '';
 
-        const existingHiddenId = form.querySelector('input[name="id_item"]');
-        if (existingHiddenId) {
-            existingHiddenId.remove();
-        }
-
-        const hiddenId = document.createElement('input');
-        hiddenId.type = 'hidden';
-        hiddenId.name = 'id_item';
-        hiddenId.value = idItem || '';
-        form.appendChild(hiddenId);
-
-        form.querySelector('[name="tipo[]"]').value = tipo || '';
-        form.querySelector('[name="marca_modelo[]"]').value = marcaModelo || '';
-        form.querySelector('[name="patrimonio[]"]').value = patrimonio || '';
-        form.querySelector('[name="serial[]"]').value = serial || '';
-        form.querySelector('[name="estado_conservacao[]"]').value = estadoConservacao || '';
-        form.querySelector('[name="categoria[]"]').value = categoria || '';
-        form.querySelector('[name="sala[]"]').value = sala || '';
-        form.action = '/equipamentos/editar';
-        document.querySelector('#modal-novo-equipamento .modal-title').textContent = 'Editar Equipamento';
-        document.querySelector('#modal-novo-equipamento .btn-primary').innerHTML = '<i class="fas fa-save"></i> Atualizar';
+        document.getElementById('modalEquipamentoTitulo').innerHTML = '<i class="fas fa-edit mr-2"></i>Editar Equipamento';
+        document.getElementById('btn-salvar-equipamento').innerHTML = '<i class="fas fa-check mr-1"></i>Atualizar';
+        $('#modal-equipamento').modal('show');
     }
 
-    function updateBulkActionsEquipamentos() {
-        const checked = document.querySelectorAll('.row-select-equipamento:checked');
-        const bar = document.getElementById('bulk-actions-equipamentos');
-        const count = document.getElementById('bulk-selected-count-equipamentos');
-        if (!bar || !count) {
-            return;
+    // Filtro instantâneo em tempo real na tabela
+    document.addEventListener('DOMContentLoaded', function () {
+        var inputBusca = document.getElementById('input-busca-geral');
+        if (inputBusca) {
+            inputBusca.addEventListener('keyup', function () {
+                var termo = this.value.toLowerCase().trim();
+                var linhas = document.querySelectorAll('#tabela-equipamentos tbody tr.linha-equipamento');
+
+                linhas.forEach(function (linha) {
+                    var texto = linha.textContent.toLowerCase();
+                    linha.style.display = (texto.indexOf(termo) > -1) ? '' : 'none';
+                });
+            });
         }
 
-        if (checked.length > 0) {
-            bar.classList.remove('d-none');
-            bar.classList.add('d-flex');
-            count.textContent = checked.length + ' selecionado(s)';
-        } else {
-            bar.classList.add('d-none');
-            bar.classList.remove('d-flex');
-            count.textContent = '';
-        }
-    }
-
-    function criarGrupoEquipamento() {
-        const container = document.getElementById('equipamento-groups');
-        if (!container) {
-            return;
-        }
-
-        const grupo = container.querySelector('.equipamento-group');
-        if (!grupo) {
-            return;
-        }
-
-        const clone = grupo.cloneNode(true);
-        clone.querySelectorAll('input, select').forEach((field) => {
-            if (field.type === 'checkbox' || field.type === 'radio') {
-                field.checked = false;
-            } else {
-                field.value = '';
-            }
-        });
-        container.appendChild(clone);
-        updateRemoveButtonsEquipamento();
-    }
-
-    function updateRemoveButtonsEquipamento() {
-        const groups = document.querySelectorAll('#equipamento-groups .equipamento-group');
-        groups.forEach((group, index) => {
-            const btn = group.querySelector('.btn-remove-equipamento-group');
-            if (btn) {
-                btn.style.display = index === 0 ? 'none' : 'inline-block';
-            }
-        });
-    }
-
-    function groupHasFilledFields(group) {
-        if (!group) return false;
-        const fields = Array.from(group.querySelectorAll('input, textarea, select'));
-        return fields.some((field) => {
-            const tag = field.tagName.toLowerCase();
-            if (tag === 'select') {
-                return field.value && field.value !== '';
-            }
-            if (field.type === 'checkbox' || field.type === 'radio') {
-                return field.checked;
-            }
-            return field.value && String(field.value).trim() !== '';
-        });
-    }
-
-    document.getElementById('btn-add-equipamento')?.addEventListener('click', function () {
-        criarGrupoEquipamento();
-        const modalBody = document.querySelector('#modal-novo-equipamento .modal-body');
-        if (modalBody) {
-            modalBody.scrollTop = modalBody.scrollHeight;
-        }
+        // Auto-fechar alertas após 5 segundos
+        setTimeout(function () {
+            $('.alert').alert('close');
+        }, 5000);
     });
-
-    // Delegated handler for remove buttons so it works for dynamically added groups
-    document.addEventListener('click', function (event) {
-        const button = event.target.closest('.btn-remove-equipamento-group');
-        if (!button) return;
-
-        const group = button.closest('.equipamento-group');
-        if (!group) return;
-
-        const groups = document.querySelectorAll('#equipamento-groups .equipamento-group');
-        if (groups.length <= 1) return;
-
-        if (groupHasFilledFields(group) && !confirm('Esta caixa contém campos preenchidos. Tem certeza que deseja remover e perder estes dados?')) {
-            return;
-        }
-
-        group.remove();
-        updateRemoveButtonsEquipamento();
-    });
-
-    document.getElementById('select-all-equipamentos')?.addEventListener('change', function () {
-        document.querySelectorAll('.row-select-equipamento').forEach((checkbox) => {
-            checkbox.checked = this.checked;
-        });
-        updateBulkActionsEquipamentos();
-    });
-
-    document.querySelectorAll('.row-select-equipamento').forEach((checkbox) => {
-        checkbox.addEventListener('change', updateBulkActionsEquipamentos);
-    });
-
-    document.getElementById('btn-bulk-apagar-equipamentos')?.addEventListener('click', function () {
-        const ids = Array.from(document.querySelectorAll('.row-select-equipamento:checked')).map((checkbox) => {
-            const row = checkbox.closest('tr');
-            return row?.dataset?.id || '';
-        }).filter(Boolean);
-
-        if (!ids.length) {
-            return;
-        }
-
-        if (!confirm('Tem certeza que deseja excluir os equipamentos selecionados?')) {
-            return;
-        }
-
-        const form = document.getElementById('bulk-delete-equipamentos');
-        if (!form) {
-            return;
-        }
-
-        form.querySelectorAll('input[name="id_item[]"]').forEach((field) => field.remove());
-        ids.forEach((id) => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'id_item[]';
-            input.value = id;
-            form.appendChild(input);
-        });
-        form.submit();
-    });
-
-    document.getElementById('btn-bulk-editar-equipamentos')?.addEventListener('click', function () {
-        const rows = Array.from(document.querySelectorAll('.row-select-equipamento:checked')).map((checkbox) => checkbox.closest('tr')).filter(Boolean);
-        if (!rows.length) {
-            return;
-        }
-
-        const container = document.getElementById('editar-equipamento-groups');
-        if (!container) {
-            return;
-        }
-
-        container.innerHTML = '';
-        rows.forEach((row) => {
-            const group = document.createElement('div');
-            group.className = 'card mb-3';
-            group.innerHTML = `
-                <div class="card-body">
-                    <input type="hidden" name="id_item[]" value="${row.dataset.id || ''}">
-                    <div class="row">
-                        <div class="col-md-6"><div class="form-group"><label>Tipo</label><input type="text" class="form-control" name="tipo[]" value="${row.dataset.tipo || ''}" required></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Marca e Modelo</label><input type="text" class="form-control" name="marca_modelo[]" value="${row.dataset.marca || ''}" required></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Nº de Patrimônio</label><input type="text" class="form-control" name="patrimonio[]" value="${row.dataset.patrimonio || ''}" required></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Nº de Serial</label><input type="text" class="form-control" name="serial[]" value="${row.dataset.serial || ''}" required></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Estado de Conservação</label><select class="form-control" name="estado_conservacao[]" required><option value="">Selecione</option><option value="Excelente" ${row.dataset.estado === 'Excelente' ? 'selected' : ''}>Excelente</option><option value="Bom" ${row.dataset.estado === 'Bom' ? 'selected' : ''}>Bom</option><option value="Ruim" ${row.dataset.estado === 'Ruim' ? 'selected' : ''}>Ruim</option><option value="Péssimo" ${row.dataset.estado === 'Péssimo' ? 'selected' : ''}>Péssimo</option><option value="Chamado Aberto" ${row.dataset.estado === 'Chamado Aberto' ? 'selected' : ''}>Chamado Aberto</option></select></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Categoria</label><select class="form-control" name="categoria[]" required><option value="">Selecione</option><?php foreach ($categorias as $categoriaOpcao) : ?><option value="<?= esc($categoriaOpcao['nome'] ?? '') ?>"><?= esc($categoriaOpcao['nome'] ?? '-') ?></option><?php endforeach; ?></select></div></div>
-                        <div class="col-md-6"><div class="form-group"><label>Nome da Sala</label><select class="form-control" name="sala[]"><option value="">Selecione</option><?php foreach ($salas as $salaOpcao) : ?><option value="<?= esc($salaOpcao['id_sala'] ?? '') ?>"><?= esc($salaOpcao['nome_sala'] ?? '-') ?></option><?php endforeach; ?></select></div></div>
-                    </div>
-                </div>
-            `;
-            const categoriaField = group.querySelector('[name="categoria[]"]');
-            if (categoriaField) {
-                categoriaField.value = row.dataset.categoria || '';
-            }
-            const salaField = group.querySelector('[name="sala[]"]');
-            if (salaField) {
-                salaField.value = row.dataset.sala || '';
-            }
-            container.appendChild(group);
-        });
-
-        if (window.$) {
-            $('#modal-editar-equipamentos').modal('show');
-        }
-    });
-
-    updateBulkActionsEquipamentos();
-    updateRemoveButtonsEquipamento();
 </script>

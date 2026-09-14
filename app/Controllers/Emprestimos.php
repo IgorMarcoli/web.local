@@ -22,6 +22,7 @@ class Emprestimos extends BaseController
 
         $nomeRecebedorFiltro = $this->request->getGet('nome_recebedor');
         $nomeResponsavelFiltro = $this->request->getGet('nome_responsavel');
+        $pertenceAFiltro = $this->request->getGet('pertence_a');
         $dataRecebimentoFiltro = $this->request->getGet('data_emprestimo');
         $dataDevolucaoFiltro = $this->request->getGet('data_devolucao');
         $secaoFiltro = $this->request->getGet('secao');
@@ -35,6 +36,10 @@ class Emprestimos extends BaseController
 
         if ($nomeResponsavelFiltro !== null && $nomeResponsavelFiltro !== '') {
             $builder->where('nome_responsavel', $nomeResponsavelFiltro);
+        }
+
+        if ($pertenceAFiltro !== null && $pertenceAFiltro !== '') {
+            $builder->where('pertence_a', $pertenceAFiltro);
         }
 
         if ($dataRecebimentoFiltro !== null && $dataRecebimentoFiltro !== '') {
@@ -68,6 +73,7 @@ class Emprestimos extends BaseController
 
         $nomeRecebedores = $emprestimoModel->select('nome_recebedor')->distinct()->orderBy('nome_recebedor')->findColumn('nome_recebedor');
         $nomeResponsaveis = $emprestimoModel->select('nome_responsavel')->distinct()->orderBy('nome_responsavel')->findColumn('nome_responsavel');
+        $nomesPertencentes = $emprestimoModel->select('pertence_a')->where('pertence_a IS NOT NULL')->where("pertence_a != ''")->distinct()->orderBy('pertence_a')->findColumn('pertence_a') ?? [];
 
         $emprestimosAtivos = $emprestimoModel->select('numero_mochila, status_equipamento')->where('status_equipamento', 'emprestado')->findAll();
         $activeKitIds = [];
@@ -193,6 +199,12 @@ class Emprestimos extends BaseController
             ];
         }
 
+        $setoresRows = $db->table('setores')->get()->getResultArray();
+        $setorNomePorId = [];
+        foreach ($setoresRows as $st) {
+            $setorNomePorId[$st['SetorId']] = $st['nome'];
+        }
+
         $servidoresFormatados = [];
         foreach ($servidores as $servidor) {
             $nomeCompleto = trim(($servidor['nome'] ?? '') . ' ' . ($servidor['ultimoNome'] ?? ''));
@@ -201,11 +213,17 @@ class Emprestimos extends BaseController
             }
 
             $servidoresFormatados[] = [
+                'id'            => $servidor['servidorID'] ?? null,
+                'servidorID'    => $servidor['servidorID'] ?? null,
+                'nome'          => $servidor['nome'] ?? '',
+                'ultimoNome'    => $servidor['ultimoNome'] ?? '',
                 'nome_completo' => $nomeCompleto,
-                'secao' => $servidor['secao'] ?? null,
-                'servico' => $servidor['servico'] ?? null,
-                'secao_nome' => $secaoNomePorId[$servidor['secao']] ?? null,
-                'servico_nome' => $servicoNomePorId[$servidor['servico']] ?? null,
+                'ramal'         => $servidor['ramal'] ?? '',
+                'secao'         => $servidor['secao'] ?? null,
+                'servico'       => $servidor['servico'] ?? null,
+                'secao_nome'    => $secaoNomePorId[$servidor['secao']] ?? null,
+                'servico_nome'  => $servicoNomePorId[$servidor['servico']] ?? null,
+                'tipo'          => 'servidor',
             ];
         }
 
@@ -223,7 +241,7 @@ class Emprestimos extends BaseController
         $supervisoresModel = new SupervisoresModelGab();
         $fieldsModel = new FieldsModel();
 
-        $supervisores = $supervisoresModel->orderBy('Nome', 'ASC')->findAll();
+        $supervisores = $supervisoresModel->orderBy('nome', 'ASC')->findAll();
         $fields = $fieldsModel->orderBy('nome', 'ASC')->findAll();
 
         $supervisoresFormatados = [];
@@ -234,8 +252,12 @@ class Emprestimos extends BaseController
             }
 
             $supervisoresFormatados[] = [
+                'id'            => $sup['SupervisorId'] ?? null,
                 'nome_completo' => $nome,
-                'tipo' => 'supervisor'
+                'nome'          => $nome,
+                'tipo'          => 'supervisor',
+                'setor_id'      => $sup['SetorId'] ?? null,
+                'setor_nome'    => $setorNomePorId[$sup['SetorId'] ?? null] ?? ('Setor ' . ($sup['SetorId'] ?? '')),
             ];
         }
 
@@ -259,9 +281,11 @@ class Emprestimos extends BaseController
         $data['availableMochilas'] = $availableMochilas;
         $data['nomeRecebedores'] = $nomeRecebedores;
         $data['nomeResponsaveis'] = $nomeResponsaveis;
+        $data['nomesPertencentes'] = $nomesPertencentes;
         $data['filtros']     = [
             'nome_recebedor' => $nomeRecebedorFiltro,
             'nome_responsavel' => $nomeResponsavelFiltro,
+            'pertence_a' => $pertenceAFiltro,
             'data_emprestimo' => $dataRecebimentoFiltro,
             'data_devolucao' => $dataDevolucaoFiltro,
             'secao'  => $secaoFiltro,
@@ -283,6 +307,7 @@ class Emprestimos extends BaseController
         // If single record (not arrays), keep original behavior
         if (!is_array($post['numero_mochila'] ?? null)) {
             $dados = $post;
+            $dados['pertence_a'] = trim((string) ($this->request->getPost('pertence_a') ?? ''));
 
             if (!isset($dados['numero_chamado']) || ($dados['status_equipamento'] ?? '') !== 'chamado aberto' || trim((string) $dados['numero_chamado']) === '') {
                 $dados['numero_chamado'] = null;
@@ -309,6 +334,7 @@ class Emprestimos extends BaseController
 
         // Prepare arrays (ensure indexes exist)
         $numeros = $this->request->getPost('numero_mochila') ?? [];
+        $pertencentes = $this->request->getPost('pertence_a') ?? [];
         $nomes = $this->request->getPost('nome_recebedor') ?? [];
         $emails = $this->request->getPost('email_recebedor') ?? [];
         $responsaveis = $this->request->getPost('nome_responsavel') ?? [];
@@ -339,6 +365,7 @@ class Emprestimos extends BaseController
         for ($i = 0; $i < $count; $i++) {
             $entry = [];
             $entry['numero_mochila'] = $numeros[$i] ?? '';
+            $entry['pertence_a'] = trim((string) ($pertencentes[$i] ?? ''));
             $entry['nome_recebedor'] = $nomes[$i] ?? '';
             $entry['email_recebedor'] = $emails[$i] ?? '';
             $entry['nome_responsavel'] = $responsaveis[$i] ?? '';
@@ -369,6 +396,7 @@ class Emprestimos extends BaseController
     public function editar()
     {
         $dados = $this->request->getPost();
+        $dados['pertence_a'] = trim((string) ($this->request->getPost('pertence_a') ?? ''));
 
         if (!isset($dados['numero_chamado']) || ($dados['status_equipamento'] ?? '') !== 'chamado aberto' || trim((string) $dados['numero_chamado']) === '') {
             $dados['numero_chamado'] = null;
@@ -478,6 +506,7 @@ class Emprestimos extends BaseController
     {
         $ids = $this->request->getPost('id_emprestimo') ?? [];
         $numeros = $this->request->getPost('numero_mochila') ?? [];
+        $pertencentes = $this->request->getPost('pertence_a') ?? [];
         $nomes = $this->request->getPost('nome_recebedor') ?? [];
         $emails = $this->request->getPost('email_recebedor') ?? [];
         $responsaveis = $this->request->getPost('nome_responsavel') ?? [];
@@ -504,6 +533,7 @@ class Emprestimos extends BaseController
 
             $dados = [
                 'numero_mochila' => $numeros[$i] ?? '',
+                'pertence_a' => trim((string) ($pertencentes[$i] ?? '')),
                 'nome_recebedor' => $nomes[$i] ?? '',
                 'email_recebedor' => $emails[$i] ?? '',
                 'nome_responsavel' => $responsaveis[$i] ?? '',
@@ -676,20 +706,18 @@ class Emprestimos extends BaseController
         return '-';
     }
 
-    private function normalizeDataDevolucao($dataDevolucao)
-    {
-        if ($dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00') {
-            return '0000-00-00 00:00:00';
-        }
-
-        return $dataDevolucao;
+private function normalizeDataDevolucao($dataDevolucao)
+{
+    if ($dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00') {
+        return null; // <-- NULL ao invés de '0000-00-00 00:00:00'
     }
+    return $dataDevolucao;
+}
 
-    private function isDevolucaoPending($dataDevolucao)
-    {
-        return $dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00';
-    }
-
+private function isDevolucaoPending($dataDevolucao)
+{
+    return $dataDevolucao === null || $dataDevolucao === '' || $dataDevolucao === '0000-00-00' || $dataDevolucao === '0000-00-00 00:00:00';
+}
     private function determineStatus($statusAtual, $dataDevolucao)
     {
         if ($statusAtual === 'chamado aberto') {
@@ -757,6 +785,9 @@ class Emprestimos extends BaseController
 
     private function buildDurationDateTime($value)
     {
+         if ($value === null) {
+        return null; // <-- adiciona essa linha no início
+    }
         $value = trim((string) $value);
         if ($value === '' || $value === '-') {
             return null;
@@ -778,5 +809,102 @@ class Emprestimos extends BaseController
         }
 
         return new \DateTimeImmutable($value);
+    }
+
+    public function getServidorDetalhes()
+    {
+        $nome = trim((string) ($this->request->getGet('nome') ?? ''));
+        $id = $this->request->getGet('id');
+
+        $servidoresModel = new ServidoresModel();
+        $secaoModel = new SecaoModel();
+        $servicoModel = new ServicoModel();
+
+        $servidor = null;
+        if (!empty($id)) {
+            $servidor = $servidoresModel->find($id);
+        }
+
+        $lowerNome = mb_strtolower($nome, 'UTF-8');
+
+        if (empty($servidor) && !empty($nome)) {
+            $todosServidores = $servidoresModel->findAll();
+            foreach ($todosServidores as $s) {
+                $nc = mb_strtolower(trim(($s['nome'] ?? '') . ' ' . ($s['ultimoNome'] ?? '')), 'UTF-8');
+                $p = mb_strtolower(trim($s['nome'] ?? ''), 'UTF-8');
+                $u = mb_strtolower(trim($s['ultimoNome'] ?? ''), 'UTF-8');
+                if ($nc === $lowerNome || $p === $lowerNome || $u === $lowerNome || strpos($nc, $lowerNome) !== false || strpos($lowerNome, $nc) !== false) {
+                    $servidor = $s;
+                    break;
+                }
+            }
+        }
+
+        if (!empty($servidor)) {
+            $secaoRow = !empty($servidor['secao']) ? $secaoModel->find($servidor['secao']) : null;
+            $servicoRow = !empty($servidor['servico']) ? $servicoModel->find($servidor['servico']) : null;
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'encontrado' => true,
+                'tipo' => 'servidor',
+                'dados' => [
+                    'id' => $servidor['servidorID'] ?? '',
+                    'servidorID' => $servidor['servidorID'] ?? '',
+                    'nome' => $servidor['nome'] ?? '',
+                    'ultimoNome' => $servidor['ultimoNome'] ?? '',
+                    'nome_completo' => trim(($servidor['nome'] ?? '') . ' ' . ($servidor['ultimoNome'] ?? '')),
+                    'ramal' => !empty($servidor['ramal']) ? $servidor['ramal'] : 'Não informado',
+                    'secao' => $servidor['secao'] ?? '',
+                    'secao_nome' => $secaoRow['nomeSecao'] ?? $secaoRow['nome'] ?? 'Não informada',
+                    'servico' => $servidor['servico'] ?? '',
+                    'servico_nome' => $servicoRow['nomeServico'] ?? $servicoRow['nome'] ?? 'Não informado',
+                ]
+            ]);
+        }
+
+        // Check if supervisor
+        $supervisor = null;
+        if (!empty($nome)) {
+            $supervisoresModel = new SupervisoresModelGab();
+            $todosSupervisores = $supervisoresModel->findAll();
+            foreach ($todosSupervisores as $sup) {
+                $n = mb_strtolower(trim($sup['nome'] ?? $sup['Nome'] ?? ''), 'UTF-8');
+                if ($n === $lowerNome || strpos($n, $lowerNome) !== false || strpos($lowerNome, $n) !== false) {
+                    $supervisor = $sup;
+                    break;
+                }
+            }
+        }
+
+        if (!empty($supervisor)) {
+            $db = \Config\Database::connect();
+            $setorRow = !empty($supervisor['SetorId']) ? $db->table('setores')->where('SetorId', $supervisor['SetorId'])->get()->getRowArray() : null;
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'encontrado' => true,
+                'tipo' => 'supervisor',
+                'dados' => [
+                    'id' => $supervisor['SupervisorId'] ?? '',
+                    'nome_completo' => $supervisor['nome'] ?? $supervisor['Nome'] ?? '',
+                    'nome' => $supervisor['nome'] ?? $supervisor['Nome'] ?? '',
+                    'ultimoNome' => '',
+                    'ramal' => 'Não informado',
+                    'secao' => '',
+                    'secao_nome' => $setorRow['nome'] ?? ('Setor ' . ($supervisor['SetorId'] ?? '')),
+                    'servico' => '',
+                    'servico_nome' => 'Supervisão de Ensino',
+                ]
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'encontrado' => false,
+            'dados' => [
+                'nome_completo' => $nome,
+            ]
+        ]);
     }
 }

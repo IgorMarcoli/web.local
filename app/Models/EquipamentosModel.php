@@ -28,7 +28,7 @@ class EquipamentosModel extends Model
         'data_registro',
     ];
 
-    public function listar(): array
+    public function listar(array $filtros = []): array
     {
         $builder = $this->db->table('itens i');
         $builder->select([
@@ -46,6 +46,28 @@ class EquipamentosModel extends Model
         ]);
         $builder->join('categorias c', 'c.nome = i.categoria', 'left');
         $builder->join('salas s', 's.id_sala = i.sala', 'left');
+
+        if (!empty($filtros['busca'])) {
+            $b = $filtros['busca'];
+            $builder->groupStart()
+                ->like('i.tipo', $b)
+                ->orLike('i.marca_modelo', $b)
+                ->orLike('i.patrimonio', $b)
+                ->orLike('i.serial', $b)
+                ->groupEnd();
+        }
+
+        if (!empty($filtros['estado'])) {
+            $builder->where('i.estado_conservacao', $filtros['estado']);
+        }
+
+        if (!empty($filtros['categoria'])) {
+            $builder->where('i.categoria', $filtros['categoria']);
+        }
+
+        if (!empty($filtros['sala'])) {
+            $builder->where('i.sala', $filtros['sala']);
+        }
 
         return $builder->orderBy('i.id_item', 'DESC')->get()->getResultArray();
     }

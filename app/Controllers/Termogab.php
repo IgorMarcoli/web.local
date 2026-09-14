@@ -28,14 +28,14 @@ public function termogab()
             supervisores.SupervisorId,
             supervisores.nome as Supervisor,
 
-            escolas.EscolaId,
-            escolas.Nome as Escola,
+            escolas.id,
+            escolas.nome as Escola,
 
             setores.SetorId,
             setores.nome as Setor
         ')
         ->join('supervisores', 'supervisores.SupervisorId = visitas_gab.SupervisorId')
-        ->join('escolas', 'escolas.EscolaId = visitas_gab.EscolaId')
+        ->join('escolas', 'escolas.id = visitas_gab.EscolaId')
         ->join('setores', 'setores.SetorId = supervisores.SetorId')
         ->findAll();
 
@@ -43,7 +43,7 @@ public function termogab()
     $data['setores']      = $setorModel->findAll();
 
     $data['escolas'] = $escModel
-        ->select('EscolaId, Nome as nome, SetorId')
+        ->select('id, nome as nome, SetorId')
         ->findAll();
 
     echo view('templates/headergabinete');
