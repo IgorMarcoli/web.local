@@ -222,7 +222,8 @@ class InventarioModel extends Model
             $itemInput = $dados['items'][$inputKey] ?? [];
             $skipItem = !empty($itemInput['skip'] ?? '');
             if ($skipItem) {
-                $itemIds[$inputKey] = null;
+                // Quando skip=true, mantém o ID existente (não edita o item)
+                $itemIds[$inputKey] = $existingItemIds[$inputKey] ?? null;
                 continue;
             }
 
@@ -407,11 +408,16 @@ class InventarioModel extends Model
                 ],
             ];
 
+            log_message('debug', "Kit [$i] - ID: {$single['id_kit']}, Número: {$single['numero_mochila']}, isEmpty: " . ($this->isKitPayloadEmpty($single) ? 'SIM' : 'NÃO'));
+
             if ($this->isKitPayloadEmpty($single)) {
+                log_message('debug', "Kit [$i] - Pulado por estar vazio");
                 continue;
             }
 
+            log_message('debug', "Kit [$i] - Salvando...");
             $this->saveKit($single);
+            log_message('debug', "Kit [$i] - Salvo com sucesso");
         }
     }
 

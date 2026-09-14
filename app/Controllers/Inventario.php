@@ -68,9 +68,20 @@ class Inventario extends BaseController
         $inventarioModel = new InventarioModel();
 
         try {
+            // Debug: Log dos dados recebidos
+            log_message('debug', '=== EDIÇÃO MÚLTIPLA - Dados Recebidos ===');
+            log_message('debug', 'id_kit: ' . json_encode($dados['id_kit'] ?? []));
+            log_message('debug', 'numero_mochila: ' . json_encode($dados['numero_mochila'] ?? []));
+            log_message('debug', 'categoria: ' . json_encode($dados['categoria'] ?? []));
+            log_message('debug', 'items[notebook][marca_modelo]: ' . json_encode($dados['items']['notebook']['marca_modelo'] ?? []));
+            log_message('debug', 'items[notebook][skip]: ' . json_encode($dados['items']['notebook']['skip'] ?? []));
+            log_message('debug', 'items[mouse][skip]: ' . json_encode($dados['items']['mouse']['skip'] ?? []));
+            
             $inventarioModel->saveKitMultiplo($dados, true);
             return redirect()->back()->with('alert', 'successEdit');
         } catch (\Throwable $e) {
+            log_message('error', 'Erro ao editar múltiplo: ' . $e->getMessage() . ' em ' . $e->getFile() . ':' . $e->getLine());
+            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
             return redirect()->back()->with('alert', 'errorEdit');
         }
     }

@@ -59,6 +59,8 @@
                                                     <div class="d-flex align-items-center">
                                                         <label class="font-weight-bold mb-0"><?= esc($config['label']) ?></label>
                                                         <div class="custom-control custom-checkbox ml-2">
+                                                            <!-- Hidden input garante que sempre há um valor, mesmo quando checkbox não está marcado -->
+                                                            <input type="hidden" name="items[<?= esc($key) ?>][skip][0]" value="0">
                                                             <input type="checkbox" class="custom-control-input item-checkbox" id="skip-create-0-<?= esc($key) ?>" name="items[<?= esc($key) ?>][skip][0]" value="1" data-required="<?= $config['required'] ? 'true' : 'false' ?>">
                                                             <label class="custom-control-label" for="skip-create-0-<?= esc($key) ?>"></label>
                                                         </div>
@@ -343,6 +345,7 @@
             group.dataset.index = String(groupIndex);
             group.querySelectorAll('.item-row').forEach((row) => {
                 const checkbox = row.querySelector('.item-checkbox');
+                const hiddenInput = row.querySelector('input[type="hidden"][name*="[skip]"]');
                 const label = row.querySelector('.custom-control-label');
                 const itemKey = row.dataset.itemKey || 'item';
                 if (!checkbox || !label) {
@@ -357,6 +360,11 @@
 
                 if (checkbox.name && checkbox.name.includes('[skip]')) {
                     checkbox.name = `items[${itemKey}][skip][${groupIndex}]`;
+                }
+                
+                // Atualiza o hidden input correspondente
+                if (hiddenInput && hiddenInput.name.includes('[skip]')) {
+                    hiddenInput.name = `items[${itemKey}][skip][${groupIndex}]`;
                 }
             });
         });
@@ -380,11 +388,8 @@
                 return;
             }
 
-            field.disabled = checked;
-
             if (checked) {
                 field.removeAttribute('required');
-                field.value = '';
             } else if (checkbox.dataset.required === 'true') {
                 field.setAttribute('required', 'required');
             } else {
@@ -619,6 +624,11 @@
                 }
                 return;
             }
+            if (field.type === 'hidden' && field.name && field.name.includes('[skip]')) {
+                field.value = '0';
+                field.name = field.name.replace(/\[skip\]\[\d*\]$/, `[skip][${nextIndex}]`);
+                return;
+            }
             field.value = '';
             field.removeAttribute('data-numero-validated');
             if (field.classList.contains('numero-mochila-input')) {
@@ -629,9 +639,6 @@
                 if (feedback) {
                     feedback.style.display = 'none';
                 }
-            }
-            if (field.name && field.name.includes('[skip]')) {
-                field.name = field.name.replace(/\[skip\]\[\d*\]$/, `[skip][${nextIndex}]`);
             }
         });
 
@@ -649,8 +656,7 @@
                 checkbox.checked = false;
             }
             row.querySelectorAll('input, select').forEach((field) => {
-                if (field.name && field.name.includes('[skip]')) {
-                    field.checked = false;
+                if (field.type === 'checkbox' || (field.type === 'hidden' && field.name && field.name.includes('[skip]'))) {
                     return;
                 }
                 field.disabled = false;
@@ -780,6 +786,20 @@
 
     document.querySelector('#modal-editar-kit form')?.addEventListener('submit', function (event) {
         const form = event.target;
+        
+        // Debug detalhado
+        console.log('=== SUBMIT FORMULÁRIO ===');
+        console.log('Modo:', inventarioModalMode);
+        console.log('Action:', form.action);
+        
+        const formData = new FormData(form);
+        const dataObj = {};
+        for (let [key, value] of formData.entries()) {
+            if (!dataObj[key]) dataObj[key] = [];
+            dataObj[key].push(value);
+        }
+        console.log('Dados agrupados:', dataObj);
+        
         if (inventarioModalMode !== 'edit') {
             const groups = Array.from(form.querySelectorAll('#kit-create-groups .kit-group'));
             groups.forEach((group) => {
@@ -948,6 +968,9 @@
                 if (checkbox) {
                     checkbox.checked = itemEmpty;
                 }
+                
+                // Atualiza a visibilidade dos campos baseado no checkbox
+                atualizarVisibilidadeItem(rowElement);
             });
         });
 
