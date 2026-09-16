@@ -25,6 +25,7 @@ class EquipamentosModel extends Model
         'sala',
         'categoria',
         'numero_mochila',
+        'responsavel',
         'data_registro',
     ];
 
@@ -39,6 +40,7 @@ class EquipamentosModel extends Model
             'i.patrimonio',
             'i.estado_conservacao',
             'COALESCE(c.nome, i.categoria) AS categoria',
+            'i.responsavel',
             'i.andar',
             'i.sala',
             's.nome_sala',
@@ -54,6 +56,7 @@ class EquipamentosModel extends Model
                 ->orLike('i.marca_modelo', $b)
                 ->orLike('i.patrimonio', $b)
                 ->orLike('i.serial', $b)
+                ->orLike('i.responsavel', $b)
                 ->groupEnd();
         }
 
@@ -98,6 +101,7 @@ class EquipamentosModel extends Model
         $estadoConservacao = $this->normalizeValue($dados['estado_conservacao'] ?? '');
         $salaRaw = $this->normalizeValue($dados['sala'] ?? '');
         $sala = $salaRaw !== '' ? (int) $salaRaw : null;
+        $responsavel = $this->normalizeValue($dados['responsavel'] ?? '');
         $andar = null;
         $categoria = $this->normalizeValue($dados['categoria'] ?? '');
 
@@ -123,6 +127,7 @@ class EquipamentosModel extends Model
             'serial' => $serial,
             'patrimonio' => $patrimonio,
             'estado_conservacao' => $estadoConservacao,
+            'responsavel' => $responsavel,
             'andar' => $andar,
             'sala' => $sala,
             'categoria' => $categoria,
@@ -161,6 +166,7 @@ class EquipamentosModel extends Model
                 'patrimonio' => $dados['patrimonio'][$i] ?? '',
                 'estado_conservacao' => $dados['estado_conservacao'][$i] ?? '',
                 'categoria' => $dados['categoria'][$i] ?? '',
+                'responsavel' => $dados['responsavel'][$i] ?? '',
                 'sala' => $dados['sala'][$i] ?? '',
             ];
             $this->salvar($single);

@@ -133,6 +133,16 @@
                                 <?php endif; ?>
                             </select>
                         </div>
+                        <div class="col-12 mb-3">
+                            <label class="font-weight-bold"><i class="fas fa-user-tag text-info mr-1"></i> Com quem está / Responsável</label>
+                            <div class="position-relative">
+                                <input type="text" class="form-control" id="equip-responsavel" name="responsavel"
+                                       autocomplete="off" placeholder="Digite o nome do servidor responsável...">
+                                <div class="list-group position-absolute w-100 shadow-sm lista-responsaveis-equip"
+                                     style="z-index:1100; max-height:200px; overflow:auto; top:100%; left:0;"></div>
+                            </div>
+                            <small class="text-muted"><i class="fas fa-info-circle mr-1"></i>Busca servidores cadastrados na tabela de servidores.</small>
+                        </div>
                     </div>
                 </div>
 
@@ -331,6 +341,7 @@
                                 <th>Estado</th>
                                 <th>Categoria</th>
                                 <th>Sala / Andar</th>
+                                <th><i class="fas fa-user-tag mr-1 text-info"></i>Responsável</th>
                                 <th>Data</th>
                                 <th class="text-center no-print" style="width: 100px;">Ações</th>
                             </tr>
@@ -391,6 +402,19 @@
                                                 <span class="text-muted">-</span>
                                             <?php endif; ?>
                                         </td>
+                                        <td>
+                                            <?php if (!empty($item['responsavel'])): ?>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-outline-info font-weight-bold btn-abrir-servidor-equip shadow-sm"
+                                                        data-nome="<?= esc($item['responsavel']) ?>"
+                                                        title="Clique para ver informações do servidor responsável"
+                                                        style="border-radius: 20px; padding: 2px 10px; border-width: 2px;">
+                                                    <i class="fas fa-user-circle mr-1 text-info"></i><?= esc($item['responsavel']) ?>
+                                                </button>
+                                            <?php else: ?>
+                                                <span class="text-muted font-italic">-</span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td><small class="text-muted"><?= esc($item['data_registro'] ?? '-') ?></small></td>
                                         <td class="text-center no-print">
                                             <button type="button" class="btn btn-sm btn-outline-primary" title="Editar" 
@@ -402,7 +426,8 @@
                                                         '<?= esc($item['serial'] ?? '', 'js') ?>',
                                                         '<?= esc($item['estado_conservacao'] ?? '', 'js') ?>',
                                                         '<?= esc($item['categoria'] ?? '', 'js') ?>',
-                                                        '<?= esc($item['sala'] ?? '', 'js') ?>'
+                                                        '<?= esc($item['sala'] ?? '', 'js') ?>',
+                                                        '<?= esc($item['responsavel'] ?? '', 'js') ?>'
                                                     )">
                                                 <i class="fas fa-edit"></i>
                                             </button>
@@ -417,7 +442,7 @@
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="10">
                                         <div class="empty-state">
                                             <i class="fas fa-box-open"></i>
                                             <h5 class="text-secondary font-weight-bold">Nenhum equipamento encontrado</h5>

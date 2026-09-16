@@ -270,18 +270,31 @@
     <?= csrf_field() ?>
 </form>
 
+<style>
+    .kpi-box-emp { border-radius: 10px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .kpi-box-emp:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important; }
+    .kpi-box-emp .inner h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; margin-bottom: 4px; }
+    .kpi-box-emp .inner p { font-size: clamp(0.75rem, 1.2vw, 0.9rem); margin-bottom: 0; opacity: 0.9; }
+    #tabela-emprestimos td, #tabela-emprestimos th { vertical-align: middle; }
+    .badge-emp { font-size: 0.78rem; padding: 0.35em 0.6em; font-weight: 600; border-radius: 6px; }
+</style>
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Empréstimos</h1>
+            <div class="row align-items-center justify-content-between mb-2">
+                <div class="col-auto">
+                    <h1 class="m-0 font-weight-bold text-dark d-flex align-items-center">
+                        <i class="fas fa-handshake text-info mr-2"></i> Empréstimos
+                    </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active">Empréstimos</li>
-                    </ol>
+                <div class="col-auto d-flex align-items-center flex-wrap">
+                    <button type="button" class="btn btn-info shadow-sm font-weight-bold mr-2 my-1" data-toggle="modal" data-target="#modal-novo-emprestimos">
+                        <i class="fas fa-plus-circle mr-1"></i> Novo Empréstimo
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary shadow-sm my-1" id="btn-toggle-resumo">
+                        <i class="fas fa-eye mr-1"></i> Exibir Resumo
+                    </button>
                 </div>
             </div>
         </div>
@@ -289,105 +302,174 @@
 
     <div class="content">
         <div class="container-fluid">
-            <div class="row mb-3">
-                <div class="col-12 d-flex align-items-center flex-wrap">
-                    <button type="button" class="btn btn-info mr-2 mb-2" data-toggle="modal" data-target="#modal-novo-emprestimos">
-                        <i class="fas fa-plus-circle"></i> Novo Empréstimo
-                    </button>
-                    <button type="button" class="btn btn-secondary mb-2" id="btn-toggle-resumo">
-                        <i class="fas fa-eye"></i> Exibir Resumo
-                    </button>
-                </div>
-            </div>
 
             <?php if (isset($_GET['alert']) && $_GET['alert'] == 'successCreate') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Empréstimo cadastrado com sucesso!
-                        </div>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Empréstimo cadastrado com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
                 </div>
             <?php endif; ?>
             <?php if (isset($_GET['alert']) && $_GET['alert'] == 'successEdit') : ?>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
-                            <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
-                            Empréstimo editado com sucesso!
-                        </div>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Empréstimo editado com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
                 </div>
             <?php endif; ?>
 
-            <div class="row mb-3">
-                <div class="col-12">
-                    <form method="get" action="/emprestimos" class="form-inline flex-wrap">
-                        <select name="nome_recebedor" class="form-control form-control-sm mr-2 mb-2">
-                            <option value="">Todos os solicitantes</option>
-                            <?php foreach ($nomeRecebedores as $nome): ?>
-                                <option value="<?= esc($nome) ?>" <?= ($filtros['nome_recebedor'] ?? '') === $nome ? 'selected' : '' ?>><?= esc($nome) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+            <?php
+            // Calcular KPIs a partir dos dados
+            $totalEmp = count($emprestimosBase ?? $emprestimos ?? []);
+            $empAtivos = 0; $empDisponiveis = 0; $empChamados = 0;
+            foreach (($emprestimosBase ?? $emprestimos ?? []) as $eKpi) {
+                $st = mb_strtolower($eKpi['status_equipamento'] ?? '', 'UTF-8');
+                if ($st === 'emprestado') { $empAtivos++; }
+                elseif ($st === 'disponível' || $st === 'disponivel' || $st === '') { $empDisponiveis++; }
+                elseif (strpos($st, 'chamado') !== false) { $empChamados++; }
+            }
+            ?>
 
-                        <select name="nome_responsavel" class="form-control form-control-sm mr-2 mb-2">
-                            <option value="">Todos os responsáveis</option>
-                            <?php foreach ($nomeResponsaveis as $nome): ?>
-                                <option value="<?= esc($nome) ?>" <?= ($filtros['nome_responsavel'] ?? '') === $nome ? 'selected' : '' ?>><?= esc($nome) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+            <!-- KPI Cards -->
+            <div class="row no-print mb-3">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-info kpi-box-emp shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $totalEmp ?></h3>
+                            <p>Total de Registros</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-handshake"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-warning kpi-box-emp shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $empAtivos ?></h3>
+                            <p>Em Empréstimo</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-laptop"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-success kpi-box-emp shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= count($availableMochilas ?? []) ?></h3>
+                            <p>Kits Disponíveis</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="small-box bg-danger kpi-box-emp shadow-sm mb-0">
+                        <div class="inner p-3">
+                            <h3><?= $empChamados ?></h3>
+                            <p>Chamados Abertos</p>
+                        </div>
+                        <div class="icon"><i class="fas fa-headset"></i></div>
+                    </div>
+                </div>
+            </div>
 
-                        <select name="pertence_a" class="form-control form-control-sm mr-2 mb-2">
-                            <option value="">Todos os pertencentes</option>
-                            <?php foreach ($nomesPertencentes as $nomeP): ?>
-                                <option value="<?= esc($nomeP) ?>" <?= ($filtros['pertence_a'] ?? '') === $nomeP ? 'selected' : '' ?>><?= esc($nomeP) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-
-                        <input type="date" name="data_emprestimo" class="form-control form-control-sm mr-2 mb-2" value="<?= esc($filtros['data_emprestimo'] ?? '') ?>" title="Data de recebimento">
-                        <input type="date" name="data_devolucao" class="form-control form-control-sm mr-2 mb-2" value="<?= esc($filtros['data_devolucao'] ?? '') ?>" title="Data de devolução">
-
-                        <select name="secao" class="form-control form-control-sm mr-2 mb-2">
-                            <option value="">Todas as seções</option>
-                            <?php foreach ($sessoes as $s): ?>
-                                <option value="<?= $s['secaoID'] ?>" <?= ($filtros['secao'] ?? '') == $s['secaoID'] ? 'selected' : '' ?>><?= esc($s['nomeSecao']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-
-                        <select name="status" class="form-control form-control-sm mr-2 mb-2">
-                            <option value="">Todos os status</option>
-                            <?php foreach ($statusOptions as $status): ?>
-                                <option value="<?= esc($status) ?>" <?= ($filtros['status'] ?? '') == $status ? 'selected' : '' ?>><?= esc($status) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-
-                        <button type="submit" class="btn btn-sm btn-primary mr-2 mb-2">Filtrar</button>
-                        <a href="/emprestimos" class="btn btn-sm btn-outline-secondary mb-2">Limpar</a>
+            <!-- Filtros modernos -->
+            <div class="card card-outline card-info shadow-sm no-print mb-3">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                    <h3 class="card-title font-weight-bold text-dark small text-uppercase mb-0">
+                        <i class="fas fa-filter mr-1 text-info"></i> Filtros de Pesquisa
+                    </h3>
+                </div>
+                <div class="card-body pt-0 pb-3">
+                    <form method="get" action="/emprestimos">
+                        <div class="row align-items-end">
+                            <div class="col-12 col-md-4 col-lg-3 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Solicitante:</label>
+                                <select name="nome_recebedor" class="form-control form-control-sm">
+                                    <option value="">Todos os solicitantes</option>
+                                    <?php foreach ($nomeRecebedores as $nome): ?>
+                                        <option value="<?= esc($nome) ?>" <?= ($filtros['nome_recebedor'] ?? '') === $nome ? 'selected' : '' ?>><?= esc($nome) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Responsável SEITEC:</label>
+                                <select name="nome_responsavel" class="form-control form-control-sm">
+                                    <option value="">Todos os responsáveis</option>
+                                    <?php foreach ($nomeResponsaveis as $nome): ?>
+                                        <option value="<?= esc($nome) ?>" <?= ($filtros['nome_responsavel'] ?? '') === $nome ? 'selected' : '' ?>><?= esc($nome) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1"><i class="fas fa-user-tag mr-1 text-info"></i>Pertence a:</label>
+                                <select name="pertence_a" class="form-control form-control-sm">
+                                    <option value="">Todos</option>
+                                    <?php foreach ($nomesPertencentes as $nomeP): ?>
+                                        <option value="<?= esc($nomeP) ?>" <?= ($filtros['pertence_a'] ?? '') === $nomeP ? 'selected' : '' ?>><?= esc($nomeP) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-1 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Recebimento:</label>
+                                <input type="date" name="data_emprestimo" class="form-control form-control-sm" value="<?= esc($filtros['data_emprestimo'] ?? '') ?>">
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-1 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Devolução:</label>
+                                <input type="date" name="data_devolucao" class="form-control form-control-sm" value="<?= esc($filtros['data_devolucao'] ?? '') ?>">
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Seção:</label>
+                                <select name="secao" class="form-control form-control-sm">
+                                    <option value="">Todas</option>
+                                    <?php foreach ($sessoes as $s): ?>
+                                        <option value="<?= $s['secaoID'] ?>" <?= ($filtros['secao'] ?? '') == $s['secaoID'] ? 'selected' : '' ?>><?= esc($s['nomeSecao']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2 mb-2">
+                                <label class="small text-muted font-weight-bold mb-1">Status:</label>
+                                <select name="status" class="form-control form-control-sm">
+                                    <option value="">Todos</option>
+                                    <?php foreach ($statusOptions as $status): ?>
+                                        <option value="<?= esc($status) ?>" <?= ($filtros['status'] ?? '') == $status ? 'selected' : '' ?>><?= esc($status) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-2 col-lg-1 mb-2 d-flex align-items-end">
+                                <button type="submit" class="btn btn-info btn-sm flex-fill mr-1" title="Aplicar Filtros">
+                                    <i class="fas fa-filter mr-1"></i>Filtrar
+                                </button>
+                                <a href="/emprestimos" class="btn btn-outline-secondary btn-sm" title="Limpar Filtros">
+                                    <i class="fas fa-undo"></i>
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <div class="col-12">
                     <div id="bulk-actions" class="d-none align-items-center mb-2">
-                        <span id="bulk-selected-count" class="mr-3 font-weight-bold"></span>
-                        <button type="button" class="btn btn-success btn-sm mr-2" id="btn-bulk-liberar">Liberar</button>
-                        <button type="button" class="btn btn-warning btn-sm mr-2" id="btn-bulk-editar">Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="btn-bulk-apagar">Apagar</button>
+                        <span id="bulk-selected-count" class="mr-3 font-weight-bold badge badge-secondary px-3 py-2"></span>
+                        <button type="button" class="btn btn-success btn-sm mr-2 shadow-sm" id="btn-bulk-liberar"><i class="fas fa-check mr-1"></i>Liberar</button>
+                        <button type="button" class="btn btn-warning btn-sm mr-2 shadow-sm" id="btn-bulk-editar"><i class="fas fa-edit mr-1"></i>Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm shadow-sm" id="btn-bulk-apagar"><i class="fas fa-trash mr-1"></i>Apagar</button>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12 col-12" id="emprestimos-list-col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
+                    <div class="card card-outline card-secondary shadow-sm">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                            <h3 class="card-title font-weight-bold text-dark mb-0 small text-uppercase">
+                                <i class="fas fa-list mr-1"></i> Lista de Empréstimos
+                            </h3>
+                            <span class="badge badge-info badge-pill px-2 py-1">
+                                <?= count($emprestimos) ?> <?= (count($emprestimos) === 1) ? 'registro' : 'registros' ?>
+                            </span>
+                        </div>
+                        <div class="card-body p-0">
+                        <div class="table-responsive">
+                                <table class="table table-hover table-striped mb-0 text-nowrap" id="tabela-emprestimos">
+                                    <thead class="thead-light">
                                         <tr>
                                             <th class="text-center"><input type="checkbox" id="select-all-emprestimos"></th>
                                             <th>ID</th>
