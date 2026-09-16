@@ -33,13 +33,35 @@ class Agenda extends BaseController
     $escola_model = new EscolasModel();
     $escolas = $escola_model->findAll();
 
+    $totalGeral = count($agendas);
+    $totalConcluido = 0;
+    $totalPendente = 0;
+    $totalEmAtendimento = 0;
+
+    foreach ($agendas as $itemAg) {
+        $stAg = mb_strtolower(trim($itemAg['status'] ?? ''), 'UTF-8');
+        if ($stAg === 'concluido' || $stAg === 'concluído') {
+            $totalConcluido++;
+        } elseif ($stAg === 'pendente') {
+            $totalPendente++;
+        } elseif ($stAg === 'em atendimento') {
+            $totalEmAtendimento++;
+        }
+    }
+
     $data = [
         'agendas'     => $agendas,
         'escolas'     => $escolas,
         'mesAtual'    => $mes,
         'anoAtual'    => $ano,
         'statusAtual' => $status,
-        'periodoAtual'=> $periodo
+        'periodoAtual'=> $periodo,
+        'statsAgenda' => [
+            'total'         => $totalGeral,
+            'concluido'     => $totalConcluido,
+            'pendente'      => $totalPendente,
+            'emAtendimento' => $totalEmAtendimento,
+        ]
     ];
 
     echo View('templates/header');
