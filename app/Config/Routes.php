@@ -50,6 +50,8 @@ $routes->get('equipamentos/excluir/(:num)', 'Equipamentos::excluir/$1');
 $routes->post('equipamentos/excluir/(:num)', 'Equipamentos::excluir/$1');
 $routes->post('equipamentos/excluirMultiplo', 'Equipamentos::excluirMultiplo');
 $routes->get('equipamentos/getServidorDetalhes', 'Equipamentos::getServidorDetalhes');
+$routes->get('proatis', 'Proatis::index');
+$routes->get('proatis/escola/(:any)', 'Proatis::escola/$1');
 $routes->post('inventario/salvar', 'Inventario::salvar');
 $routes->post('inventario/salvarMultiplo', 'Inventario::salvarMultiplo');
 $routes->post('inventario/editar', 'Inventario::editar');
