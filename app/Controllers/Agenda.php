@@ -44,7 +44,7 @@ class Agenda extends BaseController
             $totalConcluido++;
         } elseif ($stAg === 'pendente') {
             $totalPendente++;
-        } elseif ($stAg === 'em atendimento') {
+        } elseif ($stAg === 'Em_atendimento') {
             $totalEmAtendimento++;
         }
     }

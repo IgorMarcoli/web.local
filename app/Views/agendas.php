@@ -298,7 +298,7 @@
                 <div class="col-6 col-md-3 mb-3">
                     <div class="small-box bg-danger kpi-box-agenda shadow-sm mb-0">
                         <div class="inner p-3">
-                            <h3><?= $statsAgenda['emAtendimento'] ?? 0 ?></h3>
+                            <h3><?= $statsAgenda['Em_atendimento'] ?? 0 ?></h3>
                             <p>Em Atendimento</p>
                         </div>
                         <div class="icon"><i class="fas fa-headset"></i></div>
@@ -388,7 +388,7 @@
                                 <a href="/agenda/agenda?status=pendente" data-status="pendente" class="btn btn-sm filtro-status-link mr-1 my-1 <?= $statusAtual == 'pendente' ? 'btn-warning text-dark font-weight-bold' : 'btn-outline-warning' ?>">
                                     <i class="fas fa-clock mr-1"></i> Pendente
                                 </a>
-                                <a href="/agenda/agenda?status=Em atendimento" data-status="Em atendimento" class="btn btn-sm filtro-status-link mr-1 my-1 <?= $statusAtual == 'Em atendimento' ? 'btn-danger' : 'btn-outline-danger' ?>">
+                                <a href="/agenda/agenda?status=Em_atendimento" data-status="Em_atendimento" class="btn btn-sm filtro-status-link mr-1 my-1 <?= $statusAtual == 'Em_atendimento' ? 'btn-danger' : 'btn-outline-danger' ?>">
                                     <i class="fas fa-headset mr-1"></i> Em Atendimento
                                 </a>
                                 <a href="/agenda/agenda?status=suspenso" data-status="suspenso" class="btn btn-sm filtro-status-link my-1 <?= $statusAtual == 'suspenso' ? 'btn-secondary' : 'btn-outline-secondary' ?>">
@@ -434,7 +434,7 @@
                                         $badgeClass = 'status-concluido';
                                     } elseif ($stRaw === 'pendente') {
                                         $badgeClass = 'status-pendente';
-                                    } elseif ($stRaw === 'em atendimento') {
+                                    } elseif ($stRaw === 'em_atendimento') {
                                         $badgeClass = 'status-atendimento';
                                     }
                                     ?>
@@ -474,7 +474,7 @@
                                                     onchange="alterarStatus(this.value, <?= (int)$agend['AgendaId'] ?>, this)">
                                                 <option value="pendente" <?= ($stRaw === 'pendente') ? 'selected' : '' ?>>Pendente</option>
                                                 <option value="concluido" <?= ($stRaw === 'concluido' || $stRaw === 'concluído') ? 'selected' : '' ?>>Concluído</option>
-                                                <option value="Em Atendimento" <?= ($stRaw === 'em atendimento') ? 'selected' : '' ?>>Em Atendimento</option>
+                                                <option value="Em_atendimento" <?= ($stRaw === 'em_atendimento') ? 'selected' : '' ?>>Em Atendimento</option>
                                                 <option value="Suspenso" <?= ($stRaw === 'suspenso') ? 'selected' : '' ?>>Suspenso</option>
                                             </select>
                                         </td>
@@ -547,7 +547,7 @@
                 selectElem.classList.add('status-concluido');
             } else if (st === 'pendente') {
                 selectElem.classList.add('status-pendente');
-            } else if (st === 'em atendimento') {
+            } else if (st === 'em_atendimento') {
                 selectElem.classList.add('status-atendimento');
             } else {
                 selectElem.classList.add('status-suspenso');
