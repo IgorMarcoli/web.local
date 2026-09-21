@@ -71,11 +71,11 @@ class Dashboard extends BaseController
 
         $totalVisitas = $agenda ->countAll();
 
-        $visitasPendentes = $visitas
-        ->select('visitas.*, escolas."nome", escolas."escola_endereco"')
-        ->join('escolas', 'escolas."id" = visitas."EscolaId"')
-        ->where('visitas.Status', 'Pendente')
-        ->findAll();
+$visitasPendentes = $agenda
+    ->select('agendas.*, escolas."nome", escolas."escola_endereco"')
+    ->join('escolas', 'LOWER(TRIM(escolas."nome")) = LOWER(TRIM(agendas."Nomelocal"))', 'left')
+    ->where('agendas.status', 'pendente')
+    ->findAll();
 
         $data = [
                 'totalVisitas' => $totalVisitas,
@@ -91,5 +91,16 @@ class Dashboard extends BaseController
         echo View('templates/footer');
        
     }
+    public function alterarStatusVisita()
+{
+    $visitas = new VisitasModel();
+ 
+    $visitas->update(
+        $this->request->getPost('VisitaId'),
+        ['Status' => $this->request->getPost('status')]
+    );
+ 
+    return $this->response->setJSON(['ok' => true]);
+}
 }
 ?>

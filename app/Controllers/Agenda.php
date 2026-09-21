@@ -5,13 +5,15 @@ namespace App\Controllers;
 use App\Models\EscolasModel;
 use App\Controllers\BaseController;
 use App\Models\AgendaModel;
+use App\Models\FieldsModel;
 
 class Agenda extends BaseController
 {
     public function agenda()
     {
         $agendas_model = new AgendaModel();
-
+        $fields = new FieldsModel();
+        $nomeFields = $fields->findAll();
         $status  = $this->request->getGet('status');
         $periodo = $this->request->getGet('periodo');
         $mes     = $this->request->getGet('mes') ?? date('m');

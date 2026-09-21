@@ -14,7 +14,6 @@ class ProatiModel extends Model
     /**
      * Retorna todos os usuários com perfil "PROATI", já trazendo o nome
      * da escola correspondente através da FK EscolaId (uuid).
-     *
      * AJUSTE os nomes das colunas abaixo ("Perfil", "EscolaId", "Nome" da
      * escola) caso sejam diferentes no seu banco.
      */

@@ -100,7 +100,80 @@
         font-size: 0.9rem;
     }
 
-    .visita-row td { vertical-align: middle; }
+    .visita-compact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f1f3f5;
+        transition: background-color 0.2s ease, opacity 0.3s ease, max-height 0.3s ease;
+    }
+    .visita-compact-item:last-child { border-bottom: none; }
+    .visita-compact-item:hover { background-color: #f8fafc; }
+    .visita-compact-item.saindo {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+    }
+    .visita-compact-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 10px;
+        background: #fff7ed;
+        color: #d97706;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.05rem;
+    }
+    .visita-compact-info { flex: 1; min-width: 0; }
+    .visita-compact-nome {
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: #212529;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .visita-compact-meta {
+        font-size: 0.75rem;
+        color: #868e96;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .visita-compact-acoes {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+    .status-select-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 20px;
+        padding: 4px 10px;
+        border: 1px solid #ced4da;
+        outline: none;
+        cursor: pointer;
+        max-width: 140px;
+    }
+    .status-select-badge.status-concluido    { background-color: #d1fae5; color: #065f46; border-color: #10b981; }
+    .status-select-badge.status-pendente     { background-color: #fef3c7; color: #92400e; border-color: #f59e0b; }
+    .status-select-badge.status-atendimento  { background-color: #fee2e2; color: #991b1b; border-color: #ef4444; }
+    .status-select-badge.status-suspenso     { background-color: #f1f5f9; color: #475569; border-color: #94a3b8; }
+    .btn-rota-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
 </style>
 
 <div class="content-wrapper">
@@ -254,43 +327,66 @@
                     <div class="card card-modern">
                         <div class="card-header card-header-amber d-flex justify-content-between align-items-center">
                             <span><i class="fas fa-map-marker-alt mr-1"></i> Visitas técnicas pendentes</span>
-                            <span class="badge badge-light text-dark"><?= count($visitasPendentes ?? []) ?></span>
+                            <span class="badge badge-light text-dark" id="contador-visitas-pendentes">
+                                <?= count($visitasPendentes ?? []) ?>
+                            </span>
                         </div>
                         <div class="card-body p-0">
-                            <?php if (empty($visitasPendentes)) : ?>
-                                <div class="empty-mini py-4">
-                                    <i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>
-                                    Nenhuma visita pendente
-                                </div>
-                            <?php else : ?>
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>Escola</th>
-                                                <th>Endereço</th>
-                                                <th width="110" class="text-center">Ação</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($visitasPendentes as $e) : ?>
-                                                <tr class="visita-row">
-                                                    <td class="font-weight-bold text-dark">
-                                                        <i class="fas fa-school text-muted mr-1"></i><?= htmlspecialchars($e['Nome']) ?>
-                                                    </td>
-                                                    <td class="text-muted"><?= htmlspecialchars($e['Endereco']) ?></td>
-                                                    <td class="text-center">
-                                                        <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($e['Endereco']) ?>"
-                                                           target="_blank" class="btn btn-outline-primary btn-sm">
-                                                            <i class="fas fa-route"></i> Rota
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            <?php endif; ?>
+                            <div id="lista-visitas-pendentes">
+                                <?php if (empty($visitasPendentes)) : ?>
+                                    <div class="empty-mini py-4" id="empty-visitas-pendentes">
+                                        <i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>
+                                        Nenhuma visita pendente
+                                    </div>
+                                <?php else : ?>
+                                    <?php foreach ($visitasPendentes as $v) :
+                                        // NOTA: ajuste 'VisitaId' abaixo se a PK real da tabela visitas tiver outro nome
+                                        $visitaId = $v['VisitaId'] ?? $v['id'] ?? 0;
+                                        $stVisita = mb_strtolower(trim($v['Status'] ?? 'Pendente'), 'UTF-8');
+                                        $badgeVisita = 'status-pendente';
+                                        if ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluida') { $badgeVisita = 'status-concluido'; }
+                                        elseif ($stVisita === 'em_atendimento') { $badgeVisita = 'status-atendimento'; }
+                                        elseif ($stVisita === 'suspenso' || $stVisita === 'suspensa') { $badgeVisita = 'status-suspenso'; }
+
+                                        $dataVisitaTxt = '';
+                                        if (!empty($v['Data'])) {
+                                            try { $dataVisitaTxt = (new DateTime($v['Data']))->format('d/m'); }
+                                            catch (\Exception $e) { $dataVisitaTxt = $v['Data']; }
+                                        }
+                                    ?>
+                                        <div class="visita-compact-item" data-visita-id="<?= (int)$visitaId ?>">
+                                            <div class="visita-compact-icon">
+                                                <i class="fas fa-school"></i>
+                                            </div>
+                                            <div class="visita-compact-info">
+                                                <div class="visita-compact-nome" title="<?= htmlspecialchars($v['nome'] ?? '-') ?>">
+                                                    <?= htmlspecialchars($v['nome'] ?? '-') ?>
+                                                </div>
+                                                <div class="visita-compact-meta" title="<?= htmlspecialchars($v['escola_endereco'] ?? '') ?>">
+                                                    <i class="fas fa-map-marker-alt mr-1"></i><?= htmlspecialchars($v['escola_endereco'] ?? '-') ?>
+                                                    <?php if ($dataVisitaTxt) : ?>
+                                                        &middot; <i class="far fa-calendar-alt mr-1"></i><?= htmlspecialchars($dataVisitaTxt) ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <div class="visita-compact-acoes">
+                                                <!-- NOTA: confirme os valores exatos de Status usados na tabela visitas -->
+                                                <select class="status-select-badge <?= $badgeVisita ?>"
+                                                        onchange="alterarStatusVisita(this, <?= (int)$visitaId ?>)">
+                                                    <option value="Pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
+                                                    <option value="Concluida" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluida') ? 'selected' : '' ?>>Concluída</option>
+                                                    <option value="Em_atendimento" <?= $stVisita === 'em_atendimento' ? 'selected' : '' ?>>Em atendimento</option>
+                                                    <option value="Suspensa" <?= ($stVisita === 'suspenso' || $stVisita === 'suspensa') ? 'selected' : '' ?>>Suspensa</option>
+                                                </select>
+                                                <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($v['escola_endereco'] ?? '') ?>"
+                                                   target="_blank" class="btn btn-outline-primary btn-sm btn-rota-icon" title="Ver rota">
+                                                    <i class="fas fa-route"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -395,4 +491,54 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     <?php endif; ?>
 });
+
+function alterarStatusVisita(selectElem, visitaId) {
+    const novoStatus = selectElem.value;
+    const stLower = novoStatus.toLowerCase();
+
+    selectElem.classList.remove('status-concluido', 'status-pendente', 'status-atendimento', 'status-suspenso');
+    if (stLower === 'concluida' || stLower === 'concluído' || stLower === 'concluido') {
+        selectElem.classList.add('status-concluido');
+    } else if (stLower === 'em_atendimento') {
+        selectElem.classList.add('status-atendimento');
+    } else if (stLower === 'suspensa' || stLower === 'suspenso') {
+        selectElem.classList.add('status-suspenso');
+    } else {
+        selectElem.classList.add('status-pendente');
+    }
+
+    fetch('/dashboard/alterarStatusVisita', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'VisitaId=' + visitaId + '&status=' + encodeURIComponent(novoStatus)
+    })
+    .then(function (response) { return response.text(); })
+    .then(function () {
+        // A partir do momento em que deixa de ser "pendente", some da lista deste card
+        if (stLower !== 'pendente') {
+            const item = selectElem.closest('.visita-compact-item');
+            if (item) {
+                item.classList.add('saindo');
+                setTimeout(function () {
+                    item.remove();
+                    atualizarContadorVisitas();
+                }, 320);
+            }
+        }
+    })
+    .catch(function (err) { console.error('Erro ao atualizar status da visita:', err); });
+}
+
+function atualizarContadorVisitas() {
+    const lista = document.getElementById('lista-visitas-pendentes');
+    const restantes = lista.querySelectorAll('.visita-compact-item').length;
+    const contador = document.getElementById('contador-visitas-pendentes');
+    if (contador) contador.textContent = restantes;
+
+    if (restantes === 0 && !document.getElementById('empty-visitas-pendentes')) {
+        lista.innerHTML = '<div class="empty-mini py-4" id="empty-visitas-pendentes">' +
+            '<i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>' +
+            'Nenhuma visita pendente</div>';
+    }
+}
 </script>
