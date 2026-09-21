@@ -74,6 +74,27 @@
         color: #475569;
         border-color: #94a3b8;
     }
+    .tecnico-select-badge {
+        font-size: 0.82rem;
+        font-weight: 600;
+        border-radius: 20px;
+        padding: 3px 10px;
+        border: 1px solid #a78bfa;
+        outline: none;
+        cursor: pointer;
+        background-color: #ede9fe;
+        color: #4c1d95;
+        transition: box-shadow 0.15s ease;
+    }
+    .tecnico-select-badge:focus {
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+        border-color: #7c3aed;
+    }
+    .tecnico-select-badge option {
+        font-weight: 500;
+        color: #1e1b4b;
+        background: #fff;
+    }
     @media (max-width: 767.98px) {
         .content-header h1 {
             font-size: 1.35rem;
@@ -138,7 +159,12 @@
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label class="font-weight-bold small text-muted"><i class="fas fa-user-check mr-1 text-info"></i> Atendido por</label>
-                            <input type="text" class="form-control" name="Atendidopor" placeholder="Técnico ou responsável...">
+                            <select class="form-control" name="Atendidopor">
+                                <option value="">— Selecione o técnico —</option>
+                                <?php foreach ($tecnicos as $tec): ?>
+                                    <option value="<?= esc($tec['nome']) ?>"><?= esc($tec['nome']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -198,7 +224,12 @@
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label class="font-weight-bold small text-muted"><i class="fas fa-user-check mr-1 text-warning"></i> Atendido por</label>
-                            <input type="text" class="form-control" id="modal-editar-produto-Atendidopor" name="Atendidopor">
+                            <select class="form-control" id="modal-editar-produto-Atendidopor" name="Atendidopor">
+                                <option value="">— Selecione o técnico —</option>
+                                <?php foreach ($tecnicos as $tec): ?>
+                                    <option value="<?= esc($tec['nome']) ?>"><?= esc($tec['nome']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <input type="hidden" id="modal-editar-produto-AgendaId" name="AgendaId">
                     </div>
@@ -463,11 +494,16 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?php if (!empty($agend['Atendidopor'])): ?>
-                                                <i class="fas fa-user-check text-muted mr-1"></i><?= esc($agend['Atendidopor']) ?>
-                                            <?php else: ?>
-                                                <span class="text-muted">-</span>
-                                            <?php endif; ?>
+                                            <select class="tecnico-select-badge"
+                                                    onchange="alterarAtendidoPor(this.value, <?= (int)$agend['AgendaId'] ?>, this)">
+                                                <option value="" <?= empty($agend['Atendidopor']) ? 'selected' : '' ?>>— Nenhum —</option>
+                                                <?php foreach ($tecnicos as $tec): ?>
+                                                    <option value="<?= esc($tec['nome']) ?>"
+                                                        <?= (trim($agend['Atendidopor'] ?? '') === trim($tec['nome'])) ? 'selected' : '' ?>>
+                                                        <?= esc($tec['nome']) ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </td>
                                         <td>
                                             <select class="form-control form-control-sm status-select-badge <?= $badgeClass ?>"
@@ -534,9 +570,38 @@
         document.getElementById('modal-editar-produto-Tipo').value = Tipo || '';
         document.getElementById('modal-editar-produto-Descricao').value = Descricao || '';
         document.getElementById('modal-editar-produto-Solicitadopor').value = Solicitadopor || '';
-        document.getElementById('modal-editar-produto-Atendidopor').value = Atendidopor || '';
+
+        // Seleciona o técnico correto no dropdown do modal de edição
+        const selectTecnico = document.getElementById('modal-editar-produto-Atendidopor');
+        if (selectTecnico) {
+            const valorNorm = (Atendidopor || '').trim();
+            let encontrou = false;
+            for (let opt of selectTecnico.options) {
+                if (opt.value.trim() === valorNorm) {
+                    opt.selected = true;
+                    encontrou = true;
+                    break;
+                }
+            }
+            if (!encontrou) selectTecnico.selectedIndex = 0;
+        }
 
         $('#modal-editar-produto').modal('show');
+    }
+
+    function alterarAtendidoPor(novoTecnico, id, selectElem) {
+        fetch('/agenda/alterarAtendidoPor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'AgendaId=' + id + '&atendidopor=' + encodeURIComponent(novoTecnico)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Técnico atualizado:', novoTecnico);
+        })
+        .catch(err => console.error('Erro ao atualizar técnico:', err));
     }
 
     function alterarStatus(novoStatus, id, selectElem) {

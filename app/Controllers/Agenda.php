@@ -54,6 +54,7 @@ class Agenda extends BaseController
     $data = [
         'agendas'     => $agendas,
         'escolas'     => $escolas,
+        'tecnicos'    => $nomeFields,
         'mesAtual'    => $mes,
         'anoAtual'    => $ano,
         'statusAtual' => $status,
@@ -116,6 +117,16 @@ class Agenda extends BaseController
 
     ['status' => $this->request->getPost('status')] );
     
+    return "ok";
+    }
+
+    public function alterarAtendidoPor(){
+    $agenda_model = new AgendaModel();
+
+    $agenda_model->update( $this->request->getPost('AgendaId'),
+
+    ['Atendidopor' => $this->request->getPost('atendidopor')] );
+
     return "ok";
     }
 

@@ -21,6 +21,7 @@ $routes->post('agenda/cadastrar', 'Agenda::cadastrar');
 $routes->post('agenda/editar', 'Agenda::editar');
 $routes->get('agenda/excluir/(:num)', 'Agenda::excluir/$1');
 $routes->post('agenda/agenda/alterarStatus', 'Agenda::alterarStatus');
+$routes->post('agenda/alterarAtendidoPor', 'Agenda::alterarAtendidoPor');
 $routes->post('dashboard/alterarStatusVisita', 'Dashboard::alterarStatusVisita');
 $routes->get('agendagab/agendagab', 'Agendagab::Agendagab');
 $routes->post('agendagab/cadastrar', 'Agendagab::cadastrar');
