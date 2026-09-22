@@ -232,6 +232,143 @@
             </div>
             <!-- /.KPIs -->
 
+            <!-- ===== GRÁFICO ATENDIMENTOS POR TÉCNICO ===== -->
+            <?php if (!empty($porTecnico)) : ?>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card card-modern">
+                        <div class="card-header d-flex align-items-center justify-content-between py-3 px-4"
+                             style="background: linear-gradient(135deg,#7c3aed 0%,#5b21b6 100%); color:#fff; border-radius: 14px 14px 0 0;">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle bg-white d-flex align-items-center justify-content-center mr-3 shadow-sm"
+                                     style="width:38px;height:38px;min-width:38px;font-size:1.1rem;">
+                                    <i class="fas fa-user-cog" style="color:#7c3aed;"></i>
+                                </div>
+                                <div>
+                                    <div class="font-weight-bold" style="font-size:1rem;">Atendimentos por Técnico Field</div>
+                                    <small style="opacity:.8;">Produtividade individual da equipe</small>
+                                </div>
+                            </div>
+                            <span class="badge badge-light text-dark px-3 py-1" style="font-size:.8rem;">
+                                <i class="fas fa-users mr-1"></i><?= count($porTecnico) ?> técnico<?= count($porTecnico) !== 1 ? 's' : '' ?>
+                            </span>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <div class="row">
+
+                                <!-- Gráfico Barras Horizontal — Todos os períodos -->
+                                <div class="col-lg-7 mb-4 mb-lg-0">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="font-weight-bold text-dark" style="font-size:.9rem;">
+                                            <i class="fas fa-chart-bar mr-1 text-purple" style="color:#7c3aed;"></i>
+                                            Total geral de agendamentos
+                                        </span>
+                                    </div>
+                                    <div style="position:relative; height:<?= max(160, count($porTecnico) * 44) ?>px;">
+                                        <canvas id="chart-por-tecnico"></canvas>
+                                    </div>
+                                </div>
+
+                                <!-- Donut — Mês atual + Ranking -->
+                                <div class="col-lg-5">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <span class="font-weight-bold text-dark" style="font-size:.9rem;">
+                                            <i class="fas fa-trophy mr-1" style="color:#f59e0b;"></i>
+                                            Ranking —
+                                            <?php
+                                                $mesesNomes = [1=>'Jan',2=>'Fev',3=>'Mar',4=>'Abr',5=>'Mai',6=>'Jun',7=>'Jul',8=>'Ago',9=>'Set',10=>'Out',11=>'Nov',12=>'Dez'];
+                                                echo ($mesesNomes[(int)date('m')] ?? '') . '/' . date('Y');
+                                            ?>
+                                        </span>
+                                    </div>
+
+                                    <?php if (!empty($porTecnicoMes)) : ?>
+                                        <!-- Donut do mês -->
+                                        <div class="text-center mb-3">
+                                            <div style="position:relative; height:170px; max-width:220px; margin:0 auto;">
+                                                <canvas id="chart-donut-tecnico"></canvas>
+                                            </div>
+                                        </div>
+
+                                        <!-- Ranking list -->
+                                        <div class="mt-2">
+                                            <?php
+                                            $totalMes = array_sum(array_column($porTecnicoMes, 'total'));
+                                            $medalhas = ['🥇','🥈','🥉'];
+                                            foreach ($porTecnicoMes as $i => $tec) :
+                                                $pct = $totalMes > 0 ? round(($tec['total'] / $totalMes) * 100) : 0;
+                                                $barColors = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
+                                                $cor = $barColors[$i % count($barColors)];
+                                                $medalha = $medalhas[$i] ?? '·';
+                                            ?>
+                                            <div class="mb-2">
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <span style="font-size:.82rem; font-weight:600; color:#1e1b4b;">
+                                                        <?= $medalha ?> <?= esc($tec['tecnico']) ?>
+                                                    </span>
+                                                    <span class="badge" style="background:<?= $cor ?>22; color:<?= $cor ?>; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:20px;">
+                                                        <?= (int)$tec['total'] ?>
+                                                    </span>
+                                                </div>
+                                                <div class="progress" style="height:6px; border-radius:10px;">
+                                                    <div class="progress-bar" role="progressbar"
+                                                         style="width:<?= $pct ?>%; background:<?= $cor ?>; border-radius:10px;"
+                                                         aria-valuenow="<?= $pct ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="empty-mini">
+                                            <i class="fas fa-inbox mb-2 d-block" style="font-size:1.8rem;"></i>
+                                            Sem atendimentos neste mês
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                            </div><!-- /.row -->
+
+                            <!-- Tabela resumo compacta -->
+                            <hr class="mt-2 mb-3">
+                            <div class="row">
+                                <?php
+                                $totalGeral = array_sum(array_column($porTecnico, 'total'));
+                                $barColorsAll = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
+                                foreach ($porTecnico as $idx => $tec) :
+                                    $pctGeral = $totalGeral > 0 ? round(($tec['total'] / $totalGeral) * 100) : 0;
+                                    $cor2 = $barColorsAll[$idx % count($barColorsAll)];
+                                    $iniciais = mb_strtoupper(mb_substr($tec['tecnico'], 0, 2), 'UTF-8');
+                                ?>
+                                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                                    <div class="d-flex align-items-center p-2 rounded" style="background:#f8fafc; border:1px solid #e9ecef;">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center mr-2 font-weight-bold text-white"
+                                             style="width:34px;height:34px;min-width:34px;background:<?= $cor2 ?>;font-size:.78rem;">
+                                            <?= $iniciais ?>
+                                        </div>
+                                        <div style="flex:1;min-width:0;">
+                                            <div style="font-size:.78rem;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                                <?= esc($tec['tecnico']) ?>
+                                            </div>
+                                            <div style="font-size:.72rem;color:#64748b;">
+                                                <?= (int)$tec['total'] ?> total · <?= (int)($tec['concluidos'] ?? 0) ?> <span style="color:#10b981;">✓</span>
+                                            </div>
+                                        </div>
+                                        <div style="font-size:.85rem;font-weight:700;color:<?= $cor2 ?>; margin-left:4px;">
+                                            <?= $pctGeral ?>%
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== /GRÁFICO ATENDIMENTOS POR TÉCNICO ===== -->
+            <?php endif; ?>
+
             <div class="row">
                 <!-- Coluna esquerda -->
                 <div class="col-lg-5">
@@ -490,7 +627,118 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     <?php endif; ?>
-});
+    // ===== GRÁFICO POR TÉCNICO — Barra Horizontal =====
+    <?php if (!empty($porTecnico)) : ?>
+    (function() {
+        const labelsTec  = <?= json_encode(array_column($porTecnico, 'tecnico')) ?>;
+        const totalTec   = <?= json_encode(array_map('intval', array_column($porTecnico, 'total'))) ?>;
+        const concTec    = <?= json_encode(array_map('intval', array_column($porTecnico, 'concluidos'))) ?>;
+        const allColors  = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
+        const bgColors   = labelsTec.map((_, i) => allColors[i % allColors.length]);
+        const bgColorsC  = labelsTec.map((_, i) => allColors[i % allColors.length] + '88');
+
+        const ctxTec = document.getElementById('chart-por-tecnico');
+        if (ctxTec) {
+            new Chart(ctxTec, {
+                type: 'bar',
+                data: {
+                    labels: labelsTec,
+                    datasets: [
+                        {
+                            label: 'Total',
+                            data: totalTec,
+                            backgroundColor: bgColors,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        },
+                        {
+                            label: 'Concluídos',
+                            data: concTec,
+                            backgroundColor: bgColorsC,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: { boxWidth: 12, font: { size: 11 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(ctx) {
+                                    return ' ' + ctx.dataset.label + ': ' + ctx.raw + ' atendimento' + (ctx.raw !== 1 ? 's' : '');
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { precision: 0, font: { size: 11 } },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        y: {
+                            ticks: { font: { size: 11, weight: '600' } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+    })();
+    <?php endif; ?>
+
+    // ===== DONUT TÉCNICO — Mês atual =====
+    <?php if (!empty($porTecnicoMes)) : ?>
+    (function() {
+        const labelsDonut  = <?= json_encode(array_column($porTecnicoMes, 'tecnico')) ?>;
+        const valoresDonut = <?= json_encode(array_map('intval', array_column($porTecnicoMes, 'total'))) ?>;
+        const donutColors  = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
+
+        const ctxDonut = document.getElementById('chart-donut-tecnico');
+        if (ctxDonut) {
+            new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: labelsDonut,
+                    datasets: [{
+                        data: valoresDonut,
+                        backgroundColor: donutColors.slice(0, labelsDonut.length),
+                        borderWidth: 2,
+                        borderColor: '#fff',
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '68%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(ctx) {
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const pct = total > 0 ? Math.round((ctx.raw / total) * 100) : 0;
+                                    return ' ' + ctx.label + ': ' + ctx.raw + ' (' + pct + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    })();
+    <?php endif; ?>
+
+}); // fim DOMContentLoaded
 
 function alterarStatusVisita(selectElem, visitaId) {
     const novoStatus = selectElem.value;
@@ -540,5 +788,6 @@ function atualizarContadorVisitas() {
             '<i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>' +
             'Nenhuma visita pendente</div>';
     }
+    
 }
 </script>
