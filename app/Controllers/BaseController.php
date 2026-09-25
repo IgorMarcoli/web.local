@@ -52,7 +52,36 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
+        $router = service('router');
+        $controllerName = class_basename($router->controllerName() ?? '');
+        $publicControllers = ['Home', 'Login', 'Logingab'];
 
-        // E.g.: $this->session = \Config\Services::session();
+        // Se tentar acessar qualquer controller protegido sem estar autenticado, bloqueia imediatamente
+        if (!in_array($controllerName, $publicControllers, true)) {
+            if (!session()->get('logado') || !session()->get('usuario_id')) {
+                header('Location: ' . base_url('login?alert=naoLogado'));
+                exit;
+            }
+        }
+
+        if (session()->has('usuario_id') && (!session()->has('usuario_setor') || session()->get('usuario_setor') === null)) {
+            $loginModel = new \App\Models\LoginModel();
+            $usuario = $loginModel->find(session()->get('usuario_id'));
+            if ($usuario && isset($usuario['setor'])) {
+                session()->set('usuario_setor', $usuario['setor']);
+            }
+        }
+    }
+
+    /**
+     * Garante que apenas usuários do SEINTEC acessem o recurso.
+     */
+    protected function permitirApenasSeintec()
+    {
+        $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
+        if ($usuarioSetor === 'SETEC') {
+            return redirect()->to('/Dashboard')->with('alert', 'acessoNegado');
+        }
+        return null;
     }
 }

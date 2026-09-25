@@ -1,3 +1,7 @@
+<?php
+$usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ($usuarioSetor ?? '')));
+$isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
+?>
 <style>
     :root {
         --grad-blue-a: #0284c7;
@@ -182,7 +186,7 @@
         <div class="container-fluid">
             <div class="row mb-2 align-items-center">
                 <div class="col-sm-6">
-                    <h1 class="m-0 font-weight-bold">Dashboard SEINTEC / SETEC</h1>
+                    <h1 class="m-0 font-weight-bold">Dashboard <?= $isSetec ? 'SETEC' : 'SEINTEC / SETEC' ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -198,7 +202,8 @@
     <section class="content">
         <div class="container-fluid">
 
-            <!-- KPIs -->
+            <?php if (!$isSetec) : ?>
+            <!-- KPIs (Apenas SEINTEC) -->
             <div class="row">
                 <div class="col-lg-3 col-6 mb-3">
                     <a href="/equipamentos" class="stat-card grad-blue">
@@ -368,7 +373,96 @@
             </div>
             <!-- ===== /GRÁFICO ATENDIMENTOS POR TÉCNICO ===== -->
             <?php endif; ?>
+            <?php endif; // Fim if (!$isSetec) dos KPIs e Gráfico por Técnico ?>
 
+            <?php if ($isSetec) : ?>
+            <!-- ======================================================= -->
+            <!-- VISÃO SETEC: Apenas o calendário e as visitas pendentes -->
+            <!-- ======================================================= -->
+            <div class="row">
+                <!-- Coluna Calendário -->
+                <div class="col-lg-6 col-12 mb-4">
+                    <div class="card card-modern h-100">
+                        <div class="card-header card-header-blue">
+                            <i class="far fa-calendar-alt mr-1"></i> Calendário
+                        </div>
+                        <div class="card-body">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Visitas técnicas pendentes -->
+                <div class="col-lg-6 col-12 mb-4">
+                    <div class="card card-modern h-100">
+                        <div class="card-header card-header-amber d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-map-marker-alt mr-1"></i> Visitas técnicas pendentes</span>
+                            <span class="badge badge-light text-dark" id="contador-visitas-pendentes">
+                                <?= count($visitasPendentes ?? []) ?>
+                            </span>
+                        </div>
+                        <div class="card-body p-0" style="max-height: 520px; overflow-y: auto;">
+                            <div id="lista-visitas-pendentes">
+                                <?php if (empty($visitasPendentes)) : ?>
+                                    <div class="empty-mini py-4" id="empty-visitas-pendentes">
+                                        <i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>
+                                        Nenhuma visita pendente
+                                    </div>
+                                <?php else : ?>
+                                    <?php foreach ($visitasPendentes as $v) :
+                                        $visitaId = $v['AgendaId'] ?? $v['VisitaId'] ?? $v['id'] ?? 0;
+                                        $stVisita = mb_strtolower(trim($v['status'] ?? $v['Status'] ?? 'Pendente'), 'UTF-8');
+                                        $badgeVisita = 'status-pendente';
+                                        if ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluida') { $badgeVisita = 'status-concluido'; }
+                                        elseif ($stVisita === 'em_atendimento') { $badgeVisita = 'status-atendimento'; }
+                                        elseif ($stVisita === 'suspenso' || $stVisita === 'suspensa') { $badgeVisita = 'status-suspenso'; }
+
+                                        $dataVisitaTxt = '';
+                                        if (!empty($v['Data'])) {
+                                            try { $dataVisitaTxt = (new DateTime($v['Data']))->format('d/m'); }
+                                            catch (\Exception $e) { $dataVisitaTxt = $v['Data']; }
+                                        }
+                                    ?>
+                                        <div class="visita-compact-item" data-visita-id="<?= (int)$visitaId ?>">
+                                            <div class="visita-compact-icon">
+                                                <i class="fas fa-school"></i>
+                                            </div>
+                                            <div class="visita-compact-info">
+                                                <div class="visita-compact-nome" title="<?= htmlspecialchars($v['nome'] ?? '-') ?>">
+                                                    <?= htmlspecialchars($v['nome'] ?? '-') ?>
+                                                </div>
+                                                <div class="visita-compact-meta" title="<?= htmlspecialchars($v['escola_endereco'] ?? '') ?>">
+                                                    <i class="fas fa-map-marker-alt mr-1"></i><?= htmlspecialchars($v['escola_endereco'] ?? '-') ?>
+                                                    <?php if ($dataVisitaTxt) : ?>
+                                                        &middot; <i class="far fa-calendar-alt mr-1"></i><?= htmlspecialchars($dataVisitaTxt) ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <div class="visita-compact-acoes">
+                                                <select class="status-select-badge <?= $badgeVisita ?>"
+                                                        onchange="alterarStatusVisita(this, <?= (int)$visitaId ?>)">
+                                                    <option value="pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
+                                                    <option value="concluido" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluido') ? 'selected' : '' ?>>Concluída</option>
+                                                    <option value="em_atendimento" <?= $stVisita === 'em_atendimento' ? 'selected' : '' ?>>Em atendimento</option>
+                                                    <option value="suspenso" <?= ($stVisita === 'suspenso' || $stVisita === 'suspensa') ? 'selected' : '' ?>>Suspensa</option>
+                                                </select>
+                                                <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($v['escola_endereco'] ?? '') ?>"
+                                                   target="_blank" class="btn btn-outline-primary btn-sm btn-rota-icon" title="Ver rota">
+                                                    <i class="fas fa-route"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php else : ?>
+            <!-- ======================================================= -->
+            <!-- VISÃO SEINTEC: Completa                                 -->
+            <!-- ======================================================= -->
             <div class="row">
                 <!-- Coluna esquerda -->
                 <div class="col-lg-5">
@@ -477,9 +571,8 @@
                                     </div>
                                 <?php else : ?>
                                     <?php foreach ($visitasPendentes as $v) :
-                                        // NOTA: ajuste 'VisitaId' abaixo se a PK real da tabela visitas tiver outro nome
-                                        $visitaId = $v['VisitaId'] ?? $v['id'] ?? 0;
-                                        $stVisita = mb_strtolower(trim($v['Status'] ?? 'Pendente'), 'UTF-8');
+                                        $visitaId = $v['AgendaId'] ?? $v['VisitaId'] ?? $v['id'] ?? 0;
+                                        $stVisita = mb_strtolower(trim($v['status'] ?? $v['Status'] ?? 'Pendente'), 'UTF-8');
                                         $badgeVisita = 'status-pendente';
                                         if ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluida') { $badgeVisita = 'status-concluido'; }
                                         elseif ($stVisita === 'em_atendimento') { $badgeVisita = 'status-atendimento'; }
@@ -507,13 +600,12 @@
                                                 </div>
                                             </div>
                                             <div class="visita-compact-acoes">
-                                                <!-- NOTA: confirme os valores exatos de Status usados na tabela visitas -->
                                                 <select class="status-select-badge <?= $badgeVisita ?>"
                                                         onchange="alterarStatusVisita(this, <?= (int)$visitaId ?>)">
-                                                    <option value="Pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
-                                                    <option value="Concluida" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluida') ? 'selected' : '' ?>>Concluída</option>
-                                                    <option value="Em_atendimento" <?= $stVisita === 'em_atendimento' ? 'selected' : '' ?>>Em atendimento</option>
-                                                    <option value="Suspensa" <?= ($stVisita === 'suspenso' || $stVisita === 'suspensa') ? 'selected' : '' ?>>Suspensa</option>
+                                                    <option value="pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
+                                                    <option value="concluido" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluido') ? 'selected' : '' ?>>Concluída</option>
+                                                    <option value="em_atendimento" <?= $stVisita === 'em_atendimento' ? 'selected' : '' ?>>Em atendimento</option>
+                                                    <option value="suspenso" <?= ($stVisita === 'suspenso' || $stVisita === 'suspensa') ? 'selected' : '' ?>>Suspensa</option>
                                                 </select>
                                                 <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($v['escola_endereco'] ?? '') ?>"
                                                    target="_blank" class="btn btn-outline-primary btn-sm btn-rota-icon" title="Ver rota">
@@ -529,6 +621,7 @@
                 </div>
                 <!-- /Coluna direita -->
             </div>
+            <?php endif; ?>
 
         </div>
     </section>
@@ -576,6 +669,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     calendar.render();
 
+    <?php if (!$isSetec) : ?>
     // Gráfico - Telefônicos
     <?php if (!empty($statusChamados)) : ?>
     const labelsTel = <?= json_encode(array_column($statusChamados, 'status')) ?>;
@@ -737,6 +831,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })();
     <?php endif; ?>
+    <?php endif; // Fim if (!$isSetec) gráficos ?>
 
 }); // fim DOMContentLoaded
 
@@ -758,7 +853,7 @@ function alterarStatusVisita(selectElem, visitaId) {
     fetch('/dashboard/alterarStatusVisita', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'VisitaId=' + visitaId + '&status=' + encodeURIComponent(novoStatus)
+        body: 'AgendaId=' + visitaId + '&VisitaId=' + visitaId + '&status=' + encodeURIComponent(novoStatus)
     })
     .then(function (response) { return response.text(); })
     .then(function () {

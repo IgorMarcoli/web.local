@@ -5,7 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bem vindo ao SEINTEC / SETEC </h1>
+            <?php $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? '')); ?>
+            <h1>Bem vindo ao <?= $usuarioSetor ? esc($usuarioSetor) : 'SEINTEC / SETEC' ?> </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

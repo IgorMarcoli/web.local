@@ -1,3 +1,7 @@
+<?php
+$usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
+$isSetec = ($usuarioSetor === 'SETEC');
+?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -9,7 +13,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
            <div class="image">
     <?php if (session()->get('usuario_foto')) : ?>
 <img src="<?= session()->get('usuario_foto') ?? base_url('tema/dist/img/user2-160x160.jpg') ?>"
@@ -21,8 +25,10 @@
     <?php endif; ?>
 </div>
             <div class="info">
-             
-<a href="/perfil" class="d-block"><?= session()->get('usuario_nome') ?? 'Usuário' ?></a>  
+                <a href="/perfil" class="d-block text-truncate" style="max-width: 150px;"><?= session()->get('usuario_nome') ?? 'Usuário' ?></a>  
+                <?php if (session()->get('usuario_setor')) : ?>
+                    <span class="badge badge-<?= $isSetec ? 'warning' : 'primary' ?>" style="font-size: 0.68rem; letter-spacing: 0.5px;"><?= esc(session()->get('usuario_setor')) ?></span>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -31,6 +37,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                
+                <!-- Dashboard (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/Dashboard" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -39,6 +47,9 @@
                         </p>
                     </a>
                 </li>
+
+                <?php if (!$isSetec) : ?>
+                <!-- Conexão App (Apenas SEINTEC) -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -90,6 +101,9 @@
                         </li>
                     </ul>
                 </li>
+                <?php endif; ?>
+
+                <!-- Atendimento (Visível para SEINTEC e SETEC) -->
                <li class="nav-item">
                     <a href="/produtos/listar" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -98,6 +112,8 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- Agenda (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/agenda/agenda" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -106,6 +122,8 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- Equipamentos (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/equipamentos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -114,6 +132,9 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- Inventário (Apenas SEINTEC) -->
+                <?php if (!$isSetec) : ?>
                 <li class="nav-item">
                     <a href="/inventario" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -122,6 +143,9 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
+
+                <!-- Empréstimos (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/emprestimos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -130,6 +154,8 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- PROATIs (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/proatis" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -138,6 +164,9 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- Manuais (Apenas SEINTEC) -->
+                <?php if (!$isSetec) : ?>
                 <li class="nav-item">
                     <a href="manuais#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -146,6 +175,10 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
+
+                <!-- Fluxos (Apenas SEINTEC) -->
+                <?php if (!$isSetec) : ?>
                 <li class="nav-item">
                     <a href="fluxos#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -154,6 +187,9 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
+
+                <!-- Contatos (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
                     <a href="/contatos" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>

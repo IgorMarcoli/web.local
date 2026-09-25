@@ -23,28 +23,46 @@ class Login extends BaseController
 
     public function autenticar()
     {
-    $dados = $this->request->getVar();
+        $dados = $this->request->getVar();
+        $usuarioDigitado = trim($dados['Usuario'] ?? '');
+        $senhaDigitada = (string)($dados['Senha'] ?? '');
 
-    $login_model = new LoginModel();
+        $login_model = new LoginModel();
 
-    $login = $login_model
-        ->where('Usuario', $dados['Usuario'])
-        ->where('Senha', $dados['Senha'])
-        ->first();
-if (isset($dados['foto'])) {
-    session()->set('usuario_foto', $dados['foto']);
-}
-    if (!empty($login)) {
-        // salva os dados do usuário na sessão
-        session()->set([
-            'usuario_id'   => $login['LoginId'], // ajuste pro nome real da PK
-            'usuario_nome' => $login['Nomeuser'],
-            'usuario_foto' => $login['foto'] ?? null, // ajuste pro nome real da coluna
-            'logado'       => true
-        ]);
+        // Busca o usuário pelo nome de usuário
+        $login = $login_model
+            ->where('Usuario', $usuarioDigitado)
+            ->first();
 
-        return redirect()->to('/setec');
-    }
+        $senhaValida = false;
+        if (!empty($login)) {
+            // Verifica senha com hash criptografado (password_verify) OU texto puro (legado antes da alteração)
+            if (password_verify($senhaDigitada, $login['Senha'])) {
+                $senhaValida = true;
+            } elseif ($login['Senha'] === $senhaDigitada) {
+                $senhaValida = true;
+            }
+        }
+
+        if (isset($dados['foto'])) {
+            session()->set('usuario_foto', $dados['foto']);
+        }
+
+        if ($senhaValida) {
+            // Salva cookie do usuário para ser lembrado nas próximas aberturas da Intranet (válido por 1 ano)
+            setcookie('usuario_salvo', $usuarioDigitado, time() + (365 * 86400), '/');
+
+            // salva os dados do usuário na sessão
+            session()->set([
+                'usuario_id'    => $login['LoginId'], // ajuste pro nome real da PK
+                'usuario_nome'  => $login['Nomeuser'],
+                'usuario_foto'  => $login['foto'] ?? null, // ajuste pro nome real da coluna
+                'usuario_setor' => $login['setor'] ?? null,
+                'logado'        => true
+            ]);
+
+            return redirect()->to('/setec');
+        }
 
         return redirect()->to('/login?alert=errorLogin');
     }
@@ -70,8 +88,10 @@ public function atualizarPerfil()
         $dados['Nomeuser'] = $this->request->getPost('Nomeuser');
     }
 
-    if ($this->request->getPost('Senha')) {
-        $dados['Senha'] = $this->request->getPost('Senha');
+    $novaSenha = $this->request->getPost('Senha');
+    if (!empty($novaSenha)) {
+        // Criptografa a nova senha com hash seguro antes de gravar no banco de dados
+        $dados['Senha'] = password_hash($novaSenha, PASSWORD_DEFAULT);
     }
 
     // upload pro Supabase Storage
@@ -124,6 +144,12 @@ public function atualizarPerfil()
     }
 
     return redirect()->to('/perfil?alert=success');
+}
+
+public function sair()
+{
+    session()->destroy();
+    return redirect()->to('/login');
 }
 
 // serve a foto de perfil salva em WRITEPATH (fora do public)

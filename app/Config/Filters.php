@@ -21,6 +21,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'setorFilter'   => \App\Filters\SetorFilter::class,
+        'auth'          => \App\Filters\AuthFilter::class,
     ];
 
     /**
@@ -29,6 +31,15 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
+            'auth' => [
+                'except' => [
+                    '/',
+                    'login',
+                    'login/*',
+                    'logingab',
+                    'logingab/*',
+                ],
+            ],
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
@@ -60,5 +71,24 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'setorFilter' => [
+            'before' => [
+                'inventario',
+                'inventario/*',
+                'escoladash',
+                'escoladash/*',
+                'escolaequip',
+                'escolaequip/*',
+                'manutencao',
+                'manutencao/*',
+                'fluxos',
+                'fluxos/*',
+                'manuais',
+                'manuais/*',
+                'conexao/escolas/*',
+                'conexao/ure/*',
+            ],
+        ],
+    ];
 }
