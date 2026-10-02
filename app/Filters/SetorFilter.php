@@ -13,15 +13,6 @@ class SetorFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Se a sessão ainda não carregou o setor, tenta hidratar caso tenha usuario_id
-        if (session()->has('usuario_id') && (!session()->has('usuario_setor') || session()->get('usuario_setor') === null)) {
-            $loginModel = new \App\Models\LoginModel();
-            $usuario = $loginModel->find(session()->get('usuario_id'));
-            if ($usuario && isset($usuario['setor'])) {
-                session()->set('usuario_setor', $usuario['setor']);
-            }
-        }
-
         $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
 
         // Se o usuário for do SETEC, restringe o acesso para as funcionalidades permitidas

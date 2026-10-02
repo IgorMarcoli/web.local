@@ -4,6 +4,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Processo/cadastrar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Processo Administrativo</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,7 +13,7 @@
                   </div>
                   <div class="modal-body">
                       <div class="row">                        
-                          
+
                           <div class="col-6">
                               <div class="form-group">
                                   <label for="">Nº do processo</label>
@@ -42,7 +43,7 @@
         </select>
                               </div>
                           </div>
-                          
+
                       </div>
                   </div>
                   <div class="modal-footer justify-content-between">
@@ -58,6 +59,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Processo/editar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Processo Administrativo</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -192,7 +194,7 @@
                                               <td><?= $agend['servidorProcesso'] ?></td>
                                               <td><?= $agend['comissaoProcesso'] ?></td>
                                               <td><?= $agend['andamentoProcesso'] ?></td>
-                                                                                           
+
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['idProcesso'] ?>', '<?= $agend['numeroProcesso'] ?>', '<?= $agend['servidorProcesso'] ?>', '<?= $agend['comissaoProcesso'] ?>', '<?= $agend['andamentoProcesso'] ?>')"><i class="fas fa-edit"></i></button>
                                                   <a href="/Processo/excluir/<?= $agend['idProcesso'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
@@ -218,12 +220,12 @@
           document.getElementById('modal-editar-produto-Servidor').value = Servidor;
           document.getElementById('modal-editar-produto-Comissao').value = Comissao;
           document.getElementById('modal-editar-produto-Andamento').value = Andamento;
-                   
+
 
           $('#modal-editar-produto').modal('show');
       }
   </script>
 
-  
+
 
 </html>

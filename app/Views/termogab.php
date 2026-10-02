@@ -4,6 +4,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Termogab/cadastrar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Termo de Visita</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -70,7 +71,7 @@
                                   <input type="date" class="form-control" name="Data">
                               </div>
                           </div>
-                          
+
                       </div>
                   </div>
                   <div class="modal-footer justify-content-between">
@@ -86,6 +87,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Termogab/editar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Termo de visita</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -249,7 +251,7 @@
                                               <td><?= $agend['Escola'] ?></td>
                                               <td><?= $agend['Tipo'] ?></td>
                                               <td><?= $agend['Data'] ?></td>
-                                             
+
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto"
                                                   onclick="prepararDados(

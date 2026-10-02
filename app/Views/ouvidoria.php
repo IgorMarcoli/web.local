@@ -5,7 +5,8 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Ouvidoriagab/cadastrar" method="post">
-                  <?= csrf_field() ?>
+<?= csrf_field() ?>
+
                   <div class="modal-header bg-primary text-white">
                       <h4 class="modal-title"><i class="fas fa-plus-circle mr-1"></i> Nova Ouvidoria</h4>
                       <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
@@ -74,7 +75,8 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Ouvidoriagab/editar" method="post">
-                  <?= csrf_field() ?>
+<?= csrf_field() ?>
+
                   <input type="hidden" id="modal-editar-ouvidoriaid" name="ouvidoria_id">
                   <div class="modal-header bg-warning">
                       <h4 class="modal-title font-weight-bold"><i class="fas fa-edit mr-1"></i> Editar Ouvidoria</h4>

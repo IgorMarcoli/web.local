@@ -4,6 +4,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="<?= base_url('agendagab/cadastrar') ?>" method="post">
+                  <?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,7 +49,7 @@
                                   <input type="text" class="form-control" name="Atendidopor">
                               </div>
                           </div>
-                          
+
                       </div>
                   </div>
                   <div class="modal-footer justify-content-between">
@@ -64,6 +65,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="<?= base_url('agendagab/editar') ?>" method="post">
+                  <?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Agendamento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -214,7 +216,7 @@
                                               <td><?= $agend['Descricao'] ?></td>
                                               <td><?= $agend['Solicitadopor'] ?></td>
                                               <td><?= $agend['Atendidopor'] ?></td>
-                                             
+
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['AgendaId'] ?>', '<?= $agend['Nomelocal'] ?>', '<?= $agend['Data'] ?>', '<?= $agend['Tipo'] ?>', '<?= $agend['Descricao'] ?>', '<?= $agend['Solicitadopor'] ?>', '<?= $agend['Atendidopor'] ?>')"><i class="fas fa-edit"></i></button>
                                                   <a href="<?= base_url('agendagab/excluir/'.$agend['AgendaId']) ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este agendamento?');"><i class="fas fa-trash"></i></a>
@@ -242,12 +244,12 @@
           document.getElementById('modal-editar-produto-Descricao').value = Descricao;
           document.getElementById('modal-editar-produto-Solicitadopor').value = Solicitadopor;
           document.getElementById('modal-editar-produto-Atendidopor').value = Atendidopor;
-         
+
 
           $('#modal-editar-produto').modal('show');
       }
   </script>
 
-  
+
 
 </html>

@@ -26,14 +26,14 @@ class Database extends Config
      */
     public array $default = [
         'DSN'      => '',
-        'hostname' => 'aws-0-sa-east-1.pooler.supabase.com',
-        'username' => 'postgres.xzuavctadzcnihultxjh',
-        'password' => 'caafRoEHC5Eitl86',
-        'database' => 'postgres',
-        'DBDriver' => 'Postgre',
+        'hostname' => env('database.default.hostname', ''),
+        'username' => env('database.default.username', ''),
+        'password' => env('database.default.password', ''),
+        'database' => env('database.default.database', 'postgres'),
+        'DBDriver' => env('database.default.DBDriver', 'Postgre'),
         'DBPrefix' => '',
         'pConnect' => false,
-        'DBDebug'  => true,
+        'DBDebug'  => ENVIRONMENT !== 'production',
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
@@ -41,7 +41,8 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 5432,
+        'port'     => (int) env('database.default.port', 5432),
+        'sslmode'  => env('database.default.sslmode', 'require'),
     ];
 
     /**

@@ -35,19 +35,16 @@ class Filters extends BaseConfig
                 'except' => [
                     '/',
                     'login',
-                    'login/*',
+                    'login/autenticar',
                     'logingab',
-                    'logingab/*',
+                    'logingab/autenticar',
                 ],
             ],
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'csrf',
         ],
         'after' => [
-            'toolbar',
-            // 'honeypot',
-            // 'secureheaders',
+            'secureheaders',
+            ...(ENVIRONMENT !== 'production' ? ['toolbar'] : []),
         ],
     ];
 

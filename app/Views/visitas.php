@@ -4,6 +4,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Visita/cadastrar" method="post" id="formVisita">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Nova Visita técnica</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -54,6 +55,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Visita/editar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Visita técnica</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -188,7 +190,7 @@
                                               <td><?= $visited['Endereco'] ?></td>
                                               <td><?= $visited['Tipo'] ?></td>
                                               <td><?= $visited['Descricao'] ?></td>
-                                             
+
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto"onclick="prepararDados(
                                                         '<?= $visited['VisitaId'] ?>',

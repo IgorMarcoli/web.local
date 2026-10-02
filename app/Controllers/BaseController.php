@@ -51,26 +51,7 @@ abstract class BaseController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
-        $router = service('router');
-        $controllerName = class_basename($router->controllerName() ?? '');
-        $publicControllers = ['Home', 'Login', 'Logingab'];
-
-        // Se tentar acessar qualquer controller protegido sem estar autenticado, bloqueia imediatamente
-        if (!in_array($controllerName, $publicControllers, true)) {
-            if (!session()->get('logado') || !session()->get('usuario_id')) {
-                header('Location: ' . base_url('login?alert=naoLogado'));
-                exit;
-            }
-        }
-
-        if (session()->has('usuario_id') && (!session()->has('usuario_setor') || session()->get('usuario_setor') === null)) {
-            $loginModel = new \App\Models\LoginModel();
-            $usuario = $loginModel->find(session()->get('usuario_id'));
-            if ($usuario && isset($usuario['setor'])) {
-                session()->set('usuario_setor', $usuario['setor']);
-            }
-        }
+        // Autenticação e permissões são aplicadas pelos filtros do framework.
     }
 
     /**

@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url('tema/plugins/fontawesome-free/css/all.min.css') ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('tema/dist/css/adminlte.min.css') ?>">
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
 </head>
 
 <body class="hold-transition sidebar-mini">

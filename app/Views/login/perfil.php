@@ -43,6 +43,7 @@
                         <!-- formulário -->
                         <div class="card-footer">
                             <form action="/perfil/atualizar" method="post" enctype="multipart/form-data">
+<?= csrf_field() ?>
 
                                 <div class="form-group">
                                     <label>Foto de perfil</label>

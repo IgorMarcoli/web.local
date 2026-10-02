@@ -70,7 +70,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <form id="form-equipamento" action="/equipamentos/salvar" method="post">
-                <?= csrf_field() ?>
+<?= csrf_field() ?>
+
                 <input type="hidden" id="equip-id-item" name="id_item" value="">
 
                 <div class="modal-header bg-primary text-white">

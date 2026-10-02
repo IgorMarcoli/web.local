@@ -121,6 +121,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 14px; overflow: hidden;">
             <form action="/agenda/cadastrar" method="post">
+<?= csrf_field() ?>
                 <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border-bottom: none;">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle bg-white text-info p-2 mr-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px; min-width: 40px; font-size: 1.15rem;">
@@ -186,6 +187,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 14px; overflow: hidden;">
             <form action="/agenda/editar" method="post">
+<?= csrf_field() ?>
                 <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; border-bottom: none;">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle bg-white text-warning p-2 mr-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px; min-width: 40px; font-size: 1.15rem;">
@@ -593,7 +595,8 @@
         fetch('/agenda/alterarAtendidoPor', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
             },
             body: 'AgendaId=' + id + '&atendidopor=' + encodeURIComponent(novoTecnico)
         })
@@ -622,7 +625,8 @@
         fetch('/agenda/agenda/alterarStatus', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
             },
             body: 'AgendaId=' + id + '&status=' + encodeURIComponent(novoStatus)
         })

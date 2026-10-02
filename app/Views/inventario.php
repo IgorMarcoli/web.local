@@ -3,7 +3,8 @@
         <div class="modal-content">
 
             <form action="/inventario/salvarMultiplo" method="post">
-                <?= csrf_field() ?>
+<?= csrf_field() ?>
+
                 <div class="modal-header">
                     <h4 class="modal-title">Adicionar Kit de Equipamentos</h4>
                     <button type="button" id="btn-add-kit-group" class="btn btn-sm btn-success ml-3">Adicionar</button>
@@ -114,7 +115,8 @@
 </div>
 
 <form id="bulk-delete-kits" action="/inventario/excluirMultiplo" method="post" class="d-none">
-    <?= csrf_field() ?>
+<?= csrf_field() ?>
+
 </form>
 
 <div class="content-wrapper">
@@ -361,7 +363,7 @@
                 if (checkbox.name && checkbox.name.includes('[skip]')) {
                     checkbox.name = `items[${itemKey}][skip][${groupIndex}]`;
                 }
-                
+
                 // Atualiza o hidden input correspondente
                 if (hiddenInput && hiddenInput.name.includes('[skip]')) {
                     hiddenInput.name = `items[${itemKey}][skip][${groupIndex}]`;
@@ -786,12 +788,12 @@
 
     document.querySelector('#modal-editar-kit form')?.addEventListener('submit', function (event) {
         const form = event.target;
-        
+
         // Debug detalhado
         console.log('=== SUBMIT FORMULÁRIO ===');
         console.log('Modo:', inventarioModalMode);
         console.log('Action:', form.action);
-        
+
         const formData = new FormData(form);
         const dataObj = {};
         for (let [key, value] of formData.entries()) {
@@ -799,7 +801,7 @@
             dataObj[key].push(value);
         }
         console.log('Dados agrupados:', dataObj);
-        
+
         if (inventarioModalMode !== 'edit') {
             const groups = Array.from(form.querySelectorAll('#kit-create-groups .kit-group'));
             groups.forEach((group) => {
@@ -968,7 +970,7 @@
                 if (checkbox) {
                     checkbox.checked = itemEmpty;
                 }
-                
+
                 // Atualiza a visibilidade dos campos baseado no checkbox
                 atualizarVisibilidadeItem(rowElement);
             });

@@ -3,6 +3,7 @@
 <div class="modal-content">
 
 <form action="/emprestimos/salvar" method="post">
+<?= csrf_field() ?>
 
 <div class="modal-header">
 <h4 class="modal-title">Novo Empréstimo</h4>
@@ -120,12 +121,13 @@
 <div class="modal-dialog modal-lg">
 <div class="modal-content">
 <form action="/emprestimos/editarMultiplo" method="post" id="form-editar-multiplo">
+<?= csrf_field() ?>
 <div class="modal-header">
 <h4 class="modal-title">Editar Empréstimos Selecionados</h4>
 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 </div>
 <div class="modal-body">
-    <?= csrf_field() ?>
+
     <div id="editar-emprestimo-groups"></div>
 </div>
 <div class="modal-footer">
@@ -141,7 +143,7 @@
 <div class="modal fade" id="modal-detalhes-servidor" tabindex="-1" role="dialog" aria-labelledby="modalServidorTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
-            
+
             <!-- Header vibrante com gradiente azul/índigo de alto contraste -->
             <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%); color: #ffffff; border-bottom: none;">
                 <div class="d-flex align-items-center">
@@ -159,7 +161,7 @@
             </div>
 
             <div class="modal-body p-4" style="background-color: #f8fafc;">
-                
+
                 <!-- Card Principal com Avatar e Nome -->
                 <div class="card border-0 shadow-sm mb-4" style="border-radius: 14px; background: #ffffff;">
                     <div class="card-body p-3 d-flex align-items-center">
@@ -183,7 +185,7 @@
 
                 <!-- Grid de Informações Acessível com Cores Vivas -->
                 <div class="row">
-                    
+
                     <!-- Card Ramal (Verde Esmeralda Vibrante) -->
                     <div class="col-sm-6 col-12 mb-3">
                         <div class="card h-100 border-0 shadow-sm p-3" style="border-radius: 12px; background: #ecfdf5; border-left: 5px solid #10b981 !important;">
@@ -264,10 +266,12 @@
 </div>
 
 <form id="bulk-release-form" action="/emprestimos/salvarDataDevolucaoMultiplo" method="post" class="d-none">
-    <?= csrf_field() ?>
+<?= csrf_field() ?>
+
 </form>
 <form id="bulk-delete-form" action="/emprestimos/excluirMultiplo" method="post" class="d-none">
-    <?= csrf_field() ?>
+<?= csrf_field() ?>
+
 </form>
 
 <style>
@@ -552,7 +556,8 @@
                                                         <?= esc($dataDevolucao) ?>
                                                     <?php else: ?>
                                                         <form method="post" action="/emprestimos/salvarDataDevolucao" class="d-flex align-items-center">
-                                                            <?= csrf_field() ?>
+<?= csrf_field() ?>
+
                                                             <input type="hidden" name="id_emprestimo" value="<?= esc($e['id_emprestimo'] ?? '') ?>">
                                                             <input type="hidden" name="data_devolucao" class="data-devolucao-valor" value="">
                                                             <button type="submit" class="btn btn-success btn-sm btn-liberar-devolucao" data-id="<?= esc($e['id_emprestimo'] ?? '') ?>">
@@ -1639,7 +1644,7 @@
             document.getElementById('modal-servidor-ramal').textContent = s.ramal || 'Não informado';
             document.getElementById('modal-servidor-secao').textContent = s.secao_nome || (s.secao ? 'Seção #' + s.secao : 'Não informada');
             document.getElementById('modal-servidor-servico').textContent = s.servico_nome || (s.servico ? 'Serviço #' + s.servico : 'Não informado');
-            
+
             const tipoBadge = document.getElementById('modal-servidor-tipo');
             tipoBadge.textContent = 'SERVIDOR';
             tipoBadge.className = 'badge badge-pill badge-primary px-3 py-1 font-weight-bold mr-2 mb-1';
@@ -1656,7 +1661,7 @@
             document.getElementById('modal-servidor-ramal').textContent = sup.ramal || 'Não informado';
             document.getElementById('modal-servidor-secao').textContent = sup.setor_nome || (sup.setor_id ? 'Setor ' + sup.setor_id : 'Supervisão de Ensino');
             document.getElementById('modal-servidor-servico').textContent = sup.servico_nome || 'Supervisão';
-            
+
             const tipoBadge = document.getElementById('modal-servidor-tipo');
             tipoBadge.textContent = 'SUPERVISOR';
             tipoBadge.className = 'badge badge-pill badge-success px-3 py-1 font-weight-bold mr-2 mb-1';

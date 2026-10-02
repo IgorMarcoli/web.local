@@ -4,6 +4,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/JUridico/cadastrar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">NOVA APURAÇÃO INICIAL</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -54,7 +55,7 @@
                                   <input type="text" class="form-control" name="data">
                               </div>
                           </div>
-                          
+
                       </div>
                   </div>
                   <div class="modal-footer justify-content-between">
@@ -70,6 +71,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/Juridico/editar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">EDITAR APURAÇÃO INICIAL</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -228,7 +230,7 @@
                                               <td><?= $agend['comissao'] ?></td>
                                               <td><?= $agend['ap'] ?></td>
                                               <td><?= $agend['data'] ?></td>
-                                             
+
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['juridicoId'] ?>', '<?= $agend['fato'] ?>', '<?= $agend['diligencia'] ?>', '<?= $agend['datainicio'] ?>', '<?= $agend['datatermino'] ?>', '<?= $agend['comissao'] ?>', '<?= $agend['ap'] ?>', '<?= $agend['data'] ?>')"><i class="fas fa-edit"></i></button>
                                                   <a href="/Juridico/excluir/<?= $agend['juridicoId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
@@ -257,12 +259,12 @@
           document.getElementById('modal-editar-produto-comissao').value = comissao;
           document.getElementById('modal-editar-produto-ap').value = ap;
           document.getElementById('modal-editar-produto-data').value = data;
-         
+
 
           $('#modal-editar-produto').modal('show');
       }
   </script>
 
-  
+
 
 </html>

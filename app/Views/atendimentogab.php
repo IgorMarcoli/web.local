@@ -2,6 +2,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/produtos/cadastrar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Novo Atendimento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,6 +62,7 @@
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <form action="/produtos/editar" method="post">
+<?= csrf_field() ?>
                   <div class="modal-header">
                       <h4 class="modal-title">Editar Atendimento</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">

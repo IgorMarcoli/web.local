@@ -4,6 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form action="/Bancogab/cadastrar" method="post" onsubmit="return validarPessoaSelecionada()">
+<?= csrf_field() ?>
                 <div class="modal-header">
                     <h4 class="modal-title">Novo Banco de Horas</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,6 +62,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form action="/Bancogab/editar" method="post">
+<?= csrf_field() ?>
                 <div class="modal-header">
                     <h4 class="modal-title">Editar Banco de Horas</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -164,7 +166,7 @@
                         </div>
                     </div>
                      <button type="button" class="btn btn-success" onclick="exportarExcel()">
-                
+
                                   <i class="fas fa-file-excel"></i> Exportar Dados
                               </button>
                 </div>
@@ -302,7 +304,8 @@
         fetch('/bancogab/alterarStatusBanco', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
             },
             body: 'BancoId=' + encodeURIComponent(id) + '&Status=' + encodeURIComponent(novoStatus)
         })

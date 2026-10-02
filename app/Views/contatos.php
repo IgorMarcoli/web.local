@@ -378,7 +378,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(urlAcoes, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content, },
             body: dados
         })
         .then(function (resp) { return resp.json(); })
@@ -406,7 +407,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(urlAcoes, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content, },
             body: dados
         })
         .then(function (resp) { return resp.json(); })

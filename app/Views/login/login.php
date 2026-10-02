@@ -31,6 +31,7 @@
                 <?php endif; ?>
 
                 <form action="/login/autenticar" method="post">
+<?= csrf_field() ?>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="primeiroNome." name="Usuario">
                         <div class="input-group-append">

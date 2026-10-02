@@ -852,7 +852,8 @@ function alterarStatusVisita(selectElem, visitaId) {
 
     fetch('/dashboard/alterarStatusVisita', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content, },
         body: 'AgendaId=' + visitaId + '&VisitaId=' + visitaId + '&status=' + encodeURIComponent(novoStatus)
     })
     .then(function (response) { return response.text(); })
@@ -883,6 +884,6 @@ function atualizarContadorVisitas() {
             '<i class="fas fa-check-circle mb-2 d-block" style="font-size: 1.8rem; color:#10b981;"></i>' +
             'Nenhuma visita pendente</div>';
     }
-    
+
 }
 </script>

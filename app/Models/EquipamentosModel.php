@@ -28,10 +28,10 @@ class EquipamentosModel extends Model
         'responsavel',
         'data_registro',
     ];
-
+                                             
     public function listar(array $filtros = []): array
     {
-        $builder = $this->db->table('itens i');
+ $builder = $this->db->table('itens i');
         $builder->select([
             'i.id_item',
             'i.tipo',
@@ -59,7 +59,6 @@ class EquipamentosModel extends Model
                 ->orLike('i.responsavel', $b)
                 ->groupEnd();
         }
-
         if (!empty($filtros['estado'])) {
             $builder->where('i.estado_conservacao', $filtros['estado']);
         }

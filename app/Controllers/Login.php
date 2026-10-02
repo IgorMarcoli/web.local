@@ -9,23 +9,14 @@ class Login extends BaseController
 {
     public function login()
     {
-        $dados = $this->request->getVar();
-        
-        $login_model = new LoginModel();
-        $login_nome = $login_model -> select('Nomeuser');
-            $data = [
-            'loginNome' => $login_nome,
-        ];
-
-        echo View('login/login');
+        return view('login/login');
         
     }
 
     public function autenticar()
     {
-        $dados = $this->request->getVar();
-        $usuarioDigitado = trim($dados['Usuario'] ?? '');
-        $senhaDigitada = (string)($dados['Senha'] ?? '');
+        $usuarioDigitado = trim((string) $this->request->getPost('Usuario'));
+        $senhaDigitada = (string) $this->request->getPost('Senha');
 
         $login_model = new LoginModel();
 
@@ -36,21 +27,20 @@ class Login extends BaseController
 
         $senhaValida = false;
         if (!empty($login)) {
-            // Verifica senha com hash criptografado (password_verify) OU texto puro (legado antes da alteração)
-            if (password_verify($senhaDigitada, $login['Senha'])) {
+            $senhaArmazenada = (string) ($login['Senha'] ?? '');
+            if (password_verify($senhaDigitada, $senhaArmazenada)) {
                 $senhaValida = true;
-            } elseif ($login['Senha'] === $senhaDigitada) {
+            } elseif ($senhaArmazenada !== '' && hash_equals($senhaArmazenada, $senhaDigitada)) {
+                // Migra senhas legadas para hash após um login válido.
+                $login_model->update($login['LoginId'], [
+                    'Senha' => password_hash($senhaDigitada, PASSWORD_DEFAULT),
+                ]);
                 $senhaValida = true;
             }
         }
 
-        if (isset($dados['foto'])) {
-            session()->set('usuario_foto', $dados['foto']);
-        }
-
         if ($senhaValida) {
-            // Salva cookie do usuário para ser lembrado nas próximas aberturas da Intranet (válido por 1 ano)
-            setcookie('usuario_salvo', $usuarioDigitado, time() + (365 * 86400), '/');
+            session()->regenerate(true);
 
             // salva os dados do usuário na sessão
             session()->set([
@@ -99,23 +89,39 @@ public function atualizarPerfil()
 
     
     if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+        $mimeTypes = [
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+            'image/webp' => 'webp',
+        ];
+        $mimeType = $foto->getMimeType();
+        $supabaseUrl = rtrim((string) env('supabase.url', ''), '/');
+        $supabaseKey = (string) env('supabase.serviceKey', '');
+        $bucket = (string) env('supabase.profileBucket', 'perfil');
 
-        $supabaseUrl    = 'https://xzuavctadzcnihultxjh.supabase.co';
-        $supabaseKey    = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dWF2Y3RhZHpjbmlodWx0eGpoIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTQyNDQ2MSwiZXhwIjoyMDk1MDAwNDYxfQ.mn7XefZw1RE-Y-EBZrsgLYG_oHKTouLKKVIECXx0zUs'; // não a anon key
-        $bucket         = 'perfil'; // nome do bucket que você criar no Supabase
-        $nomeFoto       = 'usuario_' . $id . '_' . time() . '.' . $foto->getExtension();
-        $conteudoFoto   = file_get_contents($foto->getTempName());
+        if (!isset($mimeTypes[$mimeType]) || $foto->getSize() > 2 * 1024 * 1024) {
+            return redirect()->to('/perfil?alert=arquivoInvalido');
+        }
+        if ($supabaseUrl === '' || $supabaseKey === '') {
+            log_message('error', 'Upload de perfil não configurado: faltam variáveis do Supabase.');
+            return redirect()->to('/perfil?alert=uploadIndisponivel');
+        }
+
+        $nomeFoto = 'usuario_' . (int) $id . '_' . bin2hex(random_bytes(8)) . '.' . $mimeTypes[$mimeType];
+        $conteudoFoto = file_get_contents($foto->getTempName());
 
         $ch = curl_init();
         curl_setopt_array($ch, [
-            CURLOPT_URL            => $supabaseUrl . '/storage/v1/object/' . $bucket . '/' . $nomeFoto,
+            CURLOPT_URL            => $supabaseUrl . '/storage/v1/object/' . rawurlencode($bucket) . '/' . rawurlencode($nomeFoto),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CUSTOMREQUEST  => 'POST',
             CURLOPT_POSTFIELDS     => $conteudoFoto,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT        => 15,
             CURLOPT_HTTPHEADER     => [
                 'Authorization: Bearer ' . $supabaseKey,
-                'Content-Type: ' . $foto->getMimeType(),
-                'x-upsert: true' // sobrescreve se já existir
+                'Content-Type: ' . $mimeType,
+                'x-upsert: false'
             ],
         ]);
 
@@ -126,12 +132,12 @@ public function atualizarPerfil()
 
         if ($httpCode === 200 || $httpCode === 201) {
             // monta a URL pública
-            $urlFoto = $supabaseUrl . '/storage/v1/object/public/' . $bucket . '/' . $nomeFoto;
+            $urlFoto = $supabaseUrl . '/storage/v1/object/public/' . rawurlencode($bucket) . '/' . rawurlencode($nomeFoto);
             $dados['foto'] = $urlFoto;
             session()->set('usuario_foto', $urlFoto);
         } else {
             // log do erro se quiser debugar
-            log_message('error', 'Supabase upload falhou: ' . $resposta);
+            log_message('error', 'Upload de perfil falhou no Supabase (HTTP {code}).', ['code' => $httpCode]);
         }
     }
 
@@ -148,6 +154,10 @@ public function atualizarPerfil()
 
 public function sair()
 {
+    if (!$this->request->is('post')) {
+        return $this->response->setStatusCode(405);
+    }
+    setcookie('usuario_salvo', '', time() - 3600, '/');
     session()->destroy();
     return redirect()->to('/login');
 }
