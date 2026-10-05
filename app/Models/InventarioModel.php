@@ -16,7 +16,6 @@ class InventarioModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_kit',
         'numero',
         'id_notebook',
         'id_mouse',
@@ -408,16 +407,11 @@ class InventarioModel extends Model
                 ],
             ];
 
-            log_message('debug', "Kit [$i] - ID: {$single['id_kit']}, Número: {$single['numero_mochila']}, isEmpty: " . ($this->isKitPayloadEmpty($single) ? 'SIM' : 'NÃO'));
-
             if ($this->isKitPayloadEmpty($single)) {
-                log_message('debug', "Kit [$i] - Pulado por estar vazio");
                 continue;
             }
 
-            log_message('debug', "Kit [$i] - Salvando...");
             $this->saveKit($single);
-            log_message('debug', "Kit [$i] - Salvo com sucesso");
         }
     }
 

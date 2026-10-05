@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -12,27 +14,29 @@
 namespace CodeIgniter\Entity\Cast;
 
 /**
- * Interface CastInterface
+ * The methods work at (1)(4) only.
+ *   [App Code] --- (1) --> [Entity] --- (2) --> [Database]
+ *   [App Code] <-- (4) --- [Entity] <-- (3) --- [Database]
  */
 interface CastInterface
 {
     /**
-     * Get
+     * Takes a raw value from Entity, returns its value for PHP.
      *
-     * @param array|bool|float|int|object|string|null $value  Data
-     * @param array                                   $params Additional param
+     * @param mixed              $value  Data
+     * @param array<int, string> $params Additional param
      *
-     * @return array|bool|float|int|object|string|null
+     * @return mixed
      */
     public static function get($value, array $params = []);
 
     /**
-     * Set
+     * Takes a PHP value, returns its raw value for Entity.
      *
-     * @param array|bool|float|int|object|string|null $value  Data
-     * @param array                                   $params Additional param
+     * @param mixed              $value  Data
+     * @param array<int, string> $params Additional param
      *
-     * @return array|bool|float|int|object|string|null
+     * @return mixed
      */
     public static function set($value, array $params = []);
 }

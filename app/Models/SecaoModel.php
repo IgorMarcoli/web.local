@@ -14,7 +14,6 @@ class SecaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'secaoID',
         'nome',
         'servicoID'
     ];

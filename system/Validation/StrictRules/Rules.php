@@ -13,15 +13,17 @@ declare(strict_types=1);
 
 namespace CodeIgniter\Validation\StrictRules;
 
+use CodeIgniter\Helpers\Array\ArrayHelper;
 use CodeIgniter\Validation\Rules as NonStrictRules;
-use Config\Database;
 
 /**
  * Validation Rules.
+ *
+ * @see \CodeIgniter\Validation\StrictRules\RulesTest
  */
 class Rules
 {
-    private NonStrictRules $nonStrictRules;
+    private readonly NonStrictRules $nonStrictRules;
 
     public function __construct()
     {
@@ -31,22 +33,39 @@ class Rules
     /**
      * The value does not match another field in $data.
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param array                                   $data Other field/value pairs
+     * @param mixed $str
+     * @param array $data Other field/value pairs
      */
-    public function differs($str, string $field, array $data): bool
-    {
-        if (! is_string($str)) {
+    public function differs(
+        $str,
+        string $otherField,
+        array $data,
+        ?string $error = null,
+        ?string $field = null,
+    ): bool {
+        if (str_contains($otherField, '.')) {
+            return $str !== dot_array_search($otherField, $data);
+        }
+
+        if (! array_key_exists($otherField, $data)) {
             return false;
         }
 
-        return $this->nonStrictRules->differs($str, $field, $data);
+        if (str_contains($field, '.')) {
+            if (! ArrayHelper::dotKeyExists($field, $data)) {
+                return false;
+            }
+        } elseif (! array_key_exists($field, $data)) {
+            return false;
+        }
+
+        return $str !== ($data[$otherField] ?? null);
     }
 
     /**
      * Equals the static value provided.
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function equals($str, string $val): bool
     {
@@ -57,10 +76,14 @@ class Rules
      * Returns true if $str is $val characters long.
      * $val = "5" (one) | "5,8,12" (multiple values)
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function exact_length($str, string $val): bool
     {
+        if (is_int($str) || is_float($str)) {
+            $str = (string) $str;
+        }
+
         if (! is_string($str)) {
             return false;
         }
@@ -71,7 +94,7 @@ class Rules
     /**
      * Greater than
      *
-     * @param array|bool|float|int|object|string|null $str expects int|string
+     * @param mixed $str expects int|string
      */
     public function greater_than($str, string $min): bool
     {
@@ -89,7 +112,7 @@ class Rules
     /**
      * Equal to or Greater than
      *
-     * @param array|bool|float|int|object|string|null $str expects int|string
+     * @param mixed $str expects int|string
      */
     public function greater_than_equal_to($str, string $min): bool
     {
@@ -110,10 +133,11 @@ class Rules
      * accept only one filter).
      *
      * Example:
+     *    is_not_unique[dbGroup.table.field,where_field,where_value]
      *    is_not_unique[table.field,where_field,where_value]
      *    is_not_unique[menu.id,active,1]
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function is_not_unique($str, string $field, array $data): bool
     {
@@ -121,36 +145,13 @@ class Rules
             return false;
         }
 
-        // Grab any data for exclusion of a single row.
-        [$field, $whereField, $whereValue] = array_pad(
-            explode(',', $field),
-            3,
-            null
-        );
-
-        // Break the table and field apart
-        sscanf($field, '%[^.].%[^.]', $table, $field);
-
-        $row = Database::connect($data['DBGroup'] ?? null)
-            ->table($table)
-            ->select('1')
-            ->where($field, $str)
-            ->limit(1);
-
-        if (
-            ! empty($whereField) && ! empty($whereValue)
-            && ! preg_match('/^\{(\w+)\}$/', $whereValue)
-        ) {
-            $row = $row->where($whereField, $whereValue);
-        }
-
-        return $row->get()->getRow() !== null;
+        return $this->nonStrictRules->is_not_unique($str, $field, $data);
     }
 
     /**
      * Value should be within an array of values
      *
-     * @param array|bool|float|int|object|string|null $value
+     * @param mixed $value
      */
     public function in_list($value, string $list): bool
     {
@@ -171,10 +172,11 @@ class Rules
      * record updates.
      *
      * Example:
+     *    is_unique[dbGroup.table.field,ignore_field,ignore_value]
      *    is_unique[table.field,ignore_field,ignore_value]
      *    is_unique[users.email,id,5]
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function is_unique($str, string $field, array $data): bool
     {
@@ -182,34 +184,13 @@ class Rules
             return false;
         }
 
-        [$field, $ignoreField, $ignoreValue] = array_pad(
-            explode(',', $field),
-            3,
-            null
-        );
-
-        sscanf($field, '%[^.].%[^.]', $table, $field);
-
-        $row = Database::connect($data['DBGroup'] ?? null)
-            ->table($table)
-            ->select('1')
-            ->where($field, $str)
-            ->limit(1);
-
-        if (
-            ! empty($ignoreField) && ! empty($ignoreValue)
-            && ! preg_match('/^\{(\w+)\}$/', $ignoreValue)
-        ) {
-            $row = $row->where("{$ignoreField} !=", $ignoreValue);
-        }
-
-        return $row->get()->getRow() === null;
+        return $this->nonStrictRules->is_unique($str, $field, $data);
     }
 
     /**
      * Less than
      *
-     * @param array|bool|float|int|object|string|null $str expects int|string
+     * @param mixed $str expects int|string
      */
     public function less_than($str, string $max): bool
     {
@@ -227,7 +208,7 @@ class Rules
     /**
      * Equal to or Less than
      *
-     * @param array|bool|float|int|object|string|null $str expects int|string
+     * @param mixed $str expects int|string
      */
     public function less_than_equal_to($str, string $max): bool
     {
@@ -245,18 +226,39 @@ class Rules
     /**
      * Matches the value of another field in $data.
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param array                                   $data Other field/value pairs
+     * @param mixed $str
+     * @param array $data Other field/value pairs
      */
-    public function matches($str, string $field, array $data): bool
-    {
-        return $this->nonStrictRules->matches($str, $field, $data);
+    public function matches(
+        $str,
+        string $otherField,
+        array $data,
+        ?string $error = null,
+        ?string $field = null,
+    ): bool {
+        if (str_contains($otherField, '.')) {
+            return $str === dot_array_search($otherField, $data);
+        }
+
+        if (! array_key_exists($otherField, $data)) {
+            return false;
+        }
+
+        if (str_contains($field, '.')) {
+            if (! ArrayHelper::dotKeyExists($field, $data)) {
+                return false;
+            }
+        } elseif (! array_key_exists($field, $data)) {
+            return false;
+        }
+
+        return $str === ($data[$otherField] ?? null);
     }
 
     /**
      * Returns true if $str is $val or fewer characters in length.
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function max_length($str, string $val): bool
     {
@@ -274,7 +276,7 @@ class Rules
     /**
      * Returns true if $str is at least $val length.
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function min_length($str, string $val): bool
     {
@@ -292,7 +294,7 @@ class Rules
     /**
      * Does not equal the static value provided.
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function not_equals($str, string $val): bool
     {
@@ -302,7 +304,7 @@ class Rules
     /**
      * Value should not be within an array of values.
      *
-     * @param array|bool|float|int|object|string|null $value
+     * @param mixed $value
      */
     public function not_in_list($value, string $list): bool
     {
@@ -322,7 +324,7 @@ class Rules
     }
 
     /**
-     * @param array|bool|float|int|object|string|null $str
+     * @param mixed $str
      */
     public function required($str = null): bool
     {
@@ -337,9 +339,9 @@ class Rules
      *
      *     required_with[password]
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param string|null                             $fields List of fields that we should check if present
-     * @param array                                   $data   Complete list of fields from the form
+     * @param mixed       $str
+     * @param string|null $fields List of fields that we should check if present
+     * @param array       $data   Complete list of fields from the form
      */
     public function required_with($str = null, ?string $fields = null, array $data = []): bool
     {
@@ -354,17 +356,39 @@ class Rules
      *
      *     required_without[id,email]
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param string|null                             $otherFields The param fields of required_without[].
-     * @param string|null                             $field       This rule param fields aren't present, this field is required.
+     * @param mixed       $str
+     * @param string|null $otherFields The param fields of required_without[].
+     * @param string|null $field       This rule param fields aren't present, this field is required.
      */
     public function required_without(
         $str = null,
         ?string $otherFields = null,
         array $data = [],
         ?string $error = null,
-        ?string $field = null
+        ?string $field = null,
     ): bool {
         return $this->nonStrictRules->required_without($str, $otherFields, $data, $error, $field);
+    }
+
+    /**
+     * The field exists in $data.
+     *
+     * @param mixed       $value The field value.
+     * @param string|null $param The rule's parameter.
+     * @param array       $data  The data to be validated.
+     * @param string|null $field The field name.
+     */
+    public function field_exists(
+        $value = null,
+        ?string $param = null,
+        array $data = [],
+        ?string $error = null,
+        ?string $field = null,
+    ): bool {
+        if (str_contains($field, '.')) {
+            return ArrayHelper::dotKeyExists($field, $data);
+        }
+
+        return array_key_exists($field, $data);
     }
 }

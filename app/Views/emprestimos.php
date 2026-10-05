@@ -337,7 +337,7 @@
                 <div class="col-6 col-md-3 mb-3">
                     <div class="small-box bg-info kpi-box-emp shadow-sm mb-0">
                         <div class="inner p-3">
-                            <h3><?= $totalEmp ?></h3>
+                            <h3><?= esc($totalEmp, 'html') ?></h3>
                             <p>Total de Registros</p>
                         </div>
                         <div class="icon"><i class="fas fa-handshake"></i></div>
@@ -346,7 +346,7 @@
                 <div class="col-6 col-md-3 mb-3">
                     <div class="small-box bg-warning kpi-box-emp shadow-sm mb-0">
                         <div class="inner p-3">
-                            <h3><?= $empAtivos ?></h3>
+                            <h3><?= esc($empAtivos, 'html') ?></h3>
                             <p>Em Empréstimo</p>
                         </div>
                         <div class="icon"><i class="fas fa-laptop"></i></div>
@@ -364,7 +364,7 @@
                 <div class="col-6 col-md-3 mb-3">
                     <div class="small-box bg-danger kpi-box-emp shadow-sm mb-0">
                         <div class="inner p-3">
-                            <h3><?= $empChamados ?></h3>
+                            <h3><?= esc($empChamados, 'html') ?></h3>
                             <p>Chamados Abertos</p>
                         </div>
                         <div class="icon"><i class="fas fa-headset"></i></div>
@@ -422,7 +422,7 @@
                                 <select name="secao" class="form-control form-control-sm">
                                     <option value="">Todas</option>
                                     <?php foreach ($sessoes as $s): ?>
-                                        <option value="<?= $s['secaoID'] ?>" <?= ($filtros['secao'] ?? '') == $s['secaoID'] ? 'selected' : '' ?>><?= esc($s['nomeSecao']) ?></option>
+                                        <option value="<?= esc($s['secaoID'], 'attr') ?>" <?= ($filtros['secao'] ?? '') == $s['secaoID'] ? 'selected' : '' ?>><?= esc($s['nomeSecao']) ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -638,10 +638,10 @@
     document.addEventListener('DOMContentLoaded', function () {
         // group-scoped handlers are attached below for each cloned box
 
-        const servidoresData = <?= json_encode($servidores, JSON_UNESCAPED_UNICODE) ?>;
-        const servidoresResponsavel = <?= json_encode($servidoresResponsavel, JSON_UNESCAPED_UNICODE) ?>;
-        const supervisoresExtras = <?= json_encode($supervisoresExtras ?? [], JSON_UNESCAPED_UNICODE) ?>;
-        const fieldsExtras = <?= json_encode($fieldsExtras ?? [], JSON_UNESCAPED_UNICODE) ?>;
+        const servidoresData = <?= json_encode($servidores, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const servidoresResponsavel = <?= json_encode($servidoresResponsavel, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const supervisoresExtras = <?= json_encode($supervisoresExtras ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const fieldsExtras = <?= json_encode($fieldsExtras ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
 
         function preencherSetor(servidor, group) {
             const setorInput = group.querySelector('.setor');
@@ -1301,7 +1301,7 @@
         atualizarDuracoes();
         setInterval(atualizarDuracoes, 1000);
 
-        const allKits = <?= json_encode($availableMochilas ?? [], JSON_UNESCAPED_UNICODE) ?>;
+        const allKits = <?= json_encode($availableMochilas ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
         const groupsContainer = document.getElementById('emprestimo-groups');
         const btnAdd = document.getElementById('btn-add-group');
         const resumoPanel = document.getElementById('resumo-mochila-panel');

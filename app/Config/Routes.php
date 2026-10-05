@@ -63,6 +63,8 @@ $routes->get('escoladash', 'Escoladash::index');
 $routes->get('escolaequip', 'Escolaequip::index');
 $routes->get('escolaequip/escola/(:segment)', 'Escolaequip::escola/$1');
 $routes->get('escolaequip/exportar/(:segment)', 'Escolaequip::exportarCsv/$1');
+$routes->get('painel', 'Painel::index');
+$routes->get('painel/dados', 'Painel::dados');
 $routes->get('juridico', 'Juridico::index');
 $routes->get('juridico/juridico', 'Juridico::Juridico');
 $routes->post('juridico/cadastrar', 'Juridico::cadastrar');
@@ -128,10 +130,12 @@ $routes->get('conexao/escolas/equipamentos', 'Escolaequip::index');
 $routes->get('conexao/ure/manutencao', 'Manutencao::index');
 $routes->get('conexao/escolas/proatis', 'Proatis::index');
 $routes->get('conexao/contatos', 'Contatos::index');
+$routes->post('conexao/contatos', 'Contatos::acao');
 
 // Friendly short paths
 $routes->get('proatis', 'Proatis::index');
 $routes->get('contatos', 'Contatos::index');
+$routes->post('contatos', 'Contatos::acao');
 
 /*
  * --------------------------------------------------------------------

@@ -222,18 +222,18 @@
                                   <tbody>
                                       <?php foreach ($juridicos as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['juridicoId'] ?></td>
-                                              <td><?= $agend['fato'] ?></td>
-                                              <td><?= $agend['diligencia'] ?></td>
-                                              <td><?= $agend['datainicio'] ?></td>
-                                              <td><?= $agend['datatermino'] ?></td>
-                                              <td><?= $agend['comissao'] ?></td>
-                                              <td><?= $agend['ap'] ?></td>
-                                              <td><?= $agend['data'] ?></td>
+                                              <td><?= esc($agend['juridicoId'], 'html') ?></td>
+                                              <td><?= esc($agend['fato'], 'html') ?></td>
+                                              <td><?= esc($agend['diligencia'], 'html') ?></td>
+                                              <td><?= esc($agend['datainicio'], 'html') ?></td>
+                                              <td><?= esc($agend['datatermino'], 'html') ?></td>
+                                              <td><?= esc($agend['comissao'], 'html') ?></td>
+                                              <td><?= esc($agend['ap'], 'html') ?></td>
+                                              <td><?= esc($agend['data'], 'html') ?></td>
 
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['juridicoId'] ?>', '<?= $agend['fato'] ?>', '<?= $agend['diligencia'] ?>', '<?= $agend['datainicio'] ?>', '<?= $agend['datatermino'] ?>', '<?= $agend['comissao'] ?>', '<?= $agend['ap'] ?>', '<?= $agend['data'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Juridico/excluir/<?= $agend['juridicoId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= esc($agend['juridicoId'], 'js') ?>', '<?= esc($agend['fato'], 'js') ?>', '<?= esc($agend['diligencia'], 'js') ?>', '<?= esc($agend['datainicio'], 'js') ?>', '<?= esc($agend['datatermino'], 'js') ?>', '<?= esc($agend['comissao'], 'js') ?>', '<?= esc($agend['ap'], 'js') ?>', '<?= esc($agend['data'], 'js') ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/Juridico/excluir/<?= esc($agend['juridicoId'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

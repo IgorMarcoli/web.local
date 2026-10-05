@@ -310,16 +310,16 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                             <div class="mb-2">
                                                 <div class="d-flex justify-content-between align-items-center mb-1">
                                                     <span style="font-size:.82rem; font-weight:600; color:#1e1b4b;">
-                                                        <?= $medalha ?> <?= esc($tec['tecnico']) ?>
+                                                        <?= esc($medalha, 'html') ?> <?= esc($tec['tecnico']) ?>
                                                     </span>
-                                                    <span class="badge" style="background:<?= $cor ?>22; color:<?= $cor ?>; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:20px;">
+                                                    <span class="badge" style="background:<?= esc($cor, 'attr') ?>22; color:<?= esc($cor, 'html') ?>; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:20px;">
                                                         <?= (int)$tec['total'] ?>
                                                     </span>
                                                 </div>
                                                 <div class="progress" style="height:6px; border-radius:10px;">
                                                     <div class="progress-bar" role="progressbar"
-                                                         style="width:<?= $pct ?>%; background:<?= $cor ?>; border-radius:10px;"
-                                                         aria-valuenow="<?= $pct ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                         style="width:<?= esc($pct, 'attr') ?>%; background:<?= esc($cor, 'html') ?>; border-radius:10px;"
+                                                         aria-valuenow="<?= esc($pct, 'html') ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <?php endforeach; ?>
@@ -348,8 +348,8 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                 <div class="col-6 col-md-4 col-lg-3 mb-3">
                                     <div class="d-flex align-items-center p-2 rounded" style="background:#f8fafc; border:1px solid #e9ecef;">
                                         <div class="rounded-circle d-flex align-items-center justify-content-center mr-2 font-weight-bold text-white"
-                                             style="width:34px;height:34px;min-width:34px;background:<?= $cor2 ?>;font-size:.78rem;">
-                                            <?= $iniciais ?>
+                                             style="width:34px;height:34px;min-width:34px;background:<?= esc($cor2, 'attr') ?>;font-size:.78rem;">
+                                            <?= esc($iniciais, 'html') ?>
                                         </div>
                                         <div style="flex:1;min-width:0;">
                                             <div style="font-size:.78rem;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
@@ -359,8 +359,8 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                                 <?= (int)$tec['total'] ?> total · <?= (int)($tec['concluidos'] ?? 0) ?> <span style="color:#10b981;">✓</span>
                                             </div>
                                         </div>
-                                        <div style="font-size:.85rem;font-weight:700;color:<?= $cor2 ?>; margin-left:4px;">
-                                            <?= $pctGeral ?>%
+                                        <div style="font-size:.85rem;font-weight:700;color:<?= esc($cor2, 'attr') ?>; margin-left:4px;">
+                                            <?= esc($pctGeral, 'html') ?>%
                                         </div>
                                     </div>
                                 </div>
@@ -439,7 +439,7 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                                 </div>
                                             </div>
                                             <div class="visita-compact-acoes">
-                                                <select class="status-select-badge <?= $badgeVisita ?>"
+                                                <select class="status-select-badge <?= esc($badgeVisita, 'attr') ?>"
                                                         onchange="alterarStatusVisita(this, <?= (int)$visitaId ?>)">
                                                     <option value="pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
                                                     <option value="concluido" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluido') ? 'selected' : '' ?>>Concluída</option>
@@ -507,7 +507,7 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                                 <?php endif; ?>
                                             </div>
                                         </div>
-                                        <span class="badge-dash-status <?= $badgeAg ?>"><?= esc($labelAg) ?></span>
+                                        <span class="badge-dash-status <?= esc($badgeAg, 'attr') ?>"><?= esc($labelAg) ?></span>
                                     </div>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -600,7 +600,7 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                                                 </div>
                                             </div>
                                             <div class="visita-compact-acoes">
-                                                <select class="status-select-badge <?= $badgeVisita ?>"
+                                                <select class="status-select-badge <?= esc($badgeVisita, 'attr') ?>"
                                                         onchange="alterarStatusVisita(this, <?= (int)$visitaId ?>)">
                                                     <option value="pendente" <?= $stVisita === 'pendente' ? 'selected' : '' ?>>Pendente</option>
                                                     <option value="concluido" <?= ($stVisita === 'concluido' || $stVisita === 'concluída' || $stVisita === 'concluido') ? 'selected' : '' ?>>Concluída</option>
@@ -672,8 +672,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <?php if (!$isSetec) : ?>
     // Gráfico - Telefônicos
     <?php if (!empty($statusChamados)) : ?>
-    const labelsTel = <?= json_encode(array_column($statusChamados, 'status')) ?>;
-    const valoresTel = <?= json_encode(array_column($statusChamados, 'total')) ?>;
+    const labelsTel = <?= json_encode(array_column($statusChamados, 'status'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+    const valoresTel = <?= json_encode(array_column($statusChamados, 'total'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
     const ctxTel = document.getElementById('chart-telefonicos');
     if (ctxTel) {
         new Chart(ctxTel, {
@@ -698,8 +698,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gráfico - Presenciais
     <?php if (!empty($statusChamadosPresenciais)) : ?>
-    const labelsPres = <?= json_encode(array_column($statusChamadosPresenciais, 'status')) ?>;
-    const valoresPres = <?= json_encode(array_column($statusChamadosPresenciais, 'total')) ?>;
+    const labelsPres = <?= json_encode(array_column($statusChamadosPresenciais, 'status'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+    const valoresPres = <?= json_encode(array_column($statusChamadosPresenciais, 'total'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
     const ctxPres = document.getElementById('chart-presenciais');
     if (ctxPres) {
         new Chart(ctxPres, {
@@ -724,9 +724,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // ===== GRÁFICO POR TÉCNICO — Barra Horizontal =====
     <?php if (!empty($porTecnico)) : ?>
     (function() {
-        const labelsTec  = <?= json_encode(array_column($porTecnico, 'tecnico')) ?>;
-        const totalTec   = <?= json_encode(array_map('intval', array_column($porTecnico, 'total'))) ?>;
-        const concTec    = <?= json_encode(array_map('intval', array_column($porTecnico, 'concluidos'))) ?>;
+        const labelsTec  = <?= json_encode(array_column($porTecnico, 'tecnico'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const totalTec   = <?= json_encode(array_map('intval', array_column($porTecnico, 'total')), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const concTec    = <?= json_encode(array_map('intval', array_column($porTecnico, 'concluidos')), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
         const allColors  = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
         const bgColors   = labelsTec.map((_, i) => allColors[i % allColors.length]);
         const bgColorsC  = labelsTec.map((_, i) => allColors[i % allColors.length] + '88');
@@ -792,8 +792,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // ===== DONUT TÉCNICO — Mês atual =====
     <?php if (!empty($porTecnicoMes)) : ?>
     (function() {
-        const labelsDonut  = <?= json_encode(array_column($porTecnicoMes, 'tecnico')) ?>;
-        const valoresDonut = <?= json_encode(array_map('intval', array_column($porTecnicoMes, 'total'))) ?>;
+        const labelsDonut  = <?= json_encode(array_column($porTecnicoMes, 'tecnico'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const valoresDonut = <?= json_encode(array_map('intval', array_column($porTecnicoMes, 'total')), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
         const donutColors  = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
 
         const ctxDonut = document.getElementById('chart-donut-tecnico');

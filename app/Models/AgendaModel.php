@@ -14,7 +14,6 @@ class AgendaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'AgendaId',
         'Nomelocal',
         'Data',
         'Tipo',

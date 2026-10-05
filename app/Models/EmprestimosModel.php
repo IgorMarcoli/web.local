@@ -14,7 +14,6 @@ class EmprestimosModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_emprestimo',
         'numero_mochila',
         'secao',
         'servico',

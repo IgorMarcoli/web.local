@@ -220,13 +220,24 @@ class Dashboard extends BaseController
     public function alterarStatusVisita()
     {
         $agenda = new AgendaModel();
-        $agendaId = $this->request->getPost('AgendaId') ?? $this->request->getPost('VisitaId');
+        $idPostado = $this->request->getPost('AgendaId') ?? $this->request->getPost('VisitaId');
+        $statusPostado = $this->request->getPost('status');
 
-        if ($agendaId) {
-            $agenda->update(
-                $agendaId,
-                ['status' => $this->request->getPost('status')]
-            );
+        if ((!is_string($idPostado) && !is_int($idPostado)) || !ctype_digit((string) $idPostado) || (int) $idPostado < 1 || !is_string($statusPostado)) {
+            return $this->response->setStatusCode(422)->setJSON(['ok' => false]);
+        }
+
+        $status = mb_strtolower(trim($statusPostado), 'UTF-8');
+        if (!in_array($status, ['pendente', 'concluido', 'concluida', 'concluído', 'em_atendimento', 'suspenso', 'suspensa'], true)) {
+            return $this->response->setStatusCode(422)->setJSON(['ok' => false]);
+        }
+
+        $agendaId = (int) $idPostado;
+        if (!$agenda->find($agendaId)) {
+            return $this->response->setStatusCode(404)->setJSON(['ok' => false]);
+        }
+        if (!$agenda->update($agendaId, ['status' => $status])) {
+            return $this->response->setStatusCode(500)->setJSON(['ok' => false]);
         }
 
         return $this->response->setJSON(['ok' => true]);

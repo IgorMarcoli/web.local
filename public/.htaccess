@@ -21,10 +21,15 @@ Options -Indexes
 	RewriteCond %{REQUEST_URI} (.+)/$
 	RewriteRule ^ %1 [L,R=301]
 
-	# Rewrite "www.example.com -> example.com"
-	RewriteCond %{HTTPS} !=on
+	# Canonicalize www hosts without sending visitors back to plain HTTP.
 	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+	RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+	# The vendored theme ships documentation, demos and development files that
+	# are not used by the intranet and must not be exposed from the web root.
+	RewriteRule ^tema/(?:\.github|build|docs|pages)(?:/|$) - [F,L,NC]
+	RewriteRule ^tema/(?:index(?:2|3)?|iframe(?:-dark)?|starter)\.html$ - [F,L,NC]
+	RewriteRule ^tema/(?:composer\.(?:json|lock)|package(?:-lock)?\.json|Dockerfile|README\.md|CODE_OF_CONDUCT\.md|.*\.(?:map|scss))$ - [F,L,NC]
 
 	# Checks to see if the user is attempting to access a valid file,
 	# such as an image or css document, if this isn't true it sends the
@@ -36,6 +41,13 @@ Options -Indexes
 	# Ensure Authorization header is passed along
 	RewriteCond %{HTTP:Authorization} .
 	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+# Deny common project/configuration artifacts if they are copied into public.
+<IfModule mod_authz_core.c>
+	<FilesMatch "(?i)(^\.|\.env|\.ini|\.log|\.sql|\.bak|\.old|\.dist|\.lock)$">
+		Require all denied
+	</FilesMatch>
 </IfModule>
 
 <IfModule !mod_rewrite.c>

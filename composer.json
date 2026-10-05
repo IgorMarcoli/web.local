@@ -5,12 +5,12 @@
     "homepage": "https://codeigniter.com",
     "license": "MIT",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.2",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "laminas/laminas-escaper": "^2.9",
-        "psr/log": "^1.1"
+        "laminas/laminas-escaper": "^2.18",
+        "psr/log": "^3.0"
     },
     "require-dev": {
         "kint-php/kint": "^5.0.4",
@@ -19,7 +19,7 @@
         "friendsofphp/php-cs-fixer": "3.13.0",
         "mikey179/vfsstream": "^1.6",
         "nexusphp/cs-config": "^3.6",
-        "phpunit/phpunit": "^9.1",
+        "phpunit/phpunit": "^9.6.33",
         "predis/predis": "^1.1 || ^2.0"
     },
     "suggest": {
@@ -52,7 +52,9 @@
             "CodeIgniter\\": "system/"
         },
         "exclude-from-classmap": [
-            "**/Database/Migrations/**"
+            "**/Database/Migrations/**",
+            "system/ThirdParty/**",
+            "tests/system/Config/fixtures/**"
         ]
     },
     "scripts": {

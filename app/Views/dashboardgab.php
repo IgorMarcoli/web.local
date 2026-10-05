@@ -31,7 +31,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?= $totalSupervisores ?></h3>
+                <h3><?= esc($totalSupervisores, 'html') ?></h3>
 
                 <p>Supervisores Ativos</p>
               </div>
@@ -46,7 +46,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?= $totalEscolas ?></h3>
+                <h3><?= esc($totalEscolas, 'html') ?></h3>
 
                 <p>Escolas</p>
               </div>
@@ -61,7 +61,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?= $visitasMes ?></h3>
+                <h3><?= esc($visitasMes, 'html') ?></h3>
 
                 <p>Visitas no Mês</p>
               </div>
@@ -76,7 +76,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?= $totalVisitas ?></h3>
+                <h3><?= esc($totalVisitas, 'html') ?></h3>
 
                 <p>Visitas técnicas realizadas</p>
               </div>
@@ -236,7 +236,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
 <script>
-const supervisores = <?= json_encode($porSupervisor) ?>;
+const supervisores = <?= json_encode($porSupervisor, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
 
 // =======================
 // Monta dados iniciais
@@ -299,7 +299,7 @@ selectSupervisor.addEventListener('change', function () {
 
 
 <script>
-const dados = <?= json_encode($porSupervisorEscolas) ?>;
+const dados = <?= json_encode($porSupervisorEscolas, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
 
 const select = document.getElementById('filtroSupervisor2');
 const ctxE = document.getElementById('chartEscolasSupervisor');
@@ -381,7 +381,7 @@ select.addEventListener('change', e => {
 
 <script>
 (function() {
-    const dadosOuvidoria = <?= json_encode($ouvidoriaTipoResp ?? []) ?>;
+    const dadosOuvidoria = <?= json_encode($ouvidoriaTipoResp ?? [], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
 
     if (!dadosOuvidoria || dadosOuvidoria.length === 0) {
         const canvas = document.getElementById('chartOuvidoriaTipoResp');

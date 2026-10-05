@@ -209,16 +209,16 @@
                                   <tbody>
                                       <?php foreach ($agendagabs as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['AgendaId'] ?></td>
-                                              <td><?= $agend['Nomelocal'] ?></td>
-                                              <td><?= $agend['Data'] ?></td>
-                                              <td><?= $agend['Tipo'] ?></td>
-                                              <td><?= $agend['Descricao'] ?></td>
-                                              <td><?= $agend['Solicitadopor'] ?></td>
-                                              <td><?= $agend['Atendidopor'] ?></td>
+                                              <td><?= esc($agend['AgendaId'], 'html') ?></td>
+                                              <td><?= esc($agend['Nomelocal'], 'html') ?></td>
+                                              <td><?= esc($agend['Data'], 'html') ?></td>
+                                              <td><?= esc($agend['Tipo'], 'html') ?></td>
+                                              <td><?= esc($agend['Descricao'], 'html') ?></td>
+                                              <td><?= esc($agend['Solicitadopor'], 'html') ?></td>
+                                              <td><?= esc($agend['Atendidopor'], 'html') ?></td>
 
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['AgendaId'] ?>', '<?= $agend['Nomelocal'] ?>', '<?= $agend['Data'] ?>', '<?= $agend['Tipo'] ?>', '<?= $agend['Descricao'] ?>', '<?= $agend['Solicitadopor'] ?>', '<?= $agend['Atendidopor'] ?>')"><i class="fas fa-edit"></i></button>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= esc($agend['AgendaId'], 'js') ?>', '<?= esc($agend['Nomelocal'], 'js') ?>', '<?= esc($agend['Data'], 'js') ?>', '<?= esc($agend['Tipo'], 'js') ?>', '<?= esc($agend['Descricao'], 'js') ?>', '<?= esc($agend['Solicitadopor'], 'js') ?>', '<?= esc($agend['Atendidopor'], 'js') ?>')"><i class="fas fa-edit"></i></button>
                                                   <a href="<?= base_url('agendagab/excluir/'.$agend['AgendaId']) ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este agendamento?');"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>

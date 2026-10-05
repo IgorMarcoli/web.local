@@ -207,16 +207,16 @@
                                   <tbody>
                                       <?php foreach ($produtos as $prod) : ?>
                                           <tr>
-                                              <td><?= $prod['ProdutoId'] ?></td>
-                                              <td><?= $prod['Nome'] ?></td>
-                                              <td><?= $prod['Data'] ?></td>
-                                              <td><?= $prod['Tipo'] ?></td>
-                                              <td><?= $prod['Descricao'] ?></td>
-                                              <td><?= $prod['Atendidopor'] ?></td>
-                                              <td><?= $prod['Status'] ?></td>
+                                              <td><?= esc($prod['ProdutoId'], 'html') ?></td>
+                                              <td><?= esc($prod['Nome'], 'html') ?></td>
+                                              <td><?= esc($prod['Data'], 'html') ?></td>
+                                              <td><?= esc($prod['Tipo'], 'html') ?></td>
+                                              <td><?= esc($prod['Descricao'], 'html') ?></td>
+                                              <td><?= esc($prod['Atendidopor'], 'html') ?></td>
+                                              <td><?= esc($prod['Status'], 'html') ?></td>
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $prod['ProdutoId'] ?>', '<?= $prod['Nome'] ?>', '<?= $prod['Data'] ?>', '<?= $prod['Tipo'] ?>', '<?= $prod['Descricao'] ?>', '<?= $prod['Atendidopor'] ?>', '<?= $prod['Status'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/produtos/excluir/<?= $prod['ProdutoId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= esc($prod['ProdutoId'], 'js') ?>', '<?= esc($prod['Nome'], 'js') ?>', '<?= esc($prod['Data'], 'js') ?>', '<?= esc($prod['Tipo'], 'js') ?>', '<?= esc($prod['Descricao'], 'js') ?>', '<?= esc($prod['Atendidopor'], 'js') ?>', '<?= esc($prod['Status'], 'js') ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/produtos/excluir/<?= esc($prod['ProdutoId'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

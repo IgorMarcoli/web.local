@@ -38,6 +38,8 @@ class Filters extends BaseConfig
                     'login/autenticar',
                     'logingab',
                     'logingab/autenticar',
+                    'painel',
+                    'painel/dados',
                 ],
             ],
             'csrf',

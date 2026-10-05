@@ -38,7 +38,7 @@
                                   <select name="andamento_processo" class="form-control" required>
             <option value="">Selecione</option>
                  <?php foreach ($andamentos as $andamento): ?>
-        <option value="<?= $andamento ?>"><?= $andamento ?></option>
+        <option value="<?= esc($andamento, 'attr') ?>"><?= esc($andamento, 'html') ?></option>
     <?php endforeach; ?>
         </select>
                               </div>
@@ -189,15 +189,15 @@
                                   <tbody>
                                       <?php foreach ($processos as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['idProcesso'] ?></td>
-                                              <td><?= $agend['numeroProcesso'] ?></td>
-                                              <td><?= $agend['servidorProcesso'] ?></td>
-                                              <td><?= $agend['comissaoProcesso'] ?></td>
-                                              <td><?= $agend['andamentoProcesso'] ?></td>
+                                              <td><?= esc($agend['idProcesso'], 'html') ?></td>
+                                              <td><?= esc($agend['numeroProcesso'], 'html') ?></td>
+                                              <td><?= esc($agend['servidorProcesso'], 'html') ?></td>
+                                              <td><?= esc($agend['comissaoProcesso'], 'html') ?></td>
+                                              <td><?= esc($agend['andamentoProcesso'], 'html') ?></td>
 
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $agend['idProcesso'] ?>', '<?= $agend['numeroProcesso'] ?>', '<?= $agend['servidorProcesso'] ?>', '<?= $agend['comissaoProcesso'] ?>', '<?= $agend['andamentoProcesso'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Processo/excluir/<?= $agend['idProcesso'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= esc($agend['idProcesso'], 'js') ?>', '<?= esc($agend['numeroProcesso'], 'js') ?>', '<?= esc($agend['servidorProcesso'], 'js') ?>', '<?= esc($agend['comissaoProcesso'], 'js') ?>', '<?= esc($agend['andamentoProcesso'], 'js') ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/Processo/excluir/<?= esc($agend['idProcesso'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

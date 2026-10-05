@@ -20,7 +20,7 @@
     <option value="">Selecione a escola</option>
 
     <?php foreach($escolas as $e): ?>
-        <option value="<?= $e['EscolaId'] ?>">
+        <option value="<?= esc($e['EscolaId'], 'attr') ?>">
             <?= htmlspecialchars($e['Nome']) ?>
         </option>
     <?php endforeach; ?>
@@ -69,7 +69,7 @@
                                   <label for="">LOCAL</label>
                                   <select name="EscolaId" id="modal-editar-produto-EscolaId" class="form-control">
     <?php foreach($escolas as $e): ?>
-        <option value="<?= $e['EscolaId'] ?>">
+        <option value="<?= esc($e['EscolaId'], 'attr') ?>">
             <?= htmlspecialchars($e['Nome']) ?>
         </option>
     <?php endforeach; ?>
@@ -185,20 +185,20 @@
                                   <tbody>
                                       <?php foreach ($visitas as $visited) : ?>
                                           <tr>
-                                              <td><?= $visited['VisitaId'] ?></td>                                              
-                                              <td><?= $visited['Nome'] ?></td>
-                                              <td><?= $visited['Endereco'] ?></td>
-                                              <td><?= $visited['Tipo'] ?></td>
-                                              <td><?= $visited['Descricao'] ?></td>
+                                              <td><?= esc($visited['VisitaId'], 'html') ?></td>
+                                              <td><?= esc($visited['Nome'], 'html') ?></td>
+                                              <td><?= esc($visited['Endereco'], 'html') ?></td>
+                                              <td><?= esc($visited['Tipo'], 'html') ?></td>
+                                              <td><?= esc($visited['Descricao'], 'html') ?></td>
 
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto"onclick="prepararDados(
-                                                        '<?= $visited['VisitaId'] ?>',
-                                                        '<?= $visited['EscolaId'] ?>',
-                                                        '<?= $visited['Tipo'] ?>',
-                                                        '<?= $visited['Descricao'] ?>'
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados(
+                                                        '<?= esc($visited['VisitaId'], 'js') ?>',
+                                                        '<?= esc($visited['EscolaId'], 'js') ?>',
+                                                        '<?= esc($visited['Tipo'], 'js') ?>',
+                                                        '<?= esc($visited['Descricao'], 'js') ?>'
                                                         )"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Visita/excluir/<?= $visited['VisitaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <a href="/Visita/excluir/<?= esc($visited['VisitaId'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

@@ -207,16 +207,16 @@
                                   <tbody>
                                       <?php foreach ($atendimentos as $gabi) : ?>
                                           <tr>
-                                              <td><?= $atendiment['AtendimentoId'] ?></td>
-                                              <td><?= $atendiment['Nome'] ?></td>
-                                              <td><?= $atendiment['Data'] ?></td>
-                                              <td><?= $atendiment['Tipo'] ?></td>
-                                              <td><?= $atendiment['Descricao'] ?></td>
-                                              <td><?= $atendiment['Atendidopor'] ?></td>
-                                              <td><?= $atendiment['Status'] ?></td>
+                                              <td><?= esc($atendiment['AtendimentoId'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Nome'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Data'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Tipo'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Descricao'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Atendidopor'], 'html') ?></td>
+                                              <td><?= esc($atendiment['Status'], 'html') ?></td>
                                               <td>
-                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= $atend['AtendimentoId'] ?>', '<?= $atend['Nome'] ?>', '<?= $atend['Data'] ?>', '<?= $atend['Tipo'] ?>', '<?= $atend['Descricao'] ?>', '<?= $atend['Atendidopor'] ?>', '<?= $atend['Status'] ?>')"><i class="fas fa-edit"></i></button>
-                                                  <a href="/atendimentogabs/excluir/<?= $atend['AtendimentoId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto" onclick="prepararDados('<?= esc($atend['AtendimentoId'], 'js') ?>', '<?= esc($atend['Nome'], 'js') ?>', '<?= esc($atend['Data'], 'js') ?>', '<?= esc($atend['Tipo'], 'js') ?>', '<?= esc($atend['Descricao'], 'js') ?>', '<?= esc($atend['Atendidopor'], 'js') ?>', '<?= esc($atend['Status'], 'js') ?>')"><i class="fas fa-edit"></i></button>
+                                                  <a href="/atendimentogabs/excluir/<?= esc($atend['AtendimentoId'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>

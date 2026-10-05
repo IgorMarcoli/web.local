@@ -14,7 +14,6 @@ class KitItensModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id',
         'kit_id',
         'item_id'
     ];

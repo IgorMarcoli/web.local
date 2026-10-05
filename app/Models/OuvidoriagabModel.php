@@ -14,7 +14,6 @@ class OuvidoriaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ouvidoria_id',
         'numero_protocolo',
         'tipo_manifestacao',
         'escola_id',

@@ -14,7 +14,6 @@ class BancogabModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'BancoId',
         'servidor_id',
         'supervisor_id',
         'Data',

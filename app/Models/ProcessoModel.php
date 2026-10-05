@@ -14,7 +14,6 @@ class ProcessoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'idProcesso',
         'numeroProcesso',
         'servidorProcesso',
         'comissaoProcesso',

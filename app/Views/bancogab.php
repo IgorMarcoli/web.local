@@ -213,14 +213,14 @@
 
                                     <?php foreach ($bancogabs as $agend) : ?>
                                         <tr>
-                                            <td><?= $agend['BancoId'] ?></td>
-                                            <td><?= $agend['nome_exibicao'] ?? '' ?></td>
-                                            <td><?= $agend['lotacao'] ?? 'Não informado' ?></td>
-                                            <td><?= $agend['Data'] ?></td>
-                                            <td><?= $agend['Horas'] ?></td>
+                                            <td><?= esc($agend['BancoId'], 'html') ?></td>
+                                            <td><?= esc($agend['nome_exibicao'] ?? '', 'html') ?></td>
+                                            <td><?= esc($agend['lotacao'] ?? 'Não informado', 'html') ?></td>
+                                            <td><?= esc($agend['Data'], 'html') ?></td>
+                                            <td><?= esc($agend['Horas'], 'html') ?></td>
                                             <td>
                                                 <select class="form-control form-control-sm"
-                                                    onchange="alterarStatusBanco(this.value, <?= $agend['BancoId'] ?>)">
+                                                    onchange="alterarStatusBanco(this.value, <?= esc($agend['BancoId'], 'js') ?>)">
                                                     <option value="Disponivel" <?= $agend['Status'] == 'Disponivel' ? 'selected' : '' ?>>
                                                         Disponivel
                                                     </option>
@@ -233,19 +233,19 @@
                                                 <button type="button"
                                                     class="btn btn-warning"
                                                     onclick="prepararDados(
-                                                        '<?= $agend['BancoId'] ?>',
-                                                        '<?= $agend['nome_exibicao'] ?? '' ?>',
-                                                        '<?= $agend['lotacao'] ?? '' ?>',
-                                                        '<?= $agend['Data'] ?>',
-                                                        '<?= $agend['Horas'] ?>',
-                                                        '<?= $agend['Status'] ?>',
-                                                        '<?= $agend['servidor_id'] ?? '' ?>',
-                                                        '<?= $agend['supervisor_id'] ?? '' ?>'
+                                                        '<?= esc($agend['BancoId'], 'js') ?>',
+                                                        '<?= esc($agend['nome_exibicao'] ?? '', 'js') ?>',
+                                                        '<?= esc($agend['lotacao'] ?? '', 'js') ?>',
+                                                        '<?= esc($agend['Data'], 'js') ?>',
+                                                        '<?= esc($agend['Horas'], 'js') ?>',
+                                                        '<?= esc($agend['Status'], 'js') ?>',
+                                                        '<?= esc($agend['servidor_id'] ?? '', 'js') ?>',
+                                                        '<?= esc($agend['supervisor_id'] ?? '', 'js') ?>'
                                                     )">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
 
-                                                <a href="/Bancogab/excluir/<?= $agend['BancoId'] ?>"
+                                                <a href="/Bancogab/excluir/<?= esc($agend['BancoId'], 'attr') ?>"
                                                    class="btn btn-danger"
                                                    onclick="return confirm('Deseja realmente excluir este registro?')">
                                                     <i class="fas fa-trash"></i>

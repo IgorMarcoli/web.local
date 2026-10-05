@@ -112,14 +112,23 @@ class Bancogab extends BaseController
 
     public function alterarStatusBanco()
     {
+        $idPostado = $this->request->getPost('BancoId');
+        $statusPostado = $this->request->getPost('Status');
+        if ((!is_string($idPostado) && !is_int($idPostado)) || !ctype_digit((string) $idPostado) || (int) $idPostado < 1 || !is_string($statusPostado) || !in_array($statusPostado, ['Disponivel', 'Usado'], true)) {
+            return $this->response->setStatusCode(422)->setBody('invalid');
+        }
+
         $bancoModel = new BancogabModel();
+        $id = (int) $idPostado;
+        if (!$bancoModel->find($id)) {
+            return $this->response->setStatusCode(404)->setBody('not_found');
+        }
 
-        $bancoModel->update(
-            $this->request->getPost('BancoId'),
-            ['Status' => $this->request->getPost('Status')]
-        );
+        if (!$bancoModel->update($id, ['Status' => $statusPostado])) {
+            return $this->response->setStatusCode(500)->setBody('error');
+        }
 
-        return "ok";
+        return $this->response->setBody('ok');
     }
 
     public function buscarPessoas()

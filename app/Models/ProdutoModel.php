@@ -14,7 +14,6 @@ class ProdutoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ProdutoId',
         'Nome',
         'Data',
         'Tipo',

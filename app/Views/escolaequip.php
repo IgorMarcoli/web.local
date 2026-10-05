@@ -57,7 +57,7 @@
             <div class="row">
                 <?php foreach ($cardsIndicadores as [$rotulo, $valor, $icone, $corInicio, $corFim]): ?>
                     <div class="col-xl-2 col-md-4 col-6">
-                        <div class="small-box shadow-sm" style="background: linear-gradient(135deg, <?= $corInicio ?> 0%, <?= $corFim ?> 100%); color: #fff; border-radius: 12px;">
+                        <div class="small-box shadow-sm" style="background: linear-gradient(135deg, <?= esc($corInicio, 'attr') ?> 0%, <?= esc($corFim, 'html') ?> 100%); color: #fff; border-radius: 12px;">
                             <div class="inner">
                                 <h3 class="font-weight-bold mb-1"><?= number_format($valor, 0, ',', '.') ?></h3>
                                 <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .75rem;"><?= esc($rotulo) ?></p>
@@ -96,7 +96,7 @@
                                 <h3>Escolas mais críticas</h3>
                                 <div>Percentual em manutenção ou inservível. Clique numa barra para ver a escola.</div>
                             </div>
-                            <span class="inventory-chart-badge"><?= $totalEscolasCriticasGrafico ?> prioritárias</span>
+                            <span class="inventory-chart-badge"><?= esc($totalEscolasCriticasGrafico, 'html') ?> prioritárias</span>
                         </div>
                         <div class="card-body px-3 px-md-4 pt-3">
                             <?php if (!empty($escolasGrafico)): ?>
@@ -172,9 +172,9 @@
                                         data-cie="<?= esc($esc['escola_cie']) ?>"
                                         data-nome="<?= esc(mb_strtolower($esc['escola_nome'], 'UTF-8')) ?>"
                                         data-ure="<?= esc(mb_strtolower($esc['ure_diretoria'] ?? '', 'UTF-8')) ?>"
-                                        data-status-disponivel="<?= $disp ?>"
-                                        data-status-manutencao="<?= $manut ?>"
-                                        data-status-inservivel="<?= $ins ?>"
+                                        data-status-disponivel="<?= esc($disp, 'html') ?>"
+                                        data-status-manutencao="<?= esc($manut, 'html') ?>"
+                                        data-status-inservivel="<?= esc($ins, 'html') ?>"
                                         data-status-outros="<?= (int)($esc['total_outros'] ?? 0) ?>"
                                         data-status-sem_status="<?= (int)($esc['total_sem_status'] ?? 0) ?>">
                                         <td class="text-center align-middle font-weight-bold">
@@ -198,15 +198,15 @@
                                         </td>
                                         <td class="align-middle">
                                             <!-- Mini barra de progresso -->
-                                            <div class="progress" style="height: 8px; border-radius: 6px; background-color: #e2e8f0;" title="Disp: <?= $disp ?> | Manut: <?= $manut ?> | Inserv: <?= $ins ?>">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: <?= $pctDisp ?>%;" title="Disponível: <?= $disp ?> (<?= $pctDisp ?>%)"></div>
-                                                <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $pctManut ?>%;" title="Em Manutenção: <?= $manut ?> (<?= $pctManut ?>%)"></div>
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $pctIns ?>%;" title="Inservível: <?= $ins ?> (<?= $pctIns ?>%)"></div>
+                                            <div class="progress" style="height: 8px; border-radius: 6px; background-color: #e2e8f0;" title="Disp: <?= esc($disp, 'attr') ?> | Manut: <?= esc($manut, 'html') ?> | Inserv: <?= esc($ins, 'html') ?>">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: <?= esc($pctDisp, 'attr') ?>%;" title="Disponível: <?= esc($disp, 'html') ?> (<?= esc($pctDisp, 'html') ?>%)"></div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: <?= esc($pctManut, 'attr') ?>%;" title="Em Manutenção: <?= esc($manut, 'html') ?> (<?= esc($pctManut, 'html') ?>%)"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: <?= esc($pctIns, 'attr') ?>%;" title="Inservível: <?= esc($ins, 'html') ?> (<?= esc($pctIns, 'html') ?>%)"></div>
                                             </div>
                                             <div class="d-flex justify-content-between text-muted" style="font-size: .72rem; margin-top: 3px;">
-                                                <span class="text-success"><i class="fas fa-check-circle mr-1"></i><?= $disp ?></span>
-                                                <span class="text-warning"><i class="fas fa-tools mr-1"></i><?= $manut ?></span>
-                                                <span class="text-danger"><i class="fas fa-ban mr-1"></i><?= $ins ?></span>
+                                                <span class="text-success"><i class="fas fa-check-circle mr-1"></i><?= esc($disp, 'html') ?></span>
+                                                <span class="text-warning"><i class="fas fa-tools mr-1"></i><?= esc($manut, 'html') ?></span>
+                                                <span class="text-danger"><i class="fas fa-ban mr-1"></i><?= esc($ins, 'html') ?></span>
                                             </div>
                                         </td>
                                         <td class="text-center align-middle">

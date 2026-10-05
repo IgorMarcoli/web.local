@@ -12,7 +12,6 @@ class SetoresModelgab extends Model
     protected $useSoftDeletes   = false;
 
     protected $allowedFields = [
-        'SetorId',
         'nome',
         'SupervisorId'
     ];

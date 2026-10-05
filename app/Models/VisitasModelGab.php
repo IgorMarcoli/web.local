@@ -11,7 +11,6 @@ class VisitasModelgab extends Model
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'VisitaId',
         'SupervisorId',
         'EscolaId',
         'DataVisita',

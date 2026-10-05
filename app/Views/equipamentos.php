@@ -386,7 +386,7 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <span class="badge badge-status <?= $badgeClass ?>">
+                                            <span class="badge badge-status <?= esc($badgeClass, 'attr') ?>">
                                                 <?= esc($st ?: '-') ?>
                                             </span>
                                         </td>

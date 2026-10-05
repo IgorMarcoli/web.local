@@ -14,7 +14,6 @@ class JuridicoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'juridicoId',
         'fato',
         'diligencia',
         'datainicio',

@@ -69,7 +69,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border-radius: 12px;">
                         <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format($dispEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= $pctDisp ?>%)</small></h3>
+                            <h3 class="font-weight-bold mb-1"><?= number_format($dispEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= esc($pctDisp, 'html') ?>%)</small></h3>
                             <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Disponíveis para Uso</p>
                         </div>
                         <div class="icon">
@@ -81,7 +81,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; border-radius: 12px;">
                         <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format($manutEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= $pctManut ?>%)</small></h3>
+                            <h3 class="font-weight-bold mb-1"><?= number_format($manutEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= esc($pctManut, 'html') ?>%)</small></h3>
                             <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Em Manutenção / Chamado</p>
                         </div>
                         <div class="icon">
@@ -93,7 +93,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: #fff; border-radius: 12px;">
                         <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format($insEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= $pctIns ?>%)</small></h3>
+                            <h3 class="font-weight-bold mb-1"><?= number_format($insEsc, 0, ',', '.') ?> <small style="font-size: .95rem; opacity: .85;">(<?= esc($pctIns, 'html') ?>%)</small></h3>
                             <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Inservíveis</p>
                         </div>
                         <div class="icon">
@@ -112,7 +112,7 @@
                                 <i class="fas fa-filter text-primary mr-1"></i> Categorias presentes:
                             </span>
                             <button type="button" class="btn btn-xs btn-outline-secondary font-weight-bold mr-1 mb-1 btn-filtro-categoria active" data-categoria="">
-                                Todas (<?= $totalEsc ?>)
+                                Todas (<?= esc($totalEsc, 'html') ?>)
                             </button>
                             <?php foreach ($categoriasResumo as $cr): ?>
                                 <button type="button" class="btn btn-xs btn-outline-info font-weight-bold mr-1 mb-1 btn-filtro-categoria" data-categoria="<?= esc($cr['categoria']) ?>">
@@ -229,7 +229,7 @@
 
                                         <td class="align-middle">
                                             <div class="font-weight-bold text-dark d-flex align-items-center">
-                                                <i class="fas <?= $iconCat ?> text-info mr-2" style="font-size: .95rem;"></i>
+                                                <i class="fas <?= esc($iconCat, 'attr') ?> text-info mr-2" style="font-size: .95rem;"></i>
                                                 <?= esc($eq['categoria'] ?: 'Outro') ?>
                                             </div>
                                             <?php if (!empty($eq['id_controle_ue']) && trim($eq['id_controle_ue']) !== 'S/N'): ?>
@@ -263,7 +263,7 @@
                                         </td>
 
                                         <td class="text-center align-middle">
-                                            <span class="badge <?= $badgeClass ?> px-2 py-1" style="font-size: .75rem; border-radius: 12px; font-weight: 600;">
+                                            <span class="badge <?= esc($badgeClass, 'attr') ?> px-2 py-1" style="font-size: .75rem; border-radius: 12px; font-weight: 600;">
                                                 <?= esc($eq['status_equipamento'] ?: 'Indefinido') ?>
                                             </span>
                                         </td>

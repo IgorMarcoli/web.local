@@ -14,7 +14,6 @@ class LoginModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'LoginId',
         'Nomeuser',
         'Usuario',
         'Senha',

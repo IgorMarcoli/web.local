@@ -25,8 +25,8 @@
                                     <select id="supervisorSelect" name="SupervisorId" class="form-control">
     <option value="">Selecione</option>
     <?php foreach($supervisores as $s): ?>
-        <option value="<?= $s['SupervisorId'] ?>">
-            <?= $s['nome'] ?>
+        <option value="<?= esc($s['SupervisorId'], 'attr') ?>">
+            <?= esc($s['nome'], 'html') ?>
         </option>
     <?php endforeach; ?>
 </select>
@@ -107,8 +107,8 @@
               <select id="supervisorSelect" name="SupervisorId" class="form-control">
     <option value="">Selecione</option>
     <?php foreach($supervisores as $s): ?>
-        <option value="<?= $s['SupervisorId'] ?>">
-            <?= $s['nome'] ?>
+        <option value="<?= esc($s['SupervisorId'], 'attr') ?>">
+            <?= esc($s['nome'], 'html') ?>
         </option>
     <?php endforeach; ?>
 </select>
@@ -244,27 +244,27 @@
                                   <tbody>
                                       <?php foreach ($termogabs as $agend) : ?>
                                           <tr>
-                                              <td><?= $agend['VisitaId'] ?></td>
-                                              <td><?= $agend['Processosei'] ?></td>
-                                              <td><?= $agend['Supervisor'] ?></td>
-                                              <td><?= $agend['Setor'] ?></td>
-                                              <td><?= $agend['Escola'] ?></td>
-                                              <td><?= $agend['Tipo'] ?></td>
-                                              <td><?= $agend['Data'] ?></td>
+                                              <td><?= esc($agend['VisitaId'], 'html') ?></td>
+                                              <td><?= esc($agend['Processosei'], 'html') ?></td>
+                                              <td><?= esc($agend['Supervisor'], 'html') ?></td>
+                                              <td><?= esc($agend['Setor'], 'html') ?></td>
+                                              <td><?= esc($agend['Escola'], 'html') ?></td>
+                                              <td><?= esc($agend['Tipo'], 'html') ?></td>
+                                              <td><?= esc($agend['Data'], 'html') ?></td>
 
                                               <td>
                                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-editar-produto"
                                                   onclick="prepararDados(
-                                                    '<?= $agend['VisitaId'] ?>',
-                                                    '<?= $agend['Processosei'] ?>',
-                                                    '<?= $agend['SupervisorId'] ?>',
-                                                    '<?= $agend['SetorId'] ?>',
-                                                    '<?= $agend['EscolaId'] ?>',
-                                                    '<?= $agend['Escola'] ?>',
-                                                    '<?= $agend['Tipo'] ?>',
-                                                    '<?= $agend['Data'] ?>'
+                                                    '<?= esc($agend['VisitaId'], 'js') ?>',
+                                                    '<?= esc($agend['Processosei'], 'js') ?>',
+                                                    '<?= esc($agend['SupervisorId'], 'js') ?>',
+                                                    '<?= esc($agend['SetorId'], 'js') ?>',
+                                                    '<?= esc($agend['EscolaId'], 'js') ?>',
+                                                    '<?= esc($agend['Escola'], 'js') ?>',
+                                                    '<?= esc($agend['Tipo'], 'js') ?>',
+                                                    '<?= esc($agend['Data'], 'js') ?>'
                                                         )"><i class="fas fa-edit"></i></button>
-                                                  <a href="/Termogab/excluir/<?= $agend['VisitaId'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                  <a href="/Termogab/excluir/<?= esc($agend['VisitaId'], 'attr') ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                               </td>
                                           </tr>
                                       <?php endforeach; ?>
@@ -301,8 +301,8 @@
 }
   </script>
 <script>
-const escolas = <?= json_encode($escolas) ?>;
-const setores  = <?= json_encode($setores) ?>;
+const escolas = <?= json_encode($escolas, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+const setores  = <?= json_encode($setores, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
 const supervisorSelect = document.getElementById('supervisorSelect');
 const inputEscola   = document.getElementById('inputEscola');
 const listaEscolas  = document.getElementById('listaEscolas');

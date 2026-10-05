@@ -15,6 +15,25 @@
                     Perfil atualizado com sucesso!
                 </div>
             <?php endif; ?>
+            <?php
+                $alertasPerfil = [
+                    'currentPassword' => 'A senha atual não confere.',
+                    'passwordLength' => 'A nova senha precisa ter entre 12 e 72 caracteres.',
+                    'passwordMismatch' => 'A confirmação da nova senha não confere.',
+                    'invalidName' => 'Informe um nome válido de até 120 caracteres.',
+                    'arquivoInvalido' => 'A imagem precisa ser JPG, PNG ou WebP e ter no máximo 2 MB.',
+                    'uploadIndisponivel' => 'O armazenamento de fotos não está configurado para HTTPS.',
+                    'uploadFalhou' => 'Não foi possível enviar a foto. Tente novamente.',
+                    'updateFailed' => 'Não foi possível salvar as alterações.',
+                ];
+                $alertPerfil = $_GET['alert'] ?? '';
+            ?>
+            <?php if (isset($alertasPerfil[$alertPerfil])) : ?>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?= esc($alertasPerfil[$alertPerfil]) ?>
+                </div>
+            <?php endif; ?>
 
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -65,15 +84,25 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Senha atual para confirmar uma troca de senha</label>
+                                    <input type="password" class="form-control"
+                                           name="SenhaAtual" autocomplete="current-password">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Nova senha</label>
                                     <input type="password" class="form-control"
-                                           name="Senha" placeholder="Deixe em branco para não alterar">
+                                           name="Senha" autocomplete="new-password"
+                                           minlength="12" maxlength="72"
+                                           placeholder="Deixe em branco para não alterar">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Confirmar nova senha</label>
                                     <input type="password" class="form-control"
-                                           id="confirmarSenha" placeholder="Repita a nova senha">
+                                           id="confirmarSenha" name="SenhaConfirmacao"
+                                           autocomplete="new-password" maxlength="72"
+                                           placeholder="Repita a nova senha">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-block">

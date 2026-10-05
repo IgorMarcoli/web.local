@@ -370,8 +370,8 @@
                                     ];
                                     foreach ($meses as $num => $nome) :
                                     ?>
-                                        <option value="<?= $num ?>" <?= ($mesAtual == $num) ? 'selected' : '' ?>>
-                                            <?= $nome ?>
+                                        <option value="<?= esc($num, 'attr') ?>" <?= ($mesAtual == $num) ? 'selected' : '' ?>>
+                                            <?= esc($nome, 'html') ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -381,8 +381,8 @@
                                 <label class="small text-muted font-weight-bold mb-1">Ano:</label>
                                 <select name="ano" id="filtro-ano" class="form-control form-control-sm">
                                     <?php for ($a = date('Y'); $a >= date('Y') - 3; $a--) : ?>
-                                        <option value="<?= $a ?>" <?= ($anoAtual == $a) ? 'selected' : '' ?>>
-                                            <?= $a ?>
+                                        <option value="<?= esc($a, 'attr') ?>" <?= ($anoAtual == $a) ? 'selected' : '' ?>>
+                                            <?= esc($a, 'html') ?>
                                         </option>
                                     <?php endfor; ?>
                                 </select>
@@ -508,7 +508,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="form-control form-control-sm status-select-badge <?= $badgeClass ?>"
+                                            <select class="form-control form-control-sm status-select-badge <?= esc($badgeClass, 'attr') ?>"
                                                     onchange="alterarStatus(this.value, <?= (int)$agend['AgendaId'] ?>, this)">
                                                 <option value="pendente" <?= ($stRaw === 'pendente') ? 'selected' : '' ?>>Pendente</option>
                                                 <option value="concluido" <?= ($stRaw === 'concluido' || $stRaw === 'concluído') ? 'selected' : '' ?>>Concluído</option>

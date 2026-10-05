@@ -14,7 +14,6 @@ class ItensModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id',
         'numero',
         'patrimonio',
         'tipo'

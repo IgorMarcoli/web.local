@@ -16,16 +16,24 @@ class Logingab extends BaseController
 
     public function autenticar()
     {
-        $usuario = trim((string) $this->request->getPost('Usuario'));
-        $senha = (string) $this->request->getPost('Senha');
+        $usuarioPostado = $this->request->getPost('Usuario');
+        $senhaPostada = $this->request->getPost('Senha');
+        $usuario = is_string($usuarioPostado) ? trim($usuarioPostado) : '';
+        $senha = is_string($senhaPostada) ? $senhaPostada : '';
+        if ($usuario === '' || $senha === '' || strlen($usuario) > 120 || strlen($senha) > 4096) {
+            return redirect()->to('/logingab?alert=errorLogin');
+        }
+        if (!$this->loginAttemptAllowed($usuario)) {
+            return redirect()->to('/logingab?alert=rateLimit');
+        }
+
         $loginModel = new LoginModel();
         $login = $loginModel->where('Usuario', $usuario)->first();
 
         $senhaArmazenada = (string) ($login['Senha'] ?? '');
         $senhaValida = $login && password_verify($senha, $senhaArmazenada);
-        if ($login && !$senhaValida && $senhaArmazenada !== '' && hash_equals($senhaArmazenada, $senha)) {
+        if ($senhaValida && password_needs_rehash($senhaArmazenada, PASSWORD_DEFAULT)) {
             $loginModel->update($login['LoginId'], ['Senha' => password_hash($senha, PASSWORD_DEFAULT)]);
-            $senhaValida = true;
         }
 
         if ($senhaValida) {
@@ -40,6 +48,6 @@ class Logingab extends BaseController
             return redirect()->to('/gabinete');
         }
 
-        return redirect()->to('/login?alert=errorLogin');
+        return redirect()->to('/logingab?alert=errorLogin');
     }
 }

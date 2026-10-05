@@ -56,6 +56,12 @@ class App extends BaseConfig
     public string $indexPage = 'index.php';
 
     /**
+     * Characters allowed in each URI segment. Keep this restrictive so
+     * unexpected characters are rejected before route matching.
+     */
+    public string $permittedURIChars = 'a-z 0-9~%.:_\\-';
+
+    /**
      * --------------------------------------------------------------------------
      * URI PROTOCOL
      * --------------------------------------------------------------------------

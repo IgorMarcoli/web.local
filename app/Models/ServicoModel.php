@@ -14,7 +14,6 @@ class ServicoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'servicoId',
         'nome'
     ];
 

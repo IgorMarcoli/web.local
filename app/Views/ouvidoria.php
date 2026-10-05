@@ -256,7 +256,7 @@
                                                       </span>
                                                   </td>
                                                   <td>
-                                                      <span class="badge <?= $tipoBadge ?> px-2 py-1 text-uppercase font-weight-bold">
+                                                      <span class="badge <?= esc($tipoBadge, 'attr') ?> px-2 py-1 text-uppercase font-weight-bold">
                                                           <?= esc($agend['tipo_manifestacao'] ?? '-') ?>
                                                       </span>
                                                   </td>

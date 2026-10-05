@@ -14,7 +14,6 @@ class ServidoresModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'servidorID',
         'nome',
         'ultimoNome',
         'ramal',

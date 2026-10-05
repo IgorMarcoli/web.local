@@ -23,8 +23,10 @@
                 <a href="../../index2.html" class="h1"><b>Intranet</b> SVI</a>
             </div>
             <div class="card-body">
-                <?php if (isset($_GET['alert'])) : ?>
-                    <p class="login-box-msg">Acesso Negado! Informe os dados corretamente.</p>
+                <?php if (($_GET['alert'] ?? '') === 'rateLimit') : ?>
+                    <p class="login-box-msg">Muitas tentativas. Aguarde um minuto e tente novamente.</p>
+                <?php elseif (isset($_GET['alert'])) : ?>
+                    <p class="login-box-msg">Não foi possível entrar. Confira os dados e tente novamente.</p>
                 <?php else : ?>
                     <p class="login-box-msg">Acesse sua conta para continuar</p>
                 <?php endif; ?>

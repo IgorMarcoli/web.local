@@ -111,13 +111,27 @@ class Agenda extends BaseController
     }
 
     public function alterarStatus(){
-    $agenda_model = new AgendaModel(); 
+        $idPostado = $this->request->getPost('AgendaId');
+        $statusPostado = $this->request->getPost('status');
+        if ((!is_string($idPostado) && !is_int($idPostado)) || !ctype_digit((string) $idPostado) || (int) $idPostado < 1 || !is_string($statusPostado)) {
+            return $this->response->setStatusCode(422)->setBody('invalid');
+        }
 
-    $agenda_model->update( $this->request->getPost('AgendaId'), 
+        $status = mb_strtolower(trim($statusPostado), 'UTF-8');
+        if (!in_array($status, ['pendente', 'concluido', 'concluído', 'em_atendimento', 'suspenso'], true)) {
+            return $this->response->setStatusCode(422)->setBody('invalid');
+        }
 
-    ['status' => $this->request->getPost('status')] );
-    
-    return "ok";
+        $agendaModel = new AgendaModel();
+        $id = (int) $idPostado;
+        if (!$agendaModel->find($id)) {
+            return $this->response->setStatusCode(404)->setBody('not_found');
+        }
+        if (!$agendaModel->update($id, ['status' => $status])) {
+            return $this->response->setStatusCode(500)->setBody('error');
+        }
+
+        return $this->response->setBody('ok');
     }
 
     public function alterarAtendidoPor(){

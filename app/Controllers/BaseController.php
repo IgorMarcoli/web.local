@@ -65,4 +65,17 @@ abstract class BaseController extends Controller
         }
         return null;
     }
+
+    /**
+     * Limita tentativas repetidas para o mesmo usuário vindas do mesmo IP.
+     */
+    protected function loginAttemptAllowed(string $username): bool
+    {
+        $key = 'login:' . hash(
+            'sha256',
+            mb_strtolower(trim($username), 'UTF-8') . "\0" . $this->request->getIPAddress()
+        );
+
+        return service('throttler')->check($key, 8, 60);
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Models\LoginModel;
 
 class Login extends BaseController
@@ -10,171 +9,254 @@ class Login extends BaseController
     public function login()
     {
         return view('login/login');
-        
     }
 
     public function autenticar()
     {
-        $usuarioDigitado = trim((string) $this->request->getPost('Usuario'));
-        $senhaDigitada = (string) $this->request->getPost('Senha');
+        $usuarioPostado = $this->request->getPost('Usuario');
+        $senhaPostada   = $this->request->getPost('Senha');
+        $usuario        = is_string($usuarioPostado) ? trim($usuarioPostado) : '';
+        $senha          = is_string($senhaPostada) ? $senhaPostada : '';
 
-        $login_model = new LoginModel();
+        if ($usuario === '' || $senha === '' || strlen($usuario) > 120 || strlen($senha) > 4096) {
+            return redirect()->to('/login?alert=errorLogin');
+        }
 
-        // Busca o usuário pelo nome de usuário
-        $login = $login_model
-            ->where('Usuario', $usuarioDigitado)
-            ->first();
+        if (!$this->loginAttemptAllowed($usuario)) {
+            return redirect()->to('/login?alert=rateLimit');
+        }
 
+        $loginModel = new LoginModel();
+        $login      = $loginModel->where('Usuario', $usuario)->first();
         $senhaValida = false;
-        if (!empty($login)) {
+
+        if ($login) {
             $senhaArmazenada = (string) ($login['Senha'] ?? '');
-            if (password_verify($senhaDigitada, $senhaArmazenada)) {
-                $senhaValida = true;
-            } elseif ($senhaArmazenada !== '' && hash_equals($senhaArmazenada, $senhaDigitada)) {
-                // Migra senhas legadas para hash após um login válido.
-                $login_model->update($login['LoginId'], [
-                    'Senha' => password_hash($senhaDigitada, PASSWORD_DEFAULT),
+            $senhaValida     = $senhaArmazenada !== '' && password_verify($senha, $senhaArmazenada);
+
+            if ($senhaValida && password_needs_rehash($senhaArmazenada, PASSWORD_DEFAULT)) {
+                $loginModel->update($login['LoginId'], [
+                    'Senha' => password_hash($senha, PASSWORD_DEFAULT),
                 ]);
-                $senhaValida = true;
             }
         }
 
-        if ($senhaValida) {
-            session()->regenerate(true);
-
-            // salva os dados do usuário na sessão
-            session()->set([
-                'usuario_id'    => $login['LoginId'], // ajuste pro nome real da PK
-                'usuario_nome'  => $login['Nomeuser'],
-                'usuario_foto'  => $login['foto'] ?? null, // ajuste pro nome real da coluna
-                'usuario_setor' => $login['setor'] ?? null,
-                'logado'        => true
-            ]);
-
-            return redirect()->to('/setec');
+        if (!$senhaValida) {
+            return redirect()->to('/login?alert=errorLogin');
         }
 
-        return redirect()->to('/login?alert=errorLogin');
-    }
-    public function perfil()
-{
-$login_model = new LoginModel();
-    $usuario = $login_model->find(session()->get('usuario_id'));
-
-    $data = ['usuario' => $usuario];
-
-    echo View('templates/header');
-    echo View('login/perfil', $data);
-    echo View('templates/footer');
-}
-
-public function atualizarPerfil()
-{
-  $login_model = new LoginModel();
-    $id = session()->get('usuario_id');
-    $dados = [];
-
-    if ($this->request->getPost('Nomeuser')) {
-        $dados['Nomeuser'] = $this->request->getPost('Nomeuser');
-    }
-
-    $novaSenha = $this->request->getPost('Senha');
-    if (!empty($novaSenha)) {
-        // Criptografa a nova senha com hash seguro antes de gravar no banco de dados
-        $dados['Senha'] = password_hash($novaSenha, PASSWORD_DEFAULT);
-    }
-
-    // upload pro Supabase Storage
-    $foto = $this->request->getFile('foto');
-
-    
-    if ($foto && $foto->isValid() && !$foto->hasMoved()) {
-        $mimeTypes = [
-            'image/jpeg' => 'jpg',
-            'image/png'  => 'png',
-            'image/webp' => 'webp',
-        ];
-        $mimeType = $foto->getMimeType();
-        $supabaseUrl = rtrim((string) env('supabase.url', ''), '/');
-        $supabaseKey = (string) env('supabase.serviceKey', '');
-        $bucket = (string) env('supabase.profileBucket', 'perfil');
-
-        if (!isset($mimeTypes[$mimeType]) || $foto->getSize() > 2 * 1024 * 1024) {
-            return redirect()->to('/perfil?alert=arquivoInvalido');
-        }
-        if ($supabaseUrl === '' || $supabaseKey === '') {
-            log_message('error', 'Upload de perfil não configurado: faltam variáveis do Supabase.');
-            return redirect()->to('/perfil?alert=uploadIndisponivel');
-        }
-
-        $nomeFoto = 'usuario_' . (int) $id . '_' . bin2hex(random_bytes(8)) . '.' . $mimeTypes[$mimeType];
-        $conteudoFoto = file_get_contents($foto->getTempName());
-
-        $ch = curl_init();
-        curl_setopt_array($ch, [
-            CURLOPT_URL            => $supabaseUrl . '/storage/v1/object/' . rawurlencode($bucket) . '/' . rawurlencode($nomeFoto),
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST  => 'POST',
-            CURLOPT_POSTFIELDS     => $conteudoFoto,
-            CURLOPT_CONNECTTIMEOUT => 5,
-            CURLOPT_TIMEOUT        => 15,
-            CURLOPT_HTTPHEADER     => [
-                'Authorization: Bearer ' . $supabaseKey,
-                'Content-Type: ' . $mimeType,
-                'x-upsert: false'
-            ],
+        session()->regenerate(true);
+        session()->set([
+            'usuario_id'    => $login['LoginId'],
+            'usuario_nome'  => $login['Nomeuser'],
+            'usuario_foto'  => $login['foto'] ?? null,
+            'usuario_setor' => $login['setor'] ?? null,
+            'logado'        => true,
         ]);
 
-        $resposta = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        return redirect()->to('/setec');
+    }
 
+    public function perfil()
+    {
+        $usuario = (new LoginModel())->find(session()->get('usuario_id'));
 
-        if ($httpCode === 200 || $httpCode === 201) {
-            // monta a URL pública
+        if (!$usuario) {
+            session()->destroy();
+            return redirect()->to('/login?alert=errorLogin');
+        }
+
+        echo view('templates/header');
+        echo view('login/perfil', ['usuario' => $usuario]);
+        echo view('templates/footer');
+    }
+
+    public function atualizarPerfil()
+    {
+        $loginModel = new LoginModel();
+        $id         = session()->get('usuario_id');
+        $usuario    = $loginModel->find($id);
+
+        if (!$usuario) {
+            session()->destroy();
+            return redirect()->to('/login?alert=errorLogin');
+        }
+
+        $dados       = [];
+        $nomePostado = $this->request->getPost('Nomeuser');
+        if (is_string($nomePostado)) {
+            $nome = trim($nomePostado);
+            if ($nome === '' || mb_strlen($nome, 'UTF-8') > 120) {
+                return redirect()->to('/perfil?alert=invalidName');
+            }
+            $dados['Nomeuser'] = $nome;
+        }
+
+        $novaSenhaPostada = $this->request->getPost('Senha');
+        $novaSenha        = is_string($novaSenhaPostada) ? $novaSenhaPostada : '';
+        if ($novaSenha !== '') {
+            $senhaAtualPostada = $this->request->getPost('SenhaAtual');
+            $confirmacaoPostada = $this->request->getPost('SenhaConfirmacao');
+            $senhaAtual = is_string($senhaAtualPostada) ? $senhaAtualPostada : '';
+            $confirmacao = is_string($confirmacaoPostada) ? $confirmacaoPostada : '';
+
+            if (!password_verify($senhaAtual, (string) ($usuario['Senha'] ?? ''))) {
+                return redirect()->to('/perfil?alert=currentPassword');
+            }
+            if (strlen($novaSenha) < 12 || strlen($novaSenha) > 72) {
+                return redirect()->to('/perfil?alert=passwordLength');
+            }
+            if (!hash_equals($novaSenha, $confirmacao)) {
+                return redirect()->to('/perfil?alert=passwordMismatch');
+            }
+
+            $dados['Senha'] = password_hash($novaSenha, PASSWORD_DEFAULT);
+        }
+
+        $foto = $this->request->getFile('foto');
+        $urlFoto = null;
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            $mimeTypes = [
+                'image/jpeg' => 'jpg',
+                'image/png'  => 'png',
+                'image/webp' => 'webp',
+            ];
+            $mimeType = $foto->getMimeType();
+
+            if (!isset($mimeTypes[$mimeType]) || $foto->getSize() > 2 * 1024 * 1024) {
+                return redirect()->to('/perfil?alert=arquivoInvalido');
+            }
+
+            $supabaseUrl = rtrim((string) env('supabase.url', ''), '/');
+            $supabaseKey = (string) env('supabase.serviceKey', '');
+            $bucket      = (string) env('supabase.profileBucket', 'perfil');
+            $urlParts    = parse_url($supabaseUrl);
+            if (
+                !is_array($urlParts)
+                || ($urlParts['scheme'] ?? '') !== 'https'
+                || empty($urlParts['host'])
+                || $supabaseKey === ''
+            ) {
+                log_message('error', 'Upload de perfil não configurado com uma URL HTTPS e chave do Supabase.');
+                return redirect()->to('/perfil?alert=uploadIndisponivel');
+            }
+
+            $conteudoFoto = file_get_contents($foto->getTempName());
+            if ($conteudoFoto === false) {
+                return redirect()->to('/perfil?alert=uploadFalhou');
+            }
+
+            $nomeFoto = 'usuario_' . (int) $id . '_' . bin2hex(random_bytes(8)) . '.' . $mimeTypes[$mimeType];
+            $ch       = curl_init();
+            if ($ch === false) {
+                log_message('error', 'Não foi possível iniciar cURL para o upload de perfil.');
+                return redirect()->to('/perfil?alert=uploadFalhou');
+            }
+
+            curl_setopt_array($ch, [
+                CURLOPT_URL            => $supabaseUrl . '/storage/v1/object/' . rawurlencode($bucket) . '/' . rawurlencode($nomeFoto),
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_CUSTOMREQUEST  => 'POST',
+                CURLOPT_POSTFIELDS     => $conteudoFoto,
+                CURLOPT_CONNECTTIMEOUT => 5,
+                CURLOPT_TIMEOUT        => 15,
+                CURLOPT_FOLLOWLOCATION => false,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_SSL_VERIFYHOST => 2,
+                CURLOPT_PROTOCOLS      => CURLPROTO_HTTPS,
+                CURLOPT_HTTPHEADER     => [
+                    'Authorization: Bearer ' . $supabaseKey,
+                    'Content-Type: ' . $mimeType,
+                    'x-upsert: false',
+                ],
+            ]);
+
+            $resposta = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $curlErro = curl_errno($ch);
+            curl_close($ch);
+
+            if ($resposta === false || !in_array($httpCode, [200, 201], true)) {
+                log_message('error', 'Upload de perfil falhou no Supabase (HTTP {code}, cURL {curlCode}).', [
+                    'code'     => $httpCode,
+                    'curlCode' => $curlErro,
+                ]);
+                return redirect()->to('/perfil?alert=uploadFalhou');
+            }
+
             $urlFoto = $supabaseUrl . '/storage/v1/object/public/' . rawurlencode($bucket) . '/' . rawurlencode($nomeFoto);
             $dados['foto'] = $urlFoto;
-            session()->set('usuario_foto', $urlFoto);
-        } else {
-            // log do erro se quiser debugar
-            log_message('error', 'Upload de perfil falhou no Supabase (HTTP {code}).', ['code' => $httpCode]);
+        } elseif ($foto && $foto->getError() !== UPLOAD_ERR_NO_FILE) {
+            return redirect()->to('/perfil?alert=arquivoInvalido');
         }
-    }
 
-    if (!empty($dados)) {
-        $login_model->update($id, $dados);
+        if ($dados !== []) {
+            if (!$loginModel->update($id, $dados)) {
+                log_message('error', 'Não foi possível atualizar o perfil do usuário {userId}.', ['userId' => (int) $id]);
+                return redirect()->to('/perfil?alert=updateFailed');
+            }
 
-        if (isset($dados['Nomeuser'])) {
-            session()->set('usuario_nome', $dados['Nomeuser']);
+            if (isset($dados['Nomeuser'])) {
+                session()->set('usuario_nome', $dados['Nomeuser']);
+            }
+            if (isset($dados['Senha'])) {
+                session()->regenerate(true);
+            }
+            if ($urlFoto !== null) {
+                session()->set('usuario_foto', $urlFoto);
+            }
         }
+
+        return redirect()->to('/perfil?alert=success');
     }
 
-    return redirect()->to('/perfil?alert=success');
-}
+    public function sair()
+    {
+        if (!$this->request->is('post')) {
+            return $this->response->setStatusCode(405);
+        }
 
-public function sair()
-{
-    if (!$this->request->is('post')) {
-        return $this->response->setStatusCode(405);
-    }
-    setcookie('usuario_salvo', '', time() - 3600, '/');
-    session()->destroy();
-    return redirect()->to('/login');
-}
+        setcookie('usuario_salvo', '', [
+            'expires'  => time() - 3600,
+            'path'     => '/',
+            'secure'   => env('CI_ENVIRONMENT', 'production') === 'production',
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
+        session()->destroy();
 
-// serve a foto de perfil salva em WRITEPATH (fora do public)
-public function foto($nome)
-{
-    $caminho = WRITEPATH . 'uploads/perfil/' . $nome;
-
-    if (!file_exists($caminho)) {
-        // retorna imagem padrão se não tiver foto
-        return redirect()->to(base_url('tema/dist/img/user2-160x160.jpg'));
+        return redirect()->to('/login');
     }
 
-    $mime = mime_content_type($caminho);
-    return $this->response
-        ->setHeader('Content-Type', $mime)
-        ->setBody(file_get_contents($caminho));
-}
+    /**
+     * Compatibilidade com fotos legadas salvas em WRITEPATH.
+     */
+    public function foto($nome)
+    {
+        if (!is_string($nome) || !preg_match('/\Ausuario_[0-9]+_[a-f0-9]{16}\.(?:jpg|png|webp)\z/i', $nome)) {
+            return $this->response->setStatusCode(404);
+        }
+
+        $diretorio = realpath(WRITEPATH . 'uploads/perfil');
+        $caminho   = $diretorio === false ? false : realpath($diretorio . DIRECTORY_SEPARATOR . $nome);
+
+        if ($caminho === false || !is_file($caminho) || dirname($caminho) !== $diretorio) {
+            return redirect()->to(base_url('tema/dist/img/user2-160x160.jpg'));
+        }
+
+        $mime = mime_content_type($caminho);
+        if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp'], true)) {
+            return $this->response->setStatusCode(404);
+        }
+
+        $conteudo = file_get_contents($caminho);
+        if ($conteudo === false) {
+            return $this->response->setStatusCode(404);
+        }
+
+        return $this->response
+            ->setHeader('Content-Type', $mime)
+            ->setHeader('X-Content-Type-Options', 'nosniff')
+            ->setBody($conteudo);
+    }
 }

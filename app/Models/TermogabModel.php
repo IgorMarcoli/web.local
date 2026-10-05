@@ -14,7 +14,6 @@ class TermogabModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'TermoId',
         'Processosei',
         'Supervisor',
         'Rede',
