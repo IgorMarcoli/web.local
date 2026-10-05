@@ -44,7 +44,6 @@ class Filters extends BaseConfig
         ],
         'after' => [
             'secureheaders',
-            ...(ENVIRONMENT !== 'production' ? ['toolbar'] : []),
         ],
     ];
 

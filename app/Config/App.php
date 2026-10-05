@@ -18,14 +18,18 @@ class App extends BaseConfig
      *    http://example.com/
      */
     public string $baseURL = '';
+
     public function __construct()
-{
-    // detecta automaticamente o host atual (IP ou domínio)
-    if (isset($_SERVER['HTTP_HOST'])) {
-        $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-        $this->baseURL = $protocolo . '://' . $_SERVER['HTTP_HOST'] . '/';
+    {
+        parent::__construct();
+
+        $configuredBaseURL = (string) env('app.baseURL', '');
+        if ($configuredBaseURL !== '') {
+            $this->baseURL = rtrim($configuredBaseURL, '/') . '/';
+        }
+
+        $this->forceGlobalSecureRequests = env('CI_ENVIRONMENT', 'production') === 'production';
     }
-}
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
      * If you want to accept multiple Hostnames, set this.
@@ -141,7 +145,7 @@ class App extends BaseConfig
      * secure, the user will be redirected to a secure version of the page
      * and the HTTP Strict Transport Security header will be set.
      */
-    public bool $forceGlobalSecureRequests = ENVIRONMENT === 'production';
+    public bool $forceGlobalSecureRequests = false;
 
     /**
      * --------------------------------------------------------------------------

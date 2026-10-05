@@ -7,6 +7,12 @@ use DateTimeInterface;
 
 class Cookie extends BaseConfig
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->secure = env('CI_ENVIRONMENT', 'production') === 'production';
+    }
+
     /**
      * --------------------------------------------------------------------------
      * Cookie Prefix
@@ -54,7 +60,7 @@ class Cookie extends BaseConfig
      *
      * Cookie will only be set if a secure HTTPS connection exists.
      */
-    public bool $secure = ENVIRONMENT === 'production';
+    public bool $secure = false;
 
     /**
      * --------------------------------------------------------------------------

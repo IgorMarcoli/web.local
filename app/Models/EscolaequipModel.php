@@ -49,29 +49,50 @@ public function getAll(?string $escolaId = null, ?string $status = null): array
 
     public function getStatistics(): array
     {
-        // Total de equipamentos
-        $total = $this->db->table($this->table)->countAllResults();
+        $statusCounts = $this->db->query(
+            'SELECT LOWER(TRIM(status)) AS status_normalizado, COUNT(*) AS quantidade
+             FROM equipamentos
+             GROUP BY LOWER(TRIM(status))'
+        )->getResultArray();
 
-        // Equipamentos em funcionamento (status = "disponivel")
-        $funcional = $this->db->table($this->table)
-            ->where('status', 'disponivel')
-            ->countAllResults();
-
-        // Equipamentos emprestados (status = "em_uso")
-        $emprestado = $this->db->table($this->table)
-            ->where('status', 'em_uso')
-            ->countAllResults();
-
-        // Equipamentos em manutenção (status = "chamado_aberto")
-        $manutencao = $this->db->table($this->table)
-            ->where('status', 'chamado_aberto')
-            ->countAllResults();
-
-        return [
-            'total' => $total,
-            'funcional' => $funcional,
-            'emprestado' => $emprestado,
-            'manutencao' => $manutencao,
+        $aliases = [
+            'ativos' => [
+                'ativo', 'ativa', 'ativos', 'ativas', 'disponivel', 'disponiveis',
+                'em_uso', 'funcionando', 'em_funcionamento', 'operacional', 'operacionais',
+            ],
+            'inserviveis' => [
+                'inservivel', 'inserviveis', 'baixado', 'baixada', 'sucata',
+                'sem_conserto', 'irrecuperavel', 'irrecuperaveis', 'inutilizavel', 'inutilizaveis',
+            ],
+            'manutencao' => [
+                'manutencao', 'em_manutencao', 'chamado_aberto', 'chamado_em_aberto',
+                'em_reparo', 'reparo', 'reparando',
+            ],
         ];
+
+        $stats = ['ativos' => 0, 'inserviveis' => 0, 'manutencao' => 0, 'outros' => 0, 'total' => 0];
+        $categoryByStatus = [];
+        foreach ($aliases as $category => $values) {
+            foreach ($values as $value) {
+                $categoryByStatus[$value] = $category;
+            }
+        }
+
+        foreach ($statusCounts as $row) {
+            $status = mb_strtolower(trim((string) ($row['status_normalizado'] ?? '')), 'UTF-8');
+            $status = strtr($status, [
+                'á' => 'a', 'à' => 'a', 'ã' => 'a', 'â' => 'a',
+                'é' => 'e', 'ê' => 'e', 'í' => 'i',
+                'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ú' => 'u', 'ç' => 'c',
+            ]);
+            $status = trim((string) preg_replace('/[^a-z0-9]+/', '_', $status), '_');
+            $quantidade = (int) ($row['quantidade'] ?? 0);
+            $categoria = $categoryByStatus[$status] ?? 'outros';
+
+            $stats[$categoria] += $quantidade;
+            $stats['total'] += $quantidade;
+        }
+
+        return $stats;
     }
 }

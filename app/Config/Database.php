@@ -26,14 +26,14 @@ class Database extends Config
      */
     public array $default = [
         'DSN'      => '',
-        'hostname' => env('database.default.hostname', ''),
-        'username' => env('database.default.username', ''),
-        'password' => env('database.default.password', ''),
-        'database' => env('database.default.database', 'postgres'),
-        'DBDriver' => env('database.default.DBDriver', 'Postgre'),
+        'hostname' => '',
+        'username' => '',
+        'password' => '',
+        'database' => 'postgres',
+        'DBDriver' => 'Postgre',
         'DBPrefix' => '',
         'pConnect' => false,
-        'DBDebug'  => ENVIRONMENT !== 'production',
+        'DBDebug'  => true,
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
@@ -41,8 +41,8 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => (int) env('database.default.port', 5432),
-        'sslmode'  => env('database.default.sslmode', 'require'),
+        'port'     => 5432,
+        'sslmode'  => 'require',
     ];
 
     /**
@@ -75,10 +75,22 @@ class Database extends Config
     {
         parent::__construct();
 
+        $this->default['hostname'] = env('database.default.hostname', '');
+        $this->default['username'] = env('database.default.username', '');
+        $this->default['password'] = env('database.default.password', '');
+        $this->default['database'] = env('database.default.database', 'postgres');
+        $this->default['DBDriver'] = env('database.default.DBDriver', 'Postgre');
+        $this->default['DBPrefix'] = env('database.default.DBPrefix', '');
+        $this->default['port'] = (int) env('database.default.port', 5432);
+        $this->default['sslmode'] = env('database.default.sslmode', 'require');
+
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.
-        if (ENVIRONMENT === 'testing') {
+        $environment = env('CI_ENVIRONMENT', 'production');
+        $this->default['DBDebug'] = $environment !== 'production';
+
+        if ($environment === 'testing') {
             $this->defaultGroup = 'tests';
         }
     }
