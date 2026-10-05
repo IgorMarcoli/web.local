@@ -22,7 +22,77 @@ class Dashboard extends BaseController
         $mesAtual = (int) date('m');
         $anoAtual = (int) date('Y');
 
-        // Visitas pendentes — da tabela agenda, não visitas (necessário para ambos SEINTEC e SETEC)
+        // ===== GRÁFICO TÉCNICO — Todos os períodos =====
+        // Em agendas, o técnico é gravado na coluna Atendidopor com o nome do técnico (vinda de tecnicos_fields).
+        // A condição abaixo associa por nome, tratando acentos (Sérgio / Sergio) e variações/prefixos (Luiz / Luiz Carlos).
+        $joinTecnico = '(
+            TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
+            = TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+            OR TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
+            LIKE TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
+            OR TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
+            LIKE TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
+        )';
+
+        $porTecnico = $agenda
+            ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total, SUM(CASE WHEN LOWER(TRIM("agendas"."status")) = \'concluido\' THEN 1 ELSE 0 END) as concluidos', false)
+            ->join('tecnicos_fields t', $joinTecnico, 'left', false)
+            ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
+            ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
+            ->orderBy('total', 'DESC')
+            ->findAll();
+
+        // ===== GRÁFICO TÉCNICO — Mês atual (ranking/donut) =====
+        $porTecnicoMes = $agenda
+            ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total', false)
+            ->join('tecnicos_fields t', $joinTecnico, 'left', false)
+            ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
+            ->where('EXTRACT(MONTH FROM "agendas"."Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "agendas"."Data") =', $anoAtual)
+            ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
+            ->orderBy('total', 'DESC')
+            ->findAll();
+
+        // CHAMADOS
+        $totalChamados = $agenda
+            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+            ->countAllResults();
+
+        // separados por status, também filtrando pelo mês
+        $abertos = $agenda
+            ->where('status', 'pendente')
+            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+            ->countAllResults();
+
+        $resolvidos = $agenda
+            ->where('status', 'concluido')
+            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+            ->countAllResults();
+
+        $naoResolvidos = $agenda
+            ->where('status', 'NA')
+            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+            ->countAllResults();
+
+        $statusChamados = $agenda
+            ->select('status, COUNT(*) as total')
+            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+            ->groupBy('status')
+            ->findAll();
+
+        // percentual resolvido
+        $percentResolvido = $totalChamados > 0
+            ? round(($resolvidos / $totalChamados) * 100)
+            : 0;
+
+        $totalVisitas = $agenda->countAll();
+
+        // Visitas pendentes — da tabela agenda, não visitas
         $visitasPendentes = $agenda
             ->select('agendas.*, escolas."nome", escolas."escola_endereco"')
             ->join('escolas', 'LOWER(TRIM(escolas."nome")) = LOWER(TRIM(agendas."Nomelocal"))', 'left')
@@ -48,20 +118,31 @@ class Dashboard extends BaseController
             $totalEquipamentos = $equipamentosModel->countAll();
 
             // ===== GRÁFICO TÉCNICO — Todos os períodos =====
+            $joinTecnico = '(
+                TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                = TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                OR TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                LIKE TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
+                OR TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                LIKE TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
+            )';
+
             $porTecnico = $agenda
-                ->select('t."nome" as tecnico, COUNT(*) as total, SUM(CASE WHEN "agendas"."status" = \'concluido\' THEN 1 ELSE 0 END) as concluidos')
-                ->join('tecnicos_fields t', 't."id" = "agendas"."tecnico_id"', 'left')
-                ->groupBy('t."nome"')
+                ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total, SUM(CASE WHEN LOWER(TRIM("agendas"."status")) = \'concluido\' THEN 1 ELSE 0 END) as concluidos', false)
+                ->join('tecnicos_fields t', $joinTecnico, 'left', false)
+                ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
+                ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
                 ->orderBy('total', 'DESC')
                 ->findAll();
 
             // ===== GRÁFICO TÉCNICO — Mês atual (ranking/donut) =====
             $porTecnicoMes = $agenda
-                ->select('t."nome" as tecnico, COUNT(*) as total')
-                ->join('tecnicos_fields t', 't."id" = "agendas"."tecnico_id"', 'left')
+                ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total', false)
+                ->join('tecnicos_fields t', $joinTecnico, 'left', false)
+                ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
                 ->where('EXTRACT(MONTH FROM "agendas"."Data") =', $mesAtual)
                 ->where('EXTRACT(YEAR FROM "agendas"."Data") =', $anoAtual)
-                ->groupBy('t."nome"')
+                ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
                 ->orderBy('total', 'DESC')
                 ->findAll();
 
