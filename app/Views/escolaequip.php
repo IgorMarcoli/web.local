@@ -52,6 +52,7 @@
                 $categoriasGrafico = $resumoCategorias ?? [];
                 $escolasGrafico = $escolasCriticas ?? [];
                 $alturaGraficoCategorias = max(340, count($categoriasGrafico) * 38);
+                $totalEscolasCriticasGrafico = count($escolasGrafico);
             ?>
             <div class="row">
                 <?php foreach ($cardsIndicadores as [$rotulo, $valor, $icone, $corInicio, $corFim]): ?>
@@ -69,14 +70,16 @@
 
             <div class="row mb-4">
                 <div class="col-xl-7 mb-3 mb-xl-0">
-                    <div class="card shadow-sm h-100" style="border:0;border-radius:14px;">
-                        <div class="card-header bg-white border-0 pt-4 px-4">
-                            <div class="inventory-card-heading">
-                                <h3 class="card-title font-weight-bold text-dark mb-2">Tipos de equipamento por condição</h3>
-                                <div class="text-muted small">Percentual por condição em cada categoria, ordenado pelas maiores proporções com problema. Clique para filtrar as escolas.</div>
+                    <div class="card inventory-chart-card h-100">
+                        <div class="card-header inventory-chart-header inventory-chart-header--categories">
+                            <div class="inventory-chart-icon"><i class="fas fa-layer-group"></i></div>
+                            <div class="inventory-chart-heading">
+                                <h3>Tipos de equipamento por condição</h3>
+                                <div>Percentual por condição em cada categoria. Clique em uma condição para filtrar as escolas.</div>
                             </div>
+                            <span class="inventory-chart-badge"><?= count($categoriasGrafico) ?> categorias</span>
                         </div>
-                        <div class="card-body px-4 pt-2">
+                        <div class="card-body px-3 px-md-4 pt-3">
                             <?php if (!empty($categoriasGrafico)): ?>
                                 <div class="inventory-chart-categories" style="height: <?= (int)$alturaGraficoCategorias ?>px;"><canvas id="graficoCategoriasCondicao" aria-label="Categorias de equipamentos empilhadas por condição" role="img"></canvas></div>
                             <?php else: ?>
@@ -86,18 +89,20 @@
                     </div>
                 </div>
                 <div class="col-xl-5">
-                    <div class="card shadow-sm h-100" style="border:0;border-radius:14px;">
-                        <div class="card-header bg-white border-0 pt-4 px-4">
-                            <div class="inventory-card-heading">
-                                <h3 class="card-title font-weight-bold text-dark mb-2">Escolas mais críticas</h3>
-                                <div class="text-muted small">Percentual em manutenção ou inservível. Clique para filtrar uma escola; passe o cursor para ver quantidades.</div>
+                    <div class="card inventory-chart-card h-100">
+                        <div class="card-header inventory-chart-header inventory-chart-header--schools">
+                            <div class="inventory-chart-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="inventory-chart-heading">
+                                <h3>Escolas mais críticas</h3>
+                                <div>Percentual em manutenção ou inservível. Clique numa barra para ver a escola.</div>
                             </div>
+                            <span class="inventory-chart-badge"><?= $totalEscolasCriticasGrafico ?> prioritárias</span>
                         </div>
-                        <div class="card-body px-4 pt-2">
+                        <div class="card-body px-3 px-md-4 pt-3">
                             <?php if (!empty($escolasGrafico)): ?>
                                 <div class="inventory-chart-bars"><canvas id="graficoEscolasCriticas" aria-label="Percentual de equipamentos com problema por escola" role="img"></canvas></div>
                             <?php else: ?>
-                                <div class="text-center text-muted py-5">Nenhuma escola possui equipamentos em manutenção ou inservíveis.</div>
+                                <div class="text-center text-muted py-5"><i class="fas fa-check-circle text-success fa-2x d-block mb-2"></i>Nenhuma escola possui equipamentos em manutenção ou inservíveis.</div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -244,11 +249,62 @@
 </div>
 
 <style>
+    .inventory-chart-card {
+        border: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 3px 14px rgba(15, 23, 42, .08);
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .inventory-chart-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 9px 24px rgba(15, 23, 42, .12);
+    }
+    .inventory-chart-header {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        min-height: 104px;
+        padding: 17px 20px;
+        border: 0;
+        color: #fff;
+    }
+    .inventory-chart-header--categories { background: linear-gradient(120deg, #2563eb 0%, #4f46e5 55%, #6d28d9 100%); }
+    .inventory-chart-header--schools { background: linear-gradient(120deg, #f97316 0%, #ea580c 48%, #be123c 100%); }
+    .inventory-chart-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        border: 1px solid rgba(255,255,255,.35);
+        border-radius: 12px;
+        background: rgba(255,255,255,.16);
+        font-size: 1.05rem;
+    }
+    .inventory-chart-heading { flex: 1; min-width: 0; }
+    .inventory-chart-heading h3 { margin: 0 0 5px; color: #fff; font-size: 1rem; font-weight: 700; }
+    .inventory-chart-heading div { color: rgba(255,255,255,.84); font-size: .78rem; line-height: 1.4; }
+    .inventory-chart-badge {
+        flex-shrink: 0;
+        padding: 6px 10px;
+        border: 1px solid rgba(255,255,255,.32);
+        border-radius: 20px;
+        background: rgba(255,255,255,.15);
+        color: #fff;
+        font-size: .72rem;
+        font-weight: 700;
+        white-space: nowrap;
+    }
     .inventory-card-heading .card-title { float: none; display: block; }
     .inventory-chart-categories { position: relative; min-height: 340px; }
     .inventory-chart-bars { position: relative; height: 390px; }
     @media (max-width: 767.98px) {
         .inventory-chart-bars { height: 410px; }
+        .inventory-chart-header { flex-wrap: wrap; gap: 10px; padding: 15px; }
+        .inventory-chart-icon { width: 36px; height: 36px; min-width: 36px; }
+        .inventory-chart-badge { margin-left: 46px; }
     }
     .link-escola:hover span {
         color: #0284c7 !important;
@@ -295,13 +351,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     datasets: statusDatasets.map(status => ({
                         label: status.label,
                         data: categories.map(category => category.total ? category[status.key] / category.total * 100 : 0),
-                        backgroundColor: status.color
+                        backgroundColor: status.color,
+                        borderColor: '#ffffff',
+                        borderWidth: 1
                     }))
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16, fontFamily: chartFont } },
-                    tooltips: { mode: 'index', intersect: false, callbacks: { label: function (item) {
+                    animation: { duration: 850, easing: 'easeOutQuart' },
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 18, fontFamily: chartFont, fontColor: '#475569', fontSize: 11 } },
+                    tooltips: { mode: 'index', intersect: false, backgroundColor: '#0f172a', titleFontFamily: chartFont, bodyFontFamily: chartFont, cornerRadius: 8, xPadding: 12, yPadding: 10, callbacks: { label: function (item) {
                         const category = categories[item.index];
                         const status = statusDatasets[item.datasetIndex];
                         const quantity = category[status.key];
@@ -309,8 +368,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         return ' ' + status.label + ': ' + quantity.toLocaleString('pt-BR') + ' (' + percent + '%)';
                     } } },
                     scales: {
-                        xAxes: [{ stacked: true, ticks: { beginAtZero: true, max: 100, callback: value => value + '%' }, gridLines: { color: '#edf2f7' } }],
-                        yAxes: [{ stacked: true, gridLines: { display: false }, barPercentage: 0.72, categoryPercentage: 0.78 }]
+                        xAxes: [{ stacked: true, ticks: { beginAtZero: true, max: 100, callback: value => value + '%', fontColor: '#64748b', fontFamily: chartFont }, gridLines: { color: '#eef2f7', drawBorder: false } }],
+                        yAxes: [{ stacked: true, ticks: { fontColor: '#334155', fontFamily: chartFont, fontSize: 11 }, gridLines: { display: false }, barPercentage: 0.68, categoryPercentage: 0.78 }]
                     },
                     onClick: function (event, activeElements) {
                         if (!activeElements.length) return;
@@ -340,19 +399,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         label: 'Equipamentos com problema',
                         data: schools.map(school => school.percentual),
                         backgroundColor: schools.map(school => school.percentual >= 50 ? '#dc2626' : (school.percentual >= 25 ? '#f59e0b' : '#0ea5e9')),
+                        hoverBackgroundColor: schools.map(school => school.percentual >= 50 ? '#b91c1c' : (school.percentual >= 25 ? '#d97706' : '#0284c7')),
+                        barThickness: 20,
                         borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     legend: { display: false },
-                    tooltips: { callbacks: { label: function (item) {
+                    animation: { duration: 850, easing: 'easeOutQuart' },
+                    tooltips: { backgroundColor: '#0f172a', titleFontFamily: chartFont, bodyFontFamily: chartFont, cornerRadius: 8, xPadding: 12, yPadding: 10, callbacks: { label: function (item) {
                         const school = schools[item.index];
                         return ' ' + school.percentual.toLocaleString('pt-BR') + '% — ' + school.problemas.toLocaleString('pt-BR') + ' de ' + school.total.toLocaleString('pt-BR') + ' equipamentos';
                     } } },
                     scales: {
-                        xAxes: [{ ticks: { beginAtZero: true, max: 100, callback: value => value + '%' }, gridLines: { color: '#edf2f7' } }],
-                        yAxes: [{ gridLines: { display: false }, barPercentage: 0.72, categoryPercentage: 0.78 }]
+                        xAxes: [{ ticks: { beginAtZero: true, max: 100, callback: value => value + '%', fontColor: '#64748b', fontFamily: chartFont }, gridLines: { color: '#eef2f7', drawBorder: false } }],
+                        yAxes: [{ ticks: { fontColor: '#334155', fontFamily: chartFont, fontSize: 11 }, gridLines: { display: false }, barPercentage: 0.68, categoryPercentage: 0.78 }]
                     },
                     onClick: function (event, activeElements) {
                         if (!activeElements.length) return;
