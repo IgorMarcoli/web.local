@@ -7,7 +7,7 @@
                     <h1 class="m-0 font-weight-bold text-dark">
                         <i class="fas fa-school mr-2 text-primary"></i>Inventário por Escola
                     </h1>
-                    <p class="text-muted small mb-0">Gestão e acompanhamento de equipamentos alocados nas 76 unidades escolares</p>
+                    <p class="text-muted small mb-0">Gestão e acompanhamento dos equipamentos das <?= number_format((int)($stats['total_escolas'] ?? 0), 0, ',', '.') ?> escolas cadastradas</p>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,103 +35,89 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Cards de Indicadores Gerais -->
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #fff; border-radius: 12px;">
-                        <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format((int)($stats['total_escolas'] ?? 0), 0, ',', '.') ?></h3>
-                            <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Escolas Cadastradas</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-school" style="opacity: 0.25;"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #fff; border-radius: 12px;">
-                        <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format((int)($stats['total_equipamentos'] ?? 0), 0, ',', '.') ?></h3>
-                            <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Total de Equipamentos</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-laptop" style="opacity: 0.25;"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border-radius: 12px;">
-                        <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format((int)($stats['total_disponivel'] ?? 0), 0, ',', '.') ?></h3>
-                            <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Equipamentos Disponíveis</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-check-circle" style="opacity: 0.25;"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="small-box shadow-sm" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; border-radius: 12px;">
-                        <div class="inner">
-                            <h3 class="font-weight-bold mb-1"><?= number_format((int)(($stats['total_manutencao'] ?? 0) + ($stats['total_inservivel'] ?? 0)), 0, ',', '.') ?></h3>
-                            <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .8rem;">Manutenção / Inservíveis</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-tools" style="opacity: 0.25;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <?php
                 $totalInventario = (int)($stats['total_equipamentos'] ?? 0);
                 $disponiveis = (int)($stats['total_disponivel'] ?? 0);
                 $manutencao = (int)($stats['total_manutencao'] ?? 0);
                 $inserviveis = (int)($stats['total_inservivel'] ?? 0);
-                $outros = max(0, $totalInventario - $disponiveis - $manutencao - $inserviveis);
-                $escolasGrafico = array_slice($escolas ?? [], 0, 10);
+                $semStatus = (int)($stats['total_sem_status'] ?? 0);
+                $cardsIndicadores = [
+                    ['Escolas cadastradas', (int)($stats['total_escolas'] ?? 0), 'fa-school', '#0284c7', '#0369a1'],
+                    ['Equipamentos', $totalInventario, 'fa-laptop', '#4f46e5', '#3730a3'],
+                    ['Disponíveis', $disponiveis, 'fa-check-circle', '#10b981', '#059669'],
+                    ['Em manutenção', $manutencao, 'fa-tools', '#f59e0b', '#d97706'],
+                    ['Inservíveis', $inserviveis, 'fa-ban', '#ef4444', '#b91c1c'],
+                    ['Sem status definido', $semStatus, 'fa-question-circle', '#64748b', '#475569'],
+                ];
+                $categoriasGrafico = $resumoCategorias ?? [];
+                $escolasGrafico = $escolasCriticas ?? [];
+                $alturaGraficoCategorias = max(340, count($categoriasGrafico) * 38);
             ?>
+            <div class="row">
+                <?php foreach ($cardsIndicadores as [$rotulo, $valor, $icone, $corInicio, $corFim]): ?>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <div class="small-box shadow-sm" style="background: linear-gradient(135deg, <?= $corInicio ?> 0%, <?= $corFim ?> 100%); color: #fff; border-radius: 12px;">
+                            <div class="inner">
+                                <h3 class="font-weight-bold mb-1"><?= number_format($valor, 0, ',', '.') ?></h3>
+                                <p class="mb-0 text-white-50 font-weight-bold text-uppercase" style="font-size: .75rem;"><?= esc($rotulo) ?></p>
+                            </div>
+                            <div class="icon"><i class="fas <?= esc($icone) ?>" style="opacity: 0.25;"></i></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
             <div class="row mb-4">
-                <div class="col-xl-5 mb-3 mb-xl-0">
+                <div class="col-xl-7 mb-3 mb-xl-0">
                     <div class="card shadow-sm h-100" style="border:0;border-radius:14px;">
                         <div class="card-header bg-white border-0 pt-4 px-4">
-                            <h3 class="card-title font-weight-bold text-dark mb-1">Condição do inventário</h3>
-                            <div class="text-muted small">Distribuição dos <?= number_format($totalInventario, 0, ',', '.') ?> equipamentos cadastrados</div>
+                            <div class="inventory-card-heading">
+                                <h3 class="card-title font-weight-bold text-dark mb-2">Tipos de equipamento por condição</h3>
+                                <div class="text-muted small">Percentual por condição em cada categoria, ordenado pelas maiores proporções com problema. Clique para filtrar as escolas.</div>
+                            </div>
                         </div>
                         <div class="card-body px-4 pt-2">
-                            <div class="inventory-chart-doughnut"><canvas id="graficoStatusInventario" aria-label="Distribuição de equipamentos por status" role="img"></canvas></div>
+                            <?php if (!empty($categoriasGrafico)): ?>
+                                <div class="inventory-chart-categories" style="height: <?= (int)$alturaGraficoCategorias ?>px;"><canvas id="graficoCategoriasCondicao" aria-label="Categorias de equipamentos empilhadas por condição" role="img"></canvas></div>
+                            <?php else: ?>
+                                <div class="text-center text-muted py-5">Sem categorias de equipamentos para comparar.</div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-7">
+                <div class="col-xl-5">
                     <div class="card shadow-sm h-100" style="border:0;border-radius:14px;">
                         <div class="card-header bg-white border-0 pt-4 px-4">
-                            <h3 class="card-title font-weight-bold text-dark mb-1">Escolas com maior inventário</h3>
-                            <div class="text-muted small">Comparativo dos 10 maiores acervos por condição dos equipamentos</div>
+                            <div class="inventory-card-heading">
+                                <h3 class="card-title font-weight-bold text-dark mb-2">Escolas mais críticas</h3>
+                                <div class="text-muted small">Percentual em manutenção ou inservível. Clique para filtrar uma escola; passe o cursor para ver quantidades.</div>
+                            </div>
                         </div>
                         <div class="card-body px-4 pt-2">
                             <?php if (!empty($escolasGrafico)): ?>
-                                <div class="inventory-chart-bars"><canvas id="graficoEscolasInventario" aria-label="Equipamentos por status nas escolas com maior inventário" role="img"></canvas></div>
+                                <div class="inventory-chart-bars"><canvas id="graficoEscolasCriticas" aria-label="Percentual de equipamentos com problema por escola" role="img"></canvas></div>
                             <?php else: ?>
-                                <div class="text-center text-muted py-5">Sem dados de escolas para exibir.</div>
+                                <div class="text-center text-muted py-5">Nenhuma escola possui equipamentos em manutenção ou inservíveis.</div>
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div id="filtroGraficoAtivo" class="alert alert-primary py-2 justify-content-between align-items-center" role="status" style="display:none;">
+                <span><i class="fas fa-filter mr-2"></i><span id="descricaoFiltroGrafico"></span></span>
+                <button id="limparFiltroGrafico" type="button" class="btn btn-sm btn-outline-primary">Limpar filtro</button>
+            </div>
+
             <!-- Tabela e Filtros de Escolas -->
             <div class="card card-outline card-primary shadow-sm" style="border-radius: 12px;">
                 <div class="card-header bg-white py-3 border-0">
                     <div class="d-flex flex-wrap align-items-center justify-content-between">
-                        <div>
+                        <div class="inventory-card-heading">
                             <h3 class="card-title font-weight-bold text-dark mb-1">
                                 <i class="fas fa-list mr-2 text-primary"></i>Relação de Unidades Escolares
                             </h3>
-                            <div class="text-muted small">Clique em uma escola para abrir a ficha completa e todos os equipamentos presentes</div>
+                            <div class="text-muted small mt-1">Abra uma escola para ver seus equipamentos.</div>
                         </div>
 
                         <!-- Barra de Busca Instantânea -->
@@ -180,7 +166,12 @@
                                     <tr class="escola-item"
                                         data-cie="<?= esc($esc['escola_cie']) ?>"
                                         data-nome="<?= esc(mb_strtolower($esc['escola_nome'], 'UTF-8')) ?>"
-                                        data-ure="<?= esc(mb_strtolower($esc['ure_diretoria'] ?? '', 'UTF-8')) ?>">
+                                        data-ure="<?= esc(mb_strtolower($esc['ure_diretoria'] ?? '', 'UTF-8')) ?>"
+                                        data-status-disponivel="<?= $disp ?>"
+                                        data-status-manutencao="<?= $manut ?>"
+                                        data-status-inservivel="<?= $ins ?>"
+                                        data-status-outros="<?= (int)($esc['total_outros'] ?? 0) ?>"
+                                        data-status-sem_status="<?= (int)($esc['total_sem_status'] ?? 0) ?>">
                                         <td class="text-center align-middle font-weight-bold">
                                             <span class="badge badge-secondary px-2 py-1" style="font-size: .85rem; letter-spacing: .5px;">
                                                 <?= esc($esc['escola_cie']) ?>
@@ -253,11 +244,11 @@
 </div>
 
 <style>
-    .inventory-chart-doughnut { position: relative; height: 260px; }
-    .inventory-chart-bars { position: relative; height: 330px; }
+    .inventory-card-heading .card-title { float: none; display: block; }
+    .inventory-chart-categories { position: relative; min-height: 340px; }
+    .inventory-chart-bars { position: relative; height: 390px; }
     @media (max-width: 767.98px) {
-        .inventory-chart-doughnut { height: 230px; }
-        .inventory-chart-bars { height: 360px; }
+        .inventory-chart-bars { height: 410px; }
     }
     .link-escola:hover span {
         color: #0284c7 !important;
@@ -274,64 +265,115 @@
 <script src="<?= base_url('tema/plugins/chart.js/Chart.min.js') ?>"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    let filtroGrafico = null;
     if (typeof Chart !== 'undefined') {
         const chartFont = "'Source Sans Pro', sans-serif";
-        const statusCanvas = document.getElementById('graficoStatusInventario');
-        if (statusCanvas) {
-            new Chart(statusCanvas.getContext('2d'), {
-                type: 'doughnut',
+        const statusDatasets = [
+            { key: 'disponivel', label: 'Disponíveis', color: '#10b981' },
+            { key: 'manutencao', label: 'Em manutenção', color: '#f59e0b' },
+            { key: 'inservivel', label: 'Inservíveis', color: '#ef4444' },
+            { key: 'outros', label: 'Outro status', color: '#64748b' },
+            { key: 'sem_status', label: 'Sem status definido', color: '#cbd5e1' }
+        ];
+        const categoriesCanvas = document.getElementById('graficoCategoriasCondicao');
+        if (categoriesCanvas) {
+            const categories = <?= json_encode(array_map(static function ($category) {
+                return [
+                    'label' => (string)($category['categoria'] ?? 'Sem categoria'),
+                    'total' => (int)($category['total_equipamentos'] ?? 0),
+                    'disponivel' => (int)($category['total_disponivel'] ?? 0),
+                    'manutencao' => (int)($category['total_manutencao'] ?? 0),
+                    'inservivel' => (int)($category['total_inservivel'] ?? 0),
+                    'outros' => (int)($category['total_outros'] ?? 0),
+                    'sem_status' => (int)($category['total_sem_status'] ?? 0),
+                ];
+            }, $categoriasGrafico), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+            const chartCategorias = new Chart(categoriesCanvas.getContext('2d'), {
+                type: 'horizontalBar',
                 data: {
-                    labels: ['Disponíveis', 'Em manutenção', 'Inservíveis', 'Outros / sem classificação'],
-                    datasets: [{
-                        data: <?= json_encode([$disponiveis, $manutencao, $inserviveis, $outros]) ?>,
-                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#94a3b8'],
-                        borderColor: '#fff', borderWidth: 3, hoverOffset: 8
-                    }]
+                    labels: categories.map(category => category.label),
+                    datasets: statusDatasets.map(status => ({
+                        label: status.label,
+                        data: categories.map(category => category.total ? category[status.key] / category.total * 100 : 0),
+                        backgroundColor: status.color
+                    }))
                 },
                 options: {
-                    responsive: true, maintainAspectRatio: false, cutoutPercentage: 70,
-                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 18, fontFamily: chartFont } },
-                    tooltips: { callbacks: { label: function (item, data) {
-                        const values = data.datasets[0].data;
-                        const total = values.reduce((sum, value) => sum + Number(value), 0);
-                        const value = Number(values[item.index]);
-                        const percent = total ? Math.round(value / total * 100) : 0;
-                        return ' ' + data.labels[item.index] + ': ' + value.toLocaleString('pt-BR') + ' (' + percent + '%)';
-                    } } }
+                    responsive: true, maintainAspectRatio: false,
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16, fontFamily: chartFont } },
+                    tooltips: { mode: 'index', intersect: false, callbacks: { label: function (item) {
+                        const category = categories[item.index];
+                        const status = statusDatasets[item.datasetIndex];
+                        const quantity = category[status.key];
+                        const percent = category.total ? Math.round(quantity / category.total * 100) : 0;
+                        return ' ' + status.label + ': ' + quantity.toLocaleString('pt-BR') + ' (' + percent + '%)';
+                    } } },
+                    scales: {
+                        xAxes: [{ stacked: true, ticks: { beginAtZero: true, max: 100, callback: value => value + '%' }, gridLines: { color: '#edf2f7' } }],
+                        yAxes: [{ stacked: true, gridLines: { display: false }, barPercentage: 0.72, categoryPercentage: 0.78 }]
+                    },
+                    onClick: function (event, activeElements) {
+                        if (!activeElements.length) return;
+                        const status = statusDatasets[activeElements[0]._datasetIndex];
+                        definirFiltroGrafico({ tipo: 'status', chave: status.key, descricao: 'Escolas com equipamentos ' + status.label.toLowerCase() });
+                    }
                 }
             });
         }
 
-        const schoolsCanvas = document.getElementById('graficoEscolasInventario');
+        const schoolsCanvas = document.getElementById('graficoEscolasCriticas');
         if (schoolsCanvas) {
-            const chartSchools = <?= json_encode(array_map(static function ($school) {
+            const schools = <?= json_encode(array_map(static function ($school) {
                 return [
                     'label' => (string)($school['escola_nome'] ?? 'Escola'),
-                    'disponiveis' => (int)($school['total_disponivel'] ?? 0),
-                    'manutencao' => (int)($school['total_manutencao'] ?? 0),
-                    'inserviveis' => (int)($school['total_inservivel'] ?? 0),
+                    'cie' => (string)($school['escola_cie'] ?? ''),
+                    'problemas' => (int)($school['total_com_problema'] ?? 0),
+                    'total' => (int)($school['total_equipamentos'] ?? 0),
+                    'percentual' => (float)($school['percentual_com_problema'] ?? 0),
                 ];
             }, $escolasGrafico), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
             new Chart(schoolsCanvas.getContext('2d'), {
                 type: 'horizontalBar',
                 data: {
-                    labels: chartSchools.map(school => school.label),
-                    datasets: [
-                        { label: 'Disponíveis', data: chartSchools.map(school => school.disponiveis), backgroundColor: '#10b981' },
-                        { label: 'Em manutenção', data: chartSchools.map(school => school.manutencao), backgroundColor: '#f59e0b' },
-                        { label: 'Inservíveis', data: chartSchools.map(school => school.inserviveis), backgroundColor: '#ef4444' }
-                    ]
+                    labels: schools.map(school => school.label),
+                    datasets: [{
+                        label: 'Equipamentos com problema',
+                        data: schools.map(school => school.percentual),
+                        backgroundColor: schools.map(school => school.percentual >= 50 ? '#dc2626' : (school.percentual >= 25 ? '#f59e0b' : '#0ea5e9')),
+                        borderWidth: 0
+                    }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16, fontFamily: chartFont } },
-                    tooltips: { mode: 'index', intersect: false },
+                    legend: { display: false },
+                    tooltips: { callbacks: { label: function (item) {
+                        const school = schools[item.index];
+                        return ' ' + school.percentual.toLocaleString('pt-BR') + '% — ' + school.problemas.toLocaleString('pt-BR') + ' de ' + school.total.toLocaleString('pt-BR') + ' equipamentos';
+                    } } },
                     scales: {
-                        xAxes: [{ stacked: true, ticks: { beginAtZero: true, precision: 0 }, gridLines: { color: '#edf2f7' } }],
-                        yAxes: [{ stacked: true, gridLines: { display: false }, barPercentage: 0.72, categoryPercentage: 0.78 }]
+                        xAxes: [{ ticks: { beginAtZero: true, max: 100, callback: value => value + '%' }, gridLines: { color: '#edf2f7' } }],
+                        yAxes: [{ gridLines: { display: false }, barPercentage: 0.72, categoryPercentage: 0.78 }]
+                    },
+                    onClick: function (event, activeElements) {
+                        if (!activeElements.length) return;
+                        const school = schools[activeElements[0]._index];
+                        definirFiltroGrafico({ tipo: 'escola', cie: school.cie, descricao: 'Escola: ' + school.label });
                     }
                 }
             });
+        }
+
+        function definirFiltroGrafico(filtro) {
+            if (filtroGrafico && filtroGrafico.tipo === filtro.tipo &&
+                (filtro.tipo === 'escola' ? filtroGrafico.cie === filtro.cie : filtroGrafico.chave === filtro.chave)) {
+                filtroGrafico = null;
+            } else {
+                filtroGrafico = filtro;
+            }
+            const aviso = document.getElementById('filtroGraficoAtivo');
+            aviso.style.display = filtroGrafico ? 'flex' : 'none';
+            document.getElementById('descricaoFiltroGrafico').textContent = filtroGrafico ? filtroGrafico.descricao : '';
+            filtrar();
         }
     }
 
@@ -351,7 +393,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const nome = linha.getAttribute('data-nome') || '';
             const ure = linha.getAttribute('data-ure') || '';
 
-            if (termo === '' || cie.includes(termo) || nome.includes(termo) || ure.includes(termo)) {
+            const correspondeBusca = termo === '' || cie.includes(termo) || nome.includes(termo) || ure.includes(termo);
+            const correspondeGrafico = !filtroGrafico || (filtroGrafico.tipo === 'escola'
+                ? cie === filtroGrafico.cie
+                : Number(linha.getAttribute('data-status-' + filtroGrafico.chave) || 0) > 0);
+
+            if (correspondeBusca && correspondeGrafico) {
                 linha.style.display = '';
                 visiveis++;
             } else {
@@ -366,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (contador) {
-            if (termo === '') {
+            if (termo === '' && !filtroGrafico) {
                 contador.innerHTML = `Exibindo <strong>${totalInicial}</strong> escolas cadastradas`;
             } else {
                 contador.innerHTML = `Filtradas <strong>${visiveis}</strong> de <strong>${totalInicial}</strong> escolas`;
@@ -375,6 +422,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     inputBusca.addEventListener('input', filtrar);
+    document.getElementById('limparFiltroGrafico').addEventListener('click', function () {
+        filtroGrafico = null;
+        document.getElementById('filtroGraficoAtivo').style.display = 'none';
+        filtrar();
+    });
     btnLimpar.addEventListener('click', function () {
         inputBusca.value = '';
         filtrar();

@@ -37,21 +37,36 @@ class InventarioEscolasModel extends Model
         'created_at',
     ];
 
+    /** Expressões SQL comuns para classificar cada equipamento em uma única situação. */
+    private function statusMetricExpressions(): array
+    {
+        $status = "COALESCE(LOWER(TRIM(status_equipamento)), '')";
+        $disponivel = "{$status} IN ('disponível', 'disponivel')";
+        $inservivel = "{$status} IN ('inservível', 'inservivel')";
+        $manutencao = "({$status} LIKE '%manuten%' OR {$status} LIKE '%chamado%' OR {$status} LIKE '%danificad%')";
+        $semStatus = "TRIM(COALESCE(status_equipamento, '')) = ''";
+
+        return [
+            "SUM(CASE WHEN {$disponivel} THEN 1 ELSE 0 END) as total_disponivel",
+            "SUM(CASE WHEN {$inservivel} THEN 1 ELSE 0 END) as total_inservivel",
+            "SUM(CASE WHEN NOT ({$disponivel}) AND NOT ({$inservivel}) AND {$manutencao} THEN 1 ELSE 0 END) as total_manutencao",
+            "SUM(CASE WHEN NOT ({$disponivel}) AND NOT ({$inservivel}) AND NOT ({$manutencao}) AND NOT ({$semStatus}) THEN 1 ELSE 0 END) as total_outros",
+            "SUM(CASE WHEN {$semStatus} THEN 1 ELSE 0 END) as total_sem_status",
+        ];
+    }
+
     /**
      * Retorna a lista de todas as escolas com totais consolidados de equipamentos.
      */
     public function getListaEscolas(?string $busca = null): array
     {
         $builder = $this->db->table($this->table);
-        $builder->select([
+        $builder->select(array_merge([
             'TRIM(escola_cie) as escola_cie',
             'TRIM(escola_nome) as escola_nome',
             'MAX(ure_diretoria) as ure_diretoria',
             'COUNT(*) as total_equipamentos',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'disponível\', \'disponivel\') THEN 1 ELSE 0 END) as total_disponivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'inservível\', \'inservivel\') THEN 1 ELSE 0 END) as total_inservivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) LIKE \'%manuten%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%chamado%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%danificad%\' THEN 1 ELSE 0 END) as total_manutencao'
-        ], false);
+        ], $this->statusMetricExpressions()), false);
 
         if (!empty($busca)) {
             $b = strtolower(trim($busca));
@@ -73,13 +88,10 @@ class InventarioEscolasModel extends Model
     public function getEstatisticasGerais(): array
     {
         $builder = $this->db->table($this->table);
-        $builder->select([
+        $builder->select(array_merge([
             'COUNT(DISTINCT TRIM(escola_cie)) as total_escolas',
             'COUNT(*) as total_equipamentos',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'disponível\', \'disponivel\') THEN 1 ELSE 0 END) as total_disponivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'inservível\', \'inservivel\') THEN 1 ELSE 0 END) as total_inservivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) LIKE \'%manuten%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%chamado%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%danificad%\' THEN 1 ELSE 0 END) as total_manutencao'
-        ], false);
+        ], $this->statusMetricExpressions()), false);
 
         return $builder->get()->getRowArray() ?? [
             'total_escolas'      => 0,
@@ -87,7 +99,24 @@ class InventarioEscolasModel extends Model
             'total_disponivel'   => 0,
             'total_inservivel'   => 0,
             'total_manutencao'   => 0,
+            'total_outros'       => 0,
+            'total_sem_status'   => 0,
         ];
+    }
+
+    /** Consolida por tipo de equipamento e sua condição atual para análise de prioridade. */
+    public function getResumoPorCategoria(): array
+    {
+        $builder = $this->db->table($this->table);
+        $categoria = "COALESCE(NULLIF(TRIM(categoria), ''), 'Sem categoria')";
+        $builder->select(array_merge([
+            "{$categoria} as categoria",
+            'COUNT(*) as total_equipamentos',
+        ], $this->statusMetricExpressions()), false);
+        $builder->groupBy($categoria);
+        $builder->orderBy('total_equipamentos', 'DESC');
+
+        return $builder->get()->getResultArray();
     }
 
     /**
@@ -96,15 +125,12 @@ class InventarioEscolasModel extends Model
     public function getDadosEscola(string $cie): ?array
     {
         $builder = $this->db->table($this->table);
-        $builder->select([
+        $builder->select(array_merge([
             'TRIM(escola_cie) as escola_cie',
             'TRIM(escola_nome) as escola_nome',
             'MAX(ure_diretoria) as ure_diretoria',
             'COUNT(*) as total_equipamentos',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'disponível\', \'disponivel\') THEN 1 ELSE 0 END) as total_disponivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) IN (\'inservível\', \'inservivel\') THEN 1 ELSE 0 END) as total_inservivel',
-            'SUM(CASE WHEN LOWER(TRIM(status_equipamento)) LIKE \'%manuten%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%chamado%\' OR LOWER(TRIM(status_equipamento)) LIKE \'%danificad%\' THEN 1 ELSE 0 END) as total_manutencao'
-        ], false);
+        ], $this->statusMetricExpressions()), false);
 
         $builder->where('TRIM(escola_cie)', trim($cie));
         $builder->groupBy(['TRIM(escola_cie)', 'TRIM(escola_nome)']);

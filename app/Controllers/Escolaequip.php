@@ -17,11 +17,43 @@ class Escolaequip extends BaseController
         $busca = $this->request->getGet('busca');
         $escolas = $model->getListaEscolas($busca);
         $estatisticas = $model->getEstatisticasGerais();
+        $resumoCategorias = $model->getResumoPorCategoria();
+
+        $resumoCategorias = array_map(static function (array $categoria): array {
+            $total = (int) ($categoria['total_equipamentos'] ?? 0);
+            $problemas = (int) ($categoria['total_manutencao'] ?? 0) + (int) ($categoria['total_inservivel'] ?? 0);
+            $categoria['total_com_problema'] = $problemas;
+            $categoria['percentual_com_problema'] = $total > 0 ? round(($problemas / $total) * 100, 1) : 0;
+
+            return $categoria;
+        }, $resumoCategorias);
+        usort($resumoCategorias, static function (array $a, array $b): int {
+            return ($b['percentual_com_problema'] <=> $a['percentual_com_problema'])
+                ?: ($b['total_com_problema'] <=> $a['total_com_problema']);
+        });
+
+        $escolasCriticas = array_map(static function (array $escola): array {
+            $total = (int) ($escola['total_equipamentos'] ?? 0);
+            $problemas = (int) ($escola['total_manutencao'] ?? 0) + (int) ($escola['total_inservivel'] ?? 0);
+            $escola['total_com_problema'] = $problemas;
+            $escola['percentual_com_problema'] = $total > 0 ? round(($problemas / $total) * 100, 1) : 0;
+
+            return $escola;
+        }, $escolas);
+        $escolasCriticas = array_values(array_filter($escolasCriticas, static function (array $escola): bool {
+            return $escola['total_com_problema'] > 0;
+        }));
+        usort($escolasCriticas, static function (array $a, array $b): int {
+            return ($b['percentual_com_problema'] <=> $a['percentual_com_problema'])
+                ?: ($b['total_com_problema'] <=> $a['total_com_problema']);
+        });
 
         $data = [
-            'escolas'      => $escolas,
-            'stats'        => $estatisticas,
-            'buscaAtual'   => $busca ?? '',
+            'escolas'          => $escolas,
+            'escolasCriticas'  => array_slice($escolasCriticas, 0, 10),
+            'resumoCategorias' => $resumoCategorias,
+            'stats'            => $estatisticas,
+            'buscaAtual'       => $busca ?? '',
         ];
 
         echo view('templates/header');
