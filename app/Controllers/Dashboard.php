@@ -110,14 +110,12 @@ class Dashboard extends BaseController
         $statusChamadosPresenciais = [];
         $porTecnico = [];
         $porTecnicoMes = [];
-        $resumoEquipamentos = [];
         $proximosAgendamentos = [];
 
         // Quem for do SETEC vê apenas o calendário e as visitas técnicas pendentes (não vê os dashboards)
         if (!$isSetec) {
             $equipamentosModel = new EquipamentosModel();
             $totalEquipamentos = $equipamentosModel->countAll();
-            $resumoEquipamentos = $equipamentosModel->resumoPorEstadoConservacao();
 
             // ===== GRÁFICO TÉCNICO — Todos os períodos =====
             $joinTecnico = '(
@@ -198,7 +196,6 @@ class Dashboard extends BaseController
             'isSetec' => $isSetec,
             'usuarioSetor' => $usuarioSetor,
             'totalEquipamentos' => $totalEquipamentos,
-            'resumoEquipamentos' => $resumoEquipamentos,
             'totalVisitas' => $totalVisitas,
             'totalChamados' => $totalChamados,
             'abertos' => $abertos,

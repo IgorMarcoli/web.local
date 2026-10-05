@@ -28,19 +28,6 @@ class EquipamentosModel extends Model
         'responsavel',
         'data_registro',
     ];
-
-    /** Resumo de equipamentos agrupados pelo estado de conservação. */
-    public function resumoPorEstadoConservacao(): array
-    {
-        $estado = "COALESCE(NULLIF(TRIM(estado_conservacao), ''), 'Sem avaliação')";
-
-        return $this->db->table($this->table)
-            ->select("{$estado} as estado_conservacao, COUNT(*) as total", false)
-            ->groupBy($estado)
-            ->orderBy('total', 'DESC')
-            ->get()
-            ->getResultArray();
-    }
                                              
     public function listar(array $filtros = []): array
     {
