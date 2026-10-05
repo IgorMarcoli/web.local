@@ -104,6 +104,16 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
         font-size: 0.9rem;
     }
 
+    .dashboard-card-heading h2 { line-height: 1.25; }
+    .equipment-chart-wrap { position: relative; height: 250px; max-width: 320px; margin: 0 auto; }
+    .equipment-state-row { margin: 0 0 14px; }
+    .equipment-state-row:last-child { margin-bottom: 0; }
+    .equipment-state-label { color: #334155; font-size: .9rem; font-weight: 600; }
+    .equipment-state-dot { width: 9px; height: 9px; display: inline-block; border-radius: 50%; margin-right: 9px; }
+    .equipment-state-value { color: #0f172a; font-size: .88rem; font-weight: 700; }
+    .equipment-state-track { height: 7px; overflow: hidden; border-radius: 99px; background: #f1f5f9; }
+    .equipment-state-fill { height: 100%; border-radius: inherit; transition: width .35s ease; }
+
     .visita-compact-item {
         display: flex;
         align-items: center;
@@ -236,6 +246,67 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
                 </div>
             </div>
             <!-- /.KPIs -->
+
+            <?php
+                $paletaEstadoEquipamento = [
+                    'excelente' => '#10b981',
+                    'bom' => '#0ea5e9',
+                    'ruim' => '#f59e0b',
+                    'péssimo' => '#ef4444',
+                    'pessimo' => '#ef4444',
+                    'chamado aberto' => '#8b5cf6',
+                    'sem avaliação' => '#94a3b8',
+                    'sem avaliacao' => '#94a3b8',
+                ];
+                $coresExtras = ['#14b8a6', '#6366f1', '#f97316', '#64748b'];
+                $dadosGraficoEquipamentos = [];
+                foreach (($resumoEquipamentos ?? []) as $indiceEstado => $estadoEquipamento) {
+                    $nomeEstado = (string)($estadoEquipamento['estado_conservacao'] ?? 'Sem avaliação');
+                    $chaveEstado = mb_strtolower(trim($nomeEstado), 'UTF-8');
+                    $dadosGraficoEquipamentos[] = [
+                        'estado' => $nomeEstado,
+                        'total' => (int)($estadoEquipamento['total'] ?? 0),
+                        'cor' => $paletaEstadoEquipamento[$chaveEstado] ?? $coresExtras[$indiceEstado % count($coresExtras)],
+                    ];
+                }
+                $totalResumoEquipamentos = array_sum(array_column($dadosGraficoEquipamentos, 'total'));
+            ?>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card card-modern">
+                        <div class="card-header bg-white border-bottom d-flex flex-wrap justify-content-between align-items-center px-4 py-3">
+                            <div class="dashboard-card-heading">
+                                <h2 class="h5 font-weight-bold text-dark mb-2"><i class="fas fa-laptop-medical mr-2 text-info"></i>Conservação dos equipamentos</h2>
+                                <div class="text-muted small">Distribuição do acervo por condição registrada. Use os itens ao lado para comparar quantidades e participação.</div>
+                            </div>
+                            <span class="badge badge-light border px-3 py-2 mt-2 mt-md-0"><i class="fas fa-boxes mr-1 text-info"></i><?= number_format($totalResumoEquipamentos, 0, ',', '.') ?> equipamentos no inventário</span>
+                        </div>
+                        <div class="card-body px-4 py-3">
+                            <?php if (!empty($dadosGraficoEquipamentos)): ?>
+                                <div class="row align-items-center">
+                                    <div class="col-md-5 col-lg-4 mb-3 mb-md-0">
+                                        <div class="equipment-chart-wrap"><canvas id="chart-conservacao-equipamentos" aria-label="Equipamentos por estado de conservação" role="img"></canvas></div>
+                                    </div>
+                                    <div class="col-md-7 col-lg-8">
+                                        <?php foreach ($dadosGraficoEquipamentos as $estadoEquipamento): ?>
+                                            <?php $participacao = $totalResumoEquipamentos > 0 ? ($estadoEquipamento['total'] / $totalResumoEquipamentos) * 100 : 0; ?>
+                                            <div class="equipment-state-row">
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <span class="equipment-state-label"><span class="equipment-state-dot" style="background:<?= esc($estadoEquipamento['cor']) ?>"></span><?= esc($estadoEquipamento['estado']) ?></span>
+                                                    <span class="equipment-state-value"><?= number_format($estadoEquipamento['total'], 0, ',', '.') ?> <span class="text-muted font-weight-normal">· <?= number_format($participacao, 1, ',', '.') ?>%</span></span>
+                                                </div>
+                                                <div class="equipment-state-track"><div class="equipment-state-fill" style="width:<?= min(100, $participacao) ?>%;background:<?= esc($estadoEquipamento['cor']) ?>"></div></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="empty-mini">Nenhum equipamento cadastrado para compor este gráfico.</div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ===== GRÁFICO ATENDIMENTOS POR TÉCNICO ===== -->
             <?php if (!empty($porTecnico)) : ?>
@@ -670,6 +741,73 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
 
     <?php if (!$isSetec) : ?>
+    // Gráfico de conservação do acervo de equipamentos
+    <?php if (!empty($dadosGraficoEquipamentos)) : ?>
+    (function () {
+        const equipamentosPorEstado = <?= json_encode($dadosGraficoEquipamentos, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const canvasEquipamentos = document.getElementById('chart-conservacao-equipamentos');
+        if (!canvasEquipamentos || typeof Chart === 'undefined') return;
+
+        const totalEquipamentosConservacao = equipamentosPorEstado.reduce((total, item) => total + item.total, 0);
+        const textoCentral = {
+            id: 'equipmentCenterText',
+            afterDraw: function (chart) {
+                const area = chart.chartArea;
+                if (!area) return;
+                const centroX = (area.left + area.right) / 2;
+                const centroY = (area.top + area.bottom) / 2;
+                const contexto = chart.ctx;
+                contexto.save();
+                contexto.textAlign = 'center';
+                contexto.textBaseline = 'middle';
+                contexto.fillStyle = '#0f172a';
+                contexto.font = '700 26px sans-serif';
+                contexto.fillText(totalEquipamentosConservacao.toLocaleString('pt-BR'), centroX, centroY - 7);
+                contexto.fillStyle = '#64748b';
+                contexto.font = '500 11px sans-serif';
+                contexto.fillText('equipamentos', centroX, centroY + 16);
+                contexto.restore();
+            }
+        };
+
+        new Chart(canvasEquipamentos, {
+            type: 'doughnut',
+            data: {
+                labels: equipamentosPorEstado.map(item => item.estado),
+                datasets: [{
+                    data: equipamentosPorEstado.map(item => item.total),
+                    backgroundColor: equipamentosPorEstado.map(item => item.cor),
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8,
+                    borderRadius: 5,
+                    spacing: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '74%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function (contexto) {
+                                const item = equipamentosPorEstado[contexto.dataIndex];
+                                const percentual = totalEquipamentosConservacao > 0
+                                    ? (item.total / totalEquipamentosConservacao) * 100
+                                    : 0;
+                                return ' ' + item.estado + ': ' + item.total.toLocaleString('pt-BR') + ' (' + percentual.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '%)';
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [textoCentral]
+        });
+    })();
+    <?php endif; ?>
+
     // Gráfico - Telefônicos
     <?php if (!empty($statusChamados)) : ?>
     const labelsTel = <?= json_encode(array_column($statusChamados, 'status')) ?>;
