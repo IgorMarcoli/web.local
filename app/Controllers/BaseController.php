@@ -71,7 +71,7 @@ abstract class BaseController extends Controller
      */
     protected function loginAttemptAllowed(string $username): bool
     {
-        $key = 'login:' . hash(
+        $key = 'login_' . hash(
             'sha256',
             mb_strtolower(trim($username), 'UTF-8') . "\0" . $this->request->getIPAddress()
         );
