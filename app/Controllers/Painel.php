@@ -6,49 +6,59 @@ use App\Models\InventarioEscolasModel;
 
 class Painel extends BaseController
 {
+    /**
+     * Valida se a requisição está autorizada:
+     * 1. Sessão ativa da intranet (usuário logado).
+     * 2. Token via parâmetro GET (?t=...).
+     * 3. Token via cabeçalho Authorization: Bearer <token>.
+     * 4. Token via cabeçalho customizado X-Painel-Token.
+     * 5. Se nenhum token estiver configurado no .env, permite acesso direto.
+     */
     private function autorizado(): bool
     {
-        $esperado   = (string) env('painel.token', '');
-        $cabecalho  = $this->request->getHeaderLine('Authorization');
-        $rateLimitKey = 'painel-auth:' . hash('sha256', $this->request->getIPAddress());
-
-        if (! service('throttler')->check($rateLimitKey, 30, 60)) {
-            return false;
+        // 1. Sessão ativa da intranet
+        if (session()->get('usuario') || session()->get('id') || session()->get('logado')) {
+            return true;
         }
 
-        if (strlen($esperado) < 32 || strlen($esperado) > 512
-            || ! preg_match('/\ABearer\s+([A-Za-z0-9._~+\/-]{32,512})\z/i', $cabecalho, $matches)
-        ) {
-            return false;
+        $esperado = trim((string) env('painel.token', ''));
+
+        // Se não houver token configurado no .env, libera acesso
+        if ($esperado === '') {
+            return true;
         }
 
-        if (hash_equals($esperado, $matches[1])) {
+        // 2. Token via query string ?t=
+        $tokenGet = trim((string) $this->request->getGet('t'));
+        if ($tokenGet !== '' && hash_equals($esperado, $tokenGet)) {
+            return true;
+        }
+
+        // 3. Token via Authorization: Bearer ...
+        $cabecalho = trim((string) $this->request->getHeaderLine('Authorization'));
+        if ($cabecalho !== '' && preg_match('/\ABearer\s+(.+)\z/i', $cabecalho, $matches)) {
+            if (hash_equals($esperado, trim($matches[1]))) {
+                return true;
+            }
+        }
+
+        // 4. Token via cabeçalho X-Painel-Token
+        $cabecalhoCustom = trim((string) $this->request->getHeaderLine('X-Painel-Token'));
+        if ($cabecalhoCustom !== '' && hash_equals($esperado, $cabecalhoCustom)) {
             return true;
         }
 
         return false;
     }
 
-    public function index()
+    /**
+     * Extrai e formata os dados estatísticos consolidados do inventário escolar.
+     */
+    private function obterDadosInventario(): array
     {
-        return $this->response
-            ->setHeader('Cache-Control', 'no-store, private')
-            ->setHeader('Referrer-Policy', 'no-referrer')
-            ->setHeader('X-Robots-Tag', 'noindex, nofollow')
-            ->setBody(view('painel'));
-    }
-
-    public function dados()
-    {
-        if (! $this->autorizado()) {
-            return $this->response
-                ->setStatusCode(403)
-                ->setHeader('Cache-Control', 'no-store, private')
-                ->setHeader('Referrer-Policy', 'no-referrer')
-                ->setJSON(['erro' => 'Acesso negado']);
-        }
-
         $model = new InventarioEscolasModel();
+
+        // 1. Resumo geral
         $stats = $model->getEstatisticasGerais();
         $resumo = [
             'escolas'     => (int) ($stats['total_escolas'] ?? 0),
@@ -60,6 +70,7 @@ class Painel extends BaseController
             'outros'      => (int) ($stats['total_outros'] ?? 0),
         ];
 
+        // 2. Escolas mais críticas (% com problemas)
         $escolasCriticas = array_map(static function (array $escola): array {
             $total     = (int) ($escola['total_equipamentos'] ?? 0);
             $problemas = (int) ($escola['total_manutencao'] ?? 0) + (int) ($escola['total_inservivel'] ?? 0);
@@ -75,7 +86,7 @@ class Painel extends BaseController
 
         $escolasFiltradas = array_values(array_filter(
             $escolasCriticas,
-            static fn (array $escola): bool => $escola['problema'] > 0,
+            static fn (array $escola): bool => $escola['problema'] > 0
         ));
 
         usort($escolasFiltradas, static function (array $a, array $b): int {
@@ -83,6 +94,8 @@ class Painel extends BaseController
         });
 
         $criticas = array_slice($escolasFiltradas, 0, 10);
+
+        // 3. Tipos / Categorias de equipamentos x Condição
         $tipos = array_map(static function (array $categoria): array {
             $disponiveis = (int) ($categoria['total_disponivel'] ?? 0);
             $manutencao  = (int) ($categoria['total_manutencao'] ?? 0);
@@ -105,14 +118,44 @@ class Painel extends BaseController
             return ($b['problemas'] <=> $a['problemas']) ?: ($b['total'] <=> $a['total']);
         });
 
+        return [
+            'resumo'     => $resumo,
+            'criticas'   => $criticas,
+            'tipos'      => array_slice($tipos, 0, 8),
+            'atualizado' => date('H:i'),
+        ];
+    }
+
+    public function index()
+    {
+        $tokenConfig = trim((string) env('painel.token', ''));
+        $dados = $this->obterDadosInventario();
+
         return $this->response
             ->setHeader('Cache-Control', 'no-store, private')
             ->setHeader('Referrer-Policy', 'no-referrer')
-            ->setJSON([
-                'resumo'     => $resumo,
-                'criticas'   => $criticas,
-                'tipos'      => array_slice($tipos, 0, 8),
-                'atualizado' => date('H:i'),
-            ]);
+            ->setHeader('X-Robots-Tag', 'noindex, nofollow')
+            ->setBody(view('painel', [
+                'dadosIniciais' => $dados,
+                'token'         => $tokenConfig,
+            ]));
+    }
+
+    public function dados()
+    {
+        if (! $this->autorizado()) {
+            return $this->response
+                ->setStatusCode(403)
+                ->setHeader('Cache-Control', 'no-store, private')
+                ->setHeader('Referrer-Policy', 'no-referrer')
+                ->setJSON(['erro' => 'Acesso negado']);
+        }
+
+        $dados = $this->obterDadosInventario();
+
+        return $this->response
+            ->setHeader('Cache-Control', 'no-store, private')
+            ->setHeader('Referrer-Policy', 'no-referrer')
+            ->setJSON($dados);
     }
 }
