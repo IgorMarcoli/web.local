@@ -19,7 +19,7 @@
         <div class="emprestimo-group" data-index="0">
             <div class="emprestimo-card">
             <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="form-group">
                     <label>ID do Kit</label>
                     <select name="numero_mochila[]" class="form-control numero-mochila" required>
@@ -31,15 +31,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
-                <div class="form-group position-relative">
-                    <label><i class="fas fa-user-tag text-info mr-1"></i> Pertence a (Servidor)</label>
-                    <input type="text" class="form-control nome-pertencente" name="pertence_a[]" autocomplete="off" placeholder="Nome do servidor...">
-                    <div class="list-group position-absolute w-100 lista-pertencentes" style="z-index:999; max-height:180px; overflow:auto;"></div>
-                </div>
-            </div>
-
-            <div class="col-4">
+            <div class="col-6">
                 <div class="form-group">
                     <label>Nome do Solicitante</label>
                     <input type="text" class="form-control nome-solicitante" name="nome_recebedor[]" required autocomplete="off">
@@ -400,15 +392,6 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-12 col-md-4 col-lg-3 mb-2">
-                                <label class="small text-muted font-weight-bold mb-1"><i class="fas fa-user-tag mr-1 text-info"></i>Pertence a:</label>
-                                <select name="pertence_a" class="form-control form-control-sm">
-                                    <option value="">Todos</option>
-                                    <?php foreach ($nomesPertencentes as $nomeP): ?>
-                                        <option value="<?= esc($nomeP) ?>" <?= ($filtros['pertence_a'] ?? '') === $nomeP ? 'selected' : '' ?>><?= esc($nomeP) ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
                             <div class="col-6 col-md-3 col-lg-1 mb-2">
                                 <label class="small text-muted font-weight-bold mb-1">Recebimento:</label>
                                 <input type="date" name="data_emprestimo" class="form-control form-control-sm" value="<?= esc($filtros['data_emprestimo'] ?? '') ?>">
@@ -478,7 +461,6 @@
                                             <th class="text-center"><input type="checkbox" id="select-all-emprestimos"></th>
                                             <th>ID</th>
                                             <th>ID do Kit</th>
-                                            <th>Pertence a</th>
                                             <th>Setor</th>
                                             <th>Nome Solicitante</th>
                                             <th>Email Solicitante</th>
@@ -515,19 +497,6 @@
                                                 </td>
                                                 <td><?= esc($e['id_emprestimo'] ?? '-') ?></td>
                                                 <td><?= esc($e['numero_mochila']) ?></td>
-                                                <td>
-                                                    <?php if (!empty($e['pertence_a'])): ?>
-                                                        <button type="button" 
-                                                                class="btn btn-sm btn-outline-info font-weight-bold btn-abrir-servidor shadow-sm" 
-                                                                data-nome="<?= esc($e['pertence_a']) ?>" 
-                                                                title="Clique para ver informações completas do servidor"
-                                                                style="border-radius: 20px; padding: 2px 10px; border-width: 2px;">
-                                                            <i class="fas fa-user-circle mr-1 text-primary"></i><?= esc($e['pertence_a']) ?>
-                                                        </button>
-                                                    <?php else: ?>
-                                                        <span class="text-muted font-italic">-</span>
-                                                    <?php endif; ?>
-                                                </td>
                                                 <td><?= esc($e['setor_display'] ?? '-') ?></td>
                                                 <td>
                                                     <?= esc($e['nome_recebedor']) ?>
@@ -930,23 +899,17 @@
                 <div class="emprestimo-group" data-id="${escapeHtml(id)}">
                     <div class="emprestimo-card">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label>ID do Kit</label>
                                     <input type="hidden" name="id_emprestimo[]" value="${escapeHtml(id)}">
+                                    <input type="hidden" name="pertence_a[]" value="${escapeHtml(pertenceA)}">
                                     <select name="numero_mochila[]" class="form-control numero-mochila" required>
                                         ${buildKitOptionsHtml(numeroMochila)}
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="form-group position-relative">
-                                    <label><i class="fas fa-user-tag text-info mr-1"></i> Pertence a (Servidor)</label>
-                                    <input type="text" name="pertence_a[]" class="form-control nome-pertencente" autocomplete="off" value="${escapeHtml(pertenceA)}" placeholder="Nome do servidor...">
-                                    <div class="list-group position-absolute w-100 lista-pertencentes" style="z-index:999; max-height:180px; overflow:auto;"></div>
-                                </div>
-                            </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label>Nome do Solicitante</label>
                                     <input type="text" name="nome_recebedor[]" class="form-control nome-solicitante" required autocomplete="off" value="${escapeHtml(nomeRecebedor)}">

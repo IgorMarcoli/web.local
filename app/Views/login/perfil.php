@@ -53,7 +53,11 @@
                             <h4 class="mt-2"><?= esc($usuario['Nomeuser']) ?></h4>
                             <p class="text-muted mb-1"><?= esc($usuario['Usuario']) ?></p>
                             <?php if (!empty($usuario['setor'])) : ?>
-                                <span class="badge badge-<?= strtoupper(trim($usuario['setor'])) === 'SETEC' ? 'warning' : 'primary' ?> px-2 py-1" style="font-size: 0.8rem;">
+                                <?php 
+                                    $stUpper = strtoupper(trim($usuario['setor']));
+                                    $badgeCor = ($stUpper === 'SETEC') ? 'warning' : (($stUpper === 'PROTOCOLO') ? 'info' : 'primary');
+                                ?>
+                                <span class="badge badge-<?= $badgeCor ?> px-2 py-1" style="font-size: 0.8rem;">
                                     Setor: <?= esc($usuario['setor']) ?>
                                 </span>
                             <?php endif; ?>

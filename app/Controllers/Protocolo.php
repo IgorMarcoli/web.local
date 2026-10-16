@@ -7,6 +7,35 @@ use App\Models\AtendimentoProtocoloModel;
 class Protocolo extends BaseController
 {
     /**
+     * Setores padrão da URE - SVI para encaminhamento no Protocolo
+     */
+    private array $setoresPadrao = [
+        'SEINTEC - Informações e Tecnologia',
+        'SETEC - Suporte Técnico de TI',
+        'Gabinete do Dirigente Regional',
+        'Recursos Humanos (Vida Funcional / Pagamento)',
+        'Supervisão / Inspeção Escolar',
+        'Núcleo Pedagógico',
+        'Núcleo de Apoio Administrativo',
+        'Núcleo de Finanças',
+        'Outro Setor',
+    ];
+
+    /**
+     * Assuntos comuns no atendimento ao público do Protocolo
+     */
+    private array $assuntosPadrao = [
+        'Requerimento de 2ª via de Histórico / Certificado',
+        'Entrega de Documentação Escolar',
+        'Certidão de Tempo de Contribuição / Serviço',
+        'Solicitação de Aposentadoria / Abono',
+        'Transferência ou Matrícula Escolar',
+        'Ofício ou Correspondência Oficial',
+        'Dúvidas / Atendimento Geral',
+        'Outro Assunto',
+    ];
+
+    /**
      * Valida se o usuário tem permissão de acesso ao setor PROTOCOLO.
      */
     private function checarPermissaoProtocolo()
@@ -20,7 +49,7 @@ class Protocolo extends BaseController
     }
 
     /**
-     * Painel de Boas-Vindas e Gestão de Atendimentos do Protocolo.
+     * Dashboard interativo de Atendimentos do Protocolo.
      */
     public function index()
     {
@@ -33,6 +62,7 @@ class Protocolo extends BaseController
         // Filtros de busca
         $busca  = trim((string)$this->request->getGet('busca'));
         $status = trim((string)$this->request->getGet('status'));
+        $setor  = trim((string)$this->request->getGet('setor'));
         $data   = trim((string)$this->request->getGet('data'));
 
         $builder = $model->orderBy('id', 'DESC');
@@ -51,23 +81,51 @@ class Protocolo extends BaseController
             $builder->where('status', $status);
         }
 
+        if ($setor !== '' && $setor !== 'todos') {
+            $builder->where('setor_destino', $setor);
+        }
+
         if ($data !== '') {
-            $builder->like('data_atendimento', $data);
+            // Suporta YYYY-MM-DD e DD/MM/YYYY
+            $dataIso = $data;
+            if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $data)) {
+                $partes = explode('-', $data);
+                $dataBr = "{$partes[2]}/{$partes[1]}/{$partes[0]}";
+            } else {
+                $dataBr = $data;
+            }
+
+            $builder->groupStart()
+                ->like('data_atendimento', $dataBr)
+                ->orLike('created_at', $dataIso, 'after')
+                ->groupEnd();
         }
 
         $atendimentos = $builder->findAll();
         $stats = $model->getEstatisticas();
+        $graficos = $model->getDadosGraficos();
         $proximoProtocolo = $model->gerarNumeroProtocolo();
 
+        // Lista de setores registrados no banco para o filtro
+        $setoresRegistrados = $model->select('setor_destino')
+            ->where("setor_destino IS NOT NULL AND setor_destino != ''")
+            ->distinct()
+            ->orderBy('setor_destino', 'ASC')
+            ->findColumn('setor_destino') ?? [];
+
         $dados = [
-            'atendimentos'      => $atendimentos,
-            'stats'             => $stats,
-            'proximoProtocolo'  => $proximoProtocolo,
-            'busca'             => $busca,
-            'statusFiltro'      => $status,
-            'dataFiltro'        => $data,
-            'usuarioNome'       => session()->get('usuario_nome') ?? 'Colaborador',
-            'usuarioSetor'      => session()->get('usuario_setor') ?? 'PROTOCOLO',
+            'atendimentos'       => $atendimentos,
+            'stats'              => $stats,
+            'graficos'           => $graficos,
+            'proximoProtocolo'   => $proximoProtocolo,
+            'busca'              => $busca,
+            'statusFiltro'       => $status,
+            'setorFiltro'        => $setor,
+            'dataFiltro'         => $data,
+            'setoresPadrao'      => $this->setoresPadrao,
+            'setoresRegistrados' => $setoresRegistrados,
+            'usuarioNome'        => session()->get('usuario_nome') ?? 'Colaborador',
+            'usuarioSetor'       => session()->get('usuario_setor') ?? 'PROTOCOLO',
         ];
 
         echo view('templates/header');
@@ -76,7 +134,32 @@ class Protocolo extends BaseController
     }
 
     /**
-     * Registra um novo atendimento no Protocolo.
+     * Tela dedicada para registrar um novo atendimento no Protocolo.
+     */
+    public function registrar()
+    {
+        if ($redirect = $this->checarPermissaoProtocolo()) {
+            return $redirect;
+        }
+
+        $model = new AtendimentoProtocoloModel();
+
+        $dados = [
+            'proximoProtocolo' => $model->gerarNumeroProtocolo(),
+            'dataAtual'        => date('d/m/Y H:i'),
+            'usuarioNome'      => session()->get('usuario_nome') ?? 'Protocolo',
+            'usuarioSetor'     => session()->get('usuario_setor') ?? 'PROTOCOLO',
+            'setoresPadrao'    => $this->setoresPadrao,
+            'assuntosPadrao'   => $this->assuntosPadrao,
+        ];
+
+        echo view('templates/header');
+        echo view('protocolo/registrar', $dados);
+        echo view('templates/footer');
+    }
+
+    /**
+     * Grava o novo atendimento no Protocolo.
      */
     public function cadastrar()
     {
@@ -101,14 +184,30 @@ class Protocolo extends BaseController
             $atendidoPor = (string)(session()->get('usuario_nome') ?? 'Protocolo');
         }
 
+        $setorDestino = trim((string)$this->request->getPost('setor_destino'));
+        if ($setorDestino === 'Outro' || $setorDestino === 'Outro Setor') {
+            $outroSetor = trim((string)$this->request->getPost('outro_setor'));
+            if ($outroSetor !== '') {
+                $setorDestino = $outroSetor;
+            }
+        }
+
+        $assunto = trim((string)$this->request->getPost('assunto'));
+        if ($assunto === 'Outro' || $assunto === 'Outro Assunto') {
+            $outroAssunto = trim((string)$this->request->getPost('outro_assunto'));
+            if ($outroAssunto !== '') {
+                $assunto = $outroAssunto;
+            }
+        }
+
         $dados = [
             'numero_protocolo' => $numeroProtocolo,
             'nome_solicitante' => trim((string)$this->request->getPost('nome_solicitante')),
             'documento'        => trim((string)$this->request->getPost('documento')),
             'telefone'         => trim((string)$this->request->getPost('telefone')),
             'email'            => trim((string)$this->request->getPost('email')),
-            'assunto'          => trim((string)$this->request->getPost('assunto')),
-            'setor_destino'    => trim((string)$this->request->getPost('setor_destino')),
+            'assunto'          => $assunto,
+            'setor_destino'    => $setorDestino,
             'descricao'        => trim((string)$this->request->getPost('descricao')),
             'atendido_por'     => $atendidoPor,
             'status'           => trim((string)$this->request->getPost('status')) ?: 'Pendente',
@@ -116,10 +215,16 @@ class Protocolo extends BaseController
         ];
 
         if ($dados['nome_solicitante'] === '' || $dados['assunto'] === '') {
-            return redirect()->to('/protocolo?alert=errorValidation');
+            return redirect()->back()->withInput()->with('alert', 'errorValidation');
         }
 
-        $model->insert($dados);
+        $novoId = $model->insert($dados);
+
+        // Se o operador clicou em "Salvar e Imprimir Comprovante"
+        $acao = trim((string)$this->request->getPost('acao'));
+        if ($acao === 'salvar_e_imprimir' && !empty($novoId)) {
+            return redirect()->to('/protocolo/imprimir/' . $novoId);
+        }
 
         return redirect()->to('/protocolo?alert=successCreate');
     }
@@ -213,4 +318,3 @@ class Protocolo extends BaseController
         return view('protocolo/comprovante', ['atendimento' => $atendimento]);
     }
 }
-

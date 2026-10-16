@@ -71,6 +71,8 @@ $routes->get('Painel/dados', 'Painel::dados');
 // Módulo Protocolo (Exclusivo para usuários do setor PROTOCOLO)
 $routes->get('protocolo', 'Protocolo::index');
 $routes->get('Protocolo', 'Protocolo::index');
+$routes->get('protocolo/dashboard', 'Protocolo::index');
+$routes->get('protocolo/registrar', 'Protocolo::registrar');
 $routes->post('protocolo/cadastrar', 'Protocolo::cadastrar');
 $routes->post('protocolo/editar', 'Protocolo::editar');
 $routes->post('protocolo/excluir/(:num)', 'Protocolo::excluir/$1');

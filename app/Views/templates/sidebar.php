@@ -41,9 +41,16 @@ $isProtocolo = ($usuarioSetor === 'PROTOCOLO');
                 <li class="nav-header text-uppercase text-xs text-muted" style="letter-spacing: 1px;">Módulo Protocolo</li>
                 
                 <li class="nav-item">
-                    <a href="/protocolo" class="nav-link <?= (url_is('protocolo') || url_is('protocolo/*')) ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>Atendimentos</p>
+                    <a href="/protocolo" class="nav-link <?= ((url_is('protocolo') || url_is('protocolo/dashboard')) && !url_is('protocolo/registrar')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/protocolo/registrar" class="nav-link <?= url_is('protocolo/registrar') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-plus-circle"></i>
+                        <p>Registrar Atendimento</p>
                     </a>
                 </li>
 

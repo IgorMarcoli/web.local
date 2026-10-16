@@ -22,6 +22,4 @@ class Home extends BaseController
         echo View('login/index');
         echo View('templates/footer');
     }
-
-    
 }
