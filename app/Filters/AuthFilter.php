@@ -35,14 +35,19 @@ class AuthFilter implements FilterInterface
         ]);
 
         $uriPath = trim($request->getUri()->getPath(), '/');
-        $uriSegments = explode('/', strtolower($uriPath));
+        $uriSegments = array_values(array_filter(explode('/', strtolower($uriPath)), 'strlen'));
+        
+        // Remove 'index.php' caso o framework/servidor o inclua no caminho da URI
+        if (isset($uriSegments[0]) && $uriSegments[0] === 'index.php') {
+            array_shift($uriSegments);
+        }
         $primeiroSegmento = $uriSegments[0] ?? '';
 
-        // Usuário do setor PROTOCOLO: Acesso EXCLUSIVO à página de boas-vindas do protocolo,
+        // Usuário do setor PROTOCOLO: Acesso EXCLUSIVO ao módulo do protocolo,
         // registrar atendimentos, perfil e logout. Acesso BLOQUEADO a tudo do SETEC, SEINTEC e GABINETE.
         if ($setor === 'PROTOCOLO') {
             $rotasPermitidas = ['protocolo', 'perfil', 'login', ''];
-            if (!in_array($primeiroSegmento, $rotasPermitidas, true)) {
+            if ($primeiroSegmento !== 'protocolo' && !in_array($primeiroSegmento, $rotasPermitidas, true)) {
                 return redirect()->to('/protocolo?alert=acessoNegado');
             }
         } else {

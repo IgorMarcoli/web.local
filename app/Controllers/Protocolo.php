@@ -87,17 +87,21 @@ class Protocolo extends BaseController
 
         if ($data !== '') {
             // Suporta YYYY-MM-DD e DD/MM/YYYY
-            $dataIso = $data;
             if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $data)) {
-                $partes = explode('-', $data);
-                $dataBr = "{$partes[2]}/{$partes[1]}/{$partes[0]}";
+                $dataIso = $data;
+                $partes  = explode('-', $data);
+                $dataBr  = "{$partes[2]}/{$partes[1]}/{$partes[0]}";
             } else {
-                $dataBr = $data;
+                // Assume DD/MM/YYYY — converte para ISO para o cast de data
+                $dataBr  = $data;
+                $partes  = explode('/', $data);
+                $dataIso = count($partes) === 3 ? "{$partes[2]}-{$partes[1]}-{$partes[0]}" : $data;
             }
 
+            // PostgreSQL não aceita LIKE em coluna timestamp; usa ::date para comparar
             $builder->groupStart()
                 ->like('data_atendimento', $dataBr)
-                ->orLike('created_at', $dataIso, 'after')
+                ->orWhere("created_at::date = '{$dataIso}'::date")
                 ->groupEnd();
         }
 

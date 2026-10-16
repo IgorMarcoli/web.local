@@ -48,24 +48,26 @@ class AtendimentoProtocoloModel extends Model
     }
 
     /**
-     * Estatísticas consolidadas para os cards do dashboard do Protocolo
+     * Estatísticas consolidadas para os cards do dashboard do Protocolo.
+     * Usa raw SQL no PostgreSQL para evitar LIKE em colunas timestamp.
      */
     public function getEstatisticas(): array
     {
-        $total = $this->countAllResults();
+        $db = \Config\Database::connect();
 
-        $hoje = date('d/m/Y');
+        $total       = (int)($db->query("SELECT COUNT(*) AS c FROM atendimentos_protocolo")->getRow()->c ?? 0);
+        $pendentes   = (int)($db->query("SELECT COUNT(*) AS c FROM atendimentos_protocolo WHERE status = 'Pendente'")->getRow()->c ?? 0);
+        $emAndamento = (int)($db->query("SELECT COUNT(*) AS c FROM atendimentos_protocolo WHERE status = 'Em Andamento'")->getRow()->c ?? 0);
+        $concluidos  = (int)($db->query("SELECT COUNT(*) AS c FROM atendimentos_protocolo WHERE status = 'Concluído'")->getRow()->c ?? 0);
+
         $hojeIso = date('Y-m-d');
-
-        $atendimentosHoje = (clone $this)->groupStart()
-            ->where('data_atendimento', $hoje)
-            ->orLike('created_at', $hojeIso, 'after')
-            ->groupEnd()
-            ->countAllResults();
-
-        $pendentes = (clone $this)->where('status', 'Pendente')->countAllResults();
-        $emAndamento = (clone $this)->where('status', 'Em Andamento')->countAllResults();
-        $concluidos = (clone $this)->where('status', 'Concluído')->countAllResults();
+        $hoje    = date('d/m/Y');
+        // Conta registros cujo campo data_atendimento (texto) é hoje OU cujo created_at (timestamp) é hoje
+        $atendimentosHoje = (int)($db->query(
+            "SELECT COUNT(*) AS c FROM atendimentos_protocolo
+             WHERE data_atendimento = ? OR created_at::date = ?::date",
+            [$hoje, $hojeIso]
+        )->getRow()->c ?? 0);
 
         $taxaConclusao = ($total > 0) ? round(($concluidos / $total) * 100, 1) : 0;
 
@@ -80,10 +82,13 @@ class AtendimentoProtocoloModel extends Model
     }
 
     /**
-     * Retorna dados formatados para os gráficos do Dashboard
+     * Retorna dados formatados para os gráficos do Dashboard.
+     * Usa raw SQL no PostgreSQL para compatibilidade com tipos timestamp e COALESCE/NULLIF.
      */
     public function getDadosGraficos(): array
     {
+        $db = \Config\Database::connect();
+
         // 1. Distribuição por Status
         $statusCounts = [
             'Pendente'     => 0,
@@ -91,9 +96,9 @@ class AtendimentoProtocoloModel extends Model
             'Concluído'    => 0,
         ];
 
-        $rowsStatus = (clone $this)->select('status, COUNT(*) as total')
-            ->groupBy('status')
-            ->findAll();
+        $rowsStatus = $db->query(
+            "SELECT status, COUNT(*) AS total FROM atendimentos_protocolo GROUP BY status"
+        )->getResultArray();
 
         foreach ($rowsStatus as $r) {
             $st = trim((string)($r['status'] ?? ''));
@@ -103,16 +108,19 @@ class AtendimentoProtocoloModel extends Model
         }
 
         // 2. Atendimentos por Setor de Destino (Top 6)
-        $rowsSetor = (clone $this)->select("COALESCE(NULLIF(TRIM(setor_destino), ''), 'Geral / Recepção') as setor, COUNT(*) as total")
-            ->groupBy("COALESCE(NULLIF(TRIM(setor_destino), ''), 'Geral / Recepção')")
-            ->orderBy('total', 'DESC')
-            ->limit(6)
-            ->findAll();
+        $rowsSetor = $db->query(
+            "SELECT COALESCE(NULLIF(TRIM(setor_destino), ''), 'Geral / Recepção') AS setor,
+                    COUNT(*) AS total
+             FROM atendimentos_protocolo
+             GROUP BY 1
+             ORDER BY 2 DESC
+             LIMIT 6"
+        )->getResultArray();
 
-        $setoresLabels = [];
+        $setoresLabels  = [];
         $setoresValores = [];
         foreach ($rowsSetor as $s) {
-            $setoresLabels[] = $s['setor'];
+            $setoresLabels[]  = $s['setor'];
             $setoresValores[] = (int)$s['total'];
         }
 
@@ -120,23 +128,24 @@ class AtendimentoProtocoloModel extends Model
         $dias = [];
         $hoje = new \DateTime();
         for ($i = 6; $i >= 0; $i--) {
-            $d = (clone $hoje)->modify("-{$i} days");
-            $dataIso = $d->format('Y-m-d');
-            $dataLabel = $d->format('d/m');
-            $dias[$dataIso] = [
-                'label' => $dataLabel,
-                'total' => 0,
-            ];
+            $d          = (clone $hoje)->modify("-{$i} days");
+            $dataIso    = $d->format('Y-m-d');
+            $dataLabel  = $d->format('d/m');
+            $dias[$dataIso] = ['label' => $dataLabel, 'total' => 0];
         }
 
-        $seteDiasAtras = (clone $hoje)->modify('-6 days')->format('Y-m-d 00:00:00');
-        $rowsRecentes = (clone $this)->select("DATE(created_at) as dia, COUNT(*) as total")
-            ->where('created_at >=', $seteDiasAtras)
-            ->groupBy("DATE(created_at)")
-            ->findAll();
+        $seteDiasAtras = (clone $hoje)->modify('-6 days')->format('Y-m-d');
+        $rowsRecentes  = $db->query(
+            "SELECT created_at::date AS dia, COUNT(*) AS total
+             FROM atendimentos_protocolo
+             WHERE created_at::date >= ?::date
+             GROUP BY created_at::date",
+            [$seteDiasAtras]
+        )->getResultArray();
 
         foreach ($rowsRecentes as $rr) {
-            $diaStr = $rr['dia'] ?? '';
+            // O driver pode retornar a data com hora (ex: "2026-10-16 00:00:00"), pega só os 10 chars
+            $diaStr = substr((string)($rr['dia'] ?? ''), 0, 10);
             if (isset($dias[$diaStr])) {
                 $dias[$diaStr]['total'] = (int)$rr['total'];
             }
