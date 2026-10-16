@@ -28,10 +28,30 @@ class AuthFilter implements FilterInterface
             return redirect()->to('/login?alert=naoLogado');
         }
 
+        $setor = strtoupper(trim($usuario['setor'] ?? ''));
         $session->set([
             'usuario_nome'  => $usuario['Nomeuser'] ?? '',
             'usuario_setor' => $usuario['setor'] ?? null,
         ]);
+
+        $uriPath = trim($request->getUri()->getPath(), '/');
+        $uriSegments = explode('/', strtolower($uriPath));
+        $primeiroSegmento = $uriSegments[0] ?? '';
+
+        // Usuário do setor PROTOCOLO: Acesso EXCLUSIVO à página de boas-vindas do protocolo,
+        // registrar atendimentos, perfil e logout. Acesso BLOQUEADO a tudo do SETEC, SEINTEC e GABINETE.
+        if ($setor === 'PROTOCOLO') {
+            $rotasPermitidas = ['protocolo', 'perfil', 'login', ''];
+            if (!in_array($primeiroSegmento, $rotasPermitidas, true)) {
+                return redirect()->to('/protocolo?alert=acessoNegado');
+            }
+        } else {
+            // Usuários que NÃO são do setor PROTOCOLO não podem acessar o módulo do protocolo
+            if ($primeiroSegmento === 'protocolo') {
+                $destino = ($setor === 'GABINETE') ? '/gabinete' : '/setec';
+                return redirect()->to($destino . '?alert=acessoNegado');
+            }
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

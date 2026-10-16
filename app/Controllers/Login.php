@@ -54,6 +54,14 @@ class Login extends BaseController
             'logado'        => true,
         ]);
 
+        $setor = strtoupper(trim((string)($login['setor'] ?? '')));
+        if ($setor === 'PROTOCOLO') {
+            return redirect()->to('/protocolo');
+        }
+        if ($setor === 'GABINETE') {
+            return redirect()->to('/gabinete');
+        }
+
         return redirect()->to('/setec');
     }
 

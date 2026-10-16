@@ -67,6 +67,16 @@ $routes->get('painel', 'Painel::index');
 $routes->get('Painel', 'Painel::index');
 $routes->get('painel/dados', 'Painel::dados');
 $routes->get('Painel/dados', 'Painel::dados');
+
+// Módulo Protocolo (Exclusivo para usuários do setor PROTOCOLO)
+$routes->get('protocolo', 'Protocolo::index');
+$routes->get('Protocolo', 'Protocolo::index');
+$routes->post('protocolo/cadastrar', 'Protocolo::cadastrar');
+$routes->post('protocolo/editar', 'Protocolo::editar');
+$routes->post('protocolo/excluir/(:num)', 'Protocolo::excluir/$1');
+$routes->post('protocolo/alterarStatus', 'Protocolo::alterarStatus');
+$routes->get('protocolo/imprimir/(:num)', 'Protocolo::imprimir/$1');
+
 $routes->get('juridico', 'Juridico::index');
 $routes->get('juridico/juridico', 'Juridico::Juridico');
 $routes->post('juridico/cadastrar', 'Juridico::cadastrar');

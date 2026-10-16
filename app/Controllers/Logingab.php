@@ -45,6 +45,11 @@ class Logingab extends BaseController
                 'usuario_setor' => $login['setor'] ?? null,
                 'logado'        => true,
             ]);
+            $setor = strtoupper(trim((string)($login['setor'] ?? '')));
+            if ($setor === 'PROTOCOLO') {
+                return redirect()->to('/protocolo');
+            }
+
             return redirect()->to('/gabinete');
         }
 

@@ -1,11 +1,12 @@
 <?php
 $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
 $isSetec = ($usuarioSetor === 'SETEC');
+$isProtocolo = ($usuarioSetor === 'PROTOCOLO');
 ?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../" class="brand-link">
+    <a href="<?= $isProtocolo ? base_url('protocolo') : base_url() ?>" class="brand-link">
         <img src="<?= base_url('tema/dist/img/AdminLTELogo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Intranet - SVI</span>
     </a>
@@ -27,7 +28,7 @@ $isSetec = ($usuarioSetor === 'SETEC');
             <div class="info">
                 <a href="/perfil" class="d-block text-truncate" style="max-width: 150px;"><?= session()->get('usuario_nome') ?? 'Usuário' ?></a>  
                 <?php if (session()->get('usuario_setor')) : ?>
-                    <span class="badge badge-<?= $isSetec ? 'warning' : 'primary' ?>" style="font-size: 0.68rem; letter-spacing: 0.5px;"><?= esc(session()->get('usuario_setor')) ?></span>
+                    <span class="badge badge-<?= $isSetec ? 'warning' : ($isProtocolo ? 'info' : 'primary') ?>" style="font-size: 0.68rem; letter-spacing: 0.5px;"><?= esc(session()->get('usuario_setor')) ?></span>
                 <?php endif; ?>
             </div>
         </div>
@@ -35,8 +36,32 @@ $isSetec = ($usuarioSetor === 'SETEC');
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                <?php if ($isProtocolo) : ?>
+                <!-- ================= ITENS EXCLUSIVOS DO PROTOCOLO ================= -->
+                <li class="nav-header text-uppercase text-xs text-muted" style="letter-spacing: 1px;">Módulo Protocolo</li>
+                
+                <li class="nav-item">
+                    <a href="/protocolo" class="nav-link <?= (url_is('protocolo') || url_is('protocolo/*')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>Atendimentos</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/perfil" class="nav-link <?= (url_is('perfil') || url_is('perfil/*')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>Meu Perfil</p>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <a href="/login/sair" class="nav-link text-danger">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Sair do Sistema</p>
+                    </a>
+                </li>
+                <?php else : ?>
+                <!-- ================= ITENS DO SEINTEC / SETEC ================= -->
                 
                 <!-- Dashboard (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">
@@ -198,6 +223,7 @@ $isSetec = ($usuarioSetor === 'SETEC');
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

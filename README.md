@@ -62,7 +62,7 @@ O objetivo é reduzir planilhas soltas e dar à equipe uma visão rápida do que
 
 ## ✅ Requisitos
 
-- PHP 8.1 ou superior (com as extensões `intl`, `mbstring`, `json`, `mysqlnd` e `curl`)
+- PHP 8.2 ou superior (com as extensões `intl`, `mbstring`, `json`, `curl` e a extensão do driver de banco configurado)
 - Composer
 - MySQL ou MariaDB
 - Git

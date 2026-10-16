@@ -15,6 +15,11 @@ class SetorFilter implements FilterInterface
     {
         $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
 
+        // Se o usuário for do PROTOCOLO, restringe ao painel de protocolo
+        if ($usuarioSetor === 'PROTOCOLO') {
+            return redirect()->to('/protocolo')->with('alert', 'acessoNegado');
+        }
+
         // Se o usuário for do SETEC, restringe o acesso para as funcionalidades permitidas
         if ($usuarioSetor === 'SETEC') {
             return redirect()->to('/Dashboard')->with('alert', 'acessoNegado');
