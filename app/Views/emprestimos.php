@@ -69,8 +69,8 @@
                         <label class="mb-0 mr-2">Chamado aberto?</label>
                         <div class="custom-control custom-checkbox custom-control-inline mb-0">
                             <input type="hidden" name="status_equipamento[]" class="status-equipamento-hidden" value="">
-                            <input type="checkbox" class="custom-control-input status-equipamento" value="chamado aberto">
-                            <label class="custom-control-label"></label>
+                            <input type="checkbox" class="custom-control-input status-equipamento" id="status-equipamento-0" value="chamado aberto">
+                            <label class="custom-control-label" for="status-equipamento-0"></label>
                         </div>
                     </div>
                 </div>
@@ -1458,39 +1458,112 @@
         }
 
         function addGroup() {
-            const existing = groupsContainer.querySelector('.emprestimo-group');
-            if (!existing) return;
+            const allGroups = groupsContainer.querySelectorAll('.emprestimo-group');
+            if (allGroups.length === 0) return;
+            const lastGroup = allGroups[allGroups.length - 1];
 
-            const clone = existing.cloneNode(true);
-            clone.dataset.index = String(Date.now());
+            const clone = lastGroup.cloneNode(true);
+            const newIndex = Date.now();
+            clone.dataset.index = String(newIndex);
 
-            clone.querySelectorAll('input, textarea').forEach(function (el) {
-                if (el.id) el.removeAttribute('id');
-                if (el.type === 'checkbox' || el.type === 'radio') {
-                    el.checked = false;
-                } else {
-                    el.value = '';
-                }
-            });
+            // 1. Nome do Solicitante
+            const srcNome = lastGroup.querySelector('.nome-solicitante');
+            const cloneNome = clone.querySelector('.nome-solicitante');
+            if (srcNome && cloneNome) cloneNome.value = srcNome.value;
 
-            clone.querySelectorAll('select').forEach(function (sel) {
-                if (sel.id) sel.removeAttribute('id');
-                sel.value = '';
-            });
+            // 2. Email do Solicitante
+            const srcEmail = lastGroup.querySelector('input[name="email_recebedor[]"]');
+            const cloneEmail = clone.querySelector('input[name="email_recebedor[]"]');
+            if (srcEmail && cloneEmail) cloneEmail.value = srcEmail.value;
 
+            // 3. Setor (display e inputs hidden)
+            const srcSetorDisp = lastGroup.querySelector('.setor-display');
+            const cloneSetorDisp = clone.querySelector('.setor-display');
+            if (srcSetorDisp && cloneSetorDisp) cloneSetorDisp.value = srcSetorDisp.value;
+
+            const srcSetor = lastGroup.querySelector('.setor');
+            const cloneSetor = clone.querySelector('.setor');
+            if (srcSetor && cloneSetor) cloneSetor.value = srcSetor.value;
+
+            const srcOutroSetor = lastGroup.querySelector('.outro-setor');
+            const cloneOutroSetor = clone.querySelector('.outro-setor');
+            if (srcOutroSetor && cloneOutroSetor) cloneOutroSetor.value = srcOutroSetor.value;
+
+            // 4. Nome do Responsável SEITEC/SETEC
+            const srcResp = lastGroup.querySelector('.nome-responsavel');
+            const cloneResp = clone.querySelector('.nome-responsavel');
+            if (srcResp && cloneResp) cloneResp.value = srcResp.value;
+
+            // 5. Chamado Aberto (checkbox e hidden)
+            const srcStatusCb = lastGroup.querySelector('.status-equipamento');
+            const cloneStatusCb = clone.querySelector('.status-equipamento');
+            const srcStatusHidden = lastGroup.querySelector('.status-equipamento-hidden');
+            const cloneStatusHidden = clone.querySelector('.status-equipamento-hidden');
+            if (srcStatusCb && cloneStatusCb) {
+                cloneStatusCb.checked = srcStatusCb.checked;
+            }
+            if (srcStatusHidden && cloneStatusHidden) {
+                cloneStatusHidden.value = srcStatusHidden.value;
+            }
+
+            // 6. Número do Chamado
+            const srcNumChamado = lastGroup.querySelector('.numero-chamado');
+            const cloneNumChamado = clone.querySelector('.numero-chamado');
+            if (srcNumChamado && cloneNumChamado) {
+                cloneNumChamado.value = srcNumChamado.value;
+            }
+
+            // 7. Observações
+            const srcObs = lastGroup.querySelector('textarea[name="obs[]"]');
+            const cloneObs = clone.querySelector('textarea[name="obs[]"]');
+            if (srcObs && cloneObs) {
+                cloneObs.value = srcObs.value;
+            }
+
+            // 8. ID do Kit: Este é o ÚNICO campo que não é copiado (vem em branco para seleção)
+            const cloneKitSelect = clone.querySelector('select.numero-mochila');
+            if (cloneKitSelect) {
+                cloneKitSelect.value = '';
+            }
+
+            // 9. Limpar listas de autocompletes / sugestões
             clone.querySelectorAll('.list-group').forEach(function (lg) {
                 lg.innerHTML = '';
             });
 
+            // 10. Atualizar IDs para evitar duplicação no DOM
+            const newCbId = 'status-equipamento-' + newIndex;
+            if (cloneStatusCb) {
+                cloneStatusCb.id = newCbId;
+            }
+            const cloneStatusLabel = clone.querySelector('.custom-control-label');
+            if (cloneStatusLabel) {
+                cloneStatusLabel.setAttribute('for', newCbId);
+            }
+            clone.querySelectorAll('[id]').forEach(function (el) {
+                if (el !== cloneStatusCb) {
+                    el.removeAttribute('id');
+                }
+            });
+
             groupsContainer.appendChild(clone);
             rebuildKitOptions();
+
             getNumeroSelects().forEach(function (s) {
                 s.removeEventListener('change', rebuildKitOptions);
                 s.addEventListener('change', rebuildKitOptions);
             });
+
             bindGroupHandlers(clone);
             attachRemoveHandlers();
             updateRemoveButtons();
+
+            // Focar automaticamente no select do ID do Kit para o usuário só selecionar o próximo kit
+            if (cloneKitSelect) {
+                setTimeout(function () {
+                    cloneKitSelect.focus();
+                }, 100);
+            }
         }
 
         if (btnAdd) {
