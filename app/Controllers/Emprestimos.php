@@ -438,7 +438,7 @@ class Emprestimos extends BaseController
             'status_equipamento' => $novoStatus,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('alert', 'successDevolucao');
     }
 
     public function salvarDataDevolucaoMultiplo()

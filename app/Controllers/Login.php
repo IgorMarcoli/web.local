@@ -62,7 +62,8 @@ class Login extends BaseController
             return redirect()->to('/gabinete');
         }
 
-        return redirect()->to('/setec');
+        session()->setFlashdata('mostrar_popup_emprestimos', true);
+        return redirect()->to('/setec?login=1');
     }
 
     public function perfil()
