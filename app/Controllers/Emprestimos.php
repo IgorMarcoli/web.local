@@ -127,6 +127,64 @@ class Emprestimos extends BaseController
         }
         unset($e);
 
+        $emprestimosAgrupados = [];
+        foreach ($emprestimos as $e) {
+            $dateKey = !empty($e['data_emprestimo']) ? substr((string) $e['data_emprestimo'], 0, 16) : 'sem_data';
+            $borrowerKey = mb_strtolower(trim((string) ($e['nome_recebedor'] ?? '')), 'UTF-8');
+            $groupKey = md5($borrowerKey . '|' . $dateKey . '|' . ($e['setor_display'] ?? '') . '|' . ($e['nome_responsavel'] ?? ''));
+
+            if (!isset($emprestimosAgrupados[$groupKey])) {
+                $emprestimosAgrupados[$groupKey] = [
+                    'group_id'           => $groupKey,
+                    'nome_recebedor'     => $e['nome_recebedor'] ?? '',
+                    'email_recebedor'    => $e['email_recebedor'] ?? '',
+                    'setor_display'      => $e['setor_display'] ?? '-',
+                    'nome_responsavel'   => $e['nome_responsavel'] ?? '',
+                    'data_emprestimo'    => $e['data_emprestimo'] ?? '',
+                    'duracao_emprestimo' => $e['duracao_emprestimo'] ?? '-',
+                    'itens'              => [],
+                ];
+            }
+            $emprestimosAgrupados[$groupKey]['itens'][] = $e;
+        }
+
+        foreach ($emprestimosAgrupados as &$grp) {
+            $itens = $grp['itens'];
+            $grp['total_kits'] = count($itens);
+            $grp['kits_numeros'] = array_values(array_filter(array_column($itens, 'numero_mochila'), function ($v) {
+                return $v !== null && $v !== '';
+            }));
+
+            $pendentes = [];
+            $chamados = [];
+            $devolvidos = [];
+            foreach ($itens as $it) {
+                $isPending = $this->isDevolucaoPending($it['data_devolucao'] ?? null) || ($it['status_equipamento'] ?? '') === 'emprestado';
+                $isChamado = strpos(mb_strtolower((string) ($it['status_equipamento'] ?? ''), 'UTF-8'), 'chamado') !== false;
+                if ($isChamado) {
+                    $chamados[] = $it;
+                }
+                if ($isPending) {
+                    $pendentes[] = $it;
+                } else {
+                    $devolvidos[] = $it;
+                }
+            }
+
+            $grp['pendentes_count'] = count($pendentes);
+            $grp['chamados_count'] = count($chamados);
+            $grp['devolvidos_count'] = count($devolvidos);
+            $grp['todos_devolvidos'] = count($pendentes) === 0;
+            $grp['ids_emprestimo'] = array_column($itens, 'id_emprestimo');
+            $grp['ids_pendentes'] = array_column($pendentes, 'id_emprestimo');
+
+            $datasDev = array_filter(array_column($devolvidos, 'data_devolucao'), function ($d) {
+                return !empty($d) && $d !== '0000-00-00 00:00:00' && $d !== '0000-00-00';
+            });
+            $grp['ultima_devolucao'] = !empty($datasDev) ? max($datasDev) : null;
+        }
+        unset($grp);
+
         $resumoMochilas = [];
         foreach ($kits as $kit) {
             $numeroMochilaInt = (int) ($kit['id_kit'] ?? 0);
@@ -238,6 +296,7 @@ class Emprestimos extends BaseController
         }));
 
         $data['emprestimos'] = $emprestimos;
+        $data['emprestimosAgrupados'] = array_values($emprestimosAgrupados);
         $data['resumoMochilas'] = $resumoMochilas;
         $data['sessoes']     = $sessoes;
         $data['setorOptions'] = $setorOptions;

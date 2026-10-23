@@ -1,4 +1,4 @@
-﻿<div class="modal fade" id="modal-novo-emprestimos">
+<div class="modal fade" id="modal-novo-emprestimos">
 <div class="modal-dialog modal-lg">
 <div class="modal-content">
 
@@ -267,12 +267,125 @@
 </form>
 
 <style>
-    .kpi-box-emp { border-radius: 10px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .kpi-box-emp:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important; }
-    .kpi-box-emp .inner h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; margin-bottom: 4px; }
-    .kpi-box-emp .inner p { font-size: clamp(0.75rem, 1.2vw, 0.9rem); margin-bottom: 0; opacity: 0.9; }
-    #tabela-emprestimos td, #tabela-emprestimos th { vertical-align: middle; }
-    .badge-emp { font-size: 0.78rem; padding: 0.35em 0.6em; font-weight: 600; border-radius: 6px; }
+    /* Estilos Modernos - Tela de Empréstimos */
+    .modern-kpi-card {
+        border-radius: 14px;
+        border: none;
+        padding: 1.15rem 1.25rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        position: relative;
+        overflow: hidden;
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .modern-kpi-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+    }
+    .modern-kpi-card .kpi-num {
+        font-size: clamp(1.4rem, 2.2vw, 2rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 0.2rem;
+    }
+    .modern-kpi-card .kpi-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        opacity: 0.9;
+        margin-bottom: 0;
+    }
+    .modern-kpi-card .kpi-icon-bg {
+        position: absolute;
+        right: 14px;
+        bottom: 8px;
+        font-size: 3.2rem;
+        opacity: 0.18;
+        pointer-events: none;
+    }
+
+    .emp-avatar {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0284c7, #0ea5e9);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    }
+
+    .badge-qtd-kits {
+        font-size: 0.85rem;
+        padding: 0.38rem 0.7rem;
+        border-radius: 8px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .badge-kit-pill {
+        font-size: 0.76rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        color: #1e293b;
+        font-weight: 600;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.15s ease;
+    }
+    .badge-kit-pill:hover {
+        background: #e2e8f0;
+    }
+
+    .group-master-row {
+        transition: background-color 0.15s ease;
+    }
+    .group-master-row:hover {
+        background-color: #f8fafc !important;
+    }
+    .group-master-row td {
+        vertical-align: middle !important;
+    }
+
+    .group-detail-row td {
+        background-color: #f8fafc !important;
+        border-top: none !important;
+    }
+    .group-detail-card {
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .btn-toggle-group-detail {
+        transition: transform 0.2s ease;
+    }
+    .btn-toggle-group-detail.expanded i {
+        transform: rotate(180deg);
+    }
+
+    .view-toggle-btn.active {
+        background-color: #0284c7 !important;
+        border-color: #0284c7 !important;
+        color: #fff !important;
+        font-weight: 700;
+    }
+
+    #tabela-emprestimos td, #tabela-emprestimos th {
+        vertical-align: middle;
+    }
 </style>
 
 <div class="content-wrapper">
@@ -281,7 +394,7 @@
             <div class="row align-items-center justify-content-between mb-2">
                 <div class="col-auto">
                     <h1 class="m-0 font-weight-bold text-dark d-flex align-items-center">
-                        <i class="fas fa-handshake text-info mr-2"></i> Empréstimos
+                        <i class="fas fa-handshake text-info mr-2"></i> Controle de Empréstimos
                     </h1>
                 </div>
                 <div class="col-auto d-flex align-items-center flex-wrap">
@@ -311,67 +424,75 @@
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
                 </div>
             <?php endif; ?>
+            <?php if (isset($_GET['alert']) && $_GET['alert'] == 'successDevolucao') : ?>
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> Devolução registrada com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($_GET['alert']) && $_GET['alert'] == 'successDelete') : ?>
+                <div class="alert alert-warning alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="fas fa-trash-alt mr-2"></i> Registro(s) excluído(s) com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="removerParametroAlerta()">&times;</button>
+                </div>
+            <?php endif; ?>
 
             <?php
             // Calcular KPIs a partir dos dados
             $totalEmp = count($emprestimosBase ?? $emprestimos ?? []);
-            $empAtivos = 0; $empDisponiveis = 0; $empChamados = 0;
+            $empAtivos = 0; $empChamados = 0;
             foreach (($emprestimosBase ?? $emprestimos ?? []) as $eKpi) {
                 $st = mb_strtolower($eKpi['status_equipamento'] ?? '', 'UTF-8');
                 if ($st === 'emprestado') { $empAtivos++; }
-                elseif ($st === 'disponível' || $st === 'disponivel' || $st === '') { $empDisponiveis++; }
                 elseif (strpos($st, 'chamado') !== false) { $empChamados++; }
             }
+            $totalKitsDisponiveis = count($availableMochilas ?? []);
+            $totalSolicitacoes = count($emprestimosAgrupados ?? []);
             ?>
 
-            <!-- KPI Cards -->
+            <!-- KPI Cards Modernos -->
             <div class="row no-print mb-3">
                 <div class="col-6 col-md-3 mb-3">
-                    <div class="small-box bg-info kpi-box-emp shadow-sm mb-0">
-                        <div class="inner p-3">
-                            <h3><?= esc($totalEmp, 'html') ?></h3>
-                            <p>Total de Registros</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <div class="modern-kpi-card" style="background: linear-gradient(135deg, #1e293b, #334155);">
+                        <div class="kpi-num"><?= esc($totalSolicitacoes) ?> <small style="font-size: 0.95rem; font-weight: normal; opacity: 0.85;">(<?= esc($totalEmp) ?> kits)</small></div>
+                        <p class="kpi-label">Solicitações Registradas</p>
+                        <i class="fas fa-layer-group kpi-icon-bg"></i>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
-                    <div class="small-box bg-warning kpi-box-emp shadow-sm mb-0">
-                        <div class="inner p-3">
-                            <h3><?= esc($empAtivos, 'html') ?></h3>
-                            <p>Em Empréstimo</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-laptop"></i></div>
+                    <div class="modern-kpi-card" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                        <div class="kpi-num"><?= esc($empAtivos) ?></div>
+                        <p class="kpi-label">Kits em Aberto (Ativos)</p>
+                        <i class="fas fa-laptop kpi-icon-bg"></i>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
-                    <div class="small-box bg-success kpi-box-emp shadow-sm mb-0">
-                        <div class="inner p-3">
-                            <h3><?= count($availableMochilas ?? []) ?></h3>
-                            <p>Kits Disponíveis</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="modern-kpi-card" style="background: linear-gradient(135deg, #059669, #047857);">
+                        <div class="kpi-num"><?= esc($totalKitsDisponiveis) ?></div>
+                        <p class="kpi-label">Kits Disponíveis</p>
+                        <i class="fas fa-check-circle kpi-icon-bg"></i>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 mb-3">
-                    <div class="small-box bg-danger kpi-box-emp shadow-sm mb-0">
-                        <div class="inner p-3">
-                            <h3><?= esc($empChamados, 'html') ?></h3>
-                            <p>Chamados Abertos</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-headset"></i></div>
+                    <div class="modern-kpi-card" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                        <div class="kpi-num"><?= esc($empChamados) ?></div>
+                        <p class="kpi-label">Chamados Abertos</p>
+                        <i class="fas fa-headset kpi-icon-bg"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Filtros modernos -->
-            <div class="card card-outline card-info shadow-sm no-print mb-3">
-                <div class="card-header py-2 bg-transparent border-bottom-0">
+            <!-- Filtros Modernos e Compactos -->
+            <div class="card card-outline card-info shadow-sm no-print mb-3" style="border-radius: 12px; overflow: hidden;">
+                <div class="card-header py-2.5 bg-white d-flex justify-content-between align-items-center">
                     <h3 class="card-title font-weight-bold text-dark small text-uppercase mb-0">
-                        <i class="fas fa-filter mr-1 text-info"></i> Filtros de Pesquisa
+                        <i class="fas fa-filter mr-1.5 text-info"></i> Filtros de Pesquisa
                     </h3>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Recolher filtros">
+                        <i class="fas fa-minus"></i>
+                    </button>
                 </div>
-                <div class="card-body pt-0 pb-3">
+                <div class="card-body pt-3 pb-3">
                     <form method="get" action="/emprestimos">
                         <div class="row align-items-end">
                             <div class="col-12 col-md-4 col-lg-3 mb-2">
@@ -384,7 +505,7 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-4 col-lg-3 mb-2">
-                                <label class="small text-muted font-weight-bold mb-1">Responsável SEITEC:</label>
+                                <label class="small text-muted font-weight-bold mb-1">Responsável SEINTEC/SETEC:</label>
                                 <select name="nome_responsavel" class="form-control form-control-sm">
                                     <option value="">Todos os responsáveis</option>
                                     <?php foreach ($nomeResponsaveis as $nome): ?>
@@ -419,10 +540,10 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-2 col-lg-1 mb-2 d-flex align-items-end">
-                                <button type="submit" class="btn btn-info btn-sm flex-fill mr-1" title="Aplicar Filtros">
+                                <button type="submit" class="btn btn-info btn-sm flex-fill mr-1 shadow-xs" title="Aplicar Filtros">
                                     <i class="fas fa-filter mr-1"></i>Filtrar
                                 </button>
-                                <a href="/emprestimos" class="btn btn-outline-secondary btn-sm" title="Limpar Filtros">
+                                <a href="/emprestimos" class="btn btn-outline-secondary btn-sm shadow-xs" title="Limpar Filtros">
                                     <i class="fas fa-undo"></i>
                                 </a>
                             </div>
@@ -431,30 +552,315 @@
                 </div>
             </div>
 
+            <!-- Ações em Massa (Bulk Actions) -->
             <div class="row mb-2">
                 <div class="col-12">
-                    <div id="bulk-actions" class="d-none align-items-center mb-2">
-                        <span id="bulk-selected-count" class="mr-3 font-weight-bold badge badge-secondary px-3 py-2"></span>
-                        <button type="button" class="btn btn-success btn-sm mr-2 shadow-sm" id="btn-bulk-liberar"><i class="fas fa-check mr-1"></i>Liberar</button>
-                        <button type="button" class="btn btn-warning btn-sm mr-2 shadow-sm" id="btn-bulk-editar"><i class="fas fa-edit mr-1"></i>Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm shadow-sm" id="btn-bulk-apagar"><i class="fas fa-trash mr-1"></i>Apagar</button>
+                    <div id="bulk-actions" class="d-none align-items-center mb-2 p-2 bg-white rounded shadow-sm border">
+                        <span id="bulk-selected-count" class="mr-3 font-weight-bold badge badge-primary px-3 py-2"></span>
+                        <button type="button" class="btn btn-success btn-sm mr-2 shadow-xs font-weight-bold" id="btn-bulk-liberar"><i class="fas fa-check mr-1"></i>Liberar Devolução</button>
+                        <button type="button" class="btn btn-warning btn-sm mr-2 shadow-xs font-weight-bold" id="btn-bulk-editar"><i class="fas fa-edit mr-1"></i>Editar Selecionados</button>
+                        <button type="button" class="btn btn-danger btn-sm shadow-xs font-weight-bold" id="btn-bulk-apagar"><i class="fas fa-trash mr-1"></i>Excluir Selecionados</button>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12 col-12" id="emprestimos-list-col">
-                    <div class="card card-outline card-secondary shadow-sm">
-                        <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
-                            <h3 class="card-title font-weight-bold text-dark mb-0 small text-uppercase">
-                                <i class="fas fa-list mr-1"></i> Lista de Empréstimos
-                            </h3>
-                            <span class="badge badge-info badge-pill px-2 py-1">
-                                <?= count($emprestimos) ?> <?= (count($emprestimos) === 1) ? 'registro' : 'registros' ?>
-                            </span>
+                    <div class="card card-outline card-secondary shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        
+                        <!-- Header com seletor de visualização (Agrupado vs Detalhado) -->
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center flex-wrap py-2.5 border-bottom">
+                            <div class="d-flex align-items-center flex-wrap mr-2 my-1">
+                                <h3 class="card-title font-weight-bold text-dark mb-0 small text-uppercase mr-3">
+                                    <i class="fas fa-list text-info mr-1"></i> Lista de Empréstimos
+                                </h3>
+                                <span class="badge badge-light border text-muted px-2.5 py-1 font-weight-bold mr-2">
+                                    <?= count($emprestimosAgrupados ?? []) ?> <?= (count($emprestimosAgrupados ?? []) === 1) ? 'solicitação' : 'solicitações' ?>
+                                </span>
+                                <span class="badge badge-info badge-pill px-2.5 py-1 font-weight-bold">
+                                    <?= count($emprestimos) ?> <?= (count($emprestimos) === 1) ? 'kit' : 'kits no total' ?>
+                                </span>
+                            </div>
+
+                            <div class="d-flex align-items-center flex-wrap my-1">
+                                <!-- Filtro rápido de digitação -->
+                                <div class="input-group input-group-sm mr-2 my-1" style="width: 230px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-light border-right-0"><i class="fas fa-search text-muted"></i></span>
+                                    </div>
+                                    <input type="text" id="filtro-rapido-tabela" class="form-control border-left-0" placeholder="Busca rápida...">
+                                </div>
+
+                                <!-- Botões de alternância de visão -->
+                                <div class="btn-group btn-group-sm shadow-xs my-1" role="group">
+                                    <button type="button" class="btn btn-primary font-weight-bold view-toggle-btn active" id="btn-view-agrupada" title="Visualização agrupada por solicitante (sem redundância)">
+                                        <i class="fas fa-layer-group mr-1"></i> Agrupado por Solicitante
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary font-weight-bold view-toggle-btn" id="btn-view-detalhada" title="Visualização item a item">
+                                        <i class="fas fa-bars mr-1"></i> Detalhado (Kit a Kit)
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body p-0">
-                        <div class="table-responsive">
+
+                        <!-- 1. TABELA AGRUPADA (SEM REDUNDÂNCIA DE NOMES) -->
+                        <div id="view-agrupada" class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0" id="tabela-emprestimos-agrupados">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="text-center" style="width: 40px;">
+                                                <input type="checkbox" id="select-all-agrupados" title="Selecionar todos os grupos">
+                                            </th>
+                                            <th style="min-width: 220px;">Solicitante</th>
+                                            <th style="min-width: 170px;">Setor & Responsável</th>
+                                            <th style="min-width: 250px;">Mochilas / Kits Pegos</th>
+                                            <th style="min-width: 150px;">Retirada / Duração</th>
+                                            <th style="min-width: 130px;">Status</th>
+                                            <th class="text-center" style="min-width: 170px;">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($emprestimosAgrupados)): ?>
+                                            <tr>
+                                                <td colspan="7" class="text-center py-4 text-muted">
+                                                    <i class="fas fa-inbox fa-2x mb-2 d-block text-secondary"></i>
+                                                    Nenhum registro de empréstimo encontrado.
+                                                </td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($emprestimosAgrupados as $grp): ?>
+                                                <?php
+                                                    $initials = mb_strtoupper(mb_substr(trim($grp['nome_recebedor'] ?? 'SB'), 0, 2));
+                                                    $allIdsStr = implode(',', $grp['ids_emprestimo']);
+                                                    $pendingIdsStr = implode(',', $grp['ids_pendentes']);
+                                                ?>
+                                                <tr class="group-master-row" data-group-id="<?= esc($grp['group_id']) ?>" data-search-text="<?= esc(mb_strtolower($grp['nome_recebedor'] . ' ' . $grp['email_recebedor'] . ' ' . $grp['setor_display'] . ' ' . $grp['nome_responsavel'] . ' ' . implode(' ', $grp['kits_numeros']))) ?>">
+                                                    <td class="text-center">
+                                                        <input type="checkbox" class="row-select-group" data-ids="<?= esc($allIdsStr) ?>" data-group-id="<?= esc($grp['group_id']) ?>">
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="emp-avatar mr-2.5">
+                                                                <?= esc($initials) ?>
+                                                            </div>
+                                                            <div class="overflow-hidden">
+                                                                <div class="font-weight-bold text-dark d-flex align-items-center">
+                                                                    <span class="text-truncate"><?= esc($grp['nome_recebedor']) ?></span>
+                                                                    <?php if (!empty($grp['nome_recebedor'])): ?>
+                                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1.5 btn-abrir-servidor" data-nome="<?= esc($grp['nome_recebedor']) ?>" title="Ver informações do servidor">
+                                                                            <i class="fas fa-info-circle"></i>
+                                                                        </button>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                                <div class="small text-muted text-truncate" style="max-width: 210px;" title="<?= esc($grp['email_recebedor']) ?>">
+                                                                    <i class="far fa-envelope text-secondary mr-1"></i><?= esc($grp['email_recebedor'] ?: 'Não informado') ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <span class="badge badge-light border text-dark font-weight-bold px-2 py-1 mb-1 d-inline-block text-truncate" style="max-width: 190px;" title="<?= esc($grp['setor_display']) ?>">
+                                                                <i class="fas fa-building text-info mr-1"></i><?= esc($grp['setor_display']) ?>
+                                                            </span>
+                                                            <div class="small text-muted d-flex align-items-center" title="Responsável SEINTEC">
+                                                                <i class="fas fa-user-shield text-secondary mr-1"></i>
+                                                                <span class="text-truncate" style="max-width: 170px;"><?= esc($grp['nome_responsavel']) ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center flex-wrap mb-1">
+                                                            <!-- QUANTIDADE DE KITS PEGOS EM DESTAQUE -->
+                                                            <span class="badge badge-primary badge-qtd-kits shadow-xs mr-1 mb-1">
+                                                                <i class="fas fa-laptop mr-1.5"></i>
+                                                                <?= $grp['total_kits'] ?> <?= ($grp['total_kits'] === 1) ? 'Kit / Notebook' : 'Kits / Notebooks' ?>
+                                                            </span>
+                                                            <?php if ($grp['total_kits'] > 1): ?>
+                                                                <button type="button" class="btn btn-xs btn-outline-info rounded-pill py-0 px-2 mb-1 btn-toggle-group-detail font-weight-bold" data-target="#detail-<?= esc($grp['group_id']) ?>" title="Ver cada kit individualmente">
+                                                                    <i class="fas fa-chevron-down mr-1"></i> Ver detalhes
+                                                                </button>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="d-flex flex-wrap align-items-center">
+                                                            <?php foreach ($grp['itens'] as $it): ?>
+                                                                <?php
+                                                                    $dtDevCheck = $it['data_devolucao'] ?? '';
+                                                                    $itPending = empty($dtDevCheck) || $dtDevCheck === '0000-00-00 00:00:00' || $dtDevCheck === '0000-00-00' || ($it['status_equipamento'] ?? '') === 'emprestado';
+                                                                    $itChamado = strpos(mb_strtolower($it['status_equipamento'] ?? ''), 'chamado') !== false;
+                                                                ?>
+                                                                <span class="badge-kit-pill" title="Mochila/Kit #<?= esc($it['numero_mochila']) ?> (ID: <?= esc($it['id_emprestimo']) ?>) - <?= esc($it['status_equipamento']) ?>">
+                                                                    <i class="fas fa-box text-muted mr-1"></i>Kit #<?= esc($it['numero_mochila']) ?>
+                                                                    <?php if ($itChamado): ?>
+                                                                        <span class="text-danger font-weight-bold ml-1" title="Chamado aberto">⚠️</span>
+                                                                    <?php elseif ($itPending): ?>
+                                                                        <span class="text-warning font-weight-bold ml-1" title="Em aberto">●</span>
+                                                                    <?php else: ?>
+                                                                        <span class="text-success font-weight-bold ml-1" title="Devolvido">✓</span>
+                                                                    <?php endif; ?>
+                                                                </span>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="font-weight-bold text-dark small">
+                                                            <i class="far fa-calendar-alt text-muted mr-1"></i><?= date('d/m/Y H:i', strtotime($grp['data_emprestimo'])) ?>
+                                                        </div>
+                                                        <div class="small mt-0.5">
+                                                            <span class="badge badge-light border text-muted font-weight-normal duracao-emprestimo" data-start="<?= esc($grp['data_emprestimo']) ?>" data-end="<?= esc($grp['ultima_devolucao'] ?? '') ?>">
+                                                                <?= esc($grp['duracao_emprestimo']) ?>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($grp['todos_devolvidos']): ?>
+                                                            <span class="badge badge-success px-2 py-1 font-weight-bold shadow-xs">
+                                                                <i class="fas fa-check-circle mr-1"></i> Devolvido
+                                                            </span>
+                                                            <?php if (!empty($grp['ultima_devolucao'])): ?>
+                                                                <div class="small text-muted mt-1" style="font-size: 0.75rem;" title="Data da última devolução">
+                                                                    <i class="fas fa-calendar-check text-success mr-1"></i><?= date('d/m/Y H:i', strtotime($grp['ultima_devolucao'])) ?>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        <?php elseif ($grp['chamados_count'] > 0): ?>
+                                                            <span class="badge badge-danger px-2 py-1 font-weight-bold shadow-xs">
+                                                                <i class="fas fa-headset mr-1"></i> <?= $grp['chamados_count'] ?> Chamado(s)
+                                                            </span>
+                                                            <?php if ($grp['pendentes_count'] > $grp['chamados_count']): ?>
+                                                                <div class="mt-1">
+                                                                    <span class="badge badge-warning text-dark px-1.5 py-0.5 font-weight-bold" style="font-size: 0.72rem;">
+                                                                        <?= ($grp['pendentes_count'] - $grp['chamados_count']) ?> Ativo(s)
+                                                                    </span>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            <span class="badge badge-warning text-dark px-2 py-1 font-weight-bold shadow-xs">
+                                                                <i class="fas fa-clock mr-1"></i> <?= $grp['pendentes_count'] ?> Emprestado(s)
+                                                            </span>
+                                                            <?php if ($grp['devolvidos_count'] > 0): ?>
+                                                                <div class="mt-1">
+                                                                    <span class="badge badge-success px-1.5 py-0.5 font-weight-bold" style="font-size: 0.72rem;">
+                                                                        <?= $grp['devolvidos_count'] ?> Devolvido(s)
+                                                                    </span>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="d-flex justify-content-center align-items-center">
+                                                            <?php if ($grp['pendentes_count'] > 0): ?>
+                                                                <button type="button" class="btn btn-success btn-sm mr-1 shadow-xs font-weight-bold btn-liberar-grupo" data-ids="<?= esc($pendingIdsStr) ?>" data-count="<?= esc($grp['pendentes_count']) ?>" title="Liberar devolução de <?= esc($grp['pendentes_count']) ?> kit(s) pendente(s)">
+                                                                    <i class="fas fa-check mr-1"></i>Liberar
+                                                                </button>
+                                                            <?php endif; ?>
+                                                            <button type="button" class="btn btn-warning btn-sm mr-1 shadow-xs btn-editar-grupo" data-group-id="<?= esc($grp['group_id']) ?>" title="Editar empréstimo deste solicitante">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-outline-info btn-sm mr-1 shadow-xs btn-toggle-group-detail" data-target="#detail-<?= esc($grp['group_id']) ?>" title="Expandir/Recolher detalhes dos kits">
+                                                                <i class="fas fa-chevron-down"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-outline-danger btn-sm shadow-xs btn-excluir-grupo" data-ids="<?= esc($allIdsStr) ?>" data-count="<?= esc($grp['total_kits']) ?>" title="Excluir empréstimo(s)">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Sublinha de Detalhes dos Kits -->
+                                                <tr id="detail-<?= esc($grp['group_id']) ?>" class="group-detail-row d-none">
+                                                    <td colspan="7" class="p-3">
+                                                        <div class="group-detail-card p-3">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                                                                <span class="font-weight-bold text-dark small text-uppercase">
+                                                                    <i class="fas fa-laptop text-info mr-1"></i> Detalhes dos <?= $grp['total_kits'] ?> kits de <?= esc($grp['nome_recebedor']) ?>
+                                                                </span>
+                                                                <small class="text-muted"><i class="fas fa-tag mr-1"></i>Lote: <?= esc($grp['group_id']) ?></small>
+                                                            </div>
+                                                            <div class="table-responsive">
+                                                                <table class="table table-sm table-bordered table-striped mb-0 text-nowrap">
+                                                                    <thead class="bg-light">
+                                                                        <tr>
+                                                                            <th>ID</th>
+                                                                            <th>ID do Kit / Mochila</th>
+                                                                            <th>Pertence a</th>
+                                                                            <th>Chamado</th>
+                                                                            <th>Observações</th>
+                                                                            <th>Data Recebimento</th>
+                                                                            <th>Data Devolução</th>
+                                                                            <th>Duração</th>
+                                                                            <th>Status</th>
+                                                                            <th class="text-center">Ações do Kit</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php foreach ($grp['itens'] as $it): ?>
+                                                                            <?php
+                                                                                $dtDevCheck = $it['data_devolucao'] ?? '';
+                                                                    $itPending = empty($dtDevCheck) || $dtDevCheck === '0000-00-00 00:00:00' || $dtDevCheck === '0000-00-00' || ($it['status_equipamento'] ?? '') === 'emprestado';
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td><?= esc($it['id_emprestimo'] ?? '-') ?></td>
+                                                                                <td class="font-weight-bold text-primary">Kit #<?= esc($it['numero_mochila']) ?></td>
+                                                                                <td><?= esc($it['pertence_a'] ?: '-') ?></td>
+                                                                                <td>
+                                                                                    <?php if (!empty($it['numero_chamado'])): ?>
+                                                                                        <span class="badge badge-danger">#<?= esc($it['numero_chamado']) ?></span>
+                                                                                    <?php else: ?>
+                                                                                        <span class="text-muted">-</span>
+                                                                                    <?php endif; ?>
+                                                                                </td>
+                                                                                <td style="max-width: 250px;" class="text-truncate" title="<?= esc($it['obs'] ?? '') ?>"><?= esc($it['obs'] ?: '-') ?></td>
+                                                                                <td><?= esc($it['data_emprestimo']) ?></td>
+                                                                                <td>
+                                                                                    <?php
+                                                                                        $dtDev = $it['data_devolucao'] ?? '';
+                                                                                        $dtDevDefault = $dtDev === '0000-00-00 00:00:00' || $dtDev === '0000-00-00';
+                                                                                    ?>
+                                                                                    <?php if (!empty($dtDev) && !$dtDevDefault): ?>
+                                                                                        <?= esc($dtDev) ?>
+                                                                                    <?php else: ?>
+                                                                                        <button type="button" class="btn btn-success btn-xs btn-liberar-individual" data-id="<?= esc($it['id_emprestimo']) ?>">
+                                                                                            <i class="fas fa-check mr-1"></i>Liberar
+                                                                                        </button>
+                                                                                    <?php endif; ?>
+                                                                                </td>
+                                                                                <td class="duracao-emprestimo" data-start="<?= esc($it['data_emprestimo']) ?>" data-end="<?= esc($it['data_devolucao'] ?? '') ?>"><?= esc($it['duracao_emprestimo']) ?></td>
+                                                                                <td>
+                                                                                    <?php if (($it['status_equipamento'] ?? '') === 'chamado aberto'): ?>
+                                                                                        <span class="badge badge-danger">Chamado aberto</span>
+                                                                                    <?php elseif ($itPending): ?>
+                                                                                        <span class="badge badge-warning text-dark font-weight-bold">Emprestado</span>
+                                                                                    <?php else: ?>
+                                                                                        <span class="badge badge-success">Devolvido</span>
+                                                                                    <?php endif; ?>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button" class="btn btn-warning btn-xs mr-1 btn-editar-item-individual" data-id="<?= esc($it['id_emprestimo']) ?>" title="Editar este kit">
+                                                                                        <i class="fas fa-edit"></i>
+                                                                                    </button>
+                                                                                    <a href="/emprestimos/excluir/<?= esc($it['id_emprestimo']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Deseja excluir o empréstimo deste kit?')" title="Excluir este kit">
+                                                                                        <i class="fas fa-trash"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 2. TABELA DETALHADA ITEM A ITEM (MANTIDA PARA QUEM PREFERIR VER KIT POR KIT) -->
+                        <div id="view-detalhada" class="card-body p-0" style="display: none;">
+                            <div class="table-responsive">
                                 <table class="table table-hover table-striped mb-0 text-nowrap" id="tabela-emprestimos">
                                     <thead class="thead-light">
                                         <tr>
@@ -496,12 +902,12 @@
                                                     <input type="checkbox" class="row-select-emprestimo" data-id="<?= esc($e['id_emprestimo'] ?? '') ?>">
                                                 </td>
                                                 <td><?= esc($e['id_emprestimo'] ?? '-') ?></td>
-                                                <td><?= esc($e['numero_mochila']) ?></td>
+                                                <td><span class="badge badge-light border font-weight-bold">Kit #<?= esc($e['numero_mochila']) ?></span></td>
                                                 <td><?= esc($e['setor_display'] ?? '-') ?></td>
                                                 <td>
                                                     <?= esc($e['nome_recebedor']) ?>
                                                     <?php if (!empty($e['nome_recebedor'])): ?>
-                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_recebedor']) ?>" title="Ver informações do servidor/supervisor">
+                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_recebedor']) ?>" title="Ver informações do servidor">
                                                             <i class="fas fa-info-circle"></i>
                                                         </button>
                                                     <?php endif; ?>
@@ -510,12 +916,20 @@
                                                 <td>
                                                     <?= esc($e['nome_responsavel']) ?>
                                                     <?php if (!empty($e['nome_responsavel'])): ?>
-                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_responsavel']) ?>" title="Ver informações do servidor/supervisor">
+                                                        <button type="button" class="btn btn-xs btn-link text-info p-0 ml-1 btn-abrir-servidor" data-nome="<?= esc($e['nome_responsavel']) ?>" title="Ver informações do servidor">
                                                             <i class="fas fa-info-circle"></i>
                                                         </button>
                                                     <?php endif; ?>
                                                 </td>
-                                                <td><?= esc($e['status_equipamento']) ?></td>
+                                                <td>
+                                                    <?php if (($e['status_equipamento'] ?? '') === 'chamado aberto'): ?>
+                                                        <span class="badge badge-danger">Chamado aberto</span>
+                                                    <?php elseif (($e['status_equipamento'] ?? '') === 'emprestado'): ?>
+                                                        <span class="badge badge-warning text-dark font-weight-bold">Emprestado</span>
+                                                    <?php else: ?>
+                                                        <span class="badge badge-success">Devolvido</span>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?= esc($e['numero_chamado']) ?></td>
                                                 <td><?= esc($e['data_emprestimo']) ?></td>
                                                 <td>
@@ -525,8 +939,7 @@
                                                         <?= esc($dataDevolucao) ?>
                                                     <?php else: ?>
                                                         <form method="post" action="/emprestimos/salvarDataDevolucao" class="d-flex align-items-center">
-<?= csrf_field() ?>
-
+                                                            <?= csrf_field() ?>
                                                             <input type="hidden" name="id_emprestimo" value="<?= esc($e['id_emprestimo'] ?? '') ?>">
                                                             <input type="hidden" name="data_devolucao" class="data-devolucao-valor" value="">
                                                             <button type="submit" class="btn btn-success btn-sm btn-liberar-devolucao" data-id="<?= esc($e['id_emprestimo'] ?? '') ?>">
@@ -553,16 +966,22 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
+                <!-- Painel Lateral de Resumo por Mochila -->
                 <div class="col-lg-3 col-12 d-none" id="resumo-mochila-panel">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title mb-3">Resumo por mochila</h5>
+                    <div class="card shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <div class="card-header bg-light py-2">
+                            <h5 class="card-title font-weight-bold text-dark small text-uppercase mb-0">
+                                <i class="fas fa-boxes mr-1 text-info"></i> Resumo por Mochila
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-sm table-striped table-bordered mb-0">
-                                    <thead>
+                                    <thead class="bg-light">
                                         <tr>
                                             <th>Número</th>
                                             <th>Status</th>
@@ -573,14 +992,23 @@
                                         <?php if (!empty($resumoMochilas)): ?>
                                             <?php foreach ($resumoMochilas as $resumo): ?>
                                                 <tr>
-                                                    <td><?= esc($resumo['numero'] ?? '-') ?></td>
-                                                    <td><?= esc($resumo['status'] ?? '-') ?></td>
+                                                    <td class="font-weight-bold">Kit #<?= esc($resumo['numero'] ?? '-') ?></td>
+                                                    <td>
+                                                        <?php $stRes = $resumo['status'] ?? '-'; ?>
+                                                        <?php if ($stRes === 'emprestado'): ?>
+                                                            <span class="badge badge-warning text-dark font-weight-bold">Emprestado</span>
+                                                        <?php elseif (strpos($stRes, 'chamado') !== false): ?>
+                                                            <span class="badge badge-danger">Chamado</span>
+                                                        <?php else: ?>
+                                                            <span class="badge badge-success">Disponível</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td class="duracao-emprestimo" data-start="<?= esc($resumo['data_emprestimo'] ?? '') ?>" data-end="<?= esc($resumo['data_devolucao'] ?? '') ?>"><?= esc($resumo['duracao_emprestimo'] ?? '-') ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">Nenhuma mochila encontrada.</td>
+                                                <td colspan="3" class="text-center py-3 text-muted">Nenhuma mochila encontrada.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
@@ -1706,6 +2134,223 @@
             tipoBadge.className = 'badge badge-pill badge-success px-3 py-1 font-weight-bold mr-2 mb-1';
             tipoBadge.style.backgroundColor = '#10b981';
         }
+
+
+        // ===============================================
+        // CONTROLE DA VISUALIZAÇÃO (AGRUPADA VS DETALHADA)
+        // ===============================================
+        const btnViewAgrupada = document.getElementById('btn-view-agrupada');
+        const btnViewDetalhada = document.getElementById('btn-view-detalhada');
+        const viewAgrupada = document.getElementById('view-agrupada');
+        const viewDetalhada = document.getElementById('view-detalhada');
+
+        if (btnViewAgrupada && btnViewDetalhada && viewAgrupada && viewDetalhada) {
+            btnViewAgrupada.addEventListener('click', function () {
+                btnViewAgrupada.classList.add('active', 'btn-primary');
+                btnViewAgrupada.classList.remove('btn-outline-primary', 'btn-outline-secondary');
+                btnViewDetalhada.classList.remove('active', 'btn-primary');
+                btnViewDetalhada.classList.add('btn-outline-secondary');
+                viewAgrupada.style.display = 'block';
+                viewDetalhada.style.display = 'none';
+            });
+
+            btnViewDetalhada.addEventListener('click', function () {
+                btnViewDetalhada.classList.add('active', 'btn-primary');
+                btnViewDetalhada.classList.remove('btn-outline-primary', 'btn-outline-secondary');
+                btnViewAgrupada.classList.remove('active', 'btn-primary');
+                btnViewAgrupada.classList.add('btn-outline-secondary');
+                viewAgrupada.style.display = 'none';
+                viewDetalhada.style.display = 'block';
+            });
+        }
+
+        // ===============================================
+        // FILTRO RÁPIDO CLIENT-SIDE (BUSCA EM TEMPO REAL)
+        // ===============================================
+        const fastSearchInput = document.getElementById('filtro-rapido-tabela');
+        if (fastSearchInput) {
+            fastSearchInput.addEventListener('input', function () {
+                const query = this.value.trim().toLowerCase();
+
+                // 1. Filtrar linhas na tabela agrupada
+                document.querySelectorAll('.group-master-row').forEach(function (row) {
+                    const text = (row.getAttribute('data-search-text') || '').toLowerCase();
+                    const match = query === '' || text.indexOf(query) !== -1;
+                    row.style.display = match ? '' : 'none';
+                    const targetDetailId = '#detail-' + row.getAttribute('data-group-id');
+                    const detailRow = document.querySelector(targetDetailId);
+                    if (!match && detailRow) {
+                        detailRow.classList.add('d-none');
+                    }
+                });
+
+                // 2. Filtrar linhas na tabela detalhada
+                document.querySelectorAll('#tabela-emprestimos tbody tr').forEach(function (row) {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = (query === '' || text.indexOf(query) !== -1) ? '' : 'none';
+                });
+            });
+        }
+
+        // ===============================================
+        // EXPANDIR / RECOLHER DETALHES DO GRUPO (ACCORDION)
+        // ===============================================
+        document.querySelectorAll('.btn-toggle-group-detail').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const targetSelector = btn.getAttribute('data-target');
+                const targetRow = document.querySelector(targetSelector);
+                if (targetRow) {
+                    targetRow.classList.toggle('d-none');
+                    const isNowOpen = !targetRow.classList.contains('d-none');
+                    btn.classList.toggle('expanded', isNowOpen);
+                }
+            });
+        });
+
+        // ===============================================
+        // LIBERAR GRUPO DE KITS PENDENTES
+        // ===============================================
+        document.querySelectorAll('.btn-liberar-grupo').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const ids = (btn.getAttribute('data-ids') || '').split(',').filter(Boolean);
+                const count = btn.getAttribute('data-count') || ids.length;
+                if (ids.length === 0) return;
+
+                if (!confirm('Deseja registrar a devolução de ' + count + ' kit(s) pendente(s) deste solicitante agora?')) {
+                    return;
+                }
+
+                clearBulkHiddenInputs(bulkReleaseForm);
+                ids.forEach(function (id) {
+                    appendBulkHiddenInput(bulkReleaseForm, 'id_emprestimo[]', id);
+                });
+                appendBulkHiddenInput(bulkReleaseForm, 'data_devolucao', formatarDataHoraParaInput(new Date()));
+                bulkReleaseForm.submit();
+            });
+        });
+
+        // ===============================================
+        // LIBERAR KIT INDIVIDUAL NA SUBTABELA
+        // ===============================================
+        document.querySelectorAll('.btn-liberar-individual').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const id = btn.getAttribute('data-id');
+                if (!id) return;
+
+                if (!confirm('Confirmar a devolução deste kit agora?')) {
+                    return;
+                }
+
+                clearBulkHiddenInputs(bulkReleaseForm);
+                appendBulkHiddenInput(bulkReleaseForm, 'id_emprestimo[]', id);
+                appendBulkHiddenInput(bulkReleaseForm, 'data_devolucao', formatarDataHoraParaInput(new Date()));
+                bulkReleaseForm.submit();
+            });
+        });
+
+        // ===============================================
+        // EDITAR GRUPO DE KITS (MODAL DE EDIÇÃO MÚLTIPLA)
+        // ===============================================
+        document.querySelectorAll('.btn-editar-grupo').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const masterRow = btn.closest('.group-master-row');
+                const checkbox = masterRow ? masterRow.querySelector('.row-select-group') : null;
+                const ids = checkbox ? (checkbox.getAttribute('data-ids') || '').split(',').filter(Boolean) : [];
+
+                const matchingRows = [];
+                ids.forEach(function (id) {
+                    const r = document.querySelector('#tabela-emprestimos tr[data-id="' + id + '"]');
+                    if (r) matchingRows.push(r);
+                });
+
+                if (matchingRows.length > 0) {
+                    populateEditModal(matchingRows);
+                    if (window.$ && typeof window.$ === 'function') {
+                        window.$(editModal).modal('show');
+                    }
+                }
+            });
+        });
+
+        // ===============================================
+        // EDITAR ITEM INDIVIDUAL NA SUBTABELA
+        // ===============================================
+        document.querySelectorAll('.btn-editar-item-individual').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const id = btn.getAttribute('data-id');
+                const r = document.querySelector('#tabela-emprestimos tr[data-id="' + id + '"]');
+                if (r) {
+                    populateEditModal([r]);
+                    if (window.$ && typeof window.$ === 'function') {
+                        window.$(editModal).modal('show');
+                    }
+                }
+            });
+        });
+
+        // ===============================================
+        // EXCLUIR GRUPO DE KITS
+        // ===============================================
+        document.querySelectorAll('.btn-excluir-grupo').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const ids = (btn.getAttribute('data-ids') || '').split(',').filter(Boolean);
+                const count = btn.getAttribute('data-count') || ids.length;
+                if (ids.length === 0) return;
+
+                if (!confirm('Tem certeza que deseja excluir o empréstimo deste(s) ' + count + ' kit(s)? Esta ação não pode ser desfeita.')) {
+                    return;
+                }
+
+                clearBulkHiddenInputs(bulkDeleteForm);
+                ids.forEach(function (id) {
+                    appendBulkHiddenInput(bulkDeleteForm, 'id_emprestimo[]', id);
+                });
+                bulkDeleteForm.submit();
+            });
+        });
+
+        // ===============================================
+        // SELEÇÃO DE CHECKBOXES EM GRUPO
+        // ===============================================
+        const selectAllAgrupados = document.getElementById('select-all-agrupados');
+        if (selectAllAgrupados) {
+            selectAllAgrupados.addEventListener('change', function () {
+                const checked = selectAllAgrupados.checked;
+                document.querySelectorAll('.row-select-group').forEach(function (cb) {
+                    cb.checked = checked;
+                });
+                document.querySelectorAll('.row-select-emprestimo').forEach(function (cb) {
+                    cb.checked = checked;
+                });
+                updateBulkActions();
+            });
+        }
+
+        document.querySelectorAll('.row-select-group').forEach(function (cb) {
+            cb.addEventListener('change', function () {
+                const ids = (cb.getAttribute('data-ids') || '').split(',').filter(Boolean);
+                const checked = cb.checked;
+                ids.forEach(function (id) {
+                    const itemCb = document.querySelector('.row-select-emprestimo[data-id="' + id + '"]');
+                    if (itemCb) {
+                        itemCb.checked = checked;
+                    }
+                });
+                updateBulkActions();
+            });
+        });
 
         // Delegação de evento de clique em .btn-abrir-servidor
         document.addEventListener('click', function (e) {
