@@ -86,17 +86,22 @@ class Emprestimos extends BaseController
         $activeKitIds = array_unique($activeKitIds);
 
         $availableMochilas = [];
+        $allKits = [];
         foreach ($kits as $kit) {
             $kitId = (int) ($kit['id_kit'] ?? 0);
             if ($kitId <= 0) {
                 continue;
             }
 
+            $allKits[] = $kitId;
+
             if (!in_array($kitId, $activeKitIds, true)) {
                 $availableMochilas[] = $kitId;
             }
         }
 
+        $allKits = array_unique($allKits);
+        sort($allKits);
         sort($availableMochilas);
 
         $secaoNomePorId = [];
@@ -278,6 +283,7 @@ class Emprestimos extends BaseController
         $data['fieldsExtras'] = $fieldsFormatados;
         $data['servidoresSolicitante'] = $servidoresSolicitante;
         $data['servidoresResponsavel'] = $servidoresResponsavel;
+        $data['allKits'] = $allKits;
         $data['availableMochilas'] = $availableMochilas;
         $data['nomeRecebedores'] = $nomeRecebedores;
         $data['nomeResponsaveis'] = $nomeResponsaveis;

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-novo-emprestimos">
+﻿<div class="modal fade" id="modal-novo-emprestimos">
 <div class="modal-dialog modal-lg">
 <div class="modal-content">
 
@@ -815,9 +815,11 @@
                 .replace(/'/g, '&#039;');
         }
 
-        function buildKitOptionsHtml(currentValue) {
+        function buildKitOptionsHtml(currentValue, kitList) {
+
+            kitList = kitList || allKits;
             let html = '<option value="">Selecione</option>';
-            allKits.forEach(function (kit) {
+            kitList.forEach(function (kit) {
                 html += '<option value="' + escapeHtml(kit) + '"' + (String(kit) === String(currentValue) ? ' selected' : '') + '>' + escapeHtml(kit) + '</option>';
             });
             return html;
@@ -905,7 +907,7 @@
                                     <input type="hidden" name="id_emprestimo[]" value="${escapeHtml(id)}">
                                     <input type="hidden" name="pertence_a[]" value="${escapeHtml(pertenceA)}">
                                     <select name="numero_mochila[]" class="form-control numero-mochila" required>
-                                        ${buildKitOptionsHtml(numeroMochila)}
+                                        ${buildKitOptionsHtml(numeroMochila, allKitsForEdit)}
                                     </select>
                                 </div>
                             </div>
@@ -1265,6 +1267,7 @@
         setInterval(atualizarDuracoes, 1000);
 
         const allKits = <?= json_encode($availableMochilas ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const allKitsForEdit = <?= json_encode($allKits ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
         const groupsContainer = document.getElementById('emprestimo-groups');
         const btnAdd = document.getElementById('btn-add-group');
         const resumoPanel = document.getElementById('resumo-mochila-panel');
