@@ -185,12 +185,33 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2 align-items-center">
-                <div class="col-sm-6">
-                    <h1 class="m-0 font-weight-bold">Dashboard <?= $isSetec ? 'SETEC' : 'SEINTEC / SETEC' ?></h1>
+                <div class="col-sm-6 col-12 mb-2 mb-sm-0">
+                    <h1 class="m-0 font-weight-bold d-flex align-items-center">
+                        <i class="fas fa-chart-line text-info mr-2"></i>
+                        Dashboard <?= $isSetec ? 'SETEC' : 'SEINTEC / SETEC' ?>
+                    </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                <div class="col-sm-6 col-12 d-flex justify-content-sm-end align-items-center flex-wrap">
+                    <?php if (!$isSetec && !empty($mesesDisponiveis)) : ?>
+                    <form method="get" action="/dashboard" class="form-inline my-1 mr-3" id="form-filtro-periodo-top">
+                        <div class="input-group input-group-sm shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white border-right-0 text-muted font-weight-bold">
+                                    <i class="far fa-calendar-alt text-primary mr-1"></i> Mês:
+                                </span>
+                            </div>
+                            <select name="periodo" class="form-control form-control-sm border-left-0 font-weight-bold" onchange="document.getElementById('form-filtro-periodo-top').submit()">
+                                <?php foreach ($mesesDisponiveis as $m): ?>
+                                    <option value="<?= $m['mes'] ?>-<?= $m['ano'] ?>" <?= ($m['mes'] == $mesAtual && $m['ano'] == $anoAtual) ? 'selected' : '' ?>>
+                                        <?= esc($m['label']) ?> (<?= $m['total'] ?>)
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </form>
+                    <?php endif; ?>
+                    <ol class="breadcrumb my-1 p-0 bg-transparent">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
@@ -242,131 +263,193 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
             <div class="row mb-4">
                 <div class="col-12">
                     <div class="card card-modern">
-                        <div class="card-header d-flex align-items-center justify-content-between py-3 px-4"
+                        <div class="card-header d-flex flex-wrap align-items-center justify-content-between py-2 px-4"
                              style="background: linear-gradient(135deg,#7c3aed 0%,#5b21b6 100%); color:#fff; border-radius: 14px 14px 0 0;">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center my-1">
                                 <div class="rounded-circle bg-white d-flex align-items-center justify-content-center mr-3 shadow-sm"
                                      style="width:38px;height:38px;min-width:38px;font-size:1.1rem;">
                                     <i class="fas fa-user-cog" style="color:#7c3aed;"></i>
                                 </div>
                                 <div>
-                                    <div class="font-weight-bold" style="font-size:1rem;">Atendimentos por Técnico Field</div>
-                                    <small style="opacity:.8;">Produtividade individual da equipe</small>
+                                    <div class="font-weight-bold" style="font-size:1.05rem;">Atendimentos por Técnico Field</div>
+                                    <small style="opacity:.9;">Apenas os <?= count($porTecnico) ?> técnicos cadastrados · Mês: <strong><?= esc($mesNomeAtual) ?>/<?= esc($anoAtual) ?></strong></small>
                                 </div>
                             </div>
-                            <span class="badge badge-light text-dark px-3 py-1" style="font-size:.8rem;">
-                                <i class="fas fa-users mr-1"></i><?= count($porTecnico) ?> técnico<?= count($porTecnico) !== 1 ? 's' : '' ?>
-                            </span>
+                            <div class="d-flex align-items-center my-1">
+                                <ul class="nav nav-pills" id="tabTecnicos" role="tablist" style="background: rgba(255,255,255,0.18); padding: 3px; border-radius: 8px;">
+                                    <li class="nav-item">
+                                        <a class="nav-link active text-white font-weight-bold px-3 py-1" id="tab-mes-tab" data-toggle="pill" href="#tab-mes" role="tab" style="border-radius: 6px; font-size: 0.85rem;">
+                                            <i class="fas fa-calendar-check mr-1"></i> No Mês (<?= esc($mesNomeAtual) ?>)
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white font-weight-bold px-3 py-1" id="tab-evolucao-tab" data-toggle="pill" href="#tab-evolucao" role="tab" style="border-radius: 6px; font-size: 0.85rem;">
+                                            <i class="fas fa-chart-line mr-1"></i> Cada Mês (Evolução)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="card-body p-4">
-                            <div class="row">
-
-                                <!-- Gráfico Barras Horizontal — Todos os períodos -->
-                                <div class="col-lg-7 mb-4 mb-lg-0">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <span class="font-weight-bold text-dark" style="font-size:.9rem;">
-                                            <i class="fas fa-chart-bar mr-1 text-purple" style="color:#7c3aed;"></i>
-                                            Total geral de agendamentos
-                                        </span>
-                                    </div>
-                                    <div style="position:relative; height:<?= max(160, count($porTecnico) * 44) ?>px;">
-                                        <canvas id="chart-por-tecnico"></canvas>
-                                    </div>
-                                </div>
-
-                                <!-- Donut — Mês atual + Ranking -->
-                                <div class="col-lg-5">
-                                    <div class="d-flex align-items-center justify-content-between mb-3">
-                                        <span class="font-weight-bold text-dark" style="font-size:.9rem;">
-                                            <i class="fas fa-trophy mr-1" style="color:#f59e0b;"></i>
-                                            Ranking —
-                                            <?php
-                                                $mesesNomes = [1=>'Jan',2=>'Fev',3=>'Mar',4=>'Abr',5=>'Mai',6=>'Jun',7=>'Jul',8=>'Ago',9=>'Set',10=>'Out',11=>'Nov',12=>'Dez'];
-                                                echo ($mesesNomes[(int)date('m')] ?? '') . '/' . date('Y');
-                                            ?>
-                                        </span>
-                                    </div>
-
-                                    <?php if (!empty($porTecnicoMes)) : ?>
-                                        <!-- Donut do mês -->
-                                        <div class="text-center mb-3">
-                                            <div style="position:relative; height:170px; max-width:220px; margin:0 auto;">
-                                                <canvas id="chart-donut-tecnico"></canvas>
+                            <div class="tab-content" id="tabTecnicosContent">
+                                <!-- ABA 1: NO MÊS SELECIONADO -->
+                                <div class="tab-pane fade show active" id="tab-mes" role="tabpanel">
+                                    <div class="row">
+                                        <!-- Gráfico Barras Horizontal — Mês Atual -->
+                                        <div class="col-lg-7 mb-4 mb-lg-0">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <span class="font-weight-bold text-dark" style="font-size:.92rem;">
+                                                    <i class="fas fa-chart-bar mr-1" style="color:#7c3aed;"></i>
+                                                    Chamados em <?= esc($mesNomeAtual) ?>/<?= esc($anoAtual) ?>
+                                                </span>
+                                                <span class="text-muted" style="font-size:.8rem;">
+                                                    Total do mês: <strong><?= array_sum(array_column($porTecnico, 'total')) ?></strong> atendimentos
+                                                </span>
+                                            </div>
+                                            <div style="position:relative; height:<?= max(180, count($porTecnico) * 44) ?>px;">
+                                                <canvas id="chart-por-tecnico"></canvas>
                                             </div>
                                         </div>
 
-                                        <!-- Ranking list -->
-                                        <div class="mt-2">
-                                            <?php
-                                            $totalMes = array_sum(array_column($porTecnicoMes, 'total'));
-                                            $medalhas = ['🥇','🥈','🥉'];
-                                            foreach ($porTecnicoMes as $i => $tec) :
-                                                $pct = $totalMes > 0 ? round(($tec['total'] / $totalMes) * 100) : 0;
-                                                $barColors = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
-                                                $cor = $barColors[$i % count($barColors)];
-                                                $medalha = $medalhas[$i] ?? '·';
-                                            ?>
-                                            <div class="mb-2">
-                                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                                    <span style="font-size:.82rem; font-weight:600; color:#1e1b4b;">
-                                                        <?= esc($medalha, 'html') ?> <?= esc($tec['tecnico']) ?>
-                                                    </span>
-                                                    <span class="badge" style="background:<?= esc($cor, 'attr') ?>22; color:<?= esc($cor, 'html') ?>; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:20px;">
-                                                        <?= (int)$tec['total'] ?>
-                                                    </span>
+                                        <!-- Donut — Mês atual + Ranking -->
+                                        <div class="col-lg-5">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <span class="font-weight-bold text-dark" style="font-size:.92rem;">
+                                                    <i class="fas fa-trophy mr-1" style="color:#f59e0b;"></i>
+                                                    Ranking — <?= esc($mesNomeAtual) ?>/<?= esc($anoAtual) ?>
+                                                </span>
+                                            </div>
+
+                                            <?php if (!empty($porTecnicoMes)) : ?>
+                                                <!-- Donut do mês -->
+                                                <div class="text-center mb-3">
+                                                    <div style="position:relative; height:170px; max-width:220px; margin:0 auto;">
+                                                        <canvas id="chart-donut-tecnico"></canvas>
+                                                    </div>
                                                 </div>
-                                                <div class="progress" style="height:6px; border-radius:10px;">
-                                                    <div class="progress-bar" role="progressbar"
-                                                         style="width:<?= esc($pct, 'attr') ?>%; background:<?= esc($cor, 'html') ?>; border-radius:10px;"
-                                                         aria-valuenow="<?= esc($pct, 'html') ?>" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                                <!-- Ranking list -->
+                                                <div class="mt-2">
+                                                    <?php
+                                                    $totalMes = array_sum(array_column($porTecnicoMes, 'total'));
+                                                    $medalhas = ['🥇','🥈','🥉'];
+                                                    foreach ($porTecnicoMes as $i => $tec) :
+                                                        $pct = $totalMes > 0 ? round(($tec['total'] / $totalMes) * 100) : 0;
+                                                        $barColors = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#06b6d4','#8b5cf6'];
+                                                        $cor = $barColors[$i % count($barColors)];
+                                                        $medalha = $medalhas[$i] ?? '·';
+                                                    ?>
+                                                    <div class="mb-2">
+                                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                                            <span style="font-size:.82rem; font-weight:600; color:#1e1b4b;">
+                                                                <?= esc($medalha, 'html') ?> <?= esc($tec['tecnico']) ?>
+                                                            </span>
+                                                            <span class="badge" style="background:<?= esc($cor, 'attr') ?>22; color:<?= esc($cor, 'html') ?>; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:20px;">
+                                                                <?= (int)$tec['total'] ?> (<?= (int)$tec['concluidos'] ?> concl.)
+                                                            </span>
+                                                        </div>
+                                                        <div class="progress" style="height:6px; border-radius:10px;">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 style="width:<?= esc($pct, 'attr') ?>%; background:<?= esc($cor, 'html') ?>; border-radius:10px;"
+                                                                 aria-valuenow="<?= esc($pct, 'html') ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php else : ?>
+                                                <div class="empty-mini text-center py-4 text-muted">
+                                                    <i class="fas fa-inbox mb-2 d-block" style="font-size:2rem; opacity:.5;"></i>
+                                                    Nenhum atendimento registrado em <?= esc($mesNomeAtual) ?>/<?= esc($anoAtual) ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+
+                                    </div><!-- /.row -->
+
+                                    <!-- Resumo dos 7 técnicos no mês -->
+                                    <hr class="mt-3 mb-3">
+                                    <div class="row">
+                                        <?php
+                                        $totalGeral = array_sum(array_column($porTecnico, 'total'));
+                                        $barColorsAll = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#06b6d4','#8b5cf6'];
+                                        foreach ($porTecnico as $idx => $tec) :
+                                            $pctGeral = $totalGeral > 0 ? round(($tec['total'] / $totalGeral) * 100) : 0;
+                                            $cor2 = $barColorsAll[$idx % count($barColorsAll)];
+                                            $iniciais = mb_strtoupper(mb_substr($tec['tecnico'], 0, 2), 'UTF-8');
+                                        ?>
+                                        <div class="col-6 col-md-4 col-lg mb-2">
+                                            <div class="d-flex align-items-center p-2 rounded shadow-none" style="background:#f8fafc; border:1px solid #e2e8f0;">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center mr-2 font-weight-bold text-white shadow-sm"
+                                                     style="width:34px;height:34px;min-width:34px;background:<?= esc($cor2, 'attr') ?>;font-size:.78rem;">
+                                                    <?= esc($iniciais, 'html') ?>
+                                                </div>
+                                                <div style="flex:1;min-width:0;">
+                                                    <div style="font-size:.78rem;font-weight:700;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                                        <?= esc($tec['tecnico']) ?>
+                                                    </div>
+                                                    <div style="font-size:.72rem;color:#64748b;">
+                                                        <?= (int)$tec['total'] ?> no mês · <?= (int)($tec['concluidos'] ?? 0) ?> <span style="color:#10b981;">✓</span>
+                                                    </div>
+                                                </div>
+                                                <div style="font-size:.85rem;font-weight:700;color:<?= esc($cor2, 'attr') ?>; margin-left:4px;">
+                                                    <?= esc($pctGeral, 'html') ?>%
                                                 </div>
                                             </div>
-                                            <?php endforeach; ?>
                                         </div>
-                                    <?php else : ?>
-                                        <div class="empty-mini">
-                                            <i class="fas fa-inbox mb-2 d-block" style="font-size:1.8rem;"></i>
-                                            Sem atendimentos neste mês
-                                        </div>
-                                    <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
+                                <!-- /.tab-mes -->
 
-                            </div><!-- /.row -->
-
-                            <!-- Tabela resumo compacta -->
-                            <hr class="mt-2 mb-3">
-                            <div class="row">
-                                <?php
-                                $totalGeral = array_sum(array_column($porTecnico, 'total'));
-                                $barColorsAll = ['#7c3aed','#0284c7','#10b981','#f59e0b','#ef4444','#94a3b8'];
-                                foreach ($porTecnico as $idx => $tec) :
-                                    $pctGeral = $totalGeral > 0 ? round(($tec['total'] / $totalGeral) * 100) : 0;
-                                    $cor2 = $barColorsAll[$idx % count($barColorsAll)];
-                                    $iniciais = mb_strtoupper(mb_substr($tec['tecnico'], 0, 2), 'UTF-8');
-                                ?>
-                                <div class="col-6 col-md-4 col-lg-3 mb-3">
-                                    <div class="d-flex align-items-center p-2 rounded" style="background:#f8fafc; border:1px solid #e9ecef;">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center mr-2 font-weight-bold text-white"
-                                             style="width:34px;height:34px;min-width:34px;background:<?= esc($cor2, 'attr') ?>;font-size:.78rem;">
-                                            <?= esc($iniciais, 'html') ?>
-                                        </div>
-                                        <div style="flex:1;min-width:0;">
-                                            <div style="font-size:.78rem;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                                                <?= esc($tec['tecnico']) ?>
+                                <!-- ABA 2: CADA MÊS (EVOLUÇÃO HISTÓRICA) -->
+                                <div class="tab-pane fade" id="tab-evolucao" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-12 mb-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <span class="font-weight-bold text-dark" style="font-size:.92rem;">
+                                                    <i class="fas fa-chart-area mr-1" style="color:#7c3aed;"></i>
+                                                    Comparativo de Chamados por Técnico em Cada Mês
+                                                </span>
+                                                <small class="text-muted">Apenas os 7 técnicos de campo cadastrados</small>
                                             </div>
-                                            <div style="font-size:.72rem;color:#64748b;">
-                                                <?= (int)$tec['total'] ?> total · <?= (int)($tec['concluidos'] ?? 0) ?> <span style="color:#10b981;">✓</span>
+                                            <div style="position:relative; height:320px;">
+                                                <canvas id="chart-historico-meses"></canvas>
                                             </div>
                                         </div>
-                                        <div style="font-size:.85rem;font-weight:700;color:<?= esc($cor2, 'attr') ?>; margin-left:4px;">
-                                            <?= esc($pctGeral, 'html') ?>%
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-bordered table-hover text-center" style="font-size:.82rem;">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th class="text-left font-weight-bold" style="min-width:140px;">Técnico Field</th>
+                                                            <?php foreach ($historicoMeses['labels'] as $lbl): ?>
+                                                                <th class="font-weight-bold"><?= esc($lbl) ?></th>
+                                                            <?php endforeach; ?>
+                                                            <th class="bg-light font-weight-bold text-primary">Total Acumulado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($historicoMeses['tabela'] as $nomeTec => $infoTec): ?>
+                                                            <tr>
+                                                                <td class="text-left font-weight-bold text-dark">
+                                                                    <i class="fas fa-user-circle text-muted mr-1"></i>
+                                                                    <?= esc($nomeTec) ?>
+                                                                </td>
+                                                                <?php foreach ($infoTec['valores'] as $val): ?>
+                                                                    <td><?= $val > 0 ? '<strong>' . $val . '</strong>' : '<span class="text-muted">0</span>' ?></td>
+                                                                <?php endforeach; ?>
+                                                                <td class="bg-light font-weight-bold text-primary"><?= $infoTec['total'] ?></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <?php endforeach; ?>
-                            </div>
-
+                                <!-- /.tab-evolucao -->
+                            </div><!-- /.tab-content -->
                         </div>
                     </div>
                 </div>
@@ -654,6 +737,9 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
     .fc .fc-button { background-color: #212529; border: none; }
     .fc .fc-button:hover { background-color: #000; }
     .fc-day-today { background-color: #ffe8cc !important; }
+    #tabTecnicos .nav-link { color: rgba(255,255,255,0.85) !important; transition: all .2s; }
+    #tabTecnicos .nav-link:hover { color: #ffffff !important; background: rgba(255,255,255,0.1) !important; }
+    #tabTecnicos .nav-link.active { background: #ffffff !important; color: #7c3aed !important; box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important; }
 </style>
 
 <script>
@@ -781,6 +867,60 @@ document.addEventListener('DOMContentLoaded', function () {
                         y: {
                             ticks: { font: { size: 11, weight: '600' } },
                             grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+    })();
+    <?php endif; ?>
+
+    // ===== REDIMENSIONAR GRÁFICOS AO MUDAR DE ABA =====
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function () {
+        window.dispatchEvent(new Event('resize'));
+    });
+
+    // ===== GRÁFICO HISTÓRICO DE CADA MÊS =====
+    <?php if (!empty($historicoMeses['labels'])) : ?>
+    (function() {
+        const histLabels = <?= json_encode($historicoMeses['labels'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        const histDatasets = <?= json_encode($historicoMeses['datasets'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        
+        const ctxHist = document.getElementById('chart-historico-meses');
+        if (ctxHist) {
+            new Chart(ctxHist, {
+                type: 'bar',
+                data: {
+                    labels: histLabels,
+                    datasets: histDatasets.map(ds => ({
+                        ...ds,
+                        borderRadius: 4,
+                        borderSkipped: false
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: { boxWidth: 12, font: { size: 11 } }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: { precision: 0, font: { size: 11 } },
+                            grid: { color: '#f1f5f9' }
                         }
                     }
                 }

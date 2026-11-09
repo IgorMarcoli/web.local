@@ -15,84 +15,68 @@ class Dashboard extends BaseController
         $visitas = new VisitasModel();
         $agenda = new AgendaModel();
         $field = new FieldsModel();
+        $db = \Config\Database::connect();
 
         $usuarioSetor = strtoupper(trim(session()->get('usuario_setor') ?? ''));
         $isSetec = ($usuarioSetor === 'SETEC');
 
-        $mesAtual = (int) date('m');
-        $anoAtual = (int) date('Y');
+        $mesesNomesCompletos = [
+            1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril',
+            5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto',
+            9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'
+        ];
+        $mesesNomesAbrev = [
+            1 => 'Jan', 2 => 'Fev', 3 => 'Mar', 4 => 'Abr',
+            5 => 'Mai', 6 => 'Jun', 7 => 'Jul', 8 => 'Ago',
+            9 => 'Set', 10 => 'Out', 11 => 'Nov', 12 => 'Dez'
+        ];
 
-        // ===== GRÁFICO TÉCNICO — Todos os períodos =====
-        // Em agendas, o técnico é gravado na coluna Atendidopor com o nome do técnico (vinda de tecnicos_fields).
-        // A condição abaixo associa por nome, tratando acentos (Sérgio / Sergio) e variações/prefixos (Luiz / Luiz Carlos).
-        $joinTecnico = '(
-            TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
-            = TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
-            OR TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
-            LIKE TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
-            OR TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
-            LIKE TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
-        )';
-
-        $porTecnico = $agenda
-            ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total, SUM(CASE WHEN LOWER(TRIM("agendas"."status")) = \'concluido\' THEN 1 ELSE 0 END) as concluidos', false)
-            ->join('tecnicos_fields t', $joinTecnico, 'left', false)
-            ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
-            ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
-            ->orderBy('total', 'DESC')
+        // Obter meses disponíveis com registros em agendas
+        $mesesRows = $agenda
+            ->select('EXTRACT(YEAR FROM "Data") as ano, EXTRACT(MONTH FROM "Data") as mes, COUNT(*) as total')
+            ->where('"Data" IS NOT NULL')
+            ->groupBy('ano, mes')
+            ->orderBy('ano', 'DESC')
+            ->orderBy('mes', 'DESC')
             ->findAll();
 
-        // ===== GRÁFICO TÉCNICO — Mês atual (ranking/donut) =====
-        $porTecnicoMes = $agenda
-            ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total', false)
-            ->join('tecnicos_fields t', $joinTecnico, 'left', false)
-            ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
-            ->where('EXTRACT(MONTH FROM "agendas"."Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "agendas"."Data") =', $anoAtual)
-            ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
-            ->orderBy('total', 'DESC')
-            ->findAll();
+        $mesesDisponiveis = [];
+        foreach ($mesesRows as $mr) {
+            $mNum = (int) $mr['mes'];
+            $yNum = (int) $mr['ano'];
+            if ($mNum >= 1 && $mNum <= 12 && $yNum > 2000) {
+                $mesesDisponiveis[] = [
+                    'mes' => $mNum,
+                    'ano' => $yNum,
+                    'total' => (int) $mr['total'],
+                    'label' => ($mesesNomesCompletos[$mNum] ?? 'Mês ' . $mNum) . ' / ' . $yNum,
+                    'label_curto' => ($mesesNomesAbrev[$mNum] ?? 'M' . $mNum) . '/' . substr((string) $yNum, 2),
+                ];
+            }
+        }
 
-        // CHAMADOS
-        $totalChamados = $agenda
-            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
-            ->countAllResults();
+        // Definir mês e ano selecionados
+        $periodoParam = $this->request->getGet('periodo') 
+            ?? $this->request->getGet('mes_ano') 
+            ?? ($_GET['periodo'] ?? ($_GET['mes_ano'] ?? null));
 
-        // separados por status, também filtrando pelo mês
-        $abertos = $agenda
-            ->where('status', 'pendente')
-            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
-            ->countAllResults();
+        if (!empty($periodoParam) && preg_match('/^(\d{1,2})[-_\/](\d{4})$/', trim($periodoParam), $matches)) {
+            $mesAtual = (int) $matches[1];
+            $anoAtual = (int) $matches[2];
+        } elseif (!empty($periodoParam) && preg_match('/^(\d{4})[-_\/](\d{1,2})$/', trim($periodoParam), $matches)) {
+            $anoAtual = (int) $matches[1];
+            $mesAtual = (int) $matches[2];
+        } elseif ($this->request->getGet('mes') !== null || isset($_GET['mes'])) {
+            $mesAtual = (int) ($this->request->getGet('mes') ?? $_GET['mes']);
+            $anoAtual = (int) ($this->request->getGet('ano') ?? ($_GET['ano'] ?? date('Y')));
+        } else {
+            $mesAtual = (int) date('m');
+            $anoAtual = (int) date('Y');
+        }
 
-        $resolvidos = $agenda
-            ->where('status', 'concluido')
-            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
-            ->countAllResults();
+        $nomeMesAtual = $mesesNomesCompletos[$mesAtual] ?? ('Mês ' . $mesAtual);
 
-        $naoResolvidos = $agenda
-            ->where('status', 'NA')
-            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
-            ->countAllResults();
-
-        $statusChamados = $agenda
-            ->select('status, COUNT(*) as total')
-            ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
-            ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
-            ->groupBy('status')
-            ->findAll();
-
-        // percentual resolvido
-        $percentResolvido = $totalChamados > 0
-            ? round(($resolvidos / $totalChamados) * 100)
-            : 0;
-
-        $totalVisitas = $agenda->countAll();
-
-        // Visitas pendentes — da tabela agenda, não visitas
+        // Visitas pendentes — da tabela agenda
         $visitasPendentes = $agenda
             ->select('agendas.*, escolas."nome", escolas."escola_endereco"')
             ->join('escolas', 'LOWER(TRIM(escolas."nome")) = LOWER(TRIM(agendas."Nomelocal"))', 'left')
@@ -111,48 +95,112 @@ class Dashboard extends BaseController
         $porTecnico = [];
         $porTecnicoMes = [];
         $proximosAgendamentos = [];
+        $historicoMeses = ['labels' => [], 'datasets' => [], 'tabela' => []];
 
-        // Quem for do SETEC vê apenas o calendário e as visitas técnicas pendentes (não vê os dashboards)
+        // Quem for do SETEC vê apenas o calendário e as visitas técnicas pendentes
         if (!$isSetec) {
             $equipamentosModel = new EquipamentosModel();
             $totalEquipamentos = $equipamentosModel->countAll();
 
-            // ===== GRÁFICO TÉCNICO — Todos os períodos =====
-            $joinTecnico = '(
-                TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
-                = TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
-                OR TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
-                LIKE TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
-                OR TRANSLATE(LOWER(TRIM("agendas"."Atendidopor")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
-                LIKE TRANSLATE(LOWER(TRIM(t."nome")), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') || \'%\'
-            )';
+            // ===== APENAS OS 7 TÉCNICOS DA TABELA tecnicos_fields NO MÊS SELECIONADO =====
+            // Unifica variações de nomes pelo primeiro nome do técnico (ex: Luiz Junior/Luiz Carlos, Sérgio/Sergio, etc.)
+            $sqlTecnicosMes = '
+                SELECT 
+                    t.tecnico_id,
+                    t.nome as tecnico,
+                    COUNT(a."AgendaId") as total,
+                    SUM(CASE WHEN LOWER(TRIM(a."status")) = \'concluido\' THEN 1 ELSE 0 END) as concluidos
+                FROM "tecnicos_fields" t
+                LEFT JOIN "agendas" a ON 
+                    TRANSLATE(LOWER(SPLIT_PART(TRIM(a."Atendidopor"), \' \', 1)), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
+                    = TRANSLATE(LOWER(SPLIT_PART(TRIM(t."nome"), \' \', 1)), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                    AND EXTRACT(MONTH FROM a."Data") = ' . (int)$mesAtual . '
+                    AND EXTRACT(YEAR FROM a."Data") = ' . (int)$anoAtual . '
+                GROUP BY t.tecnico_id, t.nome
+                ORDER BY total DESC, t.nome ASC
+            ';
+            $porTecnico = $db->query($sqlTecnicosMes)->getResultArray();
 
-            $porTecnico = $agenda
-                ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total, SUM(CASE WHEN LOWER(TRIM("agendas"."status")) = \'concluido\' THEN 1 ELSE 0 END) as concluidos', false)
-                ->join('tecnicos_fields t', $joinTecnico, 'left', false)
-                ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
-                ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
-                ->orderBy('total', 'DESC')
-                ->findAll();
+            // Para o gráfico Donut e ranking do mês, técnicos com atendimentos
+            $porTecnicoMes = array_values(array_filter($porTecnico, function ($item) {
+                return (int) ($item['total'] ?? 0) > 0;
+            }));
 
-            // ===== GRÁFICO TÉCNICO — Mês atual (ranking/donut) =====
-            $porTecnicoMes = $agenda
-                ->select('COALESCE(t."nome", TRIM("agendas"."Atendidopor")) as tecnico, COUNT(*) as total', false)
-                ->join('tecnicos_fields t', $joinTecnico, 'left', false)
-                ->where('TRIM(COALESCE("agendas"."Atendidopor", \'\')) !=', '')
-                ->where('EXTRACT(MONTH FROM "agendas"."Data") =', $mesAtual)
-                ->where('EXTRACT(YEAR FROM "agendas"."Data") =', $anoAtual)
-                ->groupBy('COALESCE(t."nome", TRIM("agendas"."Atendidopor"))')
-                ->orderBy('total', 'DESC')
-                ->findAll();
+            // ===== HISTÓRICO DE CADA MÊS (EVOLUÇÃO MÊS A MÊS DOS 7 TÉCNICOS) =====
+            $sqlHistorico = '
+                SELECT 
+                    EXTRACT(YEAR FROM a."Data") as ano,
+                    EXTRACT(MONTH FROM a."Data") as mes,
+                    t.nome as tecnico,
+                    COUNT(a."AgendaId") as total
+                FROM "tecnicos_fields" t
+                JOIN "agendas" a ON 
+                    TRANSLATE(LOWER(SPLIT_PART(TRIM(a."Atendidopor"), \' \', 1)), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\') 
+                    = TRANSLATE(LOWER(SPLIT_PART(TRIM(t."nome"), \' \', 1)), \'áéíóúâêîôûãõàèìòùäëïöü\', \'aeiouaeiouaoaeiouaeiou\')
+                WHERE a."Data" >= \'2026-01-01\'
+                GROUP BY ano, mes, t.tecnico_id, t.nome
+                ORDER BY ano ASC, mes ASC, t.nome ASC
+            ';
+            $rowsHist = $db->query($sqlHistorico)->getResultArray();
 
-            // CHAMADOS
+            $monthsMap = [];
+            $matrix = [];
+            $tecnicosList = array_column($porTecnico, 'tecnico');
+            sort($tecnicosList);
+
+            foreach ($rowsHist as $rh) {
+                $mNum = (int)$rh['mes'];
+                $yNum = (int)$rh['ano'];
+                $mKey = sprintf('%04d-%02d', $yNum, $mNum);
+                $monthsMap[$mKey] = ($mesesNomesAbrev[$mNum] ?? $mNum) . '/' . substr((string)$yNum, 2);
+                $matrix[$mKey][$rh['tecnico']] = (int)$rh['total'];
+            }
+
+            $labelsMeses = array_values($monthsMap);
+            $datasetsHist = [];
+            $coresTecnicos = [
+                'Angelo'      => '#0284c7',
+                'Laudo'       => '#10b981',
+                'Luciano'     => '#f59e0b',
+                'Luiz Carlos' => '#7c3aed',
+                'Renan'       => '#ef4444',
+                'Sergio'      => '#06b6d4',
+                'Thiago'      => '#8b5cf6',
+            ];
+
+            $tabelaHistorico = [];
+            foreach ($tecnicosList as $tec) {
+                $dataVal = [];
+                $rowTot = 0;
+                foreach (array_keys($monthsMap) as $mKey) {
+                    $val = $matrix[$mKey][$tec] ?? 0;
+                    $dataVal[] = $val;
+                    $rowTot += $val;
+                }
+                $datasetsHist[] = [
+                    'label' => $tec,
+                    'data' => $dataVal,
+                    'backgroundColor' => $coresTecnicos[$tec] ?? '#94a3b8',
+                ];
+                $tabelaHistorico[$tec] = [
+                    'valores' => $dataVal,
+                    'total' => $rowTot,
+                ];
+            }
+
+            $historicoMeses = [
+                'labels' => $labelsMeses,
+                'datasets' => $datasetsHist,
+                'tabela' => $tabelaHistorico,
+            ];
+
+            // CHAMADOS NO MÊS SELECIONADO
             $totalChamados = $agenda
                 ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
                 ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
                 ->countAllResults();
 
-            // separados por status, também filtrando pelo mês
+            // separados por status, filtrando pelo mês selecionado
             $abertos = $agenda
                 ->where('status', 'pendente')
                 ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
@@ -183,7 +231,10 @@ class Dashboard extends BaseController
                 ? round(($resolvidos / $totalChamados) * 100)
                 : 0;
 
-            $totalVisitas = $agenda->countAll();
+            $totalVisitas = $agenda
+                ->where('EXTRACT(MONTH FROM "Data") =', $mesAtual)
+                ->where('EXTRACT(YEAR FROM "Data") =', $anoAtual)
+                ->countAllResults();
 
             // Próximos agendamentos
             $proximosAgendamentos = $agenda
@@ -195,6 +246,11 @@ class Dashboard extends BaseController
         $data = [
             'isSetec' => $isSetec,
             'usuarioSetor' => $usuarioSetor,
+            'mesAtual' => $mesAtual,
+            'anoAtual' => $anoAtual,
+            'nomeMesAtual' => $nomeMesAtual,
+            'mesNomeAtual' => $nomeMesAtual,
+            'mesesDisponiveis' => $mesesDisponiveis,
             'totalEquipamentos' => $totalEquipamentos,
             'totalVisitas' => $totalVisitas,
             'totalChamados' => $totalChamados,
@@ -205,9 +261,11 @@ class Dashboard extends BaseController
             'statusChamadosPresenciais' => $statusChamadosPresenciais,
             'visitasPendentes' => $visitasPendentes,
             'proximosAgendamentos' => $proximosAgendamentos,
-            'porTecnico' => $porTecnico,        // ← gráfico geral
-            'porTecnicoMes' => $porTecnicoMes,  // ← gráfico do mês (ranking/donut)
+            'porTecnico' => $porTecnico,          // ← exatamente os 7 técnicos no mês selecionado
+            'porTecnicoMes' => $porTecnicoMes,    // ← técnicos com atendimentos no mês para ranking/donut
+            'historicoMeses' => $historicoMeses,  // ← comparativo dos 7 técnicos em cada mês
         ];
+
         echo View('templates/header');
         echo View('dashboard', $data);
         echo View('templates/footer');
@@ -243,4 +301,3 @@ class Dashboard extends BaseController
         return $this->response->setJSON(['ok' => true]);
     }
 }
-?>
