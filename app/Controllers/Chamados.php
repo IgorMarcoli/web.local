@@ -23,6 +23,7 @@ class Chamados extends BaseController
         }
         echo view('templates/header');
         echo view('chamados/index', ['chamados' => $chamados, 'historicos' => $historicos, 'statusFiltro' => $status, 'busca' => $busca,
+            'feedback' => session()->getFlashdata('chamado_feedback'), 'abrirChamado' => (int) $this->request->getGet('abrir'),
             'abertos' => $model->whereIn('status', ['Aberto', 'Em atendimento', 'Aguardando'])->countAllResults(),
             'atrasados' => $model->whereIn('status', ['Aberto', 'Em atendimento', 'Aguardando'])->where('prazo <', date('Y-m-d'))->countAllResults()]);
         echo view('templates/footer');
@@ -32,11 +33,14 @@ class Chamados extends BaseController
     {
         if ($redirect = $this->permissao()) return $redirect;
         $d = $this->dadosPost();
-        if ($d['escola'] === '' || $d['solicitante'] === '' || $d['descricao'] === '') return redirect()->back()->withInput()->with('alert', 'errorValidation');
+        if ($d['escola'] === '' || $d['solicitante'] === '' || $d['descricao'] === '') {
+            return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'Preencha escola, solicitante e descrição.']);
+        }
         $model = new ChamadoModel();
         $id = $model->insert($d);
-        if ($id) $this->historico((int) $id, 'Criação', 'Chamado registrado.');
-        return redirect()->to('/chamados?alert=successCreate');
+        if (!$id) return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'Não foi possível registrar o chamado. Confira os dados e tente novamente.']);
+        $this->historico((int) $id, 'Criação', 'Chamado registrado.');
+        return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'success', 'texto' => 'Chamado registrado com sucesso.']);
     }
 
     public function atualizar()
@@ -49,18 +53,36 @@ class Chamados extends BaseController
         $comentario = trim((string) $this->request->getPost('comentario'));
         $prazo = trim((string) $this->request->getPost('prazo'));
         $validos = ['Aberto', 'Em atendimento', 'Aguardando', 'Resolvido', 'Fechado'];
-        if ($id < 1 || !in_array($status, $validos, true)) return redirect()->to('/chamados?alert=errorValidation');
-        if (in_array($status, ['Resolvido', 'Fechado'], true) && $solucao === '') return redirect()->to('/chamados?alert=errorSolution');
+        if ($id < 1 || !in_array($status, $validos, true)) {
+            return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'O status enviado é inválido. Atualize a página e tente novamente.']);
+        }
+        if ($prazo !== '' && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $prazo)) {
+            return redirect()->to('/chamados?abrir=' . $id)->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'O prazo informado não é uma data válida.']);
+        }
+        if (in_array($status, ['Resolvido', 'Fechado'], true) && $solucao === '') {
+            return redirect()->to('/chamados?abrir=' . $id)->with('chamado_feedback', ['tipo' => 'warning', 'texto' => 'Para concluir o chamado, preencha a solução ou o resultado.']);
+        }
         $model = new ChamadoModel();
         $antes = $model->find($id);
-        if (!$antes) return redirect()->to('/chamados?alert=errorNotFound');
-        $model->update($id, ['status' => $status, 'responsavel' => $responsavel ?: null, 'prazo' => $prazo ?: null, 'solucao' => $solucao ?: null, 'updated_at' => date('Y-m-d H:i:s')]);
-        if ($antes['status'] !== $status) $this->historico($id, 'Status', $antes['status'] . ' → ' . $status);
-        if (($antes['responsavel'] ?? '') !== $responsavel) $this->historico($id, 'Responsável', $responsavel ?: 'Removido');
-        if ($comentario !== '') $this->historico($id, 'Comentário', $comentario);
-        if (($antes['prazo'] ?? '') !== $prazo) $this->historico($id, 'Prazo', $prazo ?: 'Removido');
-        if (($antes['solucao'] ?? '') !== $solucao && $solucao !== '') $this->historico($id, 'Solução', $solucao);
-        return redirect()->to('/chamados?alert=successEdit');
+        if (!$antes) return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'Esse chamado não foi encontrado.']);
+        $db = db_connect();
+        $db->transBegin();
+        try {
+            $atualizado = $model->update($id, ['status' => $status, 'responsavel' => $responsavel ?: null, 'prazo' => $prazo ?: null, 'solucao' => $solucao ?: null, 'updated_at' => date('Y-m-d H:i:s')]);
+            if (!$atualizado || $db->transStatus() === false) throw new \RuntimeException('update_failed');
+            if ($antes['status'] !== $status) $this->historico($id, 'Status', $antes['status'] . ' → ' . $status);
+            if (($antes['responsavel'] ?? '') !== $responsavel) $this->historico($id, 'Responsável', $responsavel ?: 'Removido');
+            if ($comentario !== '') $this->historico($id, 'Comentário', $comentario);
+            if (($antes['prazo'] ?? '') !== $prazo) $this->historico($id, 'Prazo', $prazo ?: 'Removido');
+            if (($antes['solucao'] ?? '') !== $solucao && $solucao !== '') $this->historico($id, 'Solução', $solucao);
+            if ($db->transStatus() === false) throw new \RuntimeException('history_failed');
+            $db->transCommit();
+        } catch (\Throwable $e) {
+            $db->transRollback();
+            log_message('error', 'Falha ao atualizar chamado {id}: {erro}; banco: {dbError}', ['id' => $id, 'erro' => $e->getMessage(), 'dbError' => json_encode($db->error())]);
+            return redirect()->to('/chamados?abrir=' . $id)->with('chamado_feedback', ['tipo' => 'danger', 'texto' => 'A atualização não foi gravada. Confira os campos e a estrutura das tabelas, e tente novamente.']);
+        }
+        return redirect()->to('/chamados')->with('chamado_feedback', ['tipo' => 'success', 'texto' => 'Chamado atualizado com sucesso.']);
     }
 
     private function dadosPost(): array
