@@ -22,7 +22,8 @@ class Atendimentogab extends Migration
             ],
 
             'Data' => [
-                'type' => 'DOUBLE'
+                'type'       => 'VARCHAR',
+                'constraint' => 40
             ],
 
             'Tipo' => [

@@ -135,13 +135,9 @@ $isProtocolo = ($usuarioSetor === 'PROTOCOLO');
                 </li>
                 <?php endif; ?>
 
-                <!-- Atendimento (Visível para SEINTEC e SETEC) -->
-               <li class="nav-item">
-                    <a href="/produtos/listar" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Atendimento
-                        </p>
+                <li class="nav-item">
+                    <a href="/chamados" class="nav-link <?= url_is('chamados') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-ticket-alt"></i><p>Chamados</p>
                     </a>
                 </li>
 
@@ -197,29 +193,7 @@ $isProtocolo = ($usuarioSetor === 'PROTOCOLO');
                     </a>
                 </li>
 
-                <!-- Manuais (Apenas SEINTEC) -->
-                <?php if (!$isSetec) : ?>
-                <li class="nav-item">
-                    <a href="manuais#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Manuais
-                        </p>
-                    </a>
-                </li>
-                <?php endif; ?>
-
-                <!-- Fluxos (Apenas SEINTEC) -->
-                <?php if (!$isSetec) : ?>
-                <li class="nav-item">
-                    <a href="fluxos#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Fluxos
-                        </p>
-                    </a>
-                </li>
-                <?php endif; ?>
+              
 
                 <!-- Contatos (Visível para SEINTEC e SETEC) -->
                 <li class="nav-item">

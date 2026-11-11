@@ -458,6 +458,20 @@ $isSetec = isset($isSetec) ? $isSetec : ($usuarioSetor === 'SETEC');
             <?php endif; ?>
             <?php endif; // Fim if (!$isSetec) dos KPIs e Gráfico por Técnico ?>
 
+            <?php if (!empty($chamadosAtrasados)) : ?>
+            <div class="card card-outline card-danger mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title"><i class="fas fa-exclamation-circle mr-1"></i>Chamados com prazo vencido</h3>
+                    <a href="/chamados" class="btn btn-sm btn-outline-danger">Ver todos (<?= (int)$totalChamadosAtrasados ?>)</a>
+                </div>
+                <div class="card-body p-0"><div class="table-responsive"><table class="table table-sm mb-0"><thead><tr><th>Número</th><th>Escola</th><th>Responsável</th><th>Prazo</th><th>Status</th></tr></thead><tbody>
+                <?php foreach ($chamadosAtrasados as $chamado) : ?>
+                    <tr><td><a href="/chamados?busca=<?= urlencode($chamado['numero']) ?>"><?= esc($chamado['numero']) ?></a></td><td><?= esc($chamado['escola']) ?></td><td><?= esc($chamado['responsavel'] ?: 'Não atribuído') ?></td><td class="text-danger font-weight-bold"><?= esc($chamado['prazo']) ?></td><td><?= esc($chamado['status']) ?></td></tr>
+                <?php endforeach; ?>
+                </tbody></table></div></div>
+            </div>
+            <?php endif; ?>
+
             <?php if ($isSetec) : ?>
             <!-- ======================================================= -->
             <!-- VISÃO SETEC: Apenas o calendário e as visitas pendentes -->

@@ -38,6 +38,8 @@ O objetivo é reduzir planilhas soltas e dar à equipe uma visão rápida do que
 - **Dashboard** com filtro por **mês/ano** e por **status** (botões de filtro).
 - **Agenda** de visitas com os mesmos filtros de mês/ano e status.
 - **Página de PROATIs**: lista os usuários da tabela `login` com perfil `PROATI`, exibindo o nome da escola vinculada.
+- **Central de chamados de TI** para SEINTEC e SETEC, com prioridade, prazo, responsável, situação, solução e histórico de atualizações.
+- **Alertas de chamados atrasados** no dashboard e na central de chamados.
 
 **Planejado**
 

@@ -7,6 +7,7 @@ use App\Models\VisitasModel;
 use App\Models\AgendaModel;
 use App\Models\FieldsModel;
 use App\Models\EquipamentosModel;
+use App\Models\ChamadoModel;
 
 class Dashboard extends BaseController
 {
@@ -82,6 +83,18 @@ class Dashboard extends BaseController
             ->join('escolas', 'LOWER(TRIM(escolas."nome")) = LOWER(TRIM(agendas."Nomelocal"))', 'left')
             ->where('agendas.status', 'pendente')
             ->findAll();
+
+        $chamadosAtrasados = [];
+        $totalChamadosAtrasados = 0;
+        try {
+            $chamadosModel = new ChamadoModel();
+            $chamadosAtrasados = $chamadosModel->whereIn('status', ['Aberto', 'Em atendimento', 'Aguardando'])
+                ->where('prazo <', date('Y-m-d'))->orderBy('prazo', 'ASC')->findAll(5);
+            $totalChamadosAtrasados = $chamadosModel->whereIn('status', ['Aberto', 'Em atendimento', 'Aguardando'])
+                ->where('prazo <', date('Y-m-d'))->countAllResults();
+        } catch (\Throwable $e) {
+            // A tela principal segue disponível antes da migração da nova tabela.
+        }
 
         $totalEquipamentos = 0;
         $totalVisitas = 0;
@@ -260,6 +273,8 @@ class Dashboard extends BaseController
             'statusChamados' => $statusChamados,
             'statusChamadosPresenciais' => $statusChamadosPresenciais,
             'visitasPendentes' => $visitasPendentes,
+            'chamadosAtrasados' => $chamadosAtrasados,
+            'totalChamadosAtrasados' => $totalChamadosAtrasados,
             'proximosAgendamentos' => $proximosAgendamentos,
             'porTecnico' => $porTecnico,          // ← exatamente os 7 técnicos no mês selecionado
             'porTecnicoMes' => $porTecnicoMes,    // ← técnicos com atendimentos no mês para ranking/donut
